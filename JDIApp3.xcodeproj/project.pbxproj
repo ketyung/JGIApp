@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,39 @@
 		100123FE26B6C7BE00074BF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100123FD26B6C7BE00074BF1 /* Assets.xcassets */; };
 		1001240126B6C7BE00074BF1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001240026B6C7BE00074BF1 /* Preview Assets.xcassets */; };
 		1001240426B6C7BE00074BF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1001240226B6C7BE00074BF1 /* LaunchScreen.storyboard */; };
+		1001240D26B6C88F00074BF1 /* ArcGISToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 1001240C26B6C88F00074BF1 /* ArcGISToolkit */; };
+		1001241026B6C8F300074BF1 /* DocuSignHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001240F26B6C8F300074BF1 /* DocuSignHandler.swift */; };
+		1001241326B6C8FC00074BF1 /* ArgGISHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241226B6C8FC00074BF1 /* ArgGISHandler.swift */; };
+		1001241A26B6C90B00074BF1 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241526B6C90B00074BF1 /* CommonViewModel.swift */; };
+		1001241B26B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */; };
+		1001241C26B6C90B00074BF1 /* TemplatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */; };
+		1001241D26B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */; };
+		1001241E26B6C90B00074BF1 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */; };
+		1001242F26B6C91800074BF1 /* PopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242026B6C91800074BF1 /* PopOverView.swift */; };
+		1001243026B6C91800074BF1 /* CommonDimensionAndColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242126B6C91800074BF1 /* CommonDimensionAndColor.swift */; };
+		1001243126B6C91800074BF1 /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242226B6C91800074BF1 /* CustomActivityIndicator.swift */; };
+		1001243226B6C91800074BF1 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242326B6C91800074BF1 /* Common.swift */; };
+		1001243326B6C91800074BF1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242426B6C91800074BF1 /* Extensions.swift */; };
+		1001243426B6C91800074BF1 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242626B6C91800074BF1 /* RoundedCorner.swift */; };
+		1001243526B6C91800074BF1 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242726B6C91800074BF1 /* BottomSheet.swift */; };
+		1001243626B6C91800074BF1 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242826B6C91800074BF1 /* ViewExtension.swift */; };
+		1001243726B6C91800074BF1 /* QRImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242926B6C91800074BF1 /* QRImageView.swift */; };
+		1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242A26B6C91800074BF1 /* ProgressViewModifier.swift */; };
+		1001243926B6C91800074BF1 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242B26B6C91800074BF1 /* TextView.swift */; };
+		1001243A26B6C91800074BF1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242C26B6C91800074BF1 /* Theme.swift */; };
+		1001243B26B6C91800074BF1 /* BorderWithRoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242D26B6C91800074BF1 /* BorderWithRoundCorner.swift */; };
+		1001243C26B6C91800074BF1 /* PlaceHolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242E26B6C91800074BF1 /* PlaceHolderStyle.swift */; };
+		1001244B26B6C92300074BF1 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001243F26B6C92300074BF1 /* TemplateView.swift */; };
+		1001244C26B6C92300074BF1 /* TemplatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244026B6C92300074BF1 /* TemplatesView.swift */; };
+		1001244D26B6C92300074BF1 /* DocuSignTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244126B6C92300074BF1 /* DocuSignTemplateView.swift */; };
+		1001244E26B6C92300074BF1 /* AfterSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244326B6C92300074BF1 /* AfterSignInView.swift */; };
+		1001244F26B6C92300074BF1 /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244426B6C92300074BF1 /* UserLoginView.swift */; };
+		1001245026B6C92300074BF1 /* OAuthTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244526B6C92300074BF1 /* OAuthTokenView.swift */; };
+		1001245126B6C92300074BF1 /* UserLoginViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244626B6C92300074BF1 /* UserLoginViewOld.swift */; };
+		1001245226B6C92300074BF1 /* OauthTokenWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244726B6C92300074BF1 /* OauthTokenWebView.swift */; };
+		1001245326B6C92300074BF1 /* ArcGISMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244926B6C92300074BF1 /* ArcGISMapView.swift */; };
+		1001245426B6C92300074BF1 /* FrontMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244A26B6C92300074BF1 /* FrontMapView.swift */; };
+		37F9CE8A2CA43185D25B6BB0 /* Pods_JDIApp3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +57,40 @@
 		1001240026B6C7BE00074BF1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1001240326B6C7BE00074BF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1001240526B6C7BE00074BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1001240F26B6C8F300074BF1 /* DocuSignHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocuSignHandler.swift; sourceTree = "<group>"; };
+		1001241226B6C8FC00074BF1 /* ArgGISHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgGISHandler.swift; sourceTree = "<group>"; };
+		1001241526B6C90B00074BF1 /* CommonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeatureHandlingViewModel.swift; sourceTree = "<group>"; };
+		1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplatesViewModel.swift; sourceTree = "<group>"; };
+		1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeaturesQueryViewModel.swift; sourceTree = "<group>"; };
+		1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		1001242026B6C91800074BF1 /* PopOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverView.swift; sourceTree = "<group>"; };
+		1001242126B6C91800074BF1 /* CommonDimensionAndColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDimensionAndColor.swift; sourceTree = "<group>"; };
+		1001242226B6C91800074BF1 /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
+		1001242326B6C91800074BF1 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		1001242426B6C91800074BF1 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1001242626B6C91800074BF1 /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		1001242726B6C91800074BF1 /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		1001242826B6C91800074BF1 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		1001242926B6C91800074BF1 /* QRImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRImageView.swift; sourceTree = "<group>"; };
+		1001242A26B6C91800074BF1 /* ProgressViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewModifier.swift; sourceTree = "<group>"; };
+		1001242B26B6C91800074BF1 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		1001242C26B6C91800074BF1 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		1001242D26B6C91800074BF1 /* BorderWithRoundCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderWithRoundCorner.swift; sourceTree = "<group>"; };
+		1001242E26B6C91800074BF1 /* PlaceHolderStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceHolderStyle.swift; sourceTree = "<group>"; };
+		1001243F26B6C92300074BF1 /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
+		1001244026B6C92300074BF1 /* TemplatesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplatesView.swift; sourceTree = "<group>"; };
+		1001244126B6C92300074BF1 /* DocuSignTemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocuSignTemplateView.swift; sourceTree = "<group>"; };
+		1001244326B6C92300074BF1 /* AfterSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterSignInView.swift; sourceTree = "<group>"; };
+		1001244426B6C92300074BF1 /* UserLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
+		1001244526B6C92300074BF1 /* OAuthTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthTokenView.swift; sourceTree = "<group>"; };
+		1001244626B6C92300074BF1 /* UserLoginViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewOld.swift; sourceTree = "<group>"; };
+		1001244726B6C92300074BF1 /* OauthTokenWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthTokenWebView.swift; sourceTree = "<group>"; };
+		1001244926B6C92300074BF1 /* ArcGISMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcGISMapView.swift; sourceTree = "<group>"; };
+		1001244A26B6C92300074BF1 /* FrontMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontMapView.swift; sourceTree = "<group>"; };
+		1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDIApp3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.release.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.release.xcconfig"; sourceTree = "<group>"; };
+		8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.debug.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1001240D26B6C88F00074BF1 /* ArcGISToolkit in Frameworks */,
+				37F9CE8A2CA43185D25B6BB0 /* Pods_JDIApp3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +111,8 @@
 			children = (
 				100123F626B6C7BE00074BF1 /* JDIApp3 */,
 				100123F526B6C7BE00074BF1 /* Products */,
+				4CF674A3A15FBC1326862DEA /* Pods */,
+				66054DADA990C2F7BF4CAD9B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +127,11 @@
 		100123F626B6C7BE00074BF1 /* JDIApp3 */ = {
 			isa = PBXGroup;
 			children = (
+				1001241F26B6C91800074BF1 /* Modifiers */,
+				1001240E26B6C8F300074BF1 /* DocuSign */,
+				1001241126B6C8FC00074BF1 /* ArcGIS */,
+				1001243D26B6C92300074BF1 /* Views */,
+				1001241426B6C90B00074BF1 /* ViewModels */,
 				100123F726B6C7BE00074BF1 /* AppDelegate.swift */,
 				100123F926B6C7BE00074BF1 /* SceneDelegate.swift */,
 				100123FB26B6C7BE00074BF1 /* ContentView.swift */,
@@ -75,6 +151,121 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1001240E26B6C8F300074BF1 /* DocuSign */ = {
+			isa = PBXGroup;
+			children = (
+				1001240F26B6C8F300074BF1 /* DocuSignHandler.swift */,
+			);
+			path = DocuSign;
+			sourceTree = "<group>";
+		};
+		1001241126B6C8FC00074BF1 /* ArcGIS */ = {
+			isa = PBXGroup;
+			children = (
+				1001241226B6C8FC00074BF1 /* ArgGISHandler.swift */,
+			);
+			path = ArcGIS;
+			sourceTree = "<group>";
+		};
+		1001241426B6C90B00074BF1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1001241526B6C90B00074BF1 /* CommonViewModel.swift */,
+				1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */,
+				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
+				1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */,
+				1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1001241F26B6C91800074BF1 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1001242026B6C91800074BF1 /* PopOverView.swift */,
+				1001242126B6C91800074BF1 /* CommonDimensionAndColor.swift */,
+				1001242226B6C91800074BF1 /* CustomActivityIndicator.swift */,
+				1001242326B6C91800074BF1 /* Common.swift */,
+				1001242426B6C91800074BF1 /* Extensions.swift */,
+				1001242526B6C91800074BF1 /* bottomSheet */,
+				1001242926B6C91800074BF1 /* QRImageView.swift */,
+				1001242A26B6C91800074BF1 /* ProgressViewModifier.swift */,
+				1001242B26B6C91800074BF1 /* TextView.swift */,
+				1001242C26B6C91800074BF1 /* Theme.swift */,
+				1001242D26B6C91800074BF1 /* BorderWithRoundCorner.swift */,
+				1001242E26B6C91800074BF1 /* PlaceHolderStyle.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		1001242526B6C91800074BF1 /* bottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				1001242626B6C91800074BF1 /* RoundedCorner.swift */,
+				1001242726B6C91800074BF1 /* BottomSheet.swift */,
+				1001242826B6C91800074BF1 /* ViewExtension.swift */,
+			);
+			path = bottomSheet;
+			sourceTree = "<group>";
+		};
+		1001243D26B6C92300074BF1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1001243E26B6C92300074BF1 /* docuSign */,
+				1001244226B6C92300074BF1 /* login */,
+				1001244826B6C92300074BF1 /* mapViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1001243E26B6C92300074BF1 /* docuSign */ = {
+			isa = PBXGroup;
+			children = (
+				1001243F26B6C92300074BF1 /* TemplateView.swift */,
+				1001244026B6C92300074BF1 /* TemplatesView.swift */,
+				1001244126B6C92300074BF1 /* DocuSignTemplateView.swift */,
+			);
+			path = docuSign;
+			sourceTree = "<group>";
+		};
+		1001244226B6C92300074BF1 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				1001244326B6C92300074BF1 /* AfterSignInView.swift */,
+				1001244426B6C92300074BF1 /* UserLoginView.swift */,
+				1001244526B6C92300074BF1 /* OAuthTokenView.swift */,
+				1001244626B6C92300074BF1 /* UserLoginViewOld.swift */,
+				1001244726B6C92300074BF1 /* OauthTokenWebView.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		1001244826B6C92300074BF1 /* mapViews */ = {
+			isa = PBXGroup;
+			children = (
+				1001244926B6C92300074BF1 /* ArcGISMapView.swift */,
+				1001244A26B6C92300074BF1 /* FrontMapView.swift */,
+			);
+			path = mapViews;
+			sourceTree = "<group>";
+		};
+		4CF674A3A15FBC1326862DEA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */,
+				638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		66054DADA990C2F7BF4CAD9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,15 +273,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1001240826B6C7BE00074BF1 /* Build configuration list for PBXNativeTarget "JDIApp3" */;
 			buildPhases = (
+				A9D08D07E37B2DB708A3C290 /* [CP] Check Pods Manifest.lock */,
 				100123F026B6C7BE00074BF1 /* Sources */,
 				100123F126B6C7BE00074BF1 /* Frameworks */,
 				100123F226B6C7BE00074BF1 /* Resources */,
+				3966482CBF208D2178F2C256 /* [CP] Embed Pods Frameworks */,
+				AAF85E372B3E1F9645BF967D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = JDIApp3;
+			packageProductDependencies = (
+				1001240C26B6C88F00074BF1 /* ArcGISToolkit */,
+			);
 			productName = JDIApp3;
 			productReference = 100123F426B6C7BE00074BF1 /* JDIApp3.app */;
 			productType = "com.apple.product-type.application";
@@ -118,6 +315,9 @@
 				Base,
 			);
 			mainGroup = 100123EB26B6C7BE00074BF1;
+			packageReferences = (
+				1001240B26B6C88F00074BF1 /* XCRemoteSwiftPackageReference "arcgis-runtime-toolkit-ios" */,
+			);
 			productRefGroup = 100123F526B6C7BE00074BF1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,14 +340,104 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3966482CBF208D2178F2C256 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9D08D07E37B2DB708A3C290 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JDIApp3-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAF85E372B3E1F9645BF967D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		100123F026B6C7BE00074BF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1001244D26B6C92300074BF1 /* DocuSignTemplateView.swift in Sources */,
+				1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */,
+				1001245026B6C92300074BF1 /* OAuthTokenView.swift in Sources */,
+				1001243B26B6C91800074BF1 /* BorderWithRoundCorner.swift in Sources */,
+				1001243626B6C91800074BF1 /* ViewExtension.swift in Sources */,
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
+				1001243926B6C91800074BF1 /* TextView.swift in Sources */,
+				1001244F26B6C92300074BF1 /* UserLoginView.swift in Sources */,
+				1001245326B6C92300074BF1 /* ArcGISMapView.swift in Sources */,
+				1001243526B6C91800074BF1 /* BottomSheet.swift in Sources */,
+				1001243026B6C91800074BF1 /* CommonDimensionAndColor.swift in Sources */,
+				1001241A26B6C90B00074BF1 /* CommonViewModel.swift in Sources */,
+				1001244B26B6C92300074BF1 /* TemplateView.swift in Sources */,
+				1001241B26B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift in Sources */,
+				1001245226B6C92300074BF1 /* OauthTokenWebView.swift in Sources */,
 				100123FA26B6C7BE00074BF1 /* SceneDelegate.swift in Sources */,
+				1001241026B6C8F300074BF1 /* DocuSignHandler.swift in Sources */,
+				1001243226B6C91800074BF1 /* Common.swift in Sources */,
+				1001245126B6C92300074BF1 /* UserLoginViewOld.swift in Sources */,
+				1001241D26B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift in Sources */,
+				1001243726B6C91800074BF1 /* QRImageView.swift in Sources */,
+				1001243426B6C91800074BF1 /* RoundedCorner.swift in Sources */,
+				1001241E26B6C90B00074BF1 /* AuthenticationViewModel.swift in Sources */,
+				1001243A26B6C91800074BF1 /* Theme.swift in Sources */,
 				100123FC26B6C7BE00074BF1 /* ContentView.swift in Sources */,
+				1001243326B6C91800074BF1 /* Extensions.swift in Sources */,
+				1001241C26B6C90B00074BF1 /* TemplatesViewModel.swift in Sources */,
+				1001245426B6C92300074BF1 /* FrontMapView.swift in Sources */,
+				1001241326B6C8FC00074BF1 /* ArgGISHandler.swift in Sources */,
+				1001244C26B6C92300074BF1 /* TemplatesView.swift in Sources */,
+				1001243C26B6C91800074BF1 /* PlaceHolderStyle.swift in Sources */,
+				1001244E26B6C92300074BF1 /* AfterSignInView.swift in Sources */,
+				1001242F26B6C91800074BF1 /* PopOverView.swift in Sources */,
+				1001243126B6C91800074BF1 /* CustomActivityIndicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +573,14 @@
 		};
 		1001240926B6C7BE00074BF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"JDIApp3/Preview Content\"";
 				DEVELOPMENT_TEAM = 69FAF79796;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = JDIApp3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -304,12 +596,14 @@
 		};
 		1001240A26B6C7BE00074BF1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"JDIApp3/Preview Content\"";
 				DEVELOPMENT_TEAM = 69FAF79796;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = JDIApp3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -345,6 +639,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1001240B26B6C88F00074BF1 /* XCRemoteSwiftPackageReference "arcgis-runtime-toolkit-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Esri/arcgis-runtime-toolkit-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 100.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1001240C26B6C88F00074BF1 /* ArcGISToolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1001240B26B6C88F00074BF1 /* XCRemoteSwiftPackageReference "arcgis-runtime-toolkit-ios" */;
+			productName = ArcGISToolkit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 100123EC26B6C7BE00074BF1 /* Project object */;
 }
