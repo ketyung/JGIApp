@@ -10,13 +10,17 @@ import SwiftUI
 
 struct TemplatesView : View {
     
+    @Binding var viewType : MenuView.ViewType
+    
     @StateObject private var viewModel = TemplatesViewModel()
     
     var body: some View {
         
         VStack {
             
-            Text("Templates").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.white)
+            Spacer().frame(height:50)
+            
+            Common.topBar(title: "Templates", switchToViewType: $viewType)
             
             List(viewModel.templates, id:\.templateId) {
                 templ in

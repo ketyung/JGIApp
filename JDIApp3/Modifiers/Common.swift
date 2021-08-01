@@ -109,6 +109,34 @@ extension Common {
        
     }
     
-   
 
+}
+
+extension Common {
+    
+    static func topBar(title : String, switchToViewType : Binding <MV.ViewType>) -> some View {
+     
+        HStack {
+      
+            Text(title.localized).font(.custom(Theme.fontNameBold, size: 30)).padding()
+            .foregroundColor(.white)
+         
+            Spacer()
+            
+            Button(action: {
+              
+                withAnimation{
+          
+                    switchToViewType.wrappedValue = .none
+              
+                }
+            }){
+      
+                Image("close").resizable().frame(width: 24, height:24).colorInvert()
+            }
+            
+            Spacer().frame(width:10)
+        }
+      
+    }
 }
