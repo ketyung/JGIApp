@@ -22,14 +22,11 @@ struct TemplatesView : View {
             
             Common.topBar(title: "Templates", switchToViewType: $viewType)
             
-            List(viewModel.templates, id:\.templateId) {
-                templ in
+            templatesList()
+            
+            Spacer()
                 
-                Text("\(templ.name)").font(.custom(Theme.fontName, size: 18))
-            }
-
         }
-       // .themeFullView()
         .progressView(isShowing: $viewModel.inProgress)
         .popOver(isPresented: $viewModel.errorPresented, content: {
             
@@ -39,5 +36,33 @@ struct TemplatesView : View {
             
             viewModel.fetchTemplates()
         }
+        .themeFullView()
+       
+    }
+}
+
+extension TemplatesView {
+    
+    
+    @ViewBuilder
+    private func templatesList() -> some View {
+        
+        
+        if viewModel.templates.count > 0 {
+        
+            List(viewModel.templates, id:\.templateId) {
+                templ in
+                
+                Text("\(templ.name)").font(.custom(Theme.fontName, size: 18))
+            }.padding()
+            
+        }
+        else {
+            
+            Text("No template").font(.custom(Theme.fontName, size: 18))
+            .padding()
+        }
+        
+
     }
 }

@@ -119,7 +119,7 @@ extension Common {
         HStack {
       
             Text(title.localized).font(.custom(Theme.fontNameBold, size: 30)).padding()
-            .foregroundColor(.white)
+            .foregroundColor(.black)
          
             Spacer()
             
@@ -132,7 +132,7 @@ extension Common {
                 }
             }){
       
-                Image("close").resizable().frame(width: 24, height:24).colorInvert()
+                Image("close").resizable().frame(width: 24, height:24)//.colorInvert()
             }
             
             Spacer().frame(width:10)
