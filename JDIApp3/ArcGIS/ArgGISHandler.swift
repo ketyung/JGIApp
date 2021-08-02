@@ -12,6 +12,14 @@ typealias AGH = ArgGISHandler
 
 class ArgGISHandler {
     
+    private  var portalFolders = [AGSPortalFolder]()
+    
+    private let portal = AGSPortal.arcGISOnline(withLoginRequired: true)
+  
+    private var oAuthConfiguration : AGSOAuthConfiguration?
+    
+    
+    
     struct ArgGISError : LocalizedError, CustomStringConvertible {
        
         var description: String {
@@ -28,11 +36,42 @@ class ArgGISHandler {
         
     }
     
+        
+    
+    
     static func setup(){
         
         AGSArcGISRuntimeEnvironment.apiKey = "AAPK1ea720f891ca476cbbb582b22210f639jo403FbwOpJUJAs-cPi5iP9ktKh-FGdo2b8kiZFYc1YOMzibX9cxw2xidvI22Lm2"
     }
+    
+    deinit {
+        // Reset the API key after successful login.
+        //AGSArcGISRuntimeEnvironment.apiKey = apiKey
+       
+        if let oAuthConfig = self.oAuthConfiguration {
+       
+            AGSAuthenticationManager.shared().oAuthConfigurations.remove(oAuthConfig)
+        }
+        AGSAuthenticationManager.shared().credentialCache.removeAllCredentials()
+    }
 }
+
+extension ArgGISHandler {
+    
+    
+    func setupOAuth(){
+    
+        //let apiKey = AGSArcGISRuntimeEnvironment.apiKey
+        
+        oAuthConfiguration =  AGSOAuthConfiguration(portalURL: nil, clientID: "8qkRB53PZAm33zZq", redirectURL: "iOSSamples://auth")
+        
+        
+        AGSAuthenticationManager.shared().oAuthConfigurations.add(oAuthConfiguration!)
+           
+              
+    }
+}
+
 
 extension ArgGISHandler {
     
