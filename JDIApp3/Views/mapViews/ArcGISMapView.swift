@@ -90,14 +90,16 @@ extension ArcGISMapView {
         private var parent : ArcGISMapView
         
         init(_ parent : ArcGISMapView){
-            
+           
             self.parent = parent
+            super.init()
+            self.parent.mapActionHandler?.mapActionDelegate = self
         }
         
         
         func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
             
-            parent.mapActionHandler?.mapActionDelegate = self
+            //parent.mapActionHandler?.mapActionDelegate = self
             
             parent.mapActionHandler?.mapPoints.append( mapPoint )
             
