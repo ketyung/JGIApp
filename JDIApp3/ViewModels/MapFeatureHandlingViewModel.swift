@@ -18,7 +18,7 @@ protocol MapActionHandler {
     
     var mapView : AGSMapView? { get set }
     
-    var mapPoint : [AGSPoint] { get set }
+    var mapPoints : [AGSPoint] { get set }
     
     var screenPoint : CGPoint? { get set }
     
@@ -43,12 +43,18 @@ class MapFeatureHandlingViewModel : ViewModel  {
         
         case editFeatures
         
+        case addPoint
+        
+        case addLine
+        
+        case addPolygon
+        
         case none
     }
     
     var featureTable : AGSServiceFeatureTable?
     
-    var mapPoint: [AGSPoint] = []
+    var mapPoints : [AGSPoint] = []
     
     var mapView: AGSMapView?
     
@@ -113,7 +119,7 @@ extension MapFeatureHandlingViewModel : MapActionHandler {
             self.optionsPresented = false 
         }
         
-        guard let mapPoint = mapPoint.first, let mapView = mapView, let featureTable = featureTable,
+        guard let mapPoint = mapPoints.first, let mapView = mapView, let featureTable = featureTable,
               let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: mapPoint)
         else {
             
@@ -191,11 +197,60 @@ extension MapFeatureHandlingViewModel {
                     
                     self.addFeature()
                     
+                case .addPoint :
+                    
+                    self.addPoint()
             
                 default :
                     return 
                 
             }
         }
+    }
+}
+
+
+extension MapFeatureHandlingViewModel {
+    
+    private func addPoint(){
+        
+        guard let mapView = mapView else {
+            
+            print("nil.map.view")
+            return
+        }
+        
+        withAnimation{
+            
+            self.optionsPresented = false
+        }
+        
+       let point = mapPoints.first
+       
+        
+        
+       if  mapView.graphicsOverlays.count == 0 {
+            
+            let graphicsOverlay = AGSGraphicsOverlay()
+            mapView.graphicsOverlays.add(graphicsOverlay)
+
+        }
+       
+
+       
+        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: selectedColor, size: 20.0)
+
+        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 1.0)
+
+        let pointGraphic = AGSGraphic(geometry: point, symbol: pointSymbol)
+
+        //graphicsOverlay.graphics.add(pointGraphic)
+        if let overlay = mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+            
+            overlay.graphics.add(pointGraphic)
+        }
+
+        mapPoints.removeAll()
+        
     }
 }

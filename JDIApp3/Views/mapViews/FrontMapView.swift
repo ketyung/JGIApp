@@ -54,6 +54,7 @@ extension FrontMapView {
         
         Button(action : {
             
+            viewModel.actionFor(.addPoint)
             
         }) {
        

@@ -100,7 +100,7 @@ extension ArcGISMapView {
         func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
            
             
-            parent.mapActionHandler?.mapPoint.append(mapPoint)
+            parent.mapActionHandler?.mapPoints.append(mapPoint)
             
             parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
             
@@ -142,32 +142,7 @@ extension ArcGISMapView.Coordinator {
     }
     
     
-    private func addPoint(_ point : AGSPoint){
-        
-       if parent.mapView.graphicsOverlays.count == 0 {
-            
-            let graphicsOverlay = AGSGraphicsOverlay()
-            parent.mapView.graphicsOverlays.add(graphicsOverlay)
-
-            print("parent.mapView.graphicsOverlays.count::\(parent.mapView.graphicsOverlays.count)")
-        }
-       
-
-       
-        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: .orange, size: 20.0)
-
-        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 2.0)
-
-        let pointGraphic = AGSGraphic(geometry: point, symbol: pointSymbol)
-
-        //graphicsOverlay.graphics.add(pointGraphic)
-        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
-            
-            overlay.graphics.add(pointGraphic)
-            print("add.symbol::\(overlay.graphics.count)")
-        }
-
-    }
+   
 }
 
 /**
