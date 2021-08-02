@@ -18,6 +18,8 @@ protocol MapActionHandler {
     
     var mapView : AGSMapView? { get set }
     
+    var mapActionDelegate : MapActionDelegate? { get set }
+    
     var mapPoints : [AGSPoint] { get set }
     
     var screenPoint : CGPoint? { get set }
@@ -57,6 +59,8 @@ class MapFeatureHandlingViewModel : ViewModel  {
     var mapPoints : [AGSPoint] = []
     
     var mapView: AGSMapView?
+    
+    weak var mapActionDelegate: MapActionDelegate?
     
     @Published var screenPoint: CGPoint?
     
@@ -214,43 +218,21 @@ extension MapFeatureHandlingViewModel {
     
     private func addPoint(){
         
-        guard let mapView = mapView else {
-            
-            print("nil.map.view")
-            return
-        }
-        
         withAnimation{
             
             self.optionsPresented = false
         }
         
-       let point = mapPoints.first
-       
-        
-        
-       if  mapView.graphicsOverlays.count == 0 {
-            
-            let graphicsOverlay = AGSGraphicsOverlay()
-            mapView.graphicsOverlays.add(graphicsOverlay)
-
+        if let point = mapPoints.first {
+     
+            mapActionDelegate?.addPoint(point, color: selectedColor)
+         
         }
        
-
-       
-        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: selectedColor, size: 20.0)
-
-        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 1.0)
-
-        let pointGraphic = AGSGraphic(geometry: point, symbol: pointSymbol)
-
-        //graphicsOverlay.graphics.add(pointGraphic)
-        if let overlay = mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
-            
-            overlay.graphics.add(pointGraphic)
-        }
-
+        
         mapPoints.removeAll()
+        
+        mapActionDelegate = nil 
         
     }
 }

@@ -64,7 +64,6 @@ struct ArcGISMapView : UIViewRepresentable {
         
         mapView.touchDelegate = context.coordinator
         
-    
         return mapView
     }
 
@@ -93,14 +92,16 @@ extension ArcGISMapView {
         init(_ parent : ArcGISMapView){
             
             self.parent = parent
+            
         }
         
         
         
         func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-           
             
-            parent.mapActionHandler?.mapPoints.append(mapPoint)
+            parent.mapActionHandler?.mapActionDelegate = self
+            
+            parent.mapActionHandler?.mapPoints.append( mapPoint )
             
             parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
             
@@ -134,7 +135,15 @@ extension ArcGISMapView {
    
 }
 
-extension ArcGISMapView.Coordinator {
+
+
+protocol MapActionDelegate : AnyObject {
+    
+    func addPoint(_ point : AGSPoint, color : UIColor?)
+    
+}
+
+extension ArcGISMapView.Coordinator : MapActionDelegate {
     
     private func addLineAtPoints(){
         
@@ -142,7 +151,30 @@ extension ArcGISMapView.Coordinator {
     }
     
     
-   
+    func addPoint(_ point : AGSPoint, color: UIColor? = nil ){
+        
+       if parent.mapView.graphicsOverlays.count == 0 {
+            
+            let graphicsOverlay = AGSGraphicsOverlay()
+            parent.mapView.graphicsOverlays.add(graphicsOverlay)
+
+        }
+       
+
+       
+        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: color ?? .orange, size: 20.0)
+
+        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 2.0)
+
+        let pointGraphic = AGSGraphic(geometry: point, symbol: pointSymbol)
+
+        //graphicsOverlay.graphics.add(pointGraphic)
+        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+            
+            overlay.graphics.add(pointGraphic)
+        }
+
+    }
 }
 
 /**
@@ -164,4 +196,5 @@ extension AGSMapView {
         super.touchesMoved(touches, with: event)
         print("Touch.move...x.")
     }
-}*/
+}
+ */

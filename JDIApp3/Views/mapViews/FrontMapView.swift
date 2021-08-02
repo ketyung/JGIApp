@@ -87,7 +87,7 @@ extension FrontMapView {
 extension FrontMapView {
     
     @ViewBuilder
-    private func colorsScrollView() -> some View {
+    private func colorsScrollView(actionType : MFHVM.ActionType = .addPoint) -> some View {
         
         
         ScrollView(.horizontal, showsIndicators: false ) {
@@ -121,6 +121,9 @@ extension FrontMapView {
                         withAnimation{
                   
                             viewModel.selectedColor = color
+                            
+                            viewModel.actionFor(actionType)
+                       
                       
                         }
                     }
