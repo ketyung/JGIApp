@@ -11,6 +11,12 @@ struct FrontMapView: View {
     
     @StateObject private var viewModel = MFHVM()
     
+    private let colors : [UIColor] = [.white, .gray, .black, .red, .orange,
+                .yellow, .green, .blue, .cyan,  .purple]
+   
+    
+    
+    
     var body: some View {
       
         VStack{
@@ -75,8 +81,6 @@ extension FrontMapView {
     @ViewBuilder
     private func colorsScrollView() -> some View {
         
-        let colors = [Color.white, Color.gray, Color.black, Color.red, Color.orange,
-                      Color.yellow, Color.green, Color.blue, Color.purple]
         
         ScrollView(.horizontal, showsIndicators: false ) {
             
@@ -87,12 +91,33 @@ extension FrontMapView {
                     color in
                     
                    
-                    Button(action : {}){
                    
-                        Circle().fill(color).frame(width: 24, height: 24)
-                       
+                    ZStack {
+                    
+                        
+                        if let selectedColor = viewModel.selectedColor,
+                           selectedColor == color {
+                            
+                            Circle().fill(Color(UIColor(hex:"#009900ff")!))
+                            .frame(width: 30, height: 30)
+                           
+                            
+                        }
+                        
+                        
+                        Circle().fill(Color(color)).frame(width: 24, height: 24)
+                        
+                        
                     }
-                       
+                    .onTapGesture {
+                    
+                        withAnimation{
+                  
+                            viewModel.selectedColor = color
+                      
+                        }
+                    }
+                   
                    
                 }
                 
@@ -103,6 +128,7 @@ extension FrontMapView {
         .background(Color(UIColor(hex:"#ddddddff")!))
         .frame(width: 160,height: 40)
         .cornerRadius(10)
+        .border(Color.black, width: 1, cornerRadius: 10)
        
     }
 }

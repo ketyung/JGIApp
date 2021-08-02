@@ -22,6 +22,7 @@ protocol MapActionHandler {
     
     var screenPoint : CGPoint? { get set }
     
+    var selectedColor : UIColor? { get set }
     
     func actionFor(_ type : MFHVM.ActionType, featureTable : AGSServiceFeatureTable?)
    
@@ -54,6 +55,8 @@ class MapFeatureHandlingViewModel : ViewModel  {
     @Published var screenPoint: CGPoint?
     
     @Published var optionsPresented : Bool = false
+    
+    @Published var selectedColor: UIColor?
     
     private var actionType : ActionType = .none
     
