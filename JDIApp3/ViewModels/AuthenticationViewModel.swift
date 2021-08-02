@@ -9,7 +9,7 @@ import Foundation
 import WebKit
 import SwiftUI
 
-class AuthenticationViewModel : CommonViewModel {
+class AuthenticationViewModel : ViewModel {
     
     @Published  var email : String = ""
     

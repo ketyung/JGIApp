@@ -8,7 +8,7 @@
 import Foundation
 import DocuSignSDK
 
-class TemplatesViewModel : CommonViewModel {
+class TemplatesViewModel : ViewModel {
     
     @Published var templates : [DSMEnvelopeTemplateDefinition] = []
     

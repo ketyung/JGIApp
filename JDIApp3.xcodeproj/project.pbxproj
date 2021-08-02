@@ -16,7 +16,7 @@
 		1001240D26B6C88F00074BF1 /* ArcGISToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 1001240C26B6C88F00074BF1 /* ArcGISToolkit */; };
 		1001241026B6C8F300074BF1 /* DocuSignHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001240F26B6C8F300074BF1 /* DocuSignHandler.swift */; };
 		1001241326B6C8FC00074BF1 /* ArgGISHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241226B6C8FC00074BF1 /* ArgGISHandler.swift */; };
-		1001241A26B6C90B00074BF1 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241526B6C90B00074BF1 /* CommonViewModel.swift */; };
+		1001241A26B6C90B00074BF1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241526B6C90B00074BF1 /* ViewModel.swift */; };
 		1001241B26B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */; };
 		1001241C26B6C90B00074BF1 /* TemplatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */; };
 		1001241D26B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */; };
@@ -60,7 +60,7 @@
 		1001240526B6C7BE00074BF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1001240F26B6C8F300074BF1 /* DocuSignHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocuSignHandler.swift; sourceTree = "<group>"; };
 		1001241226B6C8FC00074BF1 /* ArgGISHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgGISHandler.swift; sourceTree = "<group>"; };
-		1001241526B6C90B00074BF1 /* CommonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		1001241526B6C90B00074BF1 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeatureHandlingViewModel.swift; sourceTree = "<group>"; };
 		1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplatesViewModel.swift; sourceTree = "<group>"; };
 		1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeaturesQueryViewModel.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		1001241426B6C90B00074BF1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1001241526B6C90B00074BF1 /* CommonViewModel.swift */,
+				1001241526B6C90B00074BF1 /* ViewModel.swift */,
 				1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */,
 				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
 				1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */,
@@ -419,7 +419,7 @@
 				1001245326B6C92300074BF1 /* ArcGISMapView.swift in Sources */,
 				1001243526B6C91800074BF1 /* BottomSheet.swift in Sources */,
 				1001243026B6C91800074BF1 /* CommonDimensionAndColor.swift in Sources */,
-				1001241A26B6C90B00074BF1 /* CommonViewModel.swift in Sources */,
+				1001241A26B6C90B00074BF1 /* ViewModel.swift in Sources */,
 				1001244B26B6C92300074BF1 /* TemplateView.swift in Sources */,
 				1001241B26B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift in Sources */,
 				1001245226B6C92300074BF1 /* OauthTokenWebView.swift in Sources */,

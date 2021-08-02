@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommonViewModel : NSObject , ObservableObject {
+class ViewModel : NSObject , ObservableObject {
     
     @Published var inProgress : Bool = false
     
