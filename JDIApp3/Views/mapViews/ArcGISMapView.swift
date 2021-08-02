@@ -74,6 +74,11 @@ struct ArcGISMapView : UIViewRepresentable {
 extension ArcGISMapView {
     
     
+    func makeCoordinator() -> Coordinator {
+        
+        return Coordinator(self)
+    }
+    
     class Coordinator : NSObject, AGSGeoViewTouchDelegate {
             
         private var parent : ArcGISMapView
@@ -90,12 +95,12 @@ extension ArcGISMapView {
             
             parent.mapActionHandler?.mapPoint = mapPoint
             
-            parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
+            //parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
             
-            parent.touchedMapPoints.append(mapPoint)
+           // parent.touchedMapPoints.append(mapPoint)
             
-            
-            print("point.count::\(parent.touchedMapPoints.count)")
+            addPoint(mapPoint)
+            //print("point.count::\(parent.touchedMapPoints.count)")
            
         }
         
@@ -119,11 +124,39 @@ extension ArcGISMapView {
         
     }
     
+   
+}
+
+extension ArcGISMapView.Coordinator {
     
-    func makeCoordinator() -> Coordinator {
+    private func addLineAtPoints(){
         
-        return Coordinator(self)
+        
     }
     
+    
+    private func addPoint(_ point : AGSPoint){
+        
+        if parent.mapView.graphicsOverlays.count == 0 {
+            
+            let graphicsOverlay = AGSGraphicsOverlay()
+            parent.mapView.graphicsOverlays.add(graphicsOverlay)
+
+            print("parent.mapView.graphicsOverlays.count::\(parent.mapView.graphicsOverlays.count)")
+        }
+       
+
+        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: .orange, size: 10.0)
+
+        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 2.0)
+        
+        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+            
+            overlay.graphics.add(pointSymbol)
+            print("add.symbol::\(overlay.graphics.count)")
+        }
+
+    }
 }
+
 
