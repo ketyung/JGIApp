@@ -36,35 +36,29 @@ extension FrontMapView {
     
     private func optionsSheetView() -> some View {
         
-        VStack{
+        ScrollView([], showsIndicators: false){
             
-            optionButton(text: "Add feauture", imageName: "plus.circle", action: {
-                
-                viewModel.addFeature()
-            })
-            
+            addPointButton()
+           
         }
     }
     
     
-    private func optionButton( text : String, imageName : String, action : (()->Void)? = nil ) -> some View{
-        
+    private func addPointButton() -> some View {
         
         Button(action : {
             
-            withAnimation {
-      
-                action?()
-            }
             
         }) {
        
             HStack(spacing:20) {
                 
-                Image(systemName: "plus.circle").resizable().frame(width: 24, height: 24)
+                Circle().fill(Color.red).frame(width: 24, height: 24)
                 
-                Text(text).font(.custom(Theme.fontName, size: 16))
+                Text("Add Point".localized).font(.custom(Theme.fontName, size: 16))
           
+                colorsScrollView()
+                
                 Spacer()
               
             }.padding()
@@ -72,4 +66,43 @@ extension FrontMapView {
        
     }
     
+    
+
+}
+
+extension FrontMapView {
+    
+    @ViewBuilder
+    private func colorsScrollView() -> some View {
+        
+        let colors = [Color.white, Color.gray, Color.black, Color.red, Color.orange,
+                      Color.yellow, Color.green, Color.blue, Color.purple]
+        
+        ScrollView(.horizontal, showsIndicators: false ) {
+            
+            HStack {
+                
+                ForEach(colors, id:\.self) {
+                    
+                    color in
+                    
+                   
+                    Button(action : {}){
+                   
+                        Circle().fill(color).frame(width: 24, height: 24)
+                       
+                    }
+                       
+                   
+                }
+                
+            }
+            .padding()
+        }
+        .padding()
+        .background(Color(UIColor(hex:"#ddddddff")!))
+        .frame(width: 160,height: 40)
+        .cornerRadius(10)
+       
+    }
 }

@@ -8,8 +8,6 @@
 import SwiftUI
 import ArcGIS
 
-
-
 struct ArcGISMapView : UIViewRepresentable {
     
     var mapActionHandler : MapActionHandler? = nil
@@ -172,4 +170,23 @@ extension ArcGISMapView.Coordinator {
     }
 }
 
-
+/**
+extension AGSMapView {
+    
+    
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        print("Touch.begin....")
+    }
+    
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        print("Touch.end...x")
+    }
+    
+    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        super.touchesMoved(touches, with: event)
+        print("Touch.move...x.")
+    }
+}*/
