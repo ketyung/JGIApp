@@ -67,8 +67,6 @@ extension FrontMapView {
         }
         .padding()
         .frame(width: 200, height: 40)
-       // .background(Color.gray)
-        //.cornerRadius(10)
     }
 }
 
