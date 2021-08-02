@@ -37,6 +37,7 @@ extension UserLoginViewOld {
             
             Spacer().frame(height:200)
             
+            
             signInPanel()
             
             
@@ -76,6 +77,8 @@ extension UserLoginViewOld {
         
         VStack(spacing: 20) {
             
+            Image("docusign").resizable().frame(width:160).aspectRatio(contentMode: .fit)
+         
             Common.textFieldWithUnderLine("Email", text:$viewModel.email )
             
             Common.secureFieldWithUnderLine("Password", text: $viewModel.password )
@@ -96,7 +99,7 @@ extension UserLoginViewOld {
             Spacer()
         }
         .padding()
-        .frame(width: UIScreen.main.bounds.width - 40, height: 200)
+        .frame(width: UIScreen.main.bounds.width - 40, height: 260)
         .border(Color.purple, width: 1, cornerRadius: 6)
         
         
