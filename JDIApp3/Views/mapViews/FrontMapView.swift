@@ -15,6 +15,7 @@ struct FrontMapView: View {
                 .yellow, .green, .blue, .cyan,  .purple]
    
     
+    @State private var showTopToolbar : Bool = true
     
     
     var body: some View {
@@ -30,6 +31,10 @@ struct FrontMapView: View {
             
             Common.errorAlertView(message: viewModel.errorMessage ?? "Error")
         })
+        .popOverAt(.topRight, isPresented: $showTopToolbar, content: {
+            
+            topMenuBar()
+        })
         .bottomSheet(isPresented: $viewModel.optionsPresented, height: 200, showGrayOverlay: true, content:{
             
             optionsSheetView()
@@ -37,6 +42,36 @@ struct FrontMapView: View {
         
     }
 }
+
+
+extension FrontMapView {
+    
+    private func topMenuBar() -> some View {
+        
+        HStack(spacing: 20) {
+            
+            Spacer()
+            
+            Button(action : {}){
+           
+                Image(systemName: "gear").resizable().frame(width: 30, height: 30).foregroundColor(.green)
+
+            }
+           
+            Button(action : {}){
+           
+                Image(systemName: "checkmark.circle").resizable().frame(width: 30, height: 30).foregroundColor(.green)
+               
+            }
+           
+        }
+        .padding()
+        .frame(width: 200, height: 40)
+       // .background(Color.gray)
+        //.cornerRadius(10)
+    }
+}
+
 
 extension FrontMapView {
     
@@ -83,6 +118,9 @@ extension FrontMapView {
     
 
 }
+
+
+
 
 extension FrontMapView {
     

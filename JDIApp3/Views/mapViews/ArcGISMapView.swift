@@ -142,11 +142,14 @@ protocol MapActionDelegate : AnyObject {
     
     func addPoint(_ point : AGSPoint, color : UIColor?)
     
+    func addLineAtPoints ( _ points : [AGSPoint])
+    
+    func removeAll()
 }
 
 extension ArcGISMapView.Coordinator : MapActionDelegate {
     
-    private func addLineAtPoints(){
+    func addLineAtPoints ( _ points : [AGSPoint]){
         
         
     }
@@ -160,12 +163,10 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
             parent.mapView.graphicsOverlays.add(graphicsOverlay)
 
         }
-       
-
-       
+    
         let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: color ?? .orange, size: 20.0)
 
-        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 2.0)
+        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 1.0)
 
         let pointGraphic = AGSGraphic(geometry: point, symbol: pointSymbol)
 
@@ -176,7 +177,18 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
         }
 
     }
+    
+    
+    
+    func removeAll() {
+        
+        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+        
+            overlay.graphics.removeAllObjects()
+        }
+    }
 }
+
 
 /**
 extension AGSMapView {
