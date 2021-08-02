@@ -34,6 +34,9 @@ struct ArcGISMapView : UIViewRepresentable {
         return featureLayer
     }
     
+    private var touchedMapPoints : [AGSPoint] = []
+    
+    
     init(mapActionHandler : MapActionHandler? = nil) {
         
         self.mapActionHandler = mapActionHandler
@@ -89,6 +92,10 @@ extension ArcGISMapView {
             
             parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
             
+            parent.touchedMapPoints.append(mapPoint)
+            
+            
+            print("point.count::\(parent.touchedMapPoints.count)")
            
         }
         

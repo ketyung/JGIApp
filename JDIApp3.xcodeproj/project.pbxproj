@@ -174,8 +174,8 @@
 			children = (
 				1001241526B6C90B00074BF1 /* ViewModel.swift */,
 				1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */,
-				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
 				1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */,
+				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
 				1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
