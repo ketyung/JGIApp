@@ -59,7 +59,14 @@ extension FrontMapView {
        
             HStack(spacing:20) {
                 
-                Circle().fill(Color.red).frame(width: 24, height: 24)
+                
+                ZStack {
+                    
+                    Circle().fill(Color.black).frame(width: 30, height: 30)
+                    Circle().fill(Color(viewModel.selectedColor)).frame(width: 24, height: 24)
+                   
+                }
+                
                 
                 Text("Add Point".localized).font(.custom(Theme.fontName, size: 16))
           
@@ -95,8 +102,7 @@ extension FrontMapView {
                     ZStack {
                     
                         
-                        if let selectedColor = viewModel.selectedColor,
-                           selectedColor == color {
+                        if viewModel.selectedColor == color {
                             
                             Circle().fill(Color(UIColor(hex:"#009900ff")!))
                             .frame(width: 30, height: 30)

@@ -100,7 +100,7 @@ extension ArcGISMapView {
         func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
            
             
-            parent.mapActionHandler?.mapPoint = mapPoint
+            parent.mapActionHandler?.mapPoint.append(mapPoint)
             
             parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
             

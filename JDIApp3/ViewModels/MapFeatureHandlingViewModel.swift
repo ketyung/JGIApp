@@ -18,11 +18,11 @@ protocol MapActionHandler {
     
     var mapView : AGSMapView? { get set }
     
-    var mapPoint : AGSPoint? { get set }
+    var mapPoint : [AGSPoint] { get set }
     
     var screenPoint : CGPoint? { get set }
     
-    var selectedColor : UIColor? { get set }
+    var selectedColor : UIColor { get set }
     
     func actionFor(_ type : MFHVM.ActionType, featureTable : AGSServiceFeatureTable?)
    
@@ -48,7 +48,7 @@ class MapFeatureHandlingViewModel : ViewModel  {
     
     var featureTable : AGSServiceFeatureTable?
     
-    var mapPoint: AGSPoint?
+    var mapPoint: [AGSPoint] = []
     
     var mapView: AGSMapView?
     
@@ -56,7 +56,7 @@ class MapFeatureHandlingViewModel : ViewModel  {
     
     @Published var optionsPresented : Bool = false
     
-    @Published var selectedColor: UIColor?
+    @Published var selectedColor: UIColor = .red
     
     private var actionType : ActionType = .none
     
@@ -113,7 +113,7 @@ extension MapFeatureHandlingViewModel : MapActionHandler {
             self.optionsPresented = false 
         }
         
-        guard let mapPoint = mapPoint, let mapView = mapView, let featureTable = featureTable,
+        guard let mapPoint = mapPoint.first, let mapView = mapView, let featureTable = featureTable,
               let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: mapPoint)
         else {
             
