@@ -146,7 +146,7 @@ extension ArcGISMapView.Coordinator {
     
     private func addPoint(_ point : AGSPoint){
         
-        if parent.mapView.graphicsOverlays.count == 0 {
+       if parent.mapView.graphicsOverlays.count == 0 {
             
             let graphicsOverlay = AGSGraphicsOverlay()
             parent.mapView.graphicsOverlays.add(graphicsOverlay)
@@ -155,13 +155,17 @@ extension ArcGISMapView.Coordinator {
         }
        
 
-        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: .orange, size: 10.0)
+       
+        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: .orange, size: 20.0)
 
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 2.0)
-        
+
+        let pointGraphic = AGSGraphic(geometry: point, symbol: pointSymbol)
+
+        //graphicsOverlay.graphics.add(pointGraphic)
         if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
             
-            overlay.graphics.add(pointSymbol)
+            overlay.graphics.add(pointGraphic)
             print("add.symbol::\(overlay.graphics.count)")
         }
 
