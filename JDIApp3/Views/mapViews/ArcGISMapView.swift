@@ -104,11 +104,11 @@ extension ArcGISMapView {
             
             parent.mapActionHandler?.mapPoint = mapPoint
             
-            //parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
+            parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
             
            // parent.touchedMapPoints.append(mapPoint)
             
-            addPoint(mapPoint)
+            //addPoint(mapPoint)
             //print("point.count::\(parent.touchedMapPoints.count)")
            
         }

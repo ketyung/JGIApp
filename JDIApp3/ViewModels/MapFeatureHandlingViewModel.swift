@@ -20,13 +20,19 @@ protocol MapActionHandler {
     
     var mapPoint : AGSPoint? { get set }
     
-    func actionFor(_ type : MFHVM.ActionType, featureTable : AGSServiceFeatureTable?)
+    var screenPoint : CGPoint? { get set }
     
+    
+    func actionFor(_ type : MFHVM.ActionType, featureTable : AGSServiceFeatureTable?)
+   
+    func actionFor(_ type : MFHVM.ActionType, screenPoint : CGPoint)
+    
+   
     func addFeature()
     
 }
 
-class MapFeatureHandlingViewModel : NSObject, ObservableObject {
+class MapFeatureHandlingViewModel : ViewModel  {
     
     enum ActionType : Int {
         
@@ -45,11 +51,7 @@ class MapFeatureHandlingViewModel : NSObject, ObservableObject {
     
     var mapView: AGSMapView?
     
-    @Published var inProgress : Bool = false
-    
-    @Published var errorPresented : Bool = false
-    
-    @Published var errorMessage : String?
+    @Published var screenPoint: CGPoint?
     
     @Published var optionsPresented : Bool = false
     
@@ -152,6 +154,22 @@ extension MapFeatureHandlingViewModel : MapActionHandler {
             
         
     }
+    
+    
+}
+
+extension MapFeatureHandlingViewModel {
+    
+    func actionFor(_ type : MFHVM.ActionType, screenPoint : CGPoint){
+        
+        withAnimation{
+   
+            self.actionType = type
+            self.screenPoint = screenPoint
+        }
+        
+    }
+    
     
     func actionFor(_ type: ActionType, featureTable : AGSServiceFeatureTable? = nil ) {
         

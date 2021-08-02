@@ -24,7 +24,7 @@ struct FrontMapView: View {
             
             Common.errorAlertView(message: viewModel.errorMessage ?? "Error")
         })
-        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 300, showGrayOverlay: true, content:{
+        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 200, showGrayOverlay: true, content:{
             
             optionsSheetView()
         })
@@ -36,7 +36,7 @@ extension FrontMapView {
     
     private func optionsSheetView() -> some View {
         
-        VStack {
+        VStack{
             
             optionButton(text: "Add feauture", imageName: "plus.circle", action: {
                 
