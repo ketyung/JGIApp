@@ -41,6 +41,15 @@ struct ArcGISMapView : UIViewRepresentable {
         
         self.mapActionHandler = mapActionHandler
         self.mapActionHandler?.mapView = mapView
+        
+        
+        mapView.setViewpoint(
+           AGSViewpoint(
+               latitude: 6.6111,
+               longitude: 20.9394,
+               scale: 72_000
+           )
+       )
     }
     
     
@@ -48,7 +57,7 @@ struct ArcGISMapView : UIViewRepresentable {
 
 
         let map = AGSMap(basemapType: .topographicVector,   latitude: 6.6111,
-                         longitude: 20.9394, levelOfDetail: 4)
+                         longitude: 20.9394, levelOfDetail: 6)
 
         
         map.operationalLayers.add(featureLayer)
