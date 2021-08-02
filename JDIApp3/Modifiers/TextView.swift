@@ -13,7 +13,7 @@ struct TextView : UIViewRepresentable {
     
     @Binding var isFirstResponder : Bool
     
-    var backgroundColor : UIColor = UIColor(hex: "#223344ff")!
+    var backgroundColor : UIColor = UIColor(hex: "#ddddeeff")!
     
     var foregroundColor : UIColor = .white
     

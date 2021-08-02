@@ -9,7 +9,8 @@ import SwiftUI
 
 struct FrontMapView: View {
     
-    @StateObject private var viewModel = MFHVM()
+    @EnvironmentObject private var viewModel : MFHVM
+    
     
     private let colors : [UIColor] = [.white, .gray, .black, .red, .orange,
                 .yellow, .green, .blue, .cyan,  .purple]
@@ -39,7 +40,10 @@ struct FrontMapView: View {
             
             optionsSheetView()
         })
-        
+        .bottomSheet(isPresented: $viewModel.saveSheetPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true, content:{
+            
+            MapInfoEntryView()
+        })
     }
 }
 
@@ -65,7 +69,14 @@ extension FrontMapView {
                 
             }
            
-            Button(action : {}){
+            Button(action : {
+                
+                withAnimation{
+                    
+                    viewModel.saveSheetPresented = true 
+                }
+                
+            }){
            
                 
                 ZStack {

@@ -47,6 +47,7 @@
 		1001245426B6C92300074BF1 /* FrontMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244A26B6C92300074BF1 /* FrontMapView.swift */; };
 		1001245626B766A800074BF1 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245526B766A800074BF1 /* MenuView.swift */; };
 		1001245826B77F7F00074BF1 /* PopOverViewAtPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245726B77F7F00074BF1 /* PopOverViewAtPoint.swift */; };
+		1001245A26B7DEFD00074BF1 /* MapInfoEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */; };
 		37F9CE8A2CA43185D25B6BB0 /* Pods_JDIApp3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		1001244A26B6C92300074BF1 /* FrontMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontMapView.swift; sourceTree = "<group>"; };
 		1001245526B766A800074BF1 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1001245726B77F7F00074BF1 /* PopOverViewAtPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewAtPoint.swift; sourceTree = "<group>"; };
+		1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoEntryView.swift; sourceTree = "<group>"; };
 		1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDIApp3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.release.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.release.xcconfig"; sourceTree = "<group>"; };
 		8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.debug.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			children = (
 				1001244926B6C92300074BF1 /* ArcGISMapView.swift */,
 				1001244A26B6C92300074BF1 /* FrontMapView.swift */,
+				1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */,
 			);
 			path = mapViews;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				100123FC26B6C7BE00074BF1 /* ContentView.swift in Sources */,
 				1001243326B6C91800074BF1 /* Extensions.swift in Sources */,
 				1001241C26B6C90B00074BF1 /* TemplatesViewModel.swift in Sources */,
+				1001245A26B7DEFD00074BF1 /* MapInfoEntryView.swift in Sources */,
 				1001245426B6C92300074BF1 /* FrontMapView.swift in Sources */,
 				1001241326B6C8FC00074BF1 /* ArcGISHandler.swift in Sources */,
 				1001244C26B6C92300074BF1 /* TemplatesView.swift in Sources */,
