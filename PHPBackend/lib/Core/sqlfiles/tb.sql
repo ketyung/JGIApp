@@ -54,3 +54,69 @@ create table if not exists jdiapp_message (
     last_updated datetime,
     primary key(id)
 );
+
+
+drop table if exists jdiapp_map;
+create table if not exists jdiapp_map (
+
+    id varchar(32) default 'x' NOT null,
+    uid varchar(32) default 'x' NOT null,
+    title varchar(200),
+    description text, 
+    status enum('N', 'F'),
+    last_updated datetime,
+    primary key(id),
+    FOREIGN KEY (uid) REFERENCES jdiapp_user(id)
+);
+
+drop table if exists jdiapp_map_version;
+create table if not exists jdiapp_map_version (
+
+    id varchar(32) default 'x' NOT null,
+    version_no float(5,2) default 1 NOT null,
+    status enum('N', 'F'),
+    last_updated datetime,
+    primary key(id, version_no),
+    FOREIGN KEY (id) REFERENCES jdiapp_map(id)
+);
+
+drop table if exists jdiapp_map_version_item;
+create table if not exists jdiapp_map_version_item (
+
+    id varchar(32) default 'x' NOT null,
+    map_id varchar(32) default 'x' NOT null,
+    version_no float(5,2) default 1 NOT null,
+    item_type enum('P','L','PL', 'LB'),
+    last_updated datetime,
+    primary key(id),
+    FOREIGN KEY (map_id, version_no) REFERENCES jdiapp_map_version(id, version_no)
+);
+
+drop table if exists jdiapp_map_version_ipoint;
+create table if not exists jdiapp_map_version_ipoint (
+
+    item_id varchar(32) default 'x' NOT null,
+    id int(5) default 1 NOT null, 
+    latitude float(15,15),
+    longitude float(15,15),
+    last_updated datetime,
+    primary key(item_id,id),
+    FOREIGN KEY (item_id) REFERENCES jdiapp_map_version_item(id)
+);
+
+
+drop table if exists jdiapp_map_version_note;
+create table if not exists jdiapp_map_version_note (
+
+    id varchar(32) default 'x' not null,
+    map_id varchar(32) default 'x' NOT null,
+    version_no float(5,2) default 1 NOT null,
+    uid varchar(32) default 'x' NOT null, 
+    title varchar(255),
+    note text, 
+    last_updated datetime,
+    primary key(id),
+    FOREIGN KEY (map_id, version_no) REFERENCES jdiapp_map_version(id, version_no),
+    FOREIGN KEY (uid) REFERENCES jdiapp_user(id)
+
+);
