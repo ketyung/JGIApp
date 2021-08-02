@@ -168,7 +168,12 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
             
             overlay.graphics.add(pointGraphic)
         }
-
+        
+        withAnimation{
+       
+            parent.mapActionHandler?.edited = true
+        }
+       
     }
     
     

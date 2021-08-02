@@ -20,6 +20,8 @@ struct MapInfoEntryView : View {
             
             Spacer().frame(height:30)
             
+            topBar()
+            
             Common.textFieldWithUnderLine("Title".localized, text: $viewModel.mapTitle)
             
             VStack(alignment: .leading, spacing:5) {
@@ -45,4 +47,53 @@ struct MapInfoEntryView : View {
         }.padding()
         .themeFullView()
     }
+}
+
+extension MapInfoEntryView {
+    
+    
+    private func topBar() -> some View {
+        
+        HStack {
+            
+            Spacer().frame(width: 5)
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    viewModel.saveSheetPresented = false
+                }
+                
+            }){
+           
+                Common.buttonView("close", imageColorInvert: true)
+               
+            }
+            
+            Spacer()
+          
+            Text("Map Info").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.black)
+            
+            Spacer()
+          
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    viewModel.saveSheetPresented = false
+                }
+                
+            }){
+           
+                Common.buttonView(imageSysteName: "checkmark")
+               
+            }
+          
+            Spacer().frame(width:5)
+            
+        }
+    }
+    
 }

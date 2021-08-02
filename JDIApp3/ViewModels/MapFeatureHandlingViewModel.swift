@@ -24,6 +24,8 @@ protocol MapActionHandler {
 
     var selectedColor : UIColor { get set }
     
+    var edited : Bool { get set }
+    
     func actionFor(_ type : MFHVM.ActionType, featureTable : AGSServiceFeatureTable?)
    
     func addFeature()
@@ -68,6 +70,8 @@ class MapFeatureHandlingViewModel : ViewModel  {
     @Published var mapDescription : String = ""
     
     @Published var mapTags : String = ""
+    
+    @Published var edited: Bool = false 
     
     private var actionType : ActionType = .none
     

@@ -139,4 +139,40 @@ extension Common {
         }
       
     }
+    
+    
+    static func buttonView(imageSysteName : String) -> some View {
+        
+        
+        ZStack {
+            
+            Circle().fill(Color(UIColor(hex:"#228855ff")!)).frame(width: 30, height: 30)
+            .opacity(0.7)
+                
+            Image(systemName: imageSysteName).resizable().frame(width: 16, height: 16).foregroundColor(.white)
+
+        }
+    }
+    
+    
+    static func buttonView(_ name : String, imageColorInvert : Bool = false ) -> some View {
+        
+        
+        ZStack {
+            
+            Circle().fill(Color(UIColor(hex:"#228855ff")!)).frame(width: 30, height: 30)
+            .opacity(0.7)
+                
+            if imageColorInvert {
+            
+                Image(name).resizable().frame(width: 16, height: 16).colorInvert()
+                
+            }
+            else {
+                
+                Image(name).resizable().frame(width: 16, height: 16)
+            }
+            
+        }
+    }
 }
