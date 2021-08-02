@@ -53,14 +53,29 @@ extension FrontMapView {
             Spacer()
             
             Button(action : {}){
-           
-                Image(systemName: "gear").resizable().frame(width: 30, height: 30).foregroundColor(.green)
+                
+                ZStack {
+                    
+                    Circle().fill(Color(UIColor(hex:"#228855ff")!)).frame(width: 30, height: 30)
+                    .opacity(0.7)
+                    
+                    Image(systemName: "gear").resizable().frame(width: 20, height: 20).foregroundColor(.white)
 
+                }
+                
             }
            
             Button(action : {}){
            
-                Image(systemName: "checkmark.circle").resizable().frame(width: 30, height: 30).foregroundColor(.green)
+                
+                ZStack {
+                    
+                    Circle().fill(Color(UIColor(hex:"#228855ff")!)).frame(width: 30, height: 30)
+                    .opacity(0.7)
+                        
+                    Image(systemName: "checkmark").resizable().frame(width: 16, height: 16).foregroundColor(.white)
+
+                }
                
             }
            

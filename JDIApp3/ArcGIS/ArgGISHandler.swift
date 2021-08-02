@@ -35,14 +35,18 @@ class ArgGISHandler {
         }
         
     }
-    
-        
-    
+
     
     static func setup(){
         
         AGSArcGISRuntimeEnvironment.apiKey = "AAPK1ea720f891ca476cbbb582b22210f639jo403FbwOpJUJAs-cPi5iP9ktKh-FGdo2b8kiZFYc1YOMzibX9cxw2xidvI22Lm2"
     }
+    
+    init(){
+        
+        setupOAuth()
+    }
+    
     
     deinit {
         // Reset the API key after successful login.
@@ -68,9 +72,86 @@ extension ArgGISHandler {
         
         AGSAuthenticationManager.shared().oAuthConfigurations.add(oAuthConfiguration!)
            
-              
+    }
+    
+    
+    
+    func loadFolders(completion : ((Error?)-> Void)? = nil ){
+        
+        portal.load { [weak self] error in
+            
+            guard let error = error else {
+                
+                
+                self?.portal.user?.fetchContent { _, folders, _ in
+                    
+                    if let portalFolders = folders {
+                        self?.portalFolders = portalFolders
+                    }
+                }
+                
+                completion?(nil)
+                
+                return
+            }
+            
+            completion?(error)
+        
+        }
+    }
+    
+    
+    
+    func save(mapView : AGSMapView, title : String, tags : [String],
+              description : String, folder :  AGSPortalFolder?, completion : ((Error?)-> Void)? = nil){
+        
+     
+        mapView.map?.initialViewpoint = mapView.currentViewpoint(with: AGSViewpointType.centerAndScale)
+               
+               mapView.exportImage { [weak self] (image: UIImage?, error: Error?) in
+                   
+                   // Crop the image from the center.
+                   // Also to cut on the size.
+                  let croppedImage: UIImage? = image?.croppedImage(CGSize(width: 200, height: 200))
+                   
+                  if let portal = self?.portal {
+                  
+                        mapView.map?.save(as: title, portal: portal, tags: tags, folder: folder,
+                        itemDescription: description, thumbnail: croppedImage,
+                        forceSaveToSupportedVersion: true) {
+                             error in
+                             
+                             completion?(nil)
+                        }
+                    
+                  }
+                  
+        }
+        
+    }
+    
+    
+}
+
+
+private extension UIImage {
+
+    func croppedImage(_ size: CGSize) -> UIImage {
+        // Calculate rect based on input size.
+        let originX = (size.width - size.width) / 2
+        let originY = (size.height - size.height) / 2
+        
+        let scale = UIScreen.main.scale
+        let rect = CGRect(x: originX * scale, y: originY * scale, width: size.width * scale, height: size.height * scale)
+        
+        // Crop image.
+        let croppedCGImage = cgImage!.cropping(to: rect)!
+        let croppedImage = UIImage(cgImage: croppedCGImage, scale: scale, orientation: .up)
+        
+        return croppedImage
     }
 }
+
 
 
 extension ArgGISHandler {

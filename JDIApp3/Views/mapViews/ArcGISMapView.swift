@@ -92,10 +92,7 @@ extension ArcGISMapView {
         init(_ parent : ArcGISMapView){
             
             self.parent = parent
-            
         }
-        
-        
         
         
         func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
@@ -106,11 +103,7 @@ extension ArcGISMapView {
             
             parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
             
-           // parent.touchedMapPoints.append(mapPoint)
-            
-            //addPoint(mapPoint)
-            //print("point.count::\(parent.touchedMapPoints.count)")
-           
+           // identifyFeature(at: screenPoint)
         }
         
         
