@@ -1,5 +1,5 @@
 //
-//  ArgGISHandler.swift
+//  ArcGISHandler.swift
 //  JDIApp
 //
 //  Created by Chee Ket Yung on 28/07/2021.
@@ -8,9 +8,9 @@
 import Foundation
 import ArcGIS
 
-typealias AGH = ArgGISHandler
+typealias AGH = ArcGISHandler
 
-class ArgGISHandler {
+class ArcGISHandler {
     
     private  var portalFolders = [AGSPortalFolder]()
     
@@ -60,7 +60,7 @@ class ArgGISHandler {
     }
 }
 
-extension ArgGISHandler {
+extension ArcGISHandler {
     
     
     func setupOAuth(){
@@ -108,24 +108,24 @@ extension ArgGISHandler {
      
         mapView.map?.initialViewpoint = mapView.currentViewpoint(with: AGSViewpointType.centerAndScale)
                
-               mapView.exportImage { [weak self] (image: UIImage?, error: Error?) in
-                   
-                   // Crop the image from the center.
-                   // Also to cut on the size.
-                  let croppedImage: UIImage? = image?.croppedImage(CGSize(width: 200, height: 200))
-                   
-                  if let portal = self?.portal {
-                  
-                        mapView.map?.save(as: title, portal: portal, tags: tags, folder: folder,
-                        itemDescription: description, thumbnail: croppedImage,
-                        forceSaveToSupportedVersion: true) {
-                             error in
-                             
-                             completion?(nil)
-                        }
-                    
-                  }
-                  
+        mapView.exportImage { [weak self] (image: UIImage?, error: Error?) in
+           
+               // Crop the image from the center.
+               // Also to cut on the size.
+              let croppedImage: UIImage? = image?.croppedImage(CGSize(width: 200, height: 200))
+               
+              if let portal = self?.portal {
+              
+                    mapView.map?.save(as: title, portal: portal, tags: tags, folder: folder,
+                    itemDescription: description, thumbnail: croppedImage,
+                    forceSaveToSupportedVersion: true) {
+                         error in
+                         
+                         completion?(nil)
+                    }
+                
+              }
+          
         }
         
     }
@@ -154,7 +154,7 @@ private extension UIImage {
 
 
 
-extension ArgGISHandler {
+extension ArcGISHandler {
     
     
     func queryRelatedFeatures ( originFeature: AGSArcGISFeature , originFeatureTable: AGSServiceFeatureTable, completion : (([AGSFeature]?, Error?)-> Void)? = nil ) {

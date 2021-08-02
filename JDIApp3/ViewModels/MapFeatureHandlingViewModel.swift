@@ -70,6 +70,8 @@ class MapFeatureHandlingViewModel : ViewModel  {
     
     private var actionType : ActionType = .none
     
+    private lazy var agh = AGH()
+    
 }
 
 extension MapFeatureHandlingViewModel {
