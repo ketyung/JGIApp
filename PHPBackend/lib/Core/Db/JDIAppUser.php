@@ -23,7 +23,7 @@ class JDIAppUser extends JDIAppDbObject {
     
     public $lastName;
     
-    public $accountType;
+    public $groupId;
     
     public $dob;
     
@@ -43,7 +43,7 @@ class JDIAppUser extends JDIAppDbObject {
     
 	public function __construct($db)
     {
-		parent::__construct($db, "tzdb_user");
+		parent::__construct($db, "jdiapp_user");
     }
 
 	

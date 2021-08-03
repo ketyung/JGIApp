@@ -1,30 +1,35 @@
 <?php
 namespace Core\Db;
 
+use Db\DbObject as DbObject;
 use Core\Db\JDIAppDbObject as JDIAppDbObject;
-use Util\Log as Log;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
-use Util\EncUtil as EncUtil;
+use Util\Log as Log;
 use Util\StrUtil as StrUtil;
 
-class JDIAppMessage extends JDIAppDbObject {
+
+class JDIAppMap extends JDIAppDbObject {
+	
+	public $id;
     
-    public $id;
     public $uid;
-    public $itemId;
+    
     public $title;
-    public $subTitle;
-    public $type;
+    
+    public $description;
+    
+    public $status;
+     
     public $lastUpdated;
     
-
-    public function __construct($db)
+    
+	public function __construct($db)
     {
-        parent::__construct($db, "jdiapp_message");
+		parent::__construct($db, "jdiapp_map");
     }
-    
-    
+
+
     /// default first 50, will modify later
     public function findByUserId($uid, $limit = 0, $offset = 50){
     
@@ -50,7 +55,7 @@ class JDIAppMessage extends JDIAppDbObject {
                 $rid .= EncUtil::randomString(3). ($count + 1);
             }
             
-            $input['id'] = "Mesg_".StrUtil::escapeBase64($rid);
+            $input['id'] = "Map_".StrUtil::escapeBase64($rid);
         }
     }
     
@@ -60,6 +65,6 @@ class JDIAppMessage extends JDIAppDbObject {
         return parent::insert($input);
     }
 
-    
 }
+
 ?>

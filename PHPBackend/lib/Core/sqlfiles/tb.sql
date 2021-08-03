@@ -1,7 +1,29 @@
+
+drop database if exists jdiapp_db;
+
 create database if not exists jdiapp_db;
 use jdiapp_db;
 
 grant all on jdiapp_db.* to 'jdi_dbusr'@'localhost' identified by '21hat53G377A#43!';
+
+drop table if exists jdiapp_user_group;
+create table if not exists jdiapp_user_group (
+
+	id varchar(10) default 'x' NOT null,
+    name varchar(100),
+    last_updated datetime,
+    primary key(id)
+);
+
+insert into jdiapp_user_group (id, name, last_updated)
+values ('GOVOFF', 'Government Officials',now());
+
+insert into jdiapp_user_group (id, name, last_updated)
+values ('SCITI', 'Scientists',now());
+
+insert into jdiapp_user_group (id, name, last_updated)
+values ('GISUSR', 'GIS Users',now());
+
 
 drop table if exists jdiapp_user;
 create table if not exists jdiapp_user (
@@ -9,7 +31,7 @@ create table if not exists jdiapp_user (
 	id varchar(32) default 'x' NOT null,
 	first_name VARCHAR(100) default 'x' NOT NULL,
     last_name VARCHAR(100) default 'x' NOT NULL,
-    account_type enum('B', 'P','O') default 'P' NOT NULL,
+    group_id varchar(10),
     dob datetime,
 	email varchar(255),
 	phone_number varchar(255),
@@ -17,7 +39,9 @@ create table if not exists jdiapp_user (
 	seed smallint(3),
 	stat enum('SI', 'SO') default 'SO' NOT null,
 	last_stat_time datetime,
-    PRIMARY KEY (id)
+    last_updated datetime,
+    PRIMARY KEY (id),
+    FOREIGN KEY (group_id) REFERENCES jdiapp_user_group(id)
 
 )ENGINE=INNODB;
 
@@ -25,7 +49,6 @@ create index phone_idx on jdiapp_user (phone_number);
 
 create index email_idx on jdiapp_user (email);
 
-alter table jdiapp_user add last_updated datetime;
 
 drop table if exists jdiapp_user_img;
 create table if not exists jdiapp_user_img (
@@ -73,11 +96,13 @@ drop table if exists jdiapp_map_version;
 create table if not exists jdiapp_map_version (
 
     id varchar(32) default 'x' NOT null,
-    version_no float(5,2) default 1 NOT null,
+    version_no int(6) default 100 NOT null,
     status enum('N', 'F'),
+    created_by varchar(32) default 'x' NOT null,
     last_updated datetime,
     primary key(id, version_no),
-    FOREIGN KEY (id) REFERENCES jdiapp_map(id)
+    FOREIGN KEY (id) REFERENCES jdiapp_map(id),
+    FOREIGN KEY (created_by) REFERENCES jdiapp_user(id)
 );
 
 drop table if exists jdiapp_map_version_item;
@@ -85,7 +110,7 @@ create table if not exists jdiapp_map_version_item (
 
     id varchar(32) default 'x' NOT null,
     map_id varchar(32) default 'x' NOT null,
-    version_no float(5,2) default 1 NOT null,
+    version_no int(6) default 100 NOT null,
     item_type enum('P','L','PL', 'LB'),
     last_updated datetime,
     primary key(id),
@@ -115,7 +140,7 @@ create table if not exists jdiapp_map_version_note (
 
     id varchar(32) default 'x' not null,
     map_id varchar(32) default 'x' NOT null,
-    version_no float(5,2) default 1 NOT null,
+    version_no int(6) default 100 NOT null,
     uid varchar(32) default 'x' NOT null, 
     title varchar(255),
     note text, 
