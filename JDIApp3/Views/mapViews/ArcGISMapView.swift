@@ -99,16 +99,60 @@ extension ArcGISMapView {
         
         func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
             
-            parent.mapActionHandler?.mapPoints.append( mapPoint )
             
             //parent.mapActionHandler?.actionFor(.presentOptions )
             
-            parent.mapActionHandler?.actionForSelectedType()
+            if parent.mapActionHandler?.isAction(type: .addPoint) ?? false {
+            
+                parent.mapActionHandler?.mapPoints.append( mapPoint )
+               
+                parent.mapActionHandler?.actionForSelectedType()
+                
+            }
+            else
+            if parent.mapActionHandler?.isAction(type: .addFeature) ?? false {
+            
+                parent.mapActionHandler?.mapPoints.append( mapPoint )
+               
+                parent.mapActionHandler?.actionForSelectedType()
+                
+            }
+            else
+            if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+          
+                parent.mapActionHandler?.mapPoints.append( mapPoint )
+                
+                if (parent.mapActionHandler?.mapPoints.count ?? 0) == 1 {
+                
+                    self.addPoint(mapPoint, color: parent.mapActionHandler?.selectedColor, size: 2)
+                }
+                else
+                if (parent.mapActionHandler?.mapPoints.count ?? 0) > 1 {
+                    
+                    self.addPoint(mapPoint, color: parent.mapActionHandler?.selectedColor, size: 2)
+                    parent.mapActionHandler?.actionForSelectedType()
+                }
+                
+            }
             
            // identifyFeature(at: screenPoint)
         }
         
         
+        
+        func geoView(_ geoView: AGSGeoView, didTouchDragToScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+            
+            
+            if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+                
+                parent.mapActionHandler?.mapPoints.append(mapPoint)
+                
+                parent.mapActionHandler?.actionForSelectedType()
+           
+                print("parent.mapPoints::\(parent.mapActionHandler?.mapPoints.count ?? 0)")
+                
+            }
+        }
         
         
         
@@ -179,9 +223,13 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
       
         
     }
+   
+   func addPoint(_ point : AGSPoint, color: UIColor? = nil ){
+   
+        addPoint(point, color:  color, size: 20)
+   }
     
-    
-    func addPoint(_ point : AGSPoint, color: UIColor? = nil ){
+    private func addPoint(_ point : AGSPoint, color: UIColor? = nil, size : CGFloat? = nil ){
         
        if parent.mapView.graphicsOverlays.count == 0 {
             
@@ -190,7 +238,7 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
 
         }
     
-        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: color ?? .orange, size: 20.0)
+        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: color ?? .orange, size: size ?? 20)
 
         pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 1.0)
 

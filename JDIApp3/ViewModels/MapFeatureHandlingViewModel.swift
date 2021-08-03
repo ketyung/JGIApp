@@ -136,6 +136,11 @@ extension MapFeatureHandlingViewModel : MapActionHandler{
                 case .addPoint :
                     
                     self.addPoint()
+                    
+                case .addLine :
+                
+                    self.addLine()
+                
             
                 default :
                     return 
@@ -150,10 +155,6 @@ extension MapFeatureHandlingViewModel {
     
     private func addPoint(){
         
-        withAnimation{
-            
-            self.optionsPresented = false
-        }
         
         if let point = mapPoints.first {
      
@@ -170,15 +171,19 @@ extension MapFeatureHandlingViewModel {
     
     private func addFeature() {
         
-        withAnimation{
-            
-            self.optionsPresented = false
-        }
-        
         if let point = mapPoints.first {
             
             mapActionDelegate?.addFeature(at: point)
         }
+        
+        mapPoints.removeAll()
+        
+    }
+    
+    
+    private func addLine() {
+        
+        mapActionDelegate?.addLineAtPoints(mapPoints, color: selectedColor)
         
         mapPoints.removeAll()
         
