@@ -127,8 +127,8 @@ create table if not exists jdiapp_map_version_ipoint (
 
     item_id varchar(32) default 'x' NOT null,
     id int(5) default 1 NOT null, 
-    latitude float(15,15),
-    longitude float(15,15),
+    latitude real,
+    longitude real,
     last_updated datetime,
     primary key(item_id,id),
     FOREIGN KEY (item_id) REFERENCES jdiapp_map_version_item(id)

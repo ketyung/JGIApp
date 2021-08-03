@@ -3,6 +3,7 @@ namespace Core\Db;
 
 use Db\DbObject as DbObject;
 use Core\Db\JDIAppDbObject as JDIAppDbObject;
+use Core\Db\JDIAppMapVersionIpoint as ItemPoint;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\Log as Log;
@@ -20,6 +21,8 @@ class JDIAppMapVersionItem extends JDIAppDbObject {
 
     public $createdBy;
    
+    public $points;
+
     public $lastUpdated;
     
     
@@ -40,6 +43,33 @@ class JDIAppMapVersionItem extends JDIAppDbObject {
         return $res;
     }
     
+
+
+    function loadPoints(){
+
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("item_id", "=", "", $this->id);
+        
+
+        $itemPoint = new ItemPoint($this->db);
+
+        $itemPoints = array();
+
+        $res = $itemPoint->findByWhere($a, true, " ORDER BY id");
+       
+        foreach ($res as $row) {
+
+            $point = new ItemPoint($this->db);
+            $point->loadResultToProperties($row);
+            array_push($itemPoints, $point);
+      
+        }
+
+        $this->points = $itemPoints;
+
+    }
+
+
 
 
     private function genId(&$input){

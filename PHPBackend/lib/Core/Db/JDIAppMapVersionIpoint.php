@@ -10,7 +10,7 @@ use Util\StrUtil as StrUtil;
 
 class JDIAppMapVersionIpoint extends JDIAppDbObject {
 	
-	public $item_id;
+	public $itemId;
     
     public $id;
   

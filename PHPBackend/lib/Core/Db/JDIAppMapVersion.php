@@ -48,7 +48,7 @@ class JDIAppMapVersion extends JDIAppDbObject {
 
         if ( $this->findByPK($pk)) {
 
-            $this->findItems($id, $versionNo);
+            $this->loadItems($id, $versionNo);
 
             return true ;
         } 
@@ -57,7 +57,7 @@ class JDIAppMapVersion extends JDIAppDbObject {
 
     }
 
-    private function findItems($mapId, $versionNo){
+    private function loadItems($mapId, $versionNo){
 
         $a = new ArrayOfSQLWhereCol();
         $a[] = new SQLWhereCol("map_id", "=", " AND ", $mapId);
@@ -76,6 +76,9 @@ class JDIAppMapVersion extends JDIAppDbObject {
 
             $item = new VersionItem($this->db);
             $item->loadResultToProperties($row);
+
+            $item->loadPoints();
+
             array_push($items, $item);
         }
 
