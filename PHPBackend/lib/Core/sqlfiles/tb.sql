@@ -49,6 +49,11 @@ create index phone_idx on jdiapp_user (phone_number);
 
 create index email_idx on jdiapp_user (email);
 
+alter table jdiapp_user change stat sign_in_stat enum('SI','SO');
+
+alter table jdiapp_user add status enum('N','A','D') after seed ;
+
+
 
 drop table if exists jdiapp_user_img;
 create table if not exists jdiapp_user_img (

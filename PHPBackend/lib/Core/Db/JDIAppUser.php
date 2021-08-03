@@ -35,10 +35,13 @@ class JDIAppUser extends JDIAppDbObject {
     
     public $seed;
     
-    public $stat;
+    public $status;
+    
+    public $signInStat;
     
     public $lastStatTime;
     
+    public $lastUpdated;
     
     
 	public function __construct($db)
