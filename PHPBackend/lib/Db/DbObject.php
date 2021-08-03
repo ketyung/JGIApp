@@ -434,7 +434,7 @@ class DbObject extends SQLBuilder {
             
 
     
-    protected function loadResultToProperties($row){
+    public function loadResultToProperties($row){
         
         $cols = array_keys($row);
         

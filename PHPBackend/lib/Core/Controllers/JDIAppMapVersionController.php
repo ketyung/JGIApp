@@ -11,11 +11,11 @@ use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
 use Util\Log as Log;
 
-class JDIAppMapController extends Controller {
+class JDIAppMapVersionController extends Controller {
     
     protected function createDbObject(){
         
-        $this->dbObject = new Map($this->db);
+        $this->dbObject = new MapVersion($this->db);
     }
     
     protected function getDbObjects(){
@@ -63,17 +63,12 @@ class JDIAppMapController extends Controller {
     }
     
 
-    private function getBy($id){
+    private function getBy($id, $versionNo){
         
-        $pk = array('id'=>$id);
-
-        $result = $this->dbObject->findBy($pk);
-
-        if (count($result) > 0){
-
+        if ($this->dbObject->loadBy($id, $versionNo)){
 
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = json_encode($result);
+            $response['body'] = $this->dbObject->toJson();
             return $response;
            
         }

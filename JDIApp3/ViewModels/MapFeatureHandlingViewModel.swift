@@ -139,7 +139,7 @@ extension MapFeatureHandlingViewModel {
         
         mapPoints.removeAll()
         
-       // mapActionDelegate = nil 
+       //q mapActionDelegate = nil 
         
     }
 }
