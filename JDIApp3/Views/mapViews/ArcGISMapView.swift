@@ -109,6 +109,9 @@ extension ArcGISMapView {
         }
         
         
+        
+        
+        
         private func identifyFeature(at screenPoint : CGPoint ){
             
             // identify features at tapped location
@@ -137,7 +140,7 @@ protocol MapActionDelegate : AnyObject {
     
     func addPoint(_ point : AGSPoint, color : UIColor?)
     
-    func addLineAtPoints ( _ points : [AGSPoint])
+    func addLineAtPoints ( _ points : [AGSPoint] , color : UIColor?)
     
     func addFeature(at point: AGSPoint)
     
@@ -146,8 +149,34 @@ protocol MapActionDelegate : AnyObject {
 
 extension ArcGISMapView.Coordinator : MapActionDelegate {
     
-    func addLineAtPoints ( _ points : [AGSPoint]){
+    func addLineAtPoints ( _ points : [AGSPoint], color : UIColor? = nil ){
         
+        if parent.mapView.graphicsOverlays.count == 0 {
+             
+             let graphicsOverlay = AGSGraphicsOverlay()
+             parent.mapView.graphicsOverlays.add(graphicsOverlay)
+         }
+        
+        let pointSymbol = AGSSimpleMarkerSymbol(style: .circle, color: .orange, size: 10.0)
+
+        pointSymbol.outline = AGSSimpleLineSymbol(style: .solid, color: .blue, width: 2.0)
+
+        //let pointGraphic = AGSGraphic(geometry: points.first, symbol: pointSymbol)
+
+        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+            
+            
+            let polyline = AGSPolyline(points: points)
+         
+            let polylineSymbol = AGSSimpleLineSymbol(style: .solid, color: color ?? .blue, width: 2.0)
+
+            let polylineGraphic = AGSGraphic(geometry: polyline, symbol: polylineSymbol)
+            
+            overlay.graphics.add(polylineGraphic)
+            //overlay.graphics.add(pointGraphic)
+        }
+
+      
         
     }
     
