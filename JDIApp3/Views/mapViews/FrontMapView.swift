@@ -66,6 +66,22 @@ extension FrontMapView {
             
             Spacer()
             
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    viewModel.mapActionDelegate?.removeLast()
+                }
+                
+            }){
+                
+                Common.buttonView("undo", imageColorInvert: true)
+           
+            }
+            .opacity(viewModel.edited ? 1 : 0)
+            .disabled(!viewModel.edited)
+            
             Button(action : {
                 
                 withAnimation{

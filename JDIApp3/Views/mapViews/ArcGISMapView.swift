@@ -135,6 +135,7 @@ extension ArcGISMapView {
                 
             }
             
+            self.setEdited()
            // identifyFeature(at: screenPoint)
         }
         
@@ -189,6 +190,8 @@ protocol MapActionDelegate : AnyObject {
     func addFeature(at point: AGSPoint)
     
     func removeAll()
+    
+    func removeLast()
 }
 
 extension ArcGISMapView.Coordinator : MapActionDelegate {
@@ -250,13 +253,21 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
             overlay.graphics.add(pointGraphic)
         }
         
-        withAnimation{
-       
-            parent.mapActionHandler?.edited = true
-        }
+      
        
     }
     
+    
+    func removeLast(){
+        
+        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+        
+            overlay.graphics.removeLastObject()
+            
+            self.setEdited()
+        }
+        
+    }
     
     
     func removeAll() {
@@ -264,7 +275,22 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
         if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
         
             overlay.graphics.removeAllObjects()
+            self.setEdited()
+     
         }
+    }
+    
+    
+    private func setEdited(){
+        
+        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+      
+            withAnimation{
+           
+                parent.mapActionHandler?.edited = overlay.graphics.count > 0
+            }
+        }
+       
     }
 }
 
