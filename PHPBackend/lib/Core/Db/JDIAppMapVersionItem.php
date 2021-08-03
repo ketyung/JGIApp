@@ -20,6 +20,8 @@ class JDIAppMapVersionItem extends JDIAppDbObject {
     public $itemType;
 
     public $createdBy;
+
+    public $color;
    
     public $points;
 

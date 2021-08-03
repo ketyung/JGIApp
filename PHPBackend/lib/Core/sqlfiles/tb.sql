@@ -120,6 +120,9 @@ create table if not exists jdiapp_map_version_item (
 alter table jdiapp_map_version_item add created_by varchar(32) after item_type;
 alter table jdiapp_map_version_item add FOREIGN KEY (created_by) REFERENCES jdiapp_user(id);
 
+alter table jdiapp_map_version_item modify item_type enum('P','L','PL','LB','F');
+
+alter table jdiapp_map_version_item add color varchar(10) after item_type;
 
 
 drop table if exists jdiapp_map_version_ipoint;

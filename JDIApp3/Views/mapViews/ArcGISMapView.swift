@@ -20,7 +20,8 @@ struct ArcGISMapView : UIViewRepresentable {
         
         let url = URL(string: urlString)!
         let table = AGSServiceFeatureTable(url: url)
-       
+       // print("table.hasAttachements::\(table.hasAttachments)")
+        
         return table
         
     }

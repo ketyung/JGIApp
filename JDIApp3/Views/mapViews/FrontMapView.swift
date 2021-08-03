@@ -36,7 +36,7 @@ struct FrontMapView: View {
             
             topMenuBar()
         })
-        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 200, showGrayOverlay: true, content:{
+        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 300, showGrayOverlay: true, content:{
             
             optionsSheetView()
         })
