@@ -38,7 +38,6 @@ struct ArcGISMapView : UIViewRepresentable {
     init(mapActionHandler : MapActionHandler? = nil) {
         
         self.mapActionHandler = mapActionHandler
-        self.mapActionHandler?.mapView = mapView
         
         
         mapView.setViewpoint(
@@ -102,7 +101,9 @@ extension ArcGISMapView {
             
             parent.mapActionHandler?.mapPoints.append( mapPoint )
             
-            parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
+            //parent.mapActionHandler?.actionFor(.presentOptions )
+            
+            parent.mapActionHandler?.actionForSelectedType()
             
            // identifyFeature(at: screenPoint)
         }

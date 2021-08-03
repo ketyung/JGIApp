@@ -14,9 +14,6 @@ typealias MFHVM = MapFeatureHandlingViewModel
 
 protocol MapActionHandler {
     
-    var featureTable : AGSServiceFeatureTable? { get set }
-    
-    var mapView : AGSMapView? { get set }
     
     var mapActionDelegate : MapActionDelegate? { get set }
     
@@ -32,7 +29,11 @@ protocol MapActionHandler {
     
     var edited : Bool { get set }
     
-    func actionFor(_ type : MFHVM.ActionType, featureTable : AGSServiceFeatureTable?)
+    func actionForSelectedType()
+    
+    func set( actionType : MFHVM.ActionType)
+    
+    func isAction( type : MFHVM.ActionType) -> Bool
     
 }
 
@@ -42,9 +43,9 @@ class MapFeatureHandlingViewModel : ViewModel  {
         
         case presentOptions
         
-        case addFeatures
+        case addFeature
         
-        case editFeatures
+        case editFeature
         
         case addPoint
         
@@ -55,11 +56,8 @@ class MapFeatureHandlingViewModel : ViewModel  {
         case none
     }
     
-    var featureTable : AGSServiceFeatureTable?
     
     var mapPoints : [AGSPoint] = []
-    
-    var mapView: AGSMapView?
     
     weak var mapActionDelegate: MapActionDelegate?
   
@@ -77,7 +75,7 @@ class MapFeatureHandlingViewModel : ViewModel  {
     
     @Published var edited: Bool = false 
     
-    private var actionType : ActionType = .none
+    @Published private var actionType : ActionType = .addPoint
     
     private lazy var agh = AGH()
     
@@ -93,22 +91,45 @@ extension MapFeatureHandlingViewModel {
 
 extension MapFeatureHandlingViewModel : MapActionHandler{
     
+    func set(actionType: ActionType) {
+   
+        withAnimation{
+            
+            
+            self.actionType = actionType
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+              
+                withAnimation{
+              
+                    self.optionsPresented = false
+                  
+                }
+               
+            })
+            
+        }
+    }
+    
+    
+    func isAction(type: ActionType) -> Bool {
+        
+        return self.actionType == type 
+    }
+    
 
     
-    func actionFor(_ type: ActionType, featureTable : AGSServiceFeatureTable? = nil ) {
+    func actionForSelectedType() {
         
         withAnimation{
    
-            self.actionType = type
-            self.featureTable = featureTable
-       
             switch(self.actionType){
             
                 case .presentOptions :
                 
                     self.optionsPresented = true
                     
-                case .addFeatures :
+                case .addFeature :
                     
                     self.addFeature()
                     

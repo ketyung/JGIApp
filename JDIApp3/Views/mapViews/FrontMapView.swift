@@ -44,7 +44,9 @@ struct FrontMapView: View {
             
             topMenuBar()
         })
-        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 300, showGrayOverlay: true, content:{
+        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 400, showGrayOverlay: true,
+                     topBarBackgroundColor: Color(UIColor(hex:"#ddeeffff")!) ,
+                     content:{
             
             optionsSheetView()
         })
@@ -64,7 +66,14 @@ extension FrontMapView {
             
             Spacer()
             
-            Button(action : {}){
+            Button(action : {
+                
+                withAnimation{
+                    
+                    viewModel.optionsPresented = true 
+                }
+                
+            }){
                 
                 Common.buttonView(imageSysteName: "gear")
            
@@ -79,7 +88,7 @@ extension FrontMapView {
                 
             }){
            
-                Common.buttonView(imageSysteName: "checkmark")
+                Common.buttonView(imageSysteName: "checkmark.circle")
             }
             .opacity(viewModel.edited ? 1 : 0.35)
             .disabled(!viewModel.edited)
@@ -95,13 +104,26 @@ extension FrontMapView {
     
     private func optionsSheetView() -> some View {
         
-        ScrollView([], showsIndicators: false){
+        ScrollView(.vertical, showsIndicators: false){
             
-            addPointButton()
+            VStack {
+        
+                
+                colorsScrollView()
+              
+                addPointButton()
+                
+                addLineButton()
+                
+                addPolygonButton()
+                
+                addFeatureButton()
             
-            addFeatureButton()
+            }
+            
            
         }
+        .background(Color(UIColor(hex:"#ddeeffff")!))
     }
     
     
@@ -109,7 +131,7 @@ extension FrontMapView {
         
         Button(action : {
             
-            viewModel.actionFor(.addPoint)
+            viewModel.set(actionType: .addPoint)
             
         }) {
        
@@ -126,11 +148,97 @@ extension FrontMapView {
                 
                 Text("Add Point".localized).font(.custom(Theme.fontName, size: 16))
           
-                colorsScrollView()
+                
+                Spacer()
+                
+                if viewModel.isAction(type: .addPoint) {
+              
+                    Image(systemName: "checkmark.circle").resizable().frame(width: 24, height: 24).foregroundColor(.green)
+                  
+                    Spacer().frame(width: 10)
+                }
+              
+            }.padding()
+            .background(Color(UIColor(hex:"#eeeeffff")!))
+        }
+       
+    }
+    
+    
+    private func addLineButton() -> some View {
+        
+        Button(action : {
+            
+            viewModel.set(actionType: .addLine)
+            
+        }) {
+       
+            HStack(spacing:20) {
+                
+                
+                ZStack {
+                    
+                    Rectangle().fill(Color.black).frame(width: 30, height: 30)
+                    
+                    Image("line").resizable().frame(width: 24, height: 24).colorInvert()
+                    
+                }
+                
+                
+                Text("\("Add Line".localized) ").font(.custom(Theme.fontName, size: 16))
+          
                 
                 Spacer()
               
+                if viewModel.isAction(type: .addLine) {
+              
+                    Image(systemName: "checkmark.circle").resizable().frame(width: 24, height: 24).foregroundColor(.green)
+                  
+                    Spacer().frame(width: 10)
+                }
+                
             }.padding()
+            .background(Color(UIColor(hex:"#eeeeffff")!))
+        }
+       
+    }
+    
+    
+    private func addPolygonButton() -> some View {
+        
+        Button(action : {
+            
+            viewModel.set(actionType: .addPolygon)
+            
+        }) {
+       
+            HStack(spacing:20) {
+                
+                
+                ZStack {
+                    
+                    Rectangle().fill(Color.black).frame(width: 30, height: 30)
+                    
+                    Image("polygon").resizable().frame(width: 24, height: 24).colorInvert()
+                    
+                }
+                
+                
+                Text("Add Polygon".localized).font(.custom(Theme.fontName, size: 15))
+          
+                
+                Spacer()
+                
+                if viewModel.isAction(type: .addPolygon) {
+              
+                    Image(systemName: "checkmark.circle").resizable().frame(width: 24, height: 24).foregroundColor(.green)
+                  
+                    Spacer().frame(width: 10)
+                }
+                
+              
+            }.padding()
+            .background(Color(UIColor(hex:"#eeeeffff")!))
         }
        
     }
@@ -140,7 +248,8 @@ extension FrontMapView {
         
         Button(action : {
             
-            viewModel.actionFor(.addFeatures)
+            viewModel.set(actionType: .addFeature)
+           
             
         }) {
        
@@ -159,8 +268,17 @@ extension FrontMapView {
           
                 
                 Spacer()
+                
+                if viewModel.isAction(type: .addFeature) {
+              
+                    Image(systemName: "checkmark.circle").resizable().frame(width: 24, height: 24).foregroundColor(.green)
+                  
+                    Spacer().frame(width: 10)
+                }
               
             }.padding()
+            .background(Color(UIColor(hex:"#eeeeffff")!))
+        
         }
        
     }
@@ -212,7 +330,7 @@ extension FrontMapView {
                   
                             viewModel.selectedColor = color
                             
-                            viewModel.actionFor(actionType)
+                            viewModel.actionForSelectedType()
                        
                       
                         }
@@ -226,7 +344,7 @@ extension FrontMapView {
         }
         .padding()
         .background(Color(UIColor(hex:"#ddddddff")!))
-        .frame(width: 160,height: 40)
+        .frame(width: UIScreen.main.bounds.width - 40 ,height: 40)
         .cornerRadius(10)
         .border(Color.black, width: 1, cornerRadius: 10)
        
