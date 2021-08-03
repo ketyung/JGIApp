@@ -90,6 +90,8 @@ extension FrontMapView {
         ScrollView([], showsIndicators: false){
             
             addPointButton()
+            
+            addFeatureButton()
            
         }
     }
@@ -124,6 +126,37 @@ extension FrontMapView {
         }
        
     }
+    
+    
+    private func addFeatureButton() -> some View {
+        
+        Button(action : {
+            
+            viewModel.actionFor(.addFeatures)
+            
+        }) {
+       
+            HStack(spacing:20) {
+                
+                
+                ZStack {
+                    
+                    Circle().fill(Color.black).frame(width: 30, height: 30)
+                    Circle().fill(Color(viewModel.selectedColor)).frame(width: 24, height: 24)
+                   
+                }
+                
+                
+                Text("Add Feature".localized).font(.custom(Theme.fontName, size: 16))
+          
+                
+                Spacer()
+              
+            }.padding()
+        }
+       
+    }
+    
     
     
 

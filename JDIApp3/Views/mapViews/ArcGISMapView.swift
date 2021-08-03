@@ -32,7 +32,6 @@ struct ArcGISMapView : UIViewRepresentable {
         return featureLayer
     }
     
-    private var touchedMapPoints : [AGSPoint] = []
     
     
     init(mapActionHandler : MapActionHandler? = nil) {
@@ -54,13 +53,14 @@ struct ArcGISMapView : UIViewRepresentable {
     func makeUIView(context: Context) -> AGSMapView {
 
 
+        
         let map = AGSMap(basemapType: .topographicVector,   latitude: 6.6111,
                          longitude: 20.9394, levelOfDetail: 6)
 
-        
+        mapView.map = map
+      
         map.operationalLayers.add(featureLayer)
         
-        mapView.map = map
         
         mapView.touchDelegate = context.coordinator
         
@@ -99,8 +99,6 @@ extension ArcGISMapView {
         
         func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
             
-            //parent.mapActionHandler?.mapActionDelegate = self
-            
             parent.mapActionHandler?.mapPoints.append( mapPoint )
             
             parent.mapActionHandler?.actionFor(.presentOptions, featureTable: parent.featureTable)
@@ -138,6 +136,8 @@ protocol MapActionDelegate : AnyObject {
     func addPoint(_ point : AGSPoint, color : UIColor?)
     
     func addLineAtPoints ( _ points : [AGSPoint])
+    
+    func addFeature(at point: AGSPoint)
     
     func removeAll()
 }
@@ -188,6 +188,79 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
         }
     }
 }
+
+
+
+extension ArcGISMapView.Coordinator {
+    
+    
+    func addFeature(at point: AGSPoint) {
+           // disable interaction with map view
+            parent.mapView.isUserInteractionEnabled = false
+
+           // normalize geometry
+           let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: point)!
+
+           // attributes for the new feature
+           let featureAttributes = ["typdamage": "Minor", "primcause": "Earthquake"]
+           // create a new feature
+
+           let feature =  parent.featureTable.createFeature(attributes: featureAttributes, geometry: normalizedGeometry)
+
+    
+           parent.mapActionHandler?.inProgress = true
+        
+         
+           // add the feature to the feature table
+           parent.featureTable.add(feature) { [weak self] error in
+              
+                
+               if let error = error {
+              
+                    print("error.addFeature::\(error)")
+                
+                    self?.parent.mapActionHandler?.errorMessage = error.localizedDescription
+                    self?.parent.mapActionHandler?.errorPresented = true
+                    self?.parent.mapActionHandler?.inProgress = false
+                
+               }
+               else {
+                   // applied edits on success
+                   self?.applyEdits()
+               }
+               // enable interaction with map view
+         
+               self?.parent.mapView.isUserInteractionEnabled = true
+            
+           }
+    }
+    
+    
+    private func applyEdits() {
+           
+           parent.featureTable.applyEdits { [weak self] res , error in
+            
+                guard let err = error else {
+                
+                    if let res = res?.first, res.completedWithErrors == false {
+                        
+                        print("Success!:\(res.objectID)")
+                        self?.parent.mapActionHandler?.inProgress = false
+                    
+                    }
+                    
+                    return
+                    
+                }
+            
+                self?.parent.mapActionHandler?.errorMessage = err.localizedDescription
+                self?.parent.mapActionHandler?.errorPresented = true
+                self?.parent.mapActionHandler?.inProgress = false
+        
+           }
+       }
+}
+
 
 
 /**

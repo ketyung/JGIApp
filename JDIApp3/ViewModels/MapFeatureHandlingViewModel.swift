@@ -24,11 +24,15 @@ protocol MapActionHandler {
 
     var selectedColor : UIColor { get set }
     
+    var inProgress : Bool { get set }
+    
+    var errorPresented : Bool { get set }
+    
+    var errorMessage : String? { get set }
+    
     var edited : Bool { get set }
     
     func actionFor(_ type : MFHVM.ActionType, featureTable : AGSServiceFeatureTable?)
-   
-    func addFeature()
     
 }
 
@@ -87,7 +91,7 @@ extension MapFeatureHandlingViewModel {
     }
 }
 
-extension MapFeatureHandlingViewModel {
+extension MapFeatureHandlingViewModel : MapActionHandler{
     
 
     
@@ -133,7 +137,6 @@ extension MapFeatureHandlingViewModel {
         if let point = mapPoints.first {
      
             mapActionDelegate?.addPoint(point, color: selectedColor)
-         
         }
        
         
@@ -142,100 +145,22 @@ extension MapFeatureHandlingViewModel {
        //q mapActionDelegate = nil 
         
     }
-}
-
-
-
-extension MapFeatureHandlingViewModel : MapActionHandler {
     
-    func addFeature() {
+    
+    private func addFeature() {
         
         withAnimation{
             
             self.optionsPresented = false
         }
         
-        guard let mapPoint = mapPoints.first, let mapView = mapView, let featureTable = featureTable,
-              let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: mapPoint)
-        else {
+        if let point = mapPoints.first {
             
-            return
+            mapActionDelegate?.addFeature(at: point)
         }
         
-        print("mapPoint::\(mapPoint.x):\(mapPoint.y)::canAdd::\(featureTable.canAddFeature)")
-
-        print("featureTable.::\(String(describing: featureTable.credential))::\(featureTable.apiKey)")
-        
-        self.inProgress = true
-    
-        mapView.isUserInteractionEnabled = false
-       
-            
-            // attributes for the new feature
-        let featureAttributes = ["typdamage": "Minor", "primcause": "Earthquake"]
-        
-        let feature = featureTable.createFeature(attributes: featureAttributes, geometry: normalizedGeometry)
-        
-
-      
-        featureTable.add(feature) { [weak self]  error in
-            
-            if let error = error {
-              
-                
-                print("error.is::\(error)")
-                self?.errorMessage = error.localizedDescription
-                
-                self?.errorPresented = true
-            }
-            else {
-                self?.applyEdits()
-            }
-            // enable interaction with map view
-            mapView.isUserInteractionEnabled = true
-            self?.inProgress = false
-        }
-        
-            
+        mapPoints.removeAll()
         
     }
-    
-    private func applyEdits() {
-        
-        
-        if let featureTable = featureTable {
-    
-            featureTable.applyEdits { [weak self] featureEditResults, error in
-                guard let error = error else {
-                
-                    
-                    if let featureEditResults = featureEditResults {
-                 
-                        if featureEditResults.first?.completedWithErrors == false {
-                        
-                            print("added.feature::\(featureEditResults)")
-                        }
-                        else {
-                            
-                            self?.errorMessage = "Some Error Could Happen!"
-                            self?.errorPresented = true
-                        }
-                        
-                        
-                    }
-                    
-                    return
-                }
-              
-                self?.errorMessage = error.localizedDescription
-                self?.errorPresented = true
-                self?.inProgress = false
-                
-            }
-            
-        }
-            
-    }
-    
-    
 }
+
