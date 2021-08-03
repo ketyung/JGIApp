@@ -12,10 +12,18 @@ struct FrontMapView: View {
     @EnvironmentObject private var viewModel : MFHVM
     
     
-    private let colors : [UIColor] = [.white, .gray, .black, .red, .orange,
-                .yellow, .green, .blue, .cyan,  .purple]
+    private static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
+                "#ffff00ff", "#00ff00ff", "#0000ffff", "#0088ffff",  "#ff00ffff"]
    
     
+    private  var colors : [UIColor] = {
+        
+        FrontMapView.colorHexes.map {
+            UIColor(hex:$0)!
+        }
+    }()
+    
+   
     @State private var showTopToolbar : Bool = true
     
     
@@ -169,6 +177,7 @@ extension FrontMapView {
     
     @ViewBuilder
     private func colorsScrollView(actionType : MFHVM.ActionType = .addPoint) -> some View {
+        
         
         
         ScrollView(.horizontal, showsIndicators: false ) {
