@@ -5,11 +5,12 @@ use Util\Log as Log;
 use Util\StrUtil as StrUtil;
 use Core\Controllers\JDIAppUserController;
 use Core\Controllers\JDIAppMessageController;
+use Core\Controllers\JDIAppMapController;
 use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
 
-checkIfAuthorized();
+//checkIfAuthorized();
 
 headers();
 
@@ -49,6 +50,12 @@ function processUri(){
     if ($uri[1] == 'message'){
 
         $u = new JDIAppMessageController( DbConn::conn() , $requestMethod, $params );
+        $u->processRequest();
+    }
+    else
+    if ($uri[1] == 'map'){
+
+        $u = new JDIAppMapController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else {
