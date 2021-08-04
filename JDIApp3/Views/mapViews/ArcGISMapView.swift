@@ -139,7 +139,7 @@ protocol MapActionDelegate : AnyObject {
 extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
     
     
-    private func isActionRequiredDragGeature() -> Bool {
+    private func actionRequiresDragGeature() -> Bool {
         
         return ( (parent.mapActionHandler?.isAction(type: .addLine) ?? false) ||
                  (parent.mapActionHandler?.isAction(type: .addLineStraight) ?? false ) ||
@@ -150,7 +150,7 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
     
     func geoView(_ geoView: AGSGeoView, didTouchDownAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint, completion: @escaping (Bool) -> Void) {
         
-        if isActionRequiredDragGeature() {
+        if actionRequiresDragGeature() {
   
             parent.mapActionHandler?.mapPoints.append( mapPoint )
            
@@ -217,7 +217,7 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
     
     func geoView(_ geoView: AGSGeoView, didTouchUpAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
         
-        if isActionRequiredDragGeature()  {
+        if actionRequiresDragGeature()  {
             
             parent.mapActionHandler?.mapPoints.append(mapPoint)
         
