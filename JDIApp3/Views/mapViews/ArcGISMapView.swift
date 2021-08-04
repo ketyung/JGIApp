@@ -85,7 +85,7 @@ extension ArcGISMapView {
         return Coordinator(self)
     }
     
-    class Coordinator : NSObject, AGSGeoViewTouchDelegate {
+    class Coordinator : NSObject {
             
         private var parent : ArcGISMapView
         
@@ -97,105 +97,7 @@ extension ArcGISMapView {
         }
         
         
-        func geoView(_ geoView: AGSGeoView, didTouchDownAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint, completion: @escaping (Bool) -> Void) {
-            
-            if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
-      
-                parent.mapActionHandler?.mapPoints.append( mapPoint )
-               
-                print("parent.mapPoints@touchDown::\(parent.mapActionHandler?.mapPoints.count ?? 0)")
-              
-                completion(true)
-          
-            }
-            else {
-                
-                completion(false)
-          
-            }
-        }
-        
-        
-        func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-            
-            
-            //parent.mapActionHandler?.actionFor(.presentOptions )
-            
-            if parent.mapActionHandler?.isAction(type: .addPoint) ?? false {
-            
-                parent.mapActionHandler?.mapPoints.append( mapPoint )
-               
-                parent.mapActionHandler?.actionForSelectedType()
-                
-            }
-            else
-            if parent.mapActionHandler?.isAction(type: .addFeature) ?? false {
-            
-                parent.mapActionHandler?.mapPoints.append( mapPoint )
-               
-                parent.mapActionHandler?.actionForSelectedType()
-                
-            }
-            else
-            if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
-          
-                
-                parent.mapActionHandler?.mapPoints.append( mapPoint )
-                
-                
-                print("parent.mapPoints@Tap::\(parent.mapActionHandler?.mapPoints.count ?? 0)")
-              
-                /**
-                 if (parent.mapActionHandler?.mapPoints.count ?? 0) == 1 {
-                
-                    self.addPoint(mapPoint, color: parent.mapActionHandler?.selectedColor, size: 2)
-                }
-                else
-                if (parent.mapActionHandler?.mapPoints.count ?? 0) > 1 {
-                    
-                    self.addPoint(mapPoint, color: parent.mapActionHandler?.selectedColor, size: 2)
-                    parent.mapActionHandler?.actionForSelectedType()
-                }
-                 */
-
-            }
-            
-            self.setEdited()
-           // identifyFeature(at: screenPoint)
-        }
-        
-        
-        
-        func geoView(_ geoView: AGSGeoView, didTouchDragToScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-            
-            
-            if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
-                
-                parent.mapActionHandler?.mapPoints.append(mapPoint)
-            
-             
-                if (parent.mapActionHandler?.mapPoints.count ?? 0) >= 3 {
-               
-                    parent.mapActionHandler?.actionForSelectedType()
-               
-                    self.setEdited()
-                }
-               
-                
-            }
-        }
-        
-        func geoViewDidCancelTouchDrag(_ geoView: AGSGeoView) {
-            
-            if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
-            
-             
-                print("parent.mapPoints::\(parent.mapActionHandler?.mapPoints.count ?? 0)")
-                
-                parent.mapActionHandler?.actionForSelectedType()
-           
-            }
-        }
+       
         
         private func identifyFeature(at screenPoint : CGPoint ){
             
@@ -233,6 +135,100 @@ protocol MapActionDelegate : AnyObject {
     
     func removeLast()
 }
+
+extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
+    
+    func geoView(_ geoView: AGSGeoView, didTouchDownAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint, completion: @escaping (Bool) -> Void) {
+        
+        if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+  
+            parent.mapActionHandler?.mapPoints.append( mapPoint )
+           
+            completion(true)
+      
+        }
+        else {
+            
+            completion(false)
+      
+        }
+    }
+    
+    
+    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+        
+        
+        //parent.mapActionHandler?.actionFor(.presentOptions )
+        
+        if parent.mapActionHandler?.isAction(type: .addPoint) ?? false {
+        
+            parent.mapActionHandler?.mapPoints.append( mapPoint )
+           
+            parent.mapActionHandler?.actionForSelectedType()
+            
+        }
+        else
+        if parent.mapActionHandler?.isAction(type: .addFeature) ?? false {
+        
+            parent.mapActionHandler?.mapPoints.append( mapPoint )
+           
+            parent.mapActionHandler?.actionForSelectedType()
+            
+        }
+        else
+        if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+      
+            
+            parent.mapActionHandler?.mapPoints.append( mapPoint )
+            
+        }
+        
+        self.setEdited()
+       // identifyFeature(at: screenPoint)
+    }
+    
+    
+    
+    func geoView(_ geoView: AGSGeoView, didTouchDragToScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+        
+        
+        if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+            
+            parent.mapActionHandler?.mapPoints.append(mapPoint)
+        
+           
+        }
+    }
+    
+    
+    func geoView(_ geoView: AGSGeoView, didTouchUpAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+        
+        if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+            
+            parent.mapActionHandler?.mapPoints.append(mapPoint)
+        
+            
+            if (parent.mapActionHandler?.mapPoints.count ?? 0) > 1 {
+          
+               parent.mapActionHandler?.actionForSelectedType()
+          
+               self.setEdited()
+            }
+        
+            
+        }
+        
+    }
+    
+    
+    func geoViewDidCancelTouchDrag(_ geoView: AGSGeoView) {
+        
+    }
+    
+
+    
+}
+
 
 extension ArcGISMapView.Coordinator : MapActionDelegate {
     
