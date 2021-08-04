@@ -179,3 +179,11 @@ extension Common {
         }
     }
 }
+
+extension Common {
+    
+    static func isIPad() -> Bool {
+        
+        return UIDevice.current.userInterfaceIdiom == .pad
+    }
+}

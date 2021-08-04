@@ -123,5 +123,18 @@ extension View {
 
 extension CGPoint {
     
-    static let topRight = CGPoint(x: UIScreen.main.bounds.width - 300, y: -((UIScreen.main.bounds.height / 2) - 50))
+    static var topRight : CGPoint {
+     
+        if Common.isIPad() {
+            
+      
+            return CGPoint(x: UIScreen.main.bounds.width - 520, y: -((UIScreen.main.bounds.height / 2) - 50))
+      
+        }
+        else {
+  
+            return CGPoint(x: UIScreen.main.bounds.width - 300, y: -((UIScreen.main.bounds.height / 2) - 50))
+      
+        }
+    }
 }

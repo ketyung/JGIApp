@@ -110,6 +110,10 @@ create table if not exists jdiapp_map_version (
     FOREIGN KEY (created_by) REFERENCES jdiapp_user(id)
 );
 
+alter table jdiapp_map_version add latitude real after status;
+alter table jdiapp_map_version add longitude real after latitude;
+alter table jdiapp_map_version add level_of_detail smallint(2) after longitude;
+
 drop table if exists jdiapp_map_version_item;
 create table if not exists jdiapp_map_version_item (
 

@@ -17,5 +17,11 @@ struct MapVersion : Codable {
     
     var createdBy : String?
     
+    var latitute : Double?
+    
+    var longitute : Double?
+    
+    var levelOfDetail : Int?
+    
     var lastUpdated : Date?
 }

@@ -44,7 +44,7 @@ struct FrontMapView: View {
             
             topMenuBar()
         })
-        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 400, showGrayOverlay: true,
+        .bottomSheet(isPresented: $viewModel.optionsPresented, height: 450, showGrayOverlay: true,
                      topBarBackgroundColor: Color(UIColor(hex:"#ddeeffff")!) ,
                      content:{
             
@@ -131,6 +131,8 @@ extension FrontMapView {
                 
                 addLineButton()
                 
+                addLineStraightButton()
+                
                 addPolygonButton()
                 
                 addFeatureButton()
@@ -201,7 +203,7 @@ extension FrontMapView {
                 }
                 
                 
-                Text("\("Add Line".localized) ").font(.custom(Theme.fontName, size: 16))
+                Text("\("Draw Line (Freehand)".localized) ").font(.custom(Theme.fontName, size: 16))
           
                 
                 Spacer()
@@ -219,6 +221,44 @@ extension FrontMapView {
        
     }
     
+    
+    private func addLineStraightButton() -> some View {
+        
+        Button(action : {
+            
+            viewModel.set(actionType: .addLineStraight)
+            
+        }) {
+       
+            HStack(spacing:20) {
+                
+                
+                ZStack {
+                    
+                    Rectangle().fill(Color.black).frame(width: 30, height: 30)
+                    
+                    Image("line").resizable().frame(width: 24, height: 24).colorInvert()
+                    
+                }
+                
+                
+                Text("\("Draw Line (Straight)".localized) ").font(.custom(Theme.fontName, size: 16))
+          
+                
+                Spacer()
+              
+                if viewModel.isAction(type: .addLineStraight) {
+              
+                    Image(systemName: "checkmark.circle").resizable().frame(width: 24, height: 24).foregroundColor(.green)
+                  
+                    Spacer().frame(width: 10)
+                }
+                
+            }.padding()
+            .background(Color(UIColor(hex:"#eeeeffff")!))
+        }
+       
+    }
     
     private func addPolygonButton() -> some View {
         
@@ -357,6 +397,7 @@ extension FrontMapView {
                 
             }
             .padding()
+            .frame(width: UIScreen.main.bounds.width - 80 ,height: 40)
         }
         .padding()
         .background(Color(UIColor(hex:"#ddddddff")!))

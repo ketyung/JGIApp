@@ -55,6 +55,11 @@
 		1001246526BA0CEA00074BF1 /* UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001246426BA0CEA00074BF1 /* UserGroup.swift */; };
 		1001246726BA0D2500074BF1 /* UserMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001246626BA0D2500074BF1 /* UserMap.swift */; };
 		1001246926BA0DA300074BF1 /* MapVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001246826BA0DA300074BF1 /* MapVersion.swift */; };
+		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
+		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
+		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
+		10FCC70226BA374000A8A46F /* ApiRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FE26BA374000A8A46F /* ApiRequestHandler.swift */; };
+		10FCC70326BA374000A8A46F /* DateFormatterExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FF26BA374000A8A46F /* DateFormatterExt.swift */; };
 		37F9CE8A2CA43185D25B6BB0 /* Pods_JDIApp3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +113,11 @@
 		1001246426BA0CEA00074BF1 /* UserGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroup.swift; sourceTree = "<group>"; };
 		1001246626BA0D2500074BF1 /* UserMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMap.swift; sourceTree = "<group>"; };
 		1001246826BA0DA300074BF1 /* MapVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersion.swift; sourceTree = "<group>"; };
+		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
+		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
+		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
+		10FCC6FE26BA374000A8A46F /* ApiRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequestHandler.swift; sourceTree = "<group>"; };
+		10FCC6FF26BA374000A8A46F /* DateFormatterExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterExt.swift; sourceTree = "<group>"; };
 		1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDIApp3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.release.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.release.xcconfig"; sourceTree = "<group>"; };
 		8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.debug.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +157,7 @@
 		100123F626B6C7BE00074BF1 /* JDIApp3 */ = {
 			isa = PBXGroup;
 			children = (
+				10FCC6FC26BA36DE00A8A46F /* ApiClient */,
 				1001241F26B6C91800074BF1 /* Modifiers */,
 				1001240E26B6C8F300074BF1 /* DocuSign */,
 				1001241126B6C8FC00074BF1 /* ArcGIS */,
@@ -283,8 +294,20 @@
 				1001246426BA0CEA00074BF1 /* UserGroup.swift */,
 				1001246626BA0D2500074BF1 /* UserMap.swift */,
 				1001246826BA0DA300074BF1 /* MapVersion.swift */,
+				10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */,
+				10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		10FCC6FC26BA36DE00A8A46F /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				10FCC6FE26BA374000A8A46F /* ApiRequestHandler.swift */,
+				10FCC6FF26BA374000A8A46F /* DateFormatterExt.swift */,
+				10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */,
+			);
+			path = ApiClient;
 			sourceTree = "<group>";
 		};
 		4CF674A3A15FBC1326862DEA /* Pods */ = {
@@ -316,7 +339,7 @@
 				100123F126B6C7BE00074BF1 /* Frameworks */,
 				100123F226B6C7BE00074BF1 /* Resources */,
 				3966482CBF208D2178F2C256 /* [CP] Embed Pods Frameworks */,
-				AAF85E372B3E1F9645BF967D /* [CP] Copy Pods Resources */,
+				24CB88F6FAEB6499B59C968E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -379,6 +402,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		24CB88F6FAEB6499B59C968E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3966482CBF208D2178F2C256 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -418,23 +458,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AAF85E372B3E1F9645BF967D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -446,6 +469,7 @@
 				1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */,
 				1001245026B6C92300074BF1 /* OAuthTokenView.swift in Sources */,
 				1001243B26B6C91800074BF1 /* BorderWithRoundCorner.swift in Sources */,
+				10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */,
 				1001246026BA0AE700074BF1 /* OtpText.swift in Sources */,
 				1001243626B6C91800074BF1 /* ViewExtension.swift in Sources */,
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
@@ -460,11 +484,15 @@
 				1001241B26B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift in Sources */,
 				1001245226B6C92300074BF1 /* OauthTokenWebView.swift in Sources */,
 				100123FA26B6C7BE00074BF1 /* SceneDelegate.swift in Sources */,
+				10FCC70226BA374000A8A46F /* ApiRequestHandler.swift in Sources */,
 				1001246326BA0AE700074BF1 /* User.swift in Sources */,
 				1001246926BA0DA300074BF1 /* MapVersion.swift in Sources */,
 				1001241026B6C8F300074BF1 /* DocuSignHandler.swift in Sources */,
+				10FCC70326BA374000A8A46F /* DateFormatterExt.swift in Sources */,
 				1001246726BA0D2500074BF1 /* UserMap.swift in Sources */,
 				1001243226B6C91800074BF1 /* Common.swift in Sources */,
+				10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */,
+				10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */,
 				1001245126B6C92300074BF1 /* UserLoginViewOld.swift in Sources */,
 				1001246526BA0CEA00074BF1 /* UserGroup.swift in Sources */,
 				1001245826B77F7F00074BF1 /* PopOverViewAtPoint.swift in Sources */,

@@ -138,15 +138,26 @@ protocol MapActionDelegate : AnyObject {
 
 extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
     
+    
+    private func isActionRequiredDragGeature() -> Bool {
+        
+        return ( (parent.mapActionHandler?.isAction(type: .addLine) ?? false) ||
+                 (parent.mapActionHandler?.isAction(type: .addLineStraight) ?? false ) ||
+                 (parent.mapActionHandler?.isAction(type: .addPolygon) ?? false )
+        )
+    }
+    
+    
     func geoView(_ geoView: AGSGeoView, didTouchDownAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint, completion: @escaping (Bool) -> Void) {
         
-        if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+        if isActionRequiredDragGeature() {
   
             parent.mapActionHandler?.mapPoints.append( mapPoint )
            
             completion(true)
       
         }
+        
         else {
             
             completion(false)
@@ -178,9 +189,13 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
         else
         if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
       
-            
             parent.mapActionHandler?.mapPoints.append( mapPoint )
-            
+        }
+        
+        else
+        if parent.mapActionHandler?.isAction(type: .addLineStraight) ?? false {
+      
+            parent.mapActionHandler?.mapPoints.append( mapPoint )
         }
         
         self.setEdited()
@@ -196,14 +211,13 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
             
             parent.mapActionHandler?.mapPoints.append(mapPoint)
         
-           
         }
     }
     
     
     func geoView(_ geoView: AGSGeoView, didTouchUpAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
         
-        if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
+        if isActionRequiredDragGeature()  {
             
             parent.mapActionHandler?.mapPoints.append(mapPoint)
         
@@ -215,7 +229,6 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
                self.setEdited()
             }
         
-            
         }
         
     }

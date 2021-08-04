@@ -51,6 +51,8 @@ class MapFeatureHandlingViewModel : ViewModel  {
         
         case addLine
         
+        case addLineStraight
+        
         case addPolygon
         
         case none
@@ -140,7 +142,10 @@ extension MapFeatureHandlingViewModel : MapActionHandler{
                 case .addLine :
                 
                     self.addLine()
-                
+                case .addLineStraight :
+            
+                    self.addLine()
+            
             
                 default :
                     return 
