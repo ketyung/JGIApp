@@ -29,5 +29,4 @@ struct MapVersion : Codable {
     
     var lastUpdated : Date?
     
-    
 }
