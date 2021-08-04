@@ -468,7 +468,7 @@ class DbObject extends SQLBuilder {
     }
 	
     
-    public function toJson(Array $excludes = null ){
+    public function toJson(Array $excludes = null, int $flags = 0 ){
         
         $public = [];
         $reflection = new \ReflectionClass($this);
@@ -489,7 +489,7 @@ class DbObject extends SQLBuilder {
             }
             
         }
-        return json_encode($public);//, JSON_NUMERIC_CHECK); don't check numeric, numeric is to be specified based on object property
+        return json_encode($public, $flags);//, JSON_NUMERIC_CHECK); don't check numeric, numeric is to be specified based on object property
     }
     
     

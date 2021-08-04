@@ -68,7 +68,7 @@ class JDIAppMapVersionController extends Controller {
         if ($this->dbObject->loadBy($id, $versionNo)){
 
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = $this->dbObject->toJson();
+            $response['body'] = $this->dbObject->toJson(null, JSON_NUMERIC_CHECK);
             return $response;
            
         }
@@ -97,6 +97,92 @@ class JDIAppMapVersionController extends Controller {
         
     }
     
+
+
+    // insert new map version
+    protected function createDbObjectFromRequest(){
+    
+        $input = $this->getInput();
+      
+        StrUtil::arrayKeysToSnakeCase($input);
+       
+        $response['status_code_header'] = 'HTTP/1.1 201 Create';
+      
+                         
+        if ($this->dbObject->insert($input) > 0){
+            
+            self::createNoteIfAny($input, $this->db);
+            self::createItemsIfAny($input, $this->db);
+
+            $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
+            $response['body'] = json_encode($a);
+        
+        }
+        else {
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>$this->dbObject->getErrorMessage()));
+        }
+        
+       
+        return $response;
+        
+    }
+
+
+    static function createNoteIfAny($mapVersion, $db) {
+
+        // insert note if any 
+        if (isset($mapVersion['note'])) {
+
+            $note = $mapVersion['note'] ;
+            $note['map_id'] = $mapVersion['id'];
+            $note['version_no'] = $mapVersion['version_no'];
+            
+            $notedb = new VersionNote($db);
+            $notedb->insert($note);
+
+        }
+
+    }
+
+
+
+    // insert items attached to this map version
+    static function createItemsIfAny ( $mapVersion, $db ) {
+
+        if ( isset($mapVersion['items'])) {
+
+            $versionItems = $mapVersion['items'];
+
+            $itemdb = new VersionItem ($db);
+               
+            // insert each item if any 
+            foreach ($versionItems as $item) {
+
+                $item['map_id'] = $mapVersion['id'];
+                $item['version_no'] = $mapVersion['version_no'];
+
+                if ( $itemdb->insert($item) > 0 ){
+
+                    // insert each point if any
+                    $pointdb = new VersionIpoint($db);
+                      
+                    if ( isset($item['points'])) {
+
+                        $points = $item['points'];
+
+                        foreach ( $points as $point) {
+
+                            $point['item_id'] = $item['id'];
+                            
+                            $pointdb->insert($point);
+                        }
+
+                    }
+                }
+                
+            }
+        }
+    }
     
     
 }

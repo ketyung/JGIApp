@@ -18,6 +18,12 @@ class JDIAppMapVersion extends JDIAppDbObject {
     public $status;
 
     public $createdBy;
+
+    public $latitude;
+
+    public $longitude;
+
+    public $levelOfDetail;
      
     public $items;
 

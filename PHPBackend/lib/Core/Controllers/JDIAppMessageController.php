@@ -67,56 +67,6 @@ class JDIAppMessageController extends Controller {
     }
     
     
-    
-    function notifyOfMoneySent(Array $paymentTx){
-        
-        $input = array();
-        $input['uid'] = $paymentTx['to_uid'];
-        $input['item_id'] = $paymentTx['id'];
-       
-        $user = new User($this->db);
-        
-        $pk['id'] = $paymentTx['uid'];
-        
-        
-        $userName = "Someone";
-        if ($user->findByPK($pk)){
-            $userName = $user->firstName . " ".$user->lastName;
-        }
-        /**
-        Log::printRToErrorLog($pk);
-        Log::printRToErrorLog($user);*/
-        /**
-        if ( $paymentTx['tx_type'] == 'SM') {
-            
-            $input['title'] = "Money Received!";
-            $input['sub_title'] = $userName . " sent you money ". $paymentTx['currency'].' '.abs( $paymentTx['amount'] );
-        }
-        else
-        if ( $paymentTx['tx_type'] == 'WT') {
-            
-            $input['title'] = "Wallet Top-up!";
-            $input['sub_title'] =  "Top-up for wallet ". $paymentTx['currency'].' '.abs( $paymentTx['amount'] );
-        }
-        else {
-            
-            $input['title'] = "Money Received!";
-            $input['sub_title'] = $userName . " sent you money ". $paymentTx['currency'].' '.abs( $paymentTx['amount'] );
-       
-        }
-        
-        $input['type'] =  $paymentTx['tx_type'] ;
-         */
-       
-        $input['title'] = "Money Received!";
-        $input['sub_title'] = $userName . " sent you money ". $paymentTx['currency'].' '.abs( $paymentTx['amount'] );
-        $input['type'] =  'SM' ;
-   
-        $mesg = new Message($this->db);
-        $mesg->insert($input);
-        
-    }
-    
 }
 
 ?>

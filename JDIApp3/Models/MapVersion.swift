@@ -25,6 +25,8 @@ struct MapVersion : Codable {
     
     var items : [MapVersionItem]?
     
+    var note : MapVersionNote?
+    
     var lastUpdated : Date?
     
     
