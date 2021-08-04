@@ -9,7 +9,6 @@ import Foundation
 
 struct UserMap : Codable {
     
-    
     enum Status : String, Codable {
         
         case new = "N"
@@ -17,7 +16,6 @@ struct UserMap : Codable {
         case final = "F"
         
     }
-    
     
     var id : String?
     
@@ -28,6 +26,8 @@ struct UserMap : Codable {
     var description : String?
     
     var status : Status?
+    
+    var mapVersion : MapVersion?
     
     var lastUpdated : Date?
     

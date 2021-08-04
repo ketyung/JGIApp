@@ -106,7 +106,7 @@ class ApiRequestHandler : NSObject {
         
     //"http://127.0.0.1:808/"
     
-    "https://techchee.com/TzWalletApiTestPointV1/" //
+    "https://techchee.com/JDIAppApiTestPointV1/" //
     
     private var token : String? = nil
     
@@ -129,7 +129,7 @@ extension ApiRequestHandler {
         
         guard let _ = self.token else {
        
-            obtainToken(completion: {
+            obtainToken(completion: { [weak self]
                 token, err in
                 
                 if err != nil {
@@ -138,10 +138,10 @@ extension ApiRequestHandler {
                 }
             
                 
-                self.token = token
+                self?.token = token
                 
                // print("token::\(String(describing: token))")
-                self.fetchWOA(module: module, param: param , decode: to , completion: completion)
+                self?.fetchWOA(module: module, param: param , decode: to , completion: completion)
             })
            
             return
@@ -171,7 +171,7 @@ extension ApiRequestHandler {
 
             request.httpMethod = "GET"
             
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
+            URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
               
               guard error == nil
               else {
@@ -188,7 +188,7 @@ extension ApiRequestHandler {
                         
                         if let decodeTo = to {
                             
-                            self.decodeJson(decodeTo, data: data, completion:  completion)
+                            self?.decodeJson(decodeTo, data: data, completion:  completion)
                         }
                     }
                     else {
@@ -223,7 +223,7 @@ extension ApiRequestHandler {
         
         guard let _ = self.token else {
        
-            obtainToken(completion: {
+            obtainToken(completion: { [weak self]
                 token, err in
                 
                 if err != nil {
@@ -231,11 +231,11 @@ extension ApiRequestHandler {
                     return
                 }
                 
-                self.token = token
+                self?.token = token
                 
                 //print("self.token::\(String(describing: self.token))")
                 
-                self.sendWOA(module: module, param: param, dataObject: dataObject, returnType: returnType, completion: completion, method: method)
+                self?.sendWOA(module: module, param: param, dataObject: dataObject, returnType: returnType, completion: completion, method: method)
                 
             })
            
@@ -282,7 +282,7 @@ extension ApiRequestHandler {
             }
             
             
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
+            URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
               
                 guard error == nil else {
                     print("error::\(String(describing: error))")
@@ -304,13 +304,13 @@ extension ApiRequestHandler {
                     
                     if let returnType = returnType {
                         
-                        self.decodeJson(ReturnedResult.self, data: data, returnType: returnType, completion: completion)
+                        self?.decodeJson(ReturnedResult.self, data: data, returnType: returnType, completion: completion)
                     
                     }
                     else {
                         
                         
-                        self.decodeJson(ReturnedResult.self, data: data, completion: completion)
+                        self?.decodeJson(ReturnedResult.self, data: data, completion: completion)
                     
                     }
                       
@@ -457,7 +457,7 @@ extension ApiRequestHandler {
                 request.httpBody =  payload.percentEncoded()
         
             
-                URLSession.shared.dataTask(with: request) { (data, response, error) in
+                URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
                   
                     guard error == nil else {
                         print("error::\(String(describing: error))")
@@ -481,7 +481,7 @@ extension ApiRequestHandler {
                         }
                         
                         
-                        self.decodeJson(Token.self, data: data, completion: {
+                        self?.decodeJson(Token.self, data: data, completion: {
                             
                             res in
                             
@@ -576,3 +576,42 @@ extension ApiRequestHandler {
     
 }
 
+
+extension ApiRequestHandler {
+    
+    
+    func addMap <R:Decodable> (_ map : UserMap ,returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "map", dataObject: map, returnType: returnType,completion:  completion)
+    }
+    
+    
+    
+    func fetchMap (id : String, completion:  ((Result<UserMap, Error>)->Void)? = nil ){
+        
+        fetch(module: "map", param: "id/\(id)" , decode: UserMap.self, completion: completion)
+    }
+    
+}
+
+
+extension ApiRequestHandler {
+    
+    
+    func addMapVersion <R:Decodable> (_ version : MapVersion ,returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "mapVersion", dataObject: version, returnType: returnType,completion:  completion)
+    }
+    
+    func updateMapVersion  <R:Decodable> (_ version : MapVersion, returnType : R.Type? = nil,completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "mapVersion", param: "update", dataObject: version, returnType: returnType,
+             completion:  completion, method: "PUT")
+    }
+    
+    func fetchMapVersion (id : String, versionNo : Int,  completion:  ((Result<MapVersion, Error>)->Void)? = nil ){
+        
+        fetch(module: "mapVersion", param: "id/\(id)/\(versionNo)" , decode: MapVersion.self, completion: completion)
+    }
+    
+}

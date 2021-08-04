@@ -18,6 +18,8 @@ protocol MapActionHandler {
     var mapActionDelegate : MapActionDelegate? { get set }
     
     var mapPoints : [AGSPoint] { get set }
+    
+    var mapVersion : MapVersion? { get }
 
     var selectedColor : UIColor { get set }
     
@@ -75,7 +77,9 @@ class MapFeatureHandlingViewModel : ViewModel  {
     
     @Published var mapTags : String = ""
     
-    @Published var edited: Bool = false 
+    @Published var edited: Bool = false
+    
+    @Published private(set) var mapVersion: MapVersion?
     
     @Published private var actionType : ActionType = .addPoint
     
@@ -193,5 +197,9 @@ extension MapFeatureHandlingViewModel {
         mapPoints.removeAll()
         
     }
+    
+    
+    
+    
 }
 
