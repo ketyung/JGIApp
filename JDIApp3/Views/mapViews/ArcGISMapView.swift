@@ -164,7 +164,7 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
         
             parent.mapActionHandler?.mapPoints.append( mapPoint )
            
-            parent.mapActionHandler?.actionForSelectedType()
+            parent.mapActionHandler?.applyAction()
             
         }
         else
@@ -172,7 +172,7 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
         
             parent.mapActionHandler?.mapPoints.append( mapPoint )
            
-            parent.mapActionHandler?.actionForSelectedType()
+            parent.mapActionHandler?.applyAction()
             
         }
         else
@@ -210,7 +210,7 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
             
             if (parent.mapActionHandler?.mapPoints.count ?? 0) > 1 {
           
-               parent.mapActionHandler?.actionForSelectedType()
+               parent.mapActionHandler?.applyAction()
           
                self.setEdited()
             }

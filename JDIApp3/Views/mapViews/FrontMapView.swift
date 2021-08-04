@@ -346,7 +346,7 @@ extension FrontMapView {
                   
                             viewModel.selectedColor = color
                             
-                            viewModel.actionForSelectedType()
+                            viewModel.applyAction()
                        
                       
                         }

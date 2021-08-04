@@ -29,7 +29,7 @@ protocol MapActionHandler {
     
     var edited : Bool { get set }
     
-    func actionForSelectedType()
+    func applyAction()
     
     func set( actionType : MFHVM.ActionType)
     
@@ -119,7 +119,7 @@ extension MapFeatureHandlingViewModel : MapActionHandler{
     
 
     
-    func actionForSelectedType() {
+    func applyAction() {
         
         withAnimation{
    
