@@ -301,13 +301,20 @@ class JDIAppUserController extends Controller {
         StrUtil::arrayKeysToSnakeCase($input);
       
         
+        $user = array();
+
+        if ( isset($input['id'])) {
+
+            $user['id'] = $input['id'];
+        }
+
         $date = date('Y-m-d H:i:s');
       
-        $input['sign_in_stat'] = 'SO';
-        $input['last_stat_time'] = $date;
+        $user['sign_in_stat'] = 'SO';
+        $user['last_stat_time'] = $date;
         
         
-        if ($this->dbObject->update($input, true) > 0){
+        if ($this->dbObject->update($user, true) > 0){
             
             $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Signed Out Successfully!', 'date'=>$date));
         

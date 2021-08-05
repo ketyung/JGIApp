@@ -120,6 +120,7 @@ extension SettingsView {
                 withAnimation{
                     
                     viewType = .menu
+                    viewModel.signOutSuccess = false
                 }
                 
             })

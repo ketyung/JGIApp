@@ -74,6 +74,7 @@ extension SignUpView {
                 withAnimation{
                     
                     viewType = .signIn
+                    viewModel.signUpSuccess = false
                 }
                 
             }){
