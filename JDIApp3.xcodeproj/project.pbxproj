@@ -61,11 +61,13 @@
 		1001247D26BB703000074BF1 /* KeychainWrapperSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001247826BB703000074BF1 /* KeychainWrapperSubscript.swift */; };
 		1001247E26BB703000074BF1 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001247A26BB703000074BF1 /* KeychainItemAccessibility.swift */; };
 		1001248126BB707E00074BF1 /* KCDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248026BB707E00074BF1 /* KCDataStore.swift */; };
-		1001248326BB739700074BF1 /* EmailSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248226BB739700074BF1 /* EmailSignView.swift */; };
+		1001248326BB739700074BF1 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248226BB739700074BF1 /* SignInView.swift */; };
 		1001248526BB754000074BF1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248426BB754000074BF1 /* SignUpView.swift */; };
 		1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248A26BB77AF00074BF1 /* UserViewModel.swift */; };
 		1001249026BB917B00074BF1 /* UserGroupsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248F26BB917B00074BF1 /* UserGroupsListView.swift */; };
 		1001249226BB962F00074BF1 /* UserGroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249126BB962F00074BF1 /* UserGroupsViewModel.swift */; };
+		1001249426BBC6F400074BF1 /* UserProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249326BBC6F400074BF1 /* UserProfileFormView.swift */; };
+		1001249626BBC91A00074BF1 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249526BBC91A00074BF1 /* UserProfileView.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -131,11 +133,13 @@
 		1001247926BB703000074BF1 /* SwiftKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftKeychainWrapper.h; sourceTree = "<group>"; };
 		1001247A26BB703000074BF1 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		1001248026BB707E00074BF1 /* KCDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCDataStore.swift; sourceTree = "<group>"; };
-		1001248226BB739700074BF1 /* EmailSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignView.swift; sourceTree = "<group>"; };
+		1001248226BB739700074BF1 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		1001248426BB754000074BF1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		1001248A26BB77AF00074BF1 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1001248F26BB917B00074BF1 /* UserGroupsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsListView.swift; sourceTree = "<group>"; };
 		1001249126BB962F00074BF1 /* UserGroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsViewModel.swift; sourceTree = "<group>"; };
+		1001249326BBC6F400074BF1 /* UserProfileFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFormView.swift; sourceTree = "<group>"; };
+		1001249526BBC91A00074BF1 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -332,8 +336,10 @@
 			isa = PBXGroup;
 			children = (
 				1001246E26BA91CD00074BF1 /* FrontMenuView.swift */,
-				1001248226BB739700074BF1 /* EmailSignView.swift */,
+				1001248226BB739700074BF1 /* SignInView.swift */,
 				1001248426BB754000074BF1 /* SignUpView.swift */,
+				1001249326BBC6F400074BF1 /* UserProfileFormView.swift */,
+				1001249526BBC91A00074BF1 /* UserProfileView.swift */,
 				1001248F26BB917B00074BF1 /* UserGroupsListView.swift */,
 			);
 			path = home;
@@ -524,6 +530,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1001249426BBC6F400074BF1 /* UserProfileFormView.swift in Sources */,
 				1001244D26B6C92300074BF1 /* DocuSignTemplateView.swift in Sources */,
 				1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */,
 				1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */,
@@ -536,7 +543,7 @@
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
 				1001243926B6C91800074BF1 /* TextView.swift in Sources */,
 				1001249226BB962F00074BF1 /* UserGroupsViewModel.swift in Sources */,
-				1001248326BB739700074BF1 /* EmailSignView.swift in Sources */,
+				1001248326BB739700074BF1 /* SignInView.swift in Sources */,
 				1001247D26BB703000074BF1 /* KeychainWrapperSubscript.swift in Sources */,
 				1001245626B766A800074BF1 /* MenuView.swift in Sources */,
 				1001244F26B6C92300074BF1 /* UserLoginView.swift in Sources */,
@@ -576,6 +583,7 @@
 				1001241C26B6C90B00074BF1 /* TemplatesViewModel.swift in Sources */,
 				1001245A26B7DEFD00074BF1 /* MapInfoEntryView.swift in Sources */,
 				1001245426B6C92300074BF1 /* FrontMapView.swift in Sources */,
+				1001249626BBC91A00074BF1 /* UserProfileView.swift in Sources */,
 				1001241326B6C8FC00074BF1 /* ArcGISHandler.swift in Sources */,
 				1001246126BA0AE700074BF1 /* PhoneInputData.swift in Sources */,
 				1001244C26B6C92300074BF1 /* TemplatesView.swift in Sources */,

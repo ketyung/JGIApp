@@ -41,59 +41,17 @@ struct SignUpView : View {
 extension SignUpView {
     
     private func view() -> some View {
-        VStack {
+    
+        UserProfileFormView(switchToViewType: $viewType,
+        topTitle: "Sign Up".localized, buttonText: "Sign Up".localized,
+        userGroupsListPresented: $userGroupsListPresented,
+        buttonAction: {
             
-            Spacer().frame(height:30)
-            
-            Common.topBar(title: "Sign Up".localized, switchToViewType: $viewType )
-           
-            Spacer().frame(height:50)
-            
-            VStack(spacing:20) {
-                
-                Common.textFieldWithUnderLine("First Name".localized, text: $viewModel.firstName)
-                
-                Common.textFieldWithUnderLine("Last Name".localized, text: $viewModel.lastName)
-                
-                Common.textFieldWithUnderLine("Email".localized, text: $viewModel.email)
-                
-                Common.secureFieldWithUnderLine("Password".localized, text: $viewModel.password )
-               
-                Common.secureFieldWithUnderLine("Password Again".localized, text: $viewModel.passwordAgain )
-                
-                userGroupView()
-                
-                Spacer().frame(height:30)
-                
-                Button(action : {
-                    
-                    withAnimation{
-                    
-                        UIApplication.shared.endEditing()
-                    
-                        viewModel.signUp()
-                    }
-                    
-                }){
-                    
-                    Text("Sign Up".localized).font(.custom(Theme.fontNameBold, size: 20)).padding()
-                    .foregroundColor(.white).background(Color.blue)
-                    .frame(width : 160, height: 40)
-                    .cornerRadius(10)
-                }
-                
-            }
-            .padding()
-            .frame(width : UIScreen.main.bounds.width - 40, height: 500)
-            .background(Color(UIColor(hex:"#ccddffff")!))
-            .cornerRadius(10)
-            
-            Spacer()
-            
-        }
-        .themeFullView()
+            viewModel.signUp()
+        })
     }
 }
+
 
 extension SignUpView {
     
@@ -129,34 +87,4 @@ extension SignUpView {
     
     
     
-    private func userGroupView() -> some View {
-        
-        
-        VStack(alignment: .leading, spacing:20) {
-       
-            Text("User Group".localized).font(.custom(Theme.fontName, size: 18))
-            
-            
-            Button(action : {
-                
-                withAnimation{
-                    
-                    userGroupsListPresented = true
-                }
-            })
-            {
-        
-                HStack(spacing:20) {
-                
-                    Image(systemName: "person.2").resizable().frame(width:30, height:20).foregroundColor(.green)
-            
-                    
-                    Text("\(viewModel.selectedUserGroup?.name ?? "")").font(.custom(Theme.fontName, size: 20))
-                    
-                    Spacer()
-                }
-            }
-                
-        }
-    }
 }

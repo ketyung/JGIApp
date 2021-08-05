@@ -55,12 +55,12 @@ extension FrontMenuView {
              
             case .profile :
             
-                EmailSignInView(viewType: $viewType)
+                UserProfileView(viewType: $viewType)
                 .transition(.move(edge: .bottom))
         
             case .signIn :
         
-                EmailSignInView(viewType: $viewType)
+                SignInView(viewType: $viewType)
                 .transition(.move(edge: .bottom))
     
             default :

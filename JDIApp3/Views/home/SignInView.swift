@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct EmailSignInView : View {
+struct SignInView : View {
     
     @Binding var viewType : FrontMenuView.ViewType
     
@@ -46,7 +46,7 @@ struct EmailSignInView : View {
     
 }
 
-extension EmailSignInView {
+extension SignInView {
     
     private func sucessView() -> some View {
         
@@ -79,7 +79,7 @@ extension EmailSignInView {
 }
 
 
-extension EmailSignInView {
+extension SignInView {
     
     private func loginView() -> some View {
         
