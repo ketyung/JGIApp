@@ -51,8 +51,11 @@ extension FrontMenuView {
                 FrontMapView(viewType : $viewType)
                 .transition(.move(edge: .bottom))
              
-                
+            case .profile :
             
+                EmailSignInView(viewType: $viewType)
+                .transition(.move(edge: .bottom))
+           
             default :
                 menuView()
             
@@ -104,8 +107,13 @@ extension FrontMenuView {
             
             HStack(spacing:buttonSpacing) {
                 
-                mapButtonView(title: "Profile",
-                imageSystemName: "person", backgroundColor:  Color(UIColor(hex:"#229955ff")!))
+                mapButtonView(title: "Profile", imageSystemName: "person", backgroundColor:  Color(UIColor(hex:"#229955ff")!), action: {
+                                
+                    withAnimation{
+                        
+                        viewType = .profile
+                    }
+                })
                
             
                 mapButtonView(title: "Settings", imageSystemName: "gearshape",

@@ -10,6 +10,8 @@ import SwiftUI
 
 struct EmailSignInView : View {
     
+    @Binding var viewType : FrontMenuView.ViewType
+    
     @State private var email : String = ""
     
     @State private var password : String = ""
@@ -21,7 +23,7 @@ struct EmailSignInView : View {
         
         if switchToSignUp {
             
-            SignUpView()
+            SignUpView(viewType: $viewType)
             .transition(.move(edge: .bottom))
          
         }
@@ -40,16 +42,24 @@ extension EmailSignInView {
         
         VStack {
             
+            Spacer().frame(height:30)
             
-            VStack {
+            Common.topBar(title: "Sign In".localized, switchToViewType: $viewType )
+            
+            VStack(spacing:20) {
                 
                 
                 Common.textFieldWithUnderLine("Email".localized, text: $email)
                 
                 Common.secureFieldWithUnderLine("Password".localized, text: $password)
                 
+                Spacer().frame(height:30)
+                
                 Button(action : {
                     
+                    withAnimation{
+                        UIApplication.shared.endEditing()
+                    }
                     
                 }){
                     
@@ -60,9 +70,10 @@ extension EmailSignInView {
                 }
                 
             }
+            .padding()
             .frame(width : UIScreen.main.bounds.width - 40, height: 300)
             .background(Color(UIColor(hex:"#ccddffff")!))
-            .cornerRadius(40)
+            .cornerRadius(10)
             
             Spacer().frame(height:30)
             

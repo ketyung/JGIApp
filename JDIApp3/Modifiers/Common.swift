@@ -86,26 +86,26 @@ extension Common {
     
     static func textFieldWithUnderLine (_ placeHolder : String , text : Binding <String>,
                                         foregroundColor : Color = .black,
-                                        backgroundColor : Color = .white) -> some View {
+                                        underlineColor : Color = .black) -> some View {
         
         TextField(placeHolder, text: text )
         .placeHolder(show: text.wrappedValue.isEmpty,  placeHolder:  placeHolder)
         .autocapitalization(UITextAutocapitalizationType.words)
         .foregroundColor(foregroundColor)
-        .overlay(VStack{Divider().background(backgroundColor).offset(x: 0, y: 20)})
+        .overlay(VStack{Divider().background(underlineColor).offset(x: 0, y: 20)})
        
     }
     
     
     static func secureFieldWithUnderLine (_ placeHolder : String ,
     text : Binding <String>,  foregroundColor : Color = .black,
-    backgroundColor : Color = .white) -> some View {
+    underlineColor : Color = .black) -> some View {
         
         SecureField(placeHolder, text: text )
         .placeHolder(show: text.wrappedValue.isEmpty,  placeHolder:  placeHolder)
         .autocapitalization(UITextAutocapitalizationType.words)
         .foregroundColor(foregroundColor)
-        .overlay(VStack{Divider().background(backgroundColor).offset(x: 0, y: 20)})
+        .overlay(VStack{Divider().background(underlineColor).offset(x: 0, y: 20)})
        
     }
     
@@ -113,6 +113,34 @@ extension Common {
 }
 
 extension Common {
+    
+    
+    static func topBar(title : String, switchToViewType : Binding <FrontMenuView.ViewType>) -> some View {
+     
+        HStack {
+      
+            Text(title.localized).font(.custom(Theme.fontNameBold, size: 30)).padding()
+            .foregroundColor(.black)
+         
+            Spacer()
+            
+            Button(action: {
+              
+                withAnimation{
+          
+                    switchToViewType.wrappedValue = .menu
+              
+                }
+            }){
+      
+                Image("close").resizable().frame(width: 24, height:24)//.colorInvert()
+            }
+            
+            Spacer().frame(width:10)
+        }
+      
+    }
+    
     
     static func topBar(title : String, switchToViewType : Binding <MV.ViewType>) -> some View {
      
