@@ -557,10 +557,11 @@ extension ApiRequestHandler {
     }
     
     
-    func signInUser <R:Decodable> (phoneNumber : String, returnType : R.Type? = nil,
+    func signInUser <R:Decodable> (email : String, password : String , returnType : R.Type? = nil,
                                    completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil) {
     
-        let user = User(phoneNumber : phoneNumber)
+        let user = User(id: email, password: password)
+
         send(module: "user", param: "signIn", dataObject: user, returnType: returnType,
              completion:  completion, method: "PUT")
     }

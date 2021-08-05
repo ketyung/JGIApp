@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 private struct UserHolder {
     
@@ -42,6 +43,13 @@ class UserViewModel : ViewModel {
             
         }
     }
+    
+    
+    @Published var signInSuccess : Bool = false
+    
+    @Published var signUpSuccess : Bool = false
+    
+    
     
     var id : String {
         
@@ -242,16 +250,66 @@ extension UserViewModel {
 
  */
 
+
 extension UserViewModel {
     
     
-    
-    
-    func signUp(completion : ((Bool)-> Void)? = nil ){
+    func signIn ( email : String, password : String  ){
         
         
         self.inProgress = true
+        self.signInSuccess = false
         
+        ARH.shared.signInUser(email: email, password: password, returnType: User.self, completion:{
+            [weak self] res in
+            
+            
+            DispatchQueue.main.async {
+            
+                switch(res)  {
+                
+                    case .failure(let err) :
+                
+                        self?.inProgress = false
+                        self?.errorPresented = true
+                        self?.errorMessage = (err as? ApiError)?.errorText ?? "Error!"
+                        
+                    case .success(let info) :
+                        
+                        if info.status == .ok {
+                            withAnimation{
+                                
+                                self?.inProgress = false
+                                self?.signInSuccess = true
+                            }
+                        }
+                        else {
+                            
+                            self?.inProgress = false
+                            self?.errorMessage = info.text
+                            self?.errorPresented = true
+                            
+                        }
+                
+                
+                }
+            }
+            
+            
+        })
+    }
+    
+}
+
+
+extension UserViewModel {
+    
+    
+    func signUp(){
+        
+        
+        self.inProgress = true
+        self.signUpSuccess = false
         
         if self.firstName.trim().isEmpty {
     
@@ -318,7 +376,6 @@ extension UserViewModel {
         
             res in
         
-            guard let self = self else {return}
             
             DispatchQueue.main.async {
             
@@ -326,32 +383,35 @@ extension UserViewModel {
          
                     case .failure(let err) :
                     
-                        self.errorMessage = (err as? ApiError)?.errorText ?? "Error!"
-                        self.errorPresented = true
-            
-                        completion?(false)
-                        self.userHolder.clearUser()
+                        self?.errorMessage = (err as? ApiError)?.errorText ?? "Error!"
+                        self?.errorPresented = true
+                        self?.inProgress = false
+                        self?.userHolder.clearUser()
                         
                     
                     case .success(let info) :
                        
                         if info.status == .ok {
                        
-                            completion?(true)
+                            withAnimation{
+                           
+                                self?.inProgress = false
+                                self?.signUpSuccess = true
+                               
+                            }
                            
                         }
                         else if (info.status == .failed){
                             
-                            self.errorMessage = info.text
-                            self.errorPresented = true 
-                           
-                            completion?(false)
+                            self?.errorMessage = info.text
+                            self?.errorPresented = true
+                            self?.inProgress = false
+                      
                         }
-                        self.userHolder.clearUser()
+                        self?.userHolder.clearUser()
                         
                 }
             
-                self.inProgress = false
             
             }
             

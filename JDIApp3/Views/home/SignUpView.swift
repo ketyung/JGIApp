@@ -14,8 +14,6 @@ struct SignUpView : View {
     
     @EnvironmentObject private var viewModel : UserViewModel
     
-    @State private var signUpSUccess : Bool = false
-    
     @State private var userGroupsListPresented : Bool = false
     
     
@@ -27,7 +25,7 @@ struct SignUpView : View {
             
             Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
         })
-        .popOver(isPresented: $signUpSUccess, content: {
+        .popOver(isPresented: $viewModel.signUpSuccess, content: {
         
             successView()
         })
@@ -73,10 +71,7 @@ extension SignUpView {
                     
                         UIApplication.shared.endEditing()
                     
-                        viewModel.signUp(completion: { success in
-                            
-                            self.signUpSUccess = success
-                        })
+                        viewModel.signUp()
                     }
                     
                 }){

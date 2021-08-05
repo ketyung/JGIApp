@@ -12,11 +12,16 @@ struct EmailSignInView : View {
     
     @Binding var viewType : FrontMenuView.ViewType
     
+    @State var signInSuccessViewType : FrontMenuView.ViewType = .menu
+    
     @State private var email : String = ""
     
     @State private var password : String = ""
     
     @State private var switchToSignUp : Bool = false
+    
+    @EnvironmentObject private var viewModel : UserViewModel
+    
     
     var body : some View {
         
@@ -30,6 +35,11 @@ struct EmailSignInView : View {
         else {
             
             loginView()
+            .progressView(isShowing: $viewModel.inProgress)
+            .popOver(isPresented: $viewModel.errorPresented, content: {
+            
+                Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
+            })
         }
       
     }
@@ -60,6 +70,8 @@ extension EmailSignInView {
                     withAnimation{
                         UIApplication.shared.endEditing()
                     }
+                    
+                    viewModel.signIn(email: email, password: password)
                     
                 }){
                     
