@@ -88,8 +88,24 @@ extension FrontMapView {
             }
            
             
-            Spacer()
+            Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 300))
             
+            toolButtons()
+          
+            
+            Spacer().frame(width:5)
+           
+        }
+        .padding()
+        .frame(width: UIScreen.main.bounds.width - 20, height: 40)
+        .offset(x : -50)
+    }
+    
+    
+    
+    private func toolButtons() -> some View {
+        
+        HStack(spacing: 20) {
             
             Button(action : {
                 
@@ -110,7 +126,7 @@ extension FrontMapView {
                 
                 withAnimation{
                     
-                    viewModel.optionsPresented = true 
+                    viewModel.optionsPresented = true
                 }
                 
             }){
@@ -123,7 +139,7 @@ extension FrontMapView {
                 
                 withAnimation{
                     
-                    viewModel.saveSheetPresented = true 
+                    viewModel.saveSheetPresented = true
                 }
                 
             }){
@@ -132,13 +148,7 @@ extension FrontMapView {
             }
             .opacity(viewModel.edited ? 1 : 0.35)
             .disabled(!viewModel.edited)
-            
-            Spacer().frame(width:5)
-           
         }
-        .padding()
-        .frame(width: UIScreen.main.bounds.width - 20, height: 40)
-        .offset(x : -50)
     }
 }
 
