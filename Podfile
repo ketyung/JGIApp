@@ -4,7 +4,6 @@ use_frameworks!
 target 'JDIApp3' do
 
 pod 'Firebase/Auth'
-pod 'SwiftKeychainWrapper'
 pod 'DocuSign'
 
 end
