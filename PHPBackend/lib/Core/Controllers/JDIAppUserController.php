@@ -132,7 +132,8 @@ class JDIAppUserController extends Controller {
 
             $response['status_code_header'] = 'HTTP/1.1 202 Failed to create user!';
       
-            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>'Email already exists!') );
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 
+            'text'=>'User with that email already exists!') );
         
             return $response;
 
