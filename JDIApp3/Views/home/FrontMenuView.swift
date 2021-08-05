@@ -63,6 +63,10 @@ extension FrontMenuView {
                 SignInView(viewType: $viewType)
                 .transition(.move(edge: .bottom))
     
+            case .settings :
+                SettingsView(viewType: $viewType)
+                .transition(.move(edge: .bottom))
+    
             default :
                 menuView()
             
@@ -124,7 +128,14 @@ extension FrontMenuView {
                
             
                 mapButtonView(title: "Settings", imageSystemName: "gearshape",
-                backgroundColor:  Color(UIColor(hex:"#990000ff")!) )
+                  backgroundColor:  Color(UIColor(hex:"#990000ff")!) , action: {
+              
+                    withAnimation{
+                        
+                        viewType = .settings
+                    }
+              
+                })
                 
             }
             

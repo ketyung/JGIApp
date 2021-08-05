@@ -59,9 +59,9 @@ struct UserProfileFormView : View {
                 }){
                     
                     Text(buttonText).font(.custom(Theme.fontNameBold, size: 20)).padding()
-                    .foregroundColor(.white).background(Color.blue)
+                    .foregroundColor(.white)
                     .frame(width : 160, height: 40)
-                    .cornerRadius(10)
+                    .background(Color.blue).cornerRadius(10)
                 }
                 
             }
