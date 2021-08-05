@@ -20,6 +20,11 @@ private struct UserHolder {
         
         return User()
     }
+    
+    mutating func clearUser(){
+        
+        self.user = User()
+    }
 }
 
 
@@ -109,6 +114,19 @@ class UserViewModel : ViewModel {
         set(newVal) {
             
             userHolder.user.password = newVal
+        }
+    }
+    
+    var passwordAgain : String {
+        
+        get {
+            
+            userHolder.user.passwordAgain ?? ""
+        }
+        
+        set(newVal) {
+            
+            userHolder.user.passwordAgain = newVal
         }
     }
     
@@ -202,38 +220,23 @@ extension UserViewModel {
 }
 
  */
-/**
+
 extension UserViewModel {
     
-    struct FirstSignInError : LocalizedError, CustomStringConvertible {
-       
-        var description: String {
-            
-            errorText ?? ""
-        }
-    
-        var errorText : String?
-        
-        public var errorDescription : String {
-            
-            errorText ?? ""
-        }
-        
-    }
     
     
     
-    
-    func add(country : Country?, completion : ((Error?)-> Void)? = nil ){
+    func signUp(completion : ((Bool)-> Void)? = nil ){
         
         
-        self.showingProgressIndicator = true
+        self.inProgress = true
         
         
         if self.firstName.trim().isEmpty {
     
-            completion?(FirstSignInError(errorText: "First Name is blank!".localized))
-            self.showingProgressIndicator = false
+            self.errorMessage = "First Name is blank!".localized
+            self.errorPresented = true
+            self.inProgress = false
             return
             
         }
@@ -241,18 +244,42 @@ extension UserViewModel {
         
         if self.lastName.trim().isEmpty {
     
-            completion?(FirstSignInError(errorText: "Last Name is blank!".localized))
-            self.showingProgressIndicator = false
+            self.errorMessage = "Last Name is blank!".localized
+            self.errorPresented = true
+            self.inProgress = false
             return
             
         }
     
         if !self.email.isValidEmail() {
     
-            completion?(FirstSignInError(errorText: "Invalid email!".localized))
-            self.showingProgressIndicator = false
+            self.errorMessage = "Email is invalid!".localized
+            self.errorPresented = true
+           
+            self.inProgress = false
             return
             
+        }
+        
+        if self.password.count < 6 {
+            
+            self.errorMessage = "Password must be at least 6 character in length!".localized
+            self.errorPresented = true
+           
+            self.inProgress = false
+            return
+      
+            
+        }
+        
+        if self.password != self.passwordAgain {
+            
+            self.errorMessage = "Passwords unmatched!".localized
+            self.errorPresented = true
+           
+            self.inProgress = false
+            return
+      
         }
         
        
@@ -266,45 +293,24 @@ extension UserViewModel {
      
                 case .failure(let err) :
                 
-                    completion?(err)
-                
-                case .success(let usr ) :
-                
-                    if let ruser = usr.returnedObject {
-                   
-                        KDS.shared.saveUser(ruser)
-                        
-                        // refresh user in userHolder
-                        DispatchQueue.main.async {
-                       
-                            self.userHolder.user = ruser
-                            self.firstSignIn = false
-                        }
-                        
-                    }
-                    else {
-                        
-                        let ruser = User(id: usr.id, firstName: self.firstName, lastName: self.lastName, dob: self.dob, email: self.email, phoneNumber: self.phoneNumber, signInStat: .signedIn, countryCode: self.countryCode)
-                        
-                        KDS.shared.saveUser(ruser)
-                        
-                        // refresh user in userHolder
-                        DispatchQueue.main.async {
-                       
-                            self.userHolder.user = ruser
-                            self.firstSignIn = false
-                        }
-                        
-                    }
-                   
+                    self.errorMessage = err.localizedDescription
+                    self.errorPresented = true
+        
+                    completion?(false)
+                    self.userHolder.clearUser()
                     
-                    completion?(nil)
+                
+                case .success(_) :
+                   
+                    completion?(true)
+                    self.userHolder.clearUser()
+                    
                 
             }
             
             DispatchQueue.main.async {
          
-                self.showingProgressIndicator = false
+                self.inProgress = false
             }
            
         
@@ -312,5 +318,5 @@ extension UserViewModel {
         
         
     }
-}*/
+}
 

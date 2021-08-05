@@ -210,6 +210,21 @@ class JDIAppUserController extends Controller {
         else if ($type == 'email'){
             
             $found = $this->dbObject->findByEmail($input[$type]);
+
+            if ( isset($input['password']) ){
+
+                $res = $this->dbObject->findByIdAndPassword($this->dbObject->id, $input['password']);
+                if ( count ($res) > 0  ){
+
+                    $found = true ;
+                }
+                else {
+
+                    $found = false ;
+                }
+
+            }
+
         }
         
         

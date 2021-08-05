@@ -147,6 +147,20 @@ class JDIAppUser extends JDIAppDbObject {
         
         return false;
     }
+
+
+    public function findByEmailAndPassword ($id, $password){
+
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("id", "=", "AND", $id);
+        $a[] = new SQLWhereCol("password", "=", "AND", "password('$password')");
+        
+
+        $res = $this->findByWhere($a, true, null , $limit, $offset);
+        
+        return $res;
+    }
+
     
     private function decrypt(){
         
@@ -221,6 +235,12 @@ class JDIAppUser extends JDIAppDbObject {
         
 		$this->encrypt($input);
 		$input['id'] = $this->generateId($input);
+
+        if ( isset($input['password'])) {
+
+            $input['password'] = "password('". $input['password']."')";
+        }
+
 		return parent::insert($input);
 	}
     

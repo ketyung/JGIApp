@@ -14,9 +14,24 @@ struct SignUpView : View {
     
     @EnvironmentObject private var viewModel : UserViewModel
     
+    @State private var signUpSUccess : Bool = false
     
     var body : some View {
         
+        view()
+        .progressView(isShowing: $viewModel.inProgress)
+        .popOver(isPresented: $viewModel.errorPresented, content: {
+            
+            Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
+        })
+        
+    
+    }
+}
+
+extension SignUpView {
+    
+    private func view() -> some View {
         VStack {
             
             Spacer().frame(height:30)
@@ -28,7 +43,6 @@ struct SignUpView : View {
             VStack(spacing:20) {
                 
                 Common.textFieldWithUnderLine("First Name".localized, text: $viewModel.firstName)
-                
                 
                 Common.textFieldWithUnderLine("Last Name".localized, text: $viewModel.lastName)
                 
@@ -43,6 +57,11 @@ struct SignUpView : View {
                 Button(action : {
                     
                     withAnimation{
+                        
+                        viewModel.signUp(completion: { success in
+                            
+                            self.signUpSUccess = success
+                        })
                         UIApplication.shared.endEditing()
                     }
                     
