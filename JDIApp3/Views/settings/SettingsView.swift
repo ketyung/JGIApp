@@ -13,6 +13,9 @@ struct SettingsView : View {
     
     @State private var alwaysSaveMapAsNewVersion : Bool = false
     
+    @EnvironmentObject private var viewModel : UserViewModel
+  
+    
     var body : some View {
         
         VStack {
@@ -29,13 +32,18 @@ struct SettingsView : View {
 
                     Spacer().frame(height: 30)
                     
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
-                        
-                        Text("Sign Out").font(.custom(Theme.fontNameBold, size: 20)).padding()
-                        .foregroundColor(.white)
-                        .frame(width : 160, height: 40)
-                        .background(Color.blue).cornerRadius(10)
-             
+                    
+                    if viewModel.hasSignedIn {
+                   
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                            
+                            Text("Sign Out").font(.custom(Theme.fontNameBold, size: 20)).padding()
+                            .foregroundColor(.white)
+                            .frame(width : 160, height: 40)
+                            .background(Color.blue).cornerRadius(10)
+                 
+                        }
+                       
                     }
                     
                     Spacer()
