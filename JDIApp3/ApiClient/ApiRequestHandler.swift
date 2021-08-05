@@ -174,7 +174,8 @@ extension ApiRequestHandler {
               
               guard error == nil
               else {
-                print("error::\(String(describing: error))")
+                
+                completion?(.failure(ApiError(errorText: error?.localizedDescription)))
                 return
               }
               
@@ -284,7 +285,9 @@ extension ApiRequestHandler {
             URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
               
                 guard error == nil else {
-                    print("error::\(String(describing: error))")
+                   // print("error::\(String(describing: error))")
+                    
+                    completion?(.failure(ApiError(errorText: error?.localizedDescription)))
                     return
                 }
                 

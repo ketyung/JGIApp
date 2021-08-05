@@ -25,7 +25,7 @@ struct UserProfileFormView : View {
         
         VStack {
             
-            Spacer().frame(height:30)
+            Spacer().frame(height:50)
             
             Common.topBar(title: topTitle, switchToViewType: $switchToViewType )
            

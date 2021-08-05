@@ -86,7 +86,7 @@ extension SignInView {
         
         VStack {
             
-            Spacer().frame(height:30)
+            Spacer().frame(height:50)
             
             Common.topBar(title: "Sign In".localized, switchToViewType: $viewType )
             
