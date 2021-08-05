@@ -303,7 +303,7 @@ class JDIAppUserController extends Controller {
         
         $date = date('Y-m-d H:i:s');
       
-        $input['stat'] = 'SO';
+        $input['sign_in_stat'] = 'SO';
         $input['last_stat_time'] = $date;
         
         
