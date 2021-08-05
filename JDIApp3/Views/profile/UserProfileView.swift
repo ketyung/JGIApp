@@ -36,7 +36,7 @@ struct UserProfileView : View {
         }
         else {
             
-            SignUpView(viewType: $viewType)
+            SignInView(viewType: $viewType)
         }
         
     
