@@ -50,7 +50,9 @@ extension FrontMenuView {
             
                 FrontMapView(viewType : $viewType)
                 .transition(.move(edge: .bottom))
+             
                 
+            
             default :
                 menuView()
             

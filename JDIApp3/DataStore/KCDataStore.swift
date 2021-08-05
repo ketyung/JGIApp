@@ -74,7 +74,7 @@ extension KCDataStore {
 
 extension KCDataStore {
     
-    private static let userKey : String = "User_986363BAGh3l763gsfd883_user_user"
+    private static let userKey : String = "User_986363BA773737bAV3l763gsfd883_user_user"
     
     
     func saveUser( _ user : User ){

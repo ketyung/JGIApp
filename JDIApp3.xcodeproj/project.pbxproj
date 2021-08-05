@@ -61,6 +61,9 @@
 		1001247D26BB703000074BF1 /* KeychainWrapperSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001247826BB703000074BF1 /* KeychainWrapperSubscript.swift */; };
 		1001247E26BB703000074BF1 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001247A26BB703000074BF1 /* KeychainItemAccessibility.swift */; };
 		1001248126BB707E00074BF1 /* KCDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248026BB707E00074BF1 /* KCDataStore.swift */; };
+		1001248326BB739700074BF1 /* EmailSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248226BB739700074BF1 /* EmailSignView.swift */; };
+		1001248526BB754000074BF1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248426BB754000074BF1 /* SignUpView.swift */; };
+		1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248A26BB77AF00074BF1 /* UserViewModel.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -126,6 +129,9 @@
 		1001247926BB703000074BF1 /* SwiftKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftKeychainWrapper.h; sourceTree = "<group>"; };
 		1001247A26BB703000074BF1 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		1001248026BB707E00074BF1 /* KCDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCDataStore.swift; sourceTree = "<group>"; };
+		1001248226BB739700074BF1 /* EmailSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignView.swift; sourceTree = "<group>"; };
+		1001248426BB754000074BF1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		1001248A26BB77AF00074BF1 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 			children = (
 				1001241526B6C90B00074BF1 /* ViewModel.swift */,
 				1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */,
+				1001248A26BB77AF00074BF1 /* UserViewModel.swift */,
 				1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */,
 				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
 				1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */,
@@ -320,6 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				1001246E26BA91CD00074BF1 /* FrontMenuView.swift */,
+				1001248226BB739700074BF1 /* EmailSignView.swift */,
+				1001248426BB754000074BF1 /* SignUpView.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -510,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1001244D26B6C92300074BF1 /* DocuSignTemplateView.swift in Sources */,
+				1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */,
 				1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */,
 				1001245026B6C92300074BF1 /* OAuthTokenView.swift in Sources */,
 				1001243B26B6C91800074BF1 /* BorderWithRoundCorner.swift in Sources */,
@@ -519,6 +529,7 @@
 				1001246F26BA91CD00074BF1 /* FrontMenuView.swift in Sources */,
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
 				1001243926B6C91800074BF1 /* TextView.swift in Sources */,
+				1001248326BB739700074BF1 /* EmailSignView.swift in Sources */,
 				1001247D26BB703000074BF1 /* KeychainWrapperSubscript.swift in Sources */,
 				1001245626B766A800074BF1 /* MenuView.swift in Sources */,
 				1001244F26B6C92300074BF1 /* UserLoginView.swift in Sources */,
@@ -551,6 +562,7 @@
 				1001243A26B6C91800074BF1 /* Theme.swift in Sources */,
 				1001247C26BB703000074BF1 /* KeychainWrapper.swift in Sources */,
 				100123FC26B6C7BE00074BF1 /* ContentView.swift in Sources */,
+				1001248526BB754000074BF1 /* SignUpView.swift in Sources */,
 				1001246D26BA896E00074BF1 /* MapVersionNote.swift in Sources */,
 				1001246226BA0AE700074BF1 /* Country.swift in Sources */,
 				1001243326B6C91800074BF1 /* Extensions.swift in Sources */,
@@ -584,7 +596,7 @@
 		1001240626B6C7BE00074BF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -617,8 +629,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_ONLY_ACTIVE_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -647,7 +661,7 @@
 		1001240726B6C7BE00074BF1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -681,7 +695,9 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_ONLY_ACTIVE_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

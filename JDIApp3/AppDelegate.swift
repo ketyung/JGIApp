@@ -8,7 +8,6 @@
 import UIKit
 import DocuSignSDK
 
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
