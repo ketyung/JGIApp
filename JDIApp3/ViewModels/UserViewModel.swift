@@ -254,7 +254,7 @@ extension UserViewModel {
 extension UserViewModel {
     
     
-    func signIn ( email : String, password : String  ){
+    func signIn(){
         
         
         self.inProgress = true
@@ -277,10 +277,19 @@ extension UserViewModel {
                     case .success(let info) :
                         
                         if info.status == .ok {
+                            
+                            if let user = info.returnedObject  {
+                                
+                                self?.userHolder.user = user
+                                
+                                KDS().saveUser(user)
+                            }
+                            
                             withAnimation{
                                 
                                 self?.inProgress = false
                                 self?.signInSuccess = true
+
                             }
                         }
                         else {

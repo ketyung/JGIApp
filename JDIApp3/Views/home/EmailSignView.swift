@@ -14,10 +14,6 @@ struct EmailSignInView : View {
     
     @State var signInSuccessViewType : FrontMenuView.ViewType = .menu
     
-    @State private var email : String = ""
-    
-    @State private var password : String = ""
-    
     @State private var switchToSignUp : Bool = false
     
     @EnvironmentObject private var viewModel : UserViewModel
@@ -40,11 +36,48 @@ struct EmailSignInView : View {
             
                 Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
             })
+            .popOver(isPresented: $viewModel.signInSuccess, content: {
+                
+                sucessView()
+            })
         }
       
     }
     
 }
+
+extension EmailSignInView {
+    
+    private func sucessView() -> some View {
+        
+        VStack(spacing:30) {
+       
+            HStack {
+                
+                Image(systemName: "info.circle").resizable().frame(width: 30, height: 30).foregroundColor(.green)
+             
+                Text("You've sucessfully signed in").font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
+                
+            }.padding()
+            
+            Spacer().frame(height:20)
+            
+        }
+        .frame(width: UIScreen.main.bounds.width - 40 ,height: 300)
+        .onAppear{
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3 , execute: {
+                
+                withAnimation{
+                    
+                    viewType = signInSuccessViewType
+                }
+                
+            })
+        }
+    }
+}
+
 
 extension EmailSignInView {
     
@@ -59,9 +92,9 @@ extension EmailSignInView {
             VStack(spacing:20) {
                 
                 
-                Common.textFieldWithUnderLine("Email".localized, text: $email)
+                Common.textFieldWithUnderLine("Email".localized, text: $viewModel.email)
                 
-                Common.secureFieldWithUnderLine("Password".localized, text: $password)
+                Common.secureFieldWithUnderLine("Password".localized, text: $viewModel.password)
                 
                 Spacer().frame(height:30)
                 
@@ -71,7 +104,7 @@ extension EmailSignInView {
                         UIApplication.shared.endEditing()
                     }
                     
-                    viewModel.signIn(email: email, password: password)
+                    viewModel.signIn()
                     
                 }){
                     

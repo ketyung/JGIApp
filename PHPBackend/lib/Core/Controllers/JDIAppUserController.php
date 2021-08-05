@@ -255,12 +255,24 @@ class JDIAppUserController extends Controller {
         if ($found){
             
             $date = date('Y-m-d H:i:s');
-            $input = array('id'=> $this->dbObject->id, 'stat'=>'SI', 'last_stat_time'=> $date) ;
+            $input = array('id'=> $this->dbObject->id, 'sign_in_stat'=>'SI', 'last_stat_time'=> $date) ;
             
             // 3rd param false = no encrypt
             if ($this->dbObject->update($input, true, false) > 0){
                 
-                $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Signed In!', 'date'=>$date, 'returnedObject'=>$this->dbObject->copy()));
+
+                $dobj = $this->dbObject->copy();
+                // remove unnecessary fields 
+                $dobj->phoneNumber = null ;
+                $dobj->seed = null ;
+                
+
+                $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 
+                'text'=>'Signed In!', 'date'=>$date, 'returnedObject'=> $dobj));
+              
+                //  Log::printRToErrorLog($response);
+
+
             }
             else {
                 $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>'Failed to sign in : ' .$this->dbObject->getErrorMessage()));

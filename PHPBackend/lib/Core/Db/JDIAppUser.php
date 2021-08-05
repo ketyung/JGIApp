@@ -152,7 +152,7 @@ class JDIAppUser extends JDIAppDbObject {
     }
 
 
-    public function findByEmailAndPassword ($id, $password, $seed){
+    public function findByIdAndPassword ($id, $password, $seed){
 
         $input = array('password' => $password);
 
@@ -163,7 +163,7 @@ class JDIAppUser extends JDIAppDbObject {
         $a[] = new SQLWhereCol("password", "=", "", $input['password']);
         
 
-        $res = $this->findByWhere($a, true, null , $limit, $offset);
+        $res = $this->findByWhere($a, true, null );
         
         return $res;
     }
