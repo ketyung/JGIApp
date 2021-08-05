@@ -12,7 +12,7 @@ use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
 
-//checkIfAuthorized();
+checkIfAuthorized();
 
 headers();
 
@@ -130,7 +130,7 @@ function checkBasicAuth($header){
         
         $header = str_replace("Basic://", "", $header);
     
-        return (trim($header) == 'vggaf555VACcer3#f2rrady36AVFSS636hahgd278agGtYaUJ_abgdVArey2kA3IOl902');
+        return (trim($header) == 'vggaf555VACcer3#f2rrady36AVFSS636hahgd278agGtYaUJ_abgdVArey2kA3IOl902_87363gagdgvxVCAD353bda3NMA');
     }
     
     return false ;

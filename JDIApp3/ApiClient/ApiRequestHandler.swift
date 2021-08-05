@@ -115,7 +115,7 @@ class ApiRequestHandler : NSObject {
         
         super.init()
         if !useOta {
-            token = "Basic://vvaf5535gFZAf3636afdf3_7266fafffd353_Bncbe376ahah3839jAHKS_ja63gafdr3535_jag52553vasfsfDa33a"
+            token = "Basic://vggaf555VACcer3#f2rrady36AVFSS636hahgd278agGtYaUJ_abgdVArey2kA3IOl902_87363gagdgvxVCAD353bda3NMA"
         }
     }
 }

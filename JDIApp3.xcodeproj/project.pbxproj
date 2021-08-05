@@ -65,6 +65,7 @@
 		1001248526BB754000074BF1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248426BB754000074BF1 /* SignUpView.swift */; };
 		1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248A26BB77AF00074BF1 /* UserViewModel.swift */; };
 		1001249026BB917B00074BF1 /* UserGroupsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001248F26BB917B00074BF1 /* UserGroupsListView.swift */; };
+		1001249226BB962F00074BF1 /* UserGroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249126BB962F00074BF1 /* UserGroupsViewModel.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -134,6 +135,7 @@
 		1001248426BB754000074BF1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		1001248A26BB77AF00074BF1 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1001248F26BB917B00074BF1 /* UserGroupsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsListView.swift; sourceTree = "<group>"; };
+		1001249126BB962F00074BF1 /* UserGroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsViewModel.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				1001241526B6C90B00074BF1 /* ViewModel.swift */,
 				1001241626B6C90B00074BF1 /* MapFeatureHandlingViewModel.swift */,
 				1001248A26BB77AF00074BF1 /* UserViewModel.swift */,
+				1001249126BB962F00074BF1 /* UserGroupsViewModel.swift */,
 				1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */,
 				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
 				1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */,
@@ -532,6 +535,7 @@
 				1001246F26BA91CD00074BF1 /* FrontMenuView.swift in Sources */,
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
 				1001243926B6C91800074BF1 /* TextView.swift in Sources */,
+				1001249226BB962F00074BF1 /* UserGroupsViewModel.swift in Sources */,
 				1001248326BB739700074BF1 /* EmailSignView.swift in Sources */,
 				1001247D26BB703000074BF1 /* KeychainWrapperSubscript.swift in Sources */,
 				1001245626B766A800074BF1 /* MenuView.swift in Sources */,

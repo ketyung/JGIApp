@@ -12,9 +12,10 @@ struct UserGroupsListView : View {
     
     @Binding var isPresented : Bool
     
-    @EnvironmentObject private var viewModel : UserViewModel
+    @EnvironmentObject private var userViewModel : UserViewModel
     
-    @State private var userGroups = [UserGroup]()
+    @StateObject private var viewModel = UserGroupsViewModel()
+    
     
     var body : some View {
         
@@ -22,7 +23,7 @@ struct UserGroupsListView : View {
             
             Text("Choose a user group").font(.custom(Theme.fontName, size: 20))
             
-            List (userGroups, id:\.id) {
+            List (viewModel.userGroups, id:\.id) {
                 
                 g in
                 
@@ -30,7 +31,7 @@ struct UserGroupsListView : View {
                     
                     withAnimation{
                    
-                        viewModel.selectedUserGroup = g
+                        userViewModel.selectedUserGroup = g
                         isPresented = false
                     }
                     
@@ -42,25 +43,14 @@ struct UserGroupsListView : View {
                 
             }
         }
+        .progressView(isShowing: $viewModel.inProgress)
+        .popOver(isPresented: $viewModel.errorPresented, content: {
+            
+            Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
+        })
         .onAppear{
             
-            ARH.shared.fetchAllUserGroups(completion: {
-                
-                res in
-                
-                switch(res) {
-                
-                    case .success(let gs) :
-                        self.userGroups = gs
-                        
-                    case .failure(let err) :
-                    
-                        print("err:\(err.localizedDescription)")
-                    
-                }
-                
-                
-            })
+            viewModel.fetchAllUserGroups()
         }
     }
     
