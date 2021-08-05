@@ -222,6 +222,7 @@ extension UserViewModel {
     private func removeAllStored(){
         
         KDS.shared.removeUser()
+        userHolder.clearUser()
     }
     
     
@@ -230,6 +231,7 @@ extension UserViewModel {
         signOutSuccess = false
         inProgress = true
         
+        let user = User(id : self.user.id)
         ARH.shared.signOutUser(user, returnType: User.self, completion: {
             [weak self] res in
             
