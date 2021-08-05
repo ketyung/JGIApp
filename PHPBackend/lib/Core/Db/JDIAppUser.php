@@ -158,6 +158,8 @@ class JDIAppUser extends JDIAppDbObject {
 
         $this->encrypt($input, $seed);
 
+        //Log::printRToErrorLog($input);
+
         $a = new ArrayOfSQLWhereCol();
         $a[] = new SQLWhereCol("id", "=", "AND", $id);
         $a[] = new SQLWhereCol("password", "=", "", $input['password']);

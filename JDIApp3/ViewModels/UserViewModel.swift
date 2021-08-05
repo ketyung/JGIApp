@@ -257,6 +257,7 @@ extension UserViewModel {
                             
                             self?.errorMessage = info.text
                             self?.errorPresented = true
+                            self?.inProgress = false
                         }
                     
                 }

@@ -255,10 +255,10 @@ class JDIAppUserController extends Controller {
         if ($found){
             
             $date = date('Y-m-d H:i:s');
-            $input = array('id'=> $this->dbObject->id, 'sign_in_stat'=>'SI', 'last_stat_time'=> $date) ;
+            $userInfo = array('id'=> $this->dbObject->id, 'sign_in_stat'=>'SI', 'last_stat_time'=> $date) ;
             
             // 3rd param false = no encrypt
-            if ($this->dbObject->update($input, true, false) > 0){
+            if ($this->dbObject->update($userInfo, true, false) > 0){
                 
 
                 $dobj = $this->dbObject->copy();
@@ -267,7 +267,7 @@ class JDIAppUserController extends Controller {
                 $dobj->seed = null ;
                 
 
-                $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 
+                $response['body'] = json_encode(array('status'=>1, 'id'=>$userInfo['id'], 
                 'text'=>'Signed In!', 'date'=>$date, 'returnedObject'=> $dobj));
               
                 //  Log::printRToErrorLog($response);
@@ -313,8 +313,8 @@ class JDIAppUserController extends Controller {
         $user['sign_in_stat'] = 'SO';
         $user['last_stat_time'] = $date;
         
-        
-        if ($this->dbObject->update($user, true) > 0){
+        // no encrypt for 3rd parameter
+        if ($this->dbObject->update($user, true, false ) > 0){
             
             $response['body'] = json_encode(array('status'=>1, 'id'=>$input['id'], 'text'=>'Signed Out Successfully!', 'date'=>$date));
         
