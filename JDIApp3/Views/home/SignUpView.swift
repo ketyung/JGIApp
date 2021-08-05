@@ -61,7 +61,7 @@ extension SignUpView {
                 
                 Common.secureFieldWithUnderLine("Password".localized, text: $viewModel.password )
                
-                Common.secureFieldWithUnderLine("Password Again".localized, text: $viewModel.password )
+                Common.secureFieldWithUnderLine("Password Again".localized, text: $viewModel.passwordAgain )
                 
                 userGroupView()
                 
@@ -145,7 +145,7 @@ extension SignUpView {
                 
                 withAnimation{
                     
-                    userGroupsListPresented = true 
+                    userGroupsListPresented = true
                 }
             })
             {
