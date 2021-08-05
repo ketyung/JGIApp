@@ -117,18 +117,32 @@ class JDIAppUserController extends Controller {
       
         StrUtil::arrayKeysToSnakeCase($input);
        
-        $response['status_code_header'] = 'HTTP/1.1 201 Create';
-      
+       
         
-        if ( !$this->validate($input, array('first_name', 'last_name', 'phone_number'), $errorMessage  ) ){
+        if ( !$this->validate($input, array('first_name', 'last_name', 'email'), $errorMessage  ) ){
             
+            $response['status_code_header'] = 'HTTP/1.1 202 Failed to create user!';
+      
             $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>$errorMessage) );
             
             return $response;
         }
+
+       if ( $this->dbObject->findByEmail($input['email']) ){
+
+            $response['status_code_header'] = 'HTTP/1.1 202 Failed to create user!';
+      
+            $response['body'] = json_encode(array('status'=> -1 , 'id'=>null, 'text'=>'Email already exists!') );
+        
+            return $response;
+
+       }
+
         
        // Log::printRToErrorLog($input);
-                                            
+               
+        $response['status_code_header'] = 'HTTP/1.1 201 Created';
+      
         if ($this->dbObject->insert($input) > 0){
             
             $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);

@@ -319,30 +319,41 @@ extension UserViewModel {
         
             guard let self = self else {return}
             
-            switch(res) {
-     
-                case .failure(let err) :
-                
-                    self.errorMessage = err.localizedDescription
-                    self.errorPresented = true
-        
-                    completion?(false)
-                    self.userHolder.clearUser()
+            DispatchQueue.main.async {
+            
+                switch(res) {
+         
+                    case .failure(let err) :
                     
-                
-                case .success(_) :
-                   
-                    completion?(true)
-                    self.userHolder.clearUser()
+                        self.errorMessage = (err as? ApiError)?.errorText ?? "Error!"
+                        self.errorPresented = true
+            
+                        completion?(false)
+                        self.userHolder.clearUser()
+                        
                     
-                
+                    case .success(let info) :
+                       
+                        if info.status == .ok {
+                       
+                            completion?(true)
+                           
+                        }
+                        else if (info.status == .failed){
+                            
+                            self.errorMessage = info.text
+                            self.errorPresented = true 
+                           
+                            completion?(false)
+                        }
+                        self.userHolder.clearUser()
+                        
+                }
+            
+                self.inProgress = false
+            
             }
             
-            DispatchQueue.main.async {
-         
-                self.inProgress = false
-            }
-           
         
         })
         

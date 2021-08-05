@@ -70,12 +70,13 @@ extension SignUpView {
                 Button(action : {
                     
                     withAnimation{
-                        
+                    
+                        UIApplication.shared.endEditing()
+                    
                         viewModel.signUp(completion: { success in
                             
                             self.signUpSUccess = success
                         })
-                        UIApplication.shared.endEditing()
                     }
                     
                 }){
