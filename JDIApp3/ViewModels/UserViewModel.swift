@@ -34,6 +34,15 @@ class UserViewModel : ViewModel {
     
     @Published var firstSignIn : Bool = false
     
+    @Published var selectedUserGroup : UserGroup? {
+        
+        didSet {
+            
+            userHolder.user.groupId = selectedUserGroup?.id
+            
+        }
+    }
+    
     var id : String {
         
         get {
@@ -44,6 +53,18 @@ class UserViewModel : ViewModel {
         set(newVal){
             
             userHolder.user.id = newVal
+        }
+    }
+    
+    var groupId : String {
+        
+        get {
+            
+            userHolder.user.groupId ?? ""
+        }
+        set(newVal) {
+            
+            userHolder.user.groupId = newVal
         }
     }
     
@@ -282,6 +303,15 @@ extension UserViewModel {
       
         }
         
+        if self.groupId == "" {
+            
+            self.errorMessage = "Please choose a group".localized
+            self.errorPresented = true
+           
+            self.inProgress = false
+            return
+      
+        }
        
         ARH.shared.addUser(user, returnType: User.self, completion: { [weak self]
         

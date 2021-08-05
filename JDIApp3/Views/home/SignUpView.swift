@@ -16,6 +16,9 @@ struct SignUpView : View {
     
     @State private var signUpSUccess : Bool = false
     
+    @State private var userGroupsListPresented : Bool = false
+    
+    
     var body : some View {
         
         view()
@@ -28,6 +31,11 @@ struct SignUpView : View {
         
             successView()
         })
+        .popOver(isPresented: $userGroupsListPresented, content: {
+            
+            UserGroupsListView(isPresented: $userGroupsListPresented)
+        })
+        
     
     }
 }
@@ -54,7 +62,9 @@ extension SignUpView {
                 Common.secureFieldWithUnderLine("Password".localized, text: $viewModel.password )
                
                 Common.secureFieldWithUnderLine("Password Again".localized, text: $viewModel.password )
-               
+                
+                userGroupView()
+                
                 Spacer().frame(height:30)
                 
                 Button(action : {
@@ -78,7 +88,7 @@ extension SignUpView {
                 
             }
             .padding()
-            .frame(width : UIScreen.main.bounds.width - 40, height: 400)
+            .frame(width : UIScreen.main.bounds.width - 40, height: 500)
             .background(Color(UIColor(hex:"#ccddffff")!))
             .cornerRadius(10)
             
@@ -119,5 +129,38 @@ extension SignUpView {
         }
         .frame(width: UIScreen.main.bounds.width - 40 ,height: 300)
        
+    }
+    
+    
+    
+    private func userGroupView() -> some View {
+        
+        
+        VStack(alignment: .leading, spacing:20) {
+       
+            Text("User Group".localized).font(.custom(Theme.fontName, size: 18))
+            
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    userGroupsListPresented = true 
+                }
+            })
+            {
+        
+                HStack(spacing:20) {
+                
+                    Image(systemName: "person.2").resizable().frame(width:30, height:20).foregroundColor(.green)
+            
+                    
+                    Text("\(viewModel.selectedUserGroup?.name ?? "")").font(.custom(Theme.fontName, size: 20))
+                    
+                    Spacer()
+                }
+            }
+                
+        }
     }
 }
