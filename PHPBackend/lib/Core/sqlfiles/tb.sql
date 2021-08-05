@@ -48,6 +48,8 @@ create table if not exists jdiapp_user (
 
 alter table jdiapp_user add password varchar(64) after email;
 
+alter table jdiapp_user modify password varchar(255);
+
 create index phone_idx on jdiapp_user (phone_number);
 
 create index email_idx on jdiapp_user (email);

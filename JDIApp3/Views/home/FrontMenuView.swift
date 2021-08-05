@@ -94,7 +94,7 @@ extension FrontMenuView {
                 })
                 
             
-                mapButtonView(title: "Your Maps", imageSystemName: "list.star", backgroundColor: .green)
+                mapButtonView(title: "Your Maps", imageSystemName: "list.star", backgroundColor: Color(UIColor(hex:"#668822ff")!))
                 
             }
             

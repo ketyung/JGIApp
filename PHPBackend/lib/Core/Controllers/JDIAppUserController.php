@@ -118,6 +118,11 @@ class JDIAppUserController extends Controller {
         StrUtil::arrayKeysToSnakeCase($input);
        
        
+        // force all to lower case for email
+        if (isset($input['email'])) {
+
+            $input['email'] = strtolower($input['email']);
+        }
         
         if ( !$this->validate($input, array('first_name', 'last_name', 'email'), $errorMessage  ) ){
             
@@ -146,7 +151,8 @@ class JDIAppUserController extends Controller {
       
         if ($this->dbObject->insert($input) > 0){
             
-            $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
+            $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');
+            
             $response['body'] = json_encode($a);
         
         }
@@ -218,17 +224,15 @@ class JDIAppUserController extends Controller {
         
         $found = false ;
         
-        if ($type == 'phone_number'){
-            
-            $found = $this->dbObject->findByPhone($input[$type]);
-        }
-        else if ($type == 'email'){
+        if ($type == 'email'){
             
             $found = $this->dbObject->findByEmail($input[$type]);
 
             if ( isset($input['password']) ){
 
-                $res = $this->dbObject->findByIdAndPassword($this->dbObject->id, $input['password']);
+                $res = $this->dbObject->findByIdAndPassword($this->dbObject->id, 
+                $input['password'], $this->dbObject->seed);
+
                 if ( count ($res) > 0  ){
 
                     $found = true ;
@@ -240,6 +244,11 @@ class JDIAppUserController extends Controller {
 
             }
 
+        }
+        else 
+        if ($type == 'phone_number'){
+            
+            $found = $this->dbObject->findByPhone($input[$type]);
         }
         
         
@@ -307,6 +316,11 @@ class JDIAppUserController extends Controller {
         
         StrUtil::arrayKeysToSnakeCase($input);
        
+        // force all to lower case for email
+        if (isset($input['email'])) {
+
+            $input['email'] = strtolower($input['email']);
+        }
        
         if ($this->dbObject->update($input, true) > 0){
             

@@ -106,7 +106,7 @@ class UserViewModel : ViewModel {
         
         set(newVal){
             
-            userHolder.user.email = newVal
+            userHolder.user.email = newVal.trim().lowercased()
         }
     }
     
@@ -312,6 +312,7 @@ extension UserViewModel {
             return
       
         }
+        
        
         ARH.shared.addUser(user, returnType: User.self, completion: { [weak self]
         

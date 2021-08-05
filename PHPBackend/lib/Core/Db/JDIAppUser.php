@@ -72,10 +72,9 @@ class JDIAppUser extends JDIAppDbObject {
 	}
 	
 	// will need to handle this 
-	private function encrypt(Array &$input){
+	private function encrypt(Array &$input, $seed = null ){
 		
-        $seed = null;
-		$key = KM::key($seed, true);
+        $key = KM::key($seed, true);
         $nonce = KM::nonce($seed, true);
        
         if (isset($input['email']))
@@ -84,6 +83,10 @@ class JDIAppUser extends JDIAppDbObject {
         if (isset($input['phone_number']))
             $input['phone_number'] = EncUtil::encrypt($input['phone_number'], $key, $nonce);
 		
+            	
+        if (isset($input['password']))
+            $input['password'] = EncUtil::encrypt($input['password'], $key, $nonce);
+
         $input['seed'] = $seed;
         
  	}
@@ -149,11 +152,15 @@ class JDIAppUser extends JDIAppDbObject {
     }
 
 
-    public function findByEmailAndPassword ($id, $password){
+    public function findByEmailAndPassword ($id, $password, $seed){
+
+        $input = array('password' => $password);
+
+        $this->encrypt($input, $seed);
 
         $a = new ArrayOfSQLWhereCol();
         $a[] = new SQLWhereCol("id", "=", "AND", $id);
-        $a[] = new SQLWhereCol("password", "=", "AND", "password('$password')");
+        $a[] = new SQLWhereCol("password", "=", "", $input['password']);
         
 
         $res = $this->findByWhere($a, true, null , $limit, $offset);
@@ -209,7 +216,7 @@ class JDIAppUser extends JDIAppDbObject {
 	
 	
 	
-	public function insert(Array &$input, $checkDuplicatePhoneNumber = true, $checkDuplicateEmail = true  ){
+	public function insert(Array &$input, $checkDuplicatePhoneNumber = false, $checkDuplicateEmail = true  ){
 		
         
         if ($checkDuplicatePhoneNumber){
@@ -236,11 +243,7 @@ class JDIAppUser extends JDIAppDbObject {
 		$this->encrypt($input);
 		$input['id'] = $this->generateId($input);
 
-        if ( isset($input['password'])) {
-
-            $input['password'] = "password('". $input['password']."')";
-        }
-
+      
 		return parent::insert($input);
 	}
     
@@ -253,26 +256,7 @@ class JDIAppUser extends JDIAppDbObject {
         return parent::update($input, $toRecreateStatement  );
     }
     
-    
-	
-	static function testInsertUsers($conn){
-		
-		$input = array('first_name'=>'Ket Yung', 'last_name'=>'Chee',
-		'email'=>'ketyung@techchee.com', 'phone_number'=>'+60138634848');
-		
-		$u = new JDIAppUser($conn);
-		echo "<p>".$u->insert($input)." : inserted!</p>";
-		
-        if ($u->hasErrorMessage()) echo "<p>".$u->getErrorMessage()."</p>";
-		
-		$input = array('first_name'=>'Abigail', 'last_name'=>'Vanc Chee',
-		'email'=>'abigail@techchee.com', 'phone_number'=>'+60128119009');
-	
-		echo "<p>".$u->insert($input)." : inserted!</p>";
-        
-        if ($u->hasErrorMessage()) echo "<p>".$u->getErrorMessage()."</p>";
-        
-	}
+
 	
     
     static function exists($id, $db) {
