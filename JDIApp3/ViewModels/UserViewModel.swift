@@ -49,6 +49,7 @@ class UserViewModel : ViewModel {
     
     @Published var signUpSuccess : Bool = false
     
+    @Published var signOutSuccess : Bool = false
     
     
     var id : String {
@@ -216,39 +217,53 @@ extension UserViewModel {
     }
 }
 
-/**
 extension UserViewModel {
     
     private func removeAllStored(){
         
-       
+        KDS.shared.removeUser()
     }
     
     
-    func signOut(completion : ((Error?)-> Void)? = nil ){
+    func signOut(){
         
-        do {
-       
-            try Auth.auth().signOut()
-    
-            removeAllStored()
+        signOutSuccess = false
+        inProgress = true
+        
+        ARH.shared.signOutUser(user, returnType: User.self, completion: {
+            [weak self] res in
+            
             
             DispatchQueue.main.async {
+            
+                switch(res) {
                 
-                self.userHolder.user = User()
+                    case .failure(let err) :
+                        self?.errorMessage = (err as? ApiError)?.errorText
+                        self?.errorPresented = true
+                        self?.inProgress = false
+                        
+                    case .success(let info) :
+                    
+                        if info.status == .ok {
+                            
+                            self?.inProgress = false
+                            self?.signOutSuccess = true
+                            self?.removeAllStored()
+                        }
+                        else {
+                            
+                            self?.errorMessage = info.text
+                            self?.errorPresented = true
+                        }
+                    
+                }
             }
             
-            completion?(nil)
-        }
-        catch {
-            
-            completion?(error)
-            
-        }
+        })
+        
     }
 }
-
- */
 
 
 extension UserViewModel {
@@ -272,7 +287,7 @@ extension UserViewModel {
                 
                         self?.inProgress = false
                         self?.errorPresented = true
-                        self?.errorMessage = (err as? ApiError)?.errorText ?? "Error!"
+                        self?.errorMessage = (err as? ApiError)?.errorText
                         
                     case .success(let info) :
                         
@@ -392,7 +407,7 @@ extension UserViewModel {
          
                     case .failure(let err) :
                     
-                        self?.errorMessage = (err as? ApiError)?.errorText ?? "Error!"
+                        self?.errorMessage = (err as? ApiError)?.errorText
                         self?.errorPresented = true
                         self?.inProgress = false
                         self?.userHolder.clearUser()

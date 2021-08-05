@@ -56,7 +56,7 @@ extension SignInView {
                 
                 Image(systemName: "info.circle").resizable().frame(width: 30, height: 30).foregroundColor(.green)
              
-                Text("You've sucessfully signed in").font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
+                Text("You've sucessfully signed in".localized).font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
                 
             }.padding()
             

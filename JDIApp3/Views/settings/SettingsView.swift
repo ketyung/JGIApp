@@ -14,9 +14,37 @@ struct SettingsView : View {
     @State private var alwaysSaveMapAsNewVersion : Bool = false
     
     @EnvironmentObject private var viewModel : UserViewModel
+    
+    @State private var promptSignOutPresented : Bool = false
   
     
     var body : some View {
+        
+        view()
+        .popOver(isPresented: $viewModel.errorPresented, content: {
+            
+            Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
+        })
+        .progressView(isShowing: $viewModel.inProgress)
+        .popOver(isPresented: $viewModel.signOutSuccess, content: {
+            
+            signOutSucessView()
+        })
+        .alert(isPresented: $promptSignOutPresented){
+            
+            Alert(title: Text("Sign Out Now?".localized),
+                  primaryButton: .default(Text("OK".localized)) {
+                    
+                    viewModel.signOut()
+                    
+                },secondaryButton: .cancel())
+        }
+    }
+}
+
+extension SettingsView {
+    
+    private func view() -> some View {
         
         VStack {
             
@@ -35,7 +63,13 @@ struct SettingsView : View {
                     
                     if viewModel.hasSignedIn {
                    
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                        Button(action: {
+                            
+                            withAnimation{
+                                
+                                promptSignOutPresented = true 
+                            }
+                        }){
                             
                             Text("Sign Out").font(.custom(Theme.fontNameBold, size: 20)).padding()
                             .foregroundColor(.white)
@@ -58,5 +92,37 @@ struct SettingsView : View {
             Spacer()
         }
         .themeFullView()
+    }
+}
+
+extension SettingsView {
+    
+    private func signOutSucessView() -> some View {
+        
+        VStack(spacing:30) {
+       
+            HStack {
+                
+                Image(systemName: "info.circle").resizable().frame(width: 30, height: 30).foregroundColor(.green)
+             
+                Text("You've sucessfully signed out".localized).font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
+                
+            }.padding()
+            
+            Spacer().frame(height:20)
+            
+        }
+        .frame(width: UIScreen.main.bounds.width - 40 ,height: 300)
+        .onAppear{
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3 , execute: {
+                
+                withAnimation{
+                    
+                    viewType = .menu
+                }
+                
+            })
+        }
     }
 }
