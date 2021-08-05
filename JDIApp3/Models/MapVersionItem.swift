@@ -27,9 +27,11 @@ struct MapVersionItem : Codable {
     var versionNo : String?
     
     var itemType : ItemType?
-    
+
     var points : [MapVersionIpoint]?
-    
+  
+    var color : String?
+  
     var lastUpdated : Date?
     
 }

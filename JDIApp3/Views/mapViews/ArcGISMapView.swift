@@ -269,7 +269,6 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
             let polylineGraphic = AGSGraphic(geometry: polyline, symbol: polylineSymbol)
             
             overlay.graphics.add(polylineGraphic)
-            //overlay.graphics.add(pointGraphic)
         }
 
       
@@ -312,6 +311,8 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
         if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
         
             overlay.graphics.removeLastObject()
+            
+            parent.mapActionHandler?.removeLast()
             
             self.setEdited()
         }

@@ -37,6 +37,8 @@ protocol MapActionHandler {
     
     func isAction( type : MFHVM.ActionType) -> Bool
     
+    func removeLast()
+    
 }
 
 class MapFeatureHandlingViewModel : ViewModel  {
@@ -79,11 +81,14 @@ class MapFeatureHandlingViewModel : ViewModel  {
     
     @Published var edited: Bool = false
     
-    @Published private(set) var mapVersion: MapVersion?
+    private(set) var mapVersion: MapVersion?
     
     @Published private var actionType : ActionType = .addPoint
     
+    
     private lazy var agh = AGH()
+    
+    
     
 }
 
@@ -157,23 +162,33 @@ extension MapFeatureHandlingViewModel : MapActionHandler{
             }
         }
     }
+    
+    
+    
+    func removeLast() {
+        
+        if let mapVersion = mapVersion, var items = mapVersion.items {
+            
+            items.removeLast()
+        }
+    }
+    
 }
 
 
 extension MapFeatureHandlingViewModel {
     
     private func addPoint(){
-        
-        
+                
         if let point = mapPoints.first {
      
             mapActionDelegate?.addPoint(point, color: selectedColor)
         }
        
-        
+        addItemType(type: .point)
+
         mapPoints.removeAll()
         
-       //q mapActionDelegate = nil 
         
     }
     
@@ -194,8 +209,44 @@ extension MapFeatureHandlingViewModel {
         
         mapActionDelegate?.addLineAtPoints(mapPoints, color: selectedColor)
         
+        addItemType(type: .line)
+        
         mapPoints.removeAll()
         
+    }
+    
+    
+    
+    private func convertMapPointsToIPoints() -> [MapVersionIpoint] {
+        
+        var mapIPoints = [MapVersionIpoint]()
+        mapPoints.forEach{
+            
+            mapIPoints.append( MapVersionIpoint(latitute: $0.x, longitute:  $0.y))
+            
+        }
+        
+        return mapIPoints
+    }
+    
+    
+    private func addItemType(type : MapVersionItem.ItemType){
+        
+        
+        if mapVersion == nil{
+
+            mapVersion = MapVersion()
+        }
+            
+        if mapVersion?.items == nil {
+            
+            mapVersion?.items = []
+        }
+        
+        let item = MapVersionItem(itemType: type, points: self.convertMapPointsToIPoints(), color : selectedColor.hexString())
+        mapVersion?.items?.append(item)
+
+    
     }
     
     
