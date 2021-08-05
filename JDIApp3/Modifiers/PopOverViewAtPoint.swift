@@ -128,12 +128,12 @@ extension CGPoint {
         if Common.isIPad() {
             
       
-            return CGPoint(x: UIScreen.main.bounds.width - 520, y: -((UIScreen.main.bounds.height / 2) - 50))
+            return CGPoint(x: UIScreen.main.bounds.width - 620, y: -((UIScreen.main.bounds.height / 2) - 50))
       
         }
         else {
   
-            return CGPoint(x: UIScreen.main.bounds.width - 300, y: -((UIScreen.main.bounds.height / 2) - 50))
+            return CGPoint(x: UIScreen.main.bounds.width - 340, y: -((UIScreen.main.bounds.height / 2) - 50))
       
         }
     }

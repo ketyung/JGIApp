@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FrontMapView: View {
     
+    
     @EnvironmentObject private var viewModel : MFHVM
     
     
@@ -26,6 +27,12 @@ struct FrontMapView: View {
    
     @State private var showTopToolbar : Bool = true
     
+    @Binding var viewType : FrontMenuView.ViewType
+   
+    init( viewType : Binding <FrontMenuView.ViewType>) {
+        
+        self._viewType = viewType
+    }
     
     var body: some View {
       
@@ -63,6 +70,23 @@ extension FrontMapView {
     private func topMenuBar() -> some View {
         
         HStack(spacing: 20) {
+            
+           
+            Spacer().frame(width: 20)
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    viewType = .menu
+                }
+                
+            }){
+                
+                Common.buttonView("close", imageColorInvert: true)
+                
+            }
+           
             
             Spacer()
             
@@ -108,10 +132,13 @@ extension FrontMapView {
             }
             .opacity(viewModel.edited ? 1 : 0.35)
             .disabled(!viewModel.edited)
+            
+            Spacer().frame(width:5)
            
         }
         .padding()
-        .frame(width: 200, height: 40)
+        .frame(width: UIScreen.main.bounds.width - 20, height: 40)
+        .offset(x : -50)
     }
 }
 
