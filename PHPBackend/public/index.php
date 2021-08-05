@@ -4,6 +4,7 @@ require_once "../bootstrap.php";
 use Util\Log as Log;
 use Util\StrUtil as StrUtil;
 use Core\Controllers\JDIAppUserController;
+use Core\Controllers\JDIAppUserGroupController;
 use Core\Controllers\JDIAppMessageController;
 use Core\Controllers\JDIAppMapController;
 use Core\Controllers\JDIAppMapVersionController;
@@ -45,6 +46,12 @@ function processUri(){
     if ($uri[1] == 'user'){
 
         $u = new JDIAppUserController( DbConn::conn() , $requestMethod, $params );
+        $u->processRequest();
+    }
+    else
+    if ($uri[1] == 'userGroup'){
+
+        $u = new JDIAppUserGroupController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else

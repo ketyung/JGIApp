@@ -614,3 +614,13 @@ extension ApiRequestHandler {
     }
     
 }
+
+
+extension ApiRequestHandler {
+    
+    func fetchAllUserGroups (completion:  ((Result<[UserGroup], Error>)->Void)? = nil ){
+        
+        fetch(module: "userGroup", param: "all" , decode: [UserGroup].self, completion: completion)
+    }
+  
+}
