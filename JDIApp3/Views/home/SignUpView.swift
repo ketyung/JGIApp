@@ -24,7 +24,10 @@ struct SignUpView : View {
             
             Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
         })
+        .popOver(isPresented: $signUpSUccess, content: {
         
+            successView()
+        })
     
     }
 }
@@ -83,5 +86,38 @@ extension SignUpView {
             
         }
         .themeFullView()
+    }
+}
+
+extension SignUpView {
+    
+    
+    private func successView() -> some View {
+        
+        VStack(spacing:30) {
+       
+            HStack {
+                
+                Image(systemName: "info.circle").resizable().frame(width: 30, height: 30).foregroundColor(.green)
+             
+                Text("You've sucessfully signed up").font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
+                
+            }.padding()
+            
+            Spacer().frame(height:20)
+            
+            Button(action: {
+                withAnimation{
+                    
+                    viewType = .signIn
+                }
+                
+            }){
+                
+                Text("Let's sign in now").font(.custom(Theme.fontName, size: 20))
+            }
+        }
+        .frame(width: UIScreen.main.bounds.width - 40 ,height: 300)
+       
     }
 }

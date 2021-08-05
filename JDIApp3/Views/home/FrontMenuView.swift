@@ -15,6 +15,8 @@ struct FrontMenuView : View {
         
         case menu
         
+        case signIn
+        
         case createMap
         
         case mapList
@@ -55,7 +57,12 @@ extension FrontMenuView {
             
                 EmailSignInView(viewType: $viewType)
                 .transition(.move(edge: .bottom))
-           
+        
+            case .signIn :
+        
+                EmailSignInView(viewType: $viewType)
+                .transition(.move(edge: .bottom))
+    
             default :
                 menuView()
             
