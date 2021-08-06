@@ -148,6 +148,9 @@ protocol MapActionDelegate : AnyObject {
     func removeAll()
     
     func removeLast()
+    
+    func loadFrom(mapVersion : MapVersion)
+    
 }
 
 extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
@@ -383,6 +386,59 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
         }
     }
     
+    
+    func loadFrom(mapVersion : MapVersion) {
+        
+        let defaultColorStr = "#ff0000ff"
+        
+        mapVersion.items?.forEach{
+            item in
+            
+            switch(item.itemType){
+            
+                case .point :
+                
+                    if let pt = item.points?.first {
+                  
+                        addPoint(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0, spatialReference: .none)
+                        , color: UIColor(hex:item.color ?? defaultColorStr))
+                    
+                    }
+                  
+                case .line :
+                    if let points = item.points {
+                   
+                        addLineAtPoints(self.itemPointsToAGSPoints(points), color: UIColor(hex:item.color ?? defaultColorStr))
+                    }
+                    
+                case .polygon :
+                    if let points = item.points {
+               
+                        addPolygon(self.itemPointsToAGSPoints(points), color: UIColor(hex:item.color ?? defaultColorStr) )
+                    }
+           
+                   
+                default :
+                    
+                    return
+            }
+            
+        }
+    }
+    
+    
+    private func itemPointsToAGSPoints (_ points : [MapVersionIpoint]) -> [AGSPoint] {
+        
+        var agsPoints = [AGSPoint]()
+        points.forEach{
+            
+            pt in
+            
+            agsPoints.append(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0, spatialReference: .none))
+        }
+        
+        return agsPoints
+    }
     
     private func setEdited(){
         
