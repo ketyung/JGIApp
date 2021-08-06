@@ -229,7 +229,7 @@ extension MapFeatureHandlingViewModel {
         var mapIPoints = [MapVersionIpoint]()
         mapPoints.forEach{
             
-            mapIPoints.append( MapVersionIpoint(latitute: $0.x, longitute:  $0.y))
+            mapIPoints.append( MapVersionIpoint(x: $0.x, y:  $0.y))
             
         }
         

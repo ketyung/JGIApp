@@ -14,9 +14,11 @@ class JDIAppMapVersionIpoint extends JDIAppDbObject {
     
     public $id;
   
-    public $latitude;
+    public $x;
 
-    public $longitude;
+    public $y;
+
+    public $wkid;
    
     public $lastUpdated;
     

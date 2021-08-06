@@ -144,12 +144,14 @@ create table if not exists jdiapp_map_version_ipoint (
 
     item_id varchar(32) default 'x' NOT null,
     id int(5) default 1 NOT null, 
-    latitude real,
-    longitude real,
+    x real,
+    y real,
     last_updated datetime,
     primary key(item_id,id),
     FOREIGN KEY (item_id) REFERENCES jdiapp_map_version_item(id)
 );
+
+alter table jdiapp_map_version_ipoint add wkid int(6) after y;
 
 
 drop table if exists jdiapp_map_version_note;

@@ -402,8 +402,8 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
                 
                     if let pt = item.points?.first {
                   
-                        addPoint(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0,
-                        spatialReference: AGSSpatialReference(wkid: 3857))
+                        addPoint(AGSPoint(x: pt.x ?? 0 , y: pt.y ?? 0,
+                        spatialReference: AGSSpatialReference(wkid: pt.wkid ?? 3857))
                         , color: UIColor(hex:item.color ?? defaultColorStr))
                     
                     }
@@ -435,8 +435,8 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
         var agsPoints = [AGSPoint]()
         points.forEach{ pt in
             
-            agsPoints.append(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0,
-            spatialReference: AGSSpatialReference(wkid: 3857)))
+            agsPoints.append(AGSPoint(x: pt.x ?? 0 , y: pt.y ?? 0,
+            spatialReference: AGSSpatialReference(wkid: pt.wkid ?? 3857)))
         }
         
         return agsPoints

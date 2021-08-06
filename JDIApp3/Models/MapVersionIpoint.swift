@@ -13,9 +13,11 @@ struct MapVersionIpoint : Codable {
     
     var id : Int?
     
-    var latitute : Double?
+    var x : Double?
     
-    var longitute : Double?
+    var y : Double?
+    
+    var wkid : Int?
     
     var lastUpdated : Date?
 }
