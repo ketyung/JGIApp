@@ -275,6 +275,13 @@ extension MapActionHandlingViewModel {
     
     func addMapToRemote(uid : String){
         
+        if mapTitle.count == 0 {
+            
+            self.errorMessage = "Please enter a title for this map".localized
+            self.errorPresented = true
+            return 
+        }
+        
         if let mapVersion = mapVersion, hasMapItems() {
        
             self.inProgress = true
