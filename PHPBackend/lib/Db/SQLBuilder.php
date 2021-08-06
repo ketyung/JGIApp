@@ -389,6 +389,33 @@ class SQLBuilder {
     }
 	
 	
+	public function buildFindCountBySql(ArrayOfSQLWhereCol $columns, $asWhat = "" ){
+		
+		$col_names = $this->getColumnNames();
+	
+		$whereClauseCols = new ArrayOfSQLWhereCol();
+		
+		foreach ($columns as $col ){
+				
+			if (in_array($col->name, $col_names)){
+			
+				$whereClauseCols[] = $col;
+			}
+		}
+
+		if ($asWhat != "") {
+
+			$asWhat = " as $asWhat ";
+		}
+
+		$sql = "SELECT count(*) $asWhat FROM $this->tableName";
+
+		
+        $sql .= $this->buildWhereClause($whereClauseCols);
+	
+        
+        return $sql;
+	}
 	
 
 	public function buildFindByPKSql(){

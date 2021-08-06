@@ -23,6 +23,8 @@ class DbObject extends SQLBuilder {
 	protected $findCountStatementt = null ; 
 	
 	protected $findByStatementt = null ;
+
+    protected $findCountByStatementt = null ;
     
     protected $lastErrorMessage = null ;
     
@@ -80,13 +82,15 @@ class DbObject extends SQLBuilder {
         
 			if (!isset($this->insertStatement)){
 			
-               // Log::printRToErrorLog($sql);
-				$this->insertStatement = $this->db->prepare($this->buildInsertSql());
+                $sql = $this->buildInsertSql();    
+				$this->insertStatement = $this->db->prepare($sql);
 			}
 		
         
-			$this->insertStatement->execute($this->prepareParams($input));
-            
+            $params = $this->prepareParams($input);
+			$this->insertStatement->execute($params);
+
+           
             return $this->insertStatement->rowCount();
         }
         catch (\PDOException $e) {
@@ -292,6 +296,60 @@ class DbObject extends SQLBuilder {
 		
 	}
 	
+
+    public function findCountByWhere(ArrayOfSQLWhereCol $whereCols,
+    $toRecreateStatement = false, $asWhat = "cnt"  ){
+		
+		
+		try {
+				
+            if ($toRecreateStatement){
+                
+                $this->findCountByStatement = $this->db->prepare(
+                $this->buildFindCountBySql($whereCols, $asWhat));
+            }
+            else {
+            
+                if (!isset($this->findCountByStatement)){
+                    
+                    $this->findCountByStatement = 
+                    $this->db->prepare(
+                        $this->buildFindCountBySql($whereCols, $asWhat));
+                }
+            
+            }
+            
+			
+		
+			$cols = array();
+			
+			foreach ($whereCols as $wcol ){
+				
+				$cols[$wcol->name] = $wcol->value;
+			}
+		
+		
+		
+            $this->findCountByStatement->execute($cols);
+            
+            
+            $result = $this->findCountByStatement->fetchAll(\PDO::FETCH_ASSOC);
+            
+            if (count($result) > 0){
+
+                return $result[0][$asWhat];
+            }
+
+            return 0;
+        }
+        catch (\PDOException $e) 
+        {
+            $this->lastErrorMessage = $e->getMessage();
+            
+            return null;
+        }
+		
+	}
 	
 	
 	public function count(Array $pk){

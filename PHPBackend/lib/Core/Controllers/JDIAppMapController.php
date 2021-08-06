@@ -150,7 +150,14 @@ class JDIAppMapController extends Controller {
                 $mapVersion['version_no'] = 100;
             }
 
-            Log::printRToErrorLog($mapVersion);
+            if (!isset($mapVersion['created_by'])){
+
+                $mapVersion['created_by'] = $input['uid'];
+            }
+
+
+
+            //Log::printRToErrorLog($mapVersion);
 
             if ( $versiondb->insert($mapVersion) > 0 ){
 

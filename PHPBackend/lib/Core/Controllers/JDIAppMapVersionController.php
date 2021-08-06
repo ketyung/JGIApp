@@ -138,6 +138,7 @@ class JDIAppMapVersionController extends Controller {
             $note = $mapVersion['note'] ;
             $note['map_id'] = $mapVersion['id'];
             $note['version_no'] = $mapVersion['version_no'];
+            $note['uid'] = $mapVersion['created_by'];
             
             $notedb = new VersionNote($db);
             $notedb->insert($note);
@@ -162,6 +163,7 @@ class JDIAppMapVersionController extends Controller {
 
                 $item['map_id'] = $mapVersion['id'];
                 $item['version_no'] = $mapVersion['version_no'];
+                $item['created_by'] = $mapVersion['created_by'];
 
                 if ( $itemdb->insert($item) > 0 ){
 

@@ -30,10 +30,10 @@ class JDIAppMapVersionIpoint extends JDIAppDbObject {
 
 
     /// default first 50, will modify later
-    public function findByItemId($uid, $limit = 0, $offset = 50){
+    public function findByItemId($item_id, $limit = 0, $offset = 50){
     
         $a = new ArrayOfSQLWhereCol();
-        $a[] = new SQLWhereCol("item_id", "=", "", $uid);
+        $a[] = new SQLWhereCol("item_id", "=", "", $item_id);
 
         $res = $this->findByWhere($a, true, " ORDER BY last_updated DESC", $limit, $offset);
         
@@ -48,9 +48,18 @@ class JDIAppMapVersionIpoint extends JDIAppDbObject {
             
             $item_id = $input['item_id'];
             
-            $id = $this->count(array('item_id'=>$item_id)) + 1;
+
+            $a = new ArrayOfSQLWhereCol();
+            $a[] = new SQLWhereCol("item_id", "=", "", $item_id);
+    
+
+            $id = $this->findCountByWhere($a, true) + 1;
              
+            
             $input['id'] = $id ;
+        
+           // Log::printRToErrorLog($input);
+            
         }
     }
     

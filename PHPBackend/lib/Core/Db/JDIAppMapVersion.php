@@ -8,6 +8,8 @@ use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\Log as Log;
 use Util\StrUtil as StrUtil;
+use Util\EncUtil as EncUtil;
+
 
 class JDIAppMapVersion extends JDIAppDbObject {
 	
