@@ -229,6 +229,7 @@ extension MapActionHandlingViewModel {
         var mapIPoints = [MapVersionIpoint]()
         mapPoints.forEach{
             
+           // print("x:\($0.x):y:\($0.y)")
             mapIPoints.append( MapVersionIpoint(x: $0.x, y:  $0.y, wkid: $0.spatialReference?.wkid))
             
         }
