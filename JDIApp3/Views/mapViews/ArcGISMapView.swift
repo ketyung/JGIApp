@@ -307,6 +307,8 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
    
    func addPoint(_ point : AGSPoint, color: UIColor? = nil ){
    
+  //  print("point.spatialReference::\(String(describing: point.spatialReference?.wkid))::\(point.x):\(point.y)")
+    
         addPoint(point, color:  color, size: 20)
     
    }
@@ -400,7 +402,8 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
                 
                     if let pt = item.points?.first {
                   
-                        addPoint(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0, spatialReference: .none)
+                        addPoint(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0,
+                        spatialReference: AGSSpatialReference(wkid: 3857))
                         , color: UIColor(hex:item.color ?? defaultColorStr))
                     
                     }
@@ -430,11 +433,10 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
     private func itemPointsToAGSPoints (_ points : [MapVersionIpoint]) -> [AGSPoint] {
         
         var agsPoints = [AGSPoint]()
-        points.forEach{
+        points.forEach{ pt in
             
-            pt in
-            
-            agsPoints.append(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0, spatialReference: .none))
+            agsPoints.append(AGSPoint(x: pt.latitute ?? 0 , y: pt.longitute ?? 0,
+            spatialReference: AGSSpatialReference(wkid: 3857)))
         }
         
         return agsPoints
