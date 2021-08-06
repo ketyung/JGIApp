@@ -267,6 +267,7 @@ extension MapFeatureHandlingViewModel {
     func removeAllMapItems(){
         
         mapVersion?.items?.removeAll()
+        mapActionDelegate?.removeAll()
     }
     
 }
