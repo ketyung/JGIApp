@@ -118,9 +118,6 @@ class JDIAppMapController extends Controller {
                                             
         if ($this->dbObject->insert($input) > 0){
             
-
-            Log::printRToErrorLog($input);
-
             $this->createMapVersionIfExists($input);
 
             $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
@@ -152,6 +149,8 @@ class JDIAppMapController extends Controller {
 
                 $mapVersion['version_no'] = 100;
             }
+
+            Log::printRToErrorLog($mapVersion);
 
             if ( $versiondb->insert($mapVersion) > 0 ){
 

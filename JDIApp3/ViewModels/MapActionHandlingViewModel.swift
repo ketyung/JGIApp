@@ -94,8 +94,9 @@ class MapActionHandlingViewModel : ViewModel  {
         mapDescription = ""
         saveSheetPresented = false
         optionsPresented = false
-        mapPoints = []
-        mapActionDelegate = nil 
+        removeAllMapItems()
+        mapActionDelegate = nil
+    
     }
     
 }
@@ -228,7 +229,7 @@ extension MapActionHandlingViewModel {
         var mapIPoints = [MapVersionIpoint]()
         mapPoints.forEach{
             
-            mapIPoints.append( MapVersionIpoint(x: $0.x, y:  $0.y))
+            mapIPoints.append( MapVersionIpoint(x: $0.x, y:  $0.y, wkid: $0.spatialReference?.wkid))
             
         }
         
@@ -250,9 +251,13 @@ extension MapActionHandlingViewModel {
         }
         
         let ipoints = self.convertMapPointsToIPoints()
-        let item = MapVersionItem(itemType: type, points: ipoints , color : selectedColor.hexString())
-        mapVersion?.items?.append(item)
+        if ipoints.count > 0 {
+      
+            let item = MapVersionItem(itemType: type, points: ipoints , color : selectedColor.hexString())
+            mapVersion?.items?.append(item)
 
+        }
+      
        // print("iPoints::\(ipoints.count)::type::\(type)")
     
     }
@@ -291,10 +296,11 @@ extension MapActionHandlingViewModel {
             return 
         }
         
-        if let mapVersion = mapVersion, hasMapItems() {
+        if var mapVersion = mapVersion, hasMapItems() {
        
             self.inProgress = true
             
+            mapVersion.levelOfDetail = 3
             
             let map = UserMap(uid: uid, title: mapTitle, description: mapDescription, mapVersion: mapVersion)
            
