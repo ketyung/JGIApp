@@ -57,10 +57,7 @@ extension FrontMapView {
             .transition(.move(edge: .trailing))
             .onAppear{
             
-                if viewModel.hasMapItems() {
-                    
-                    viewModel.loadFromSavedItems()
-                }
+                viewModel.loadFromSavedItemsIfAny()
             }
             
         }

@@ -261,9 +261,9 @@ extension MapActionHandlingViewModel {
     }
     
     
-    func loadFromSavedItems() {
+    func loadFromSavedItemsIfAny() {
         
-        if let mapVersion = mapVersion {
+        if let mapVersion = mapVersion, hasMapItems() {
   
             mapActionDelegate?.loadFrom(mapVersion: mapVersion)
         }
