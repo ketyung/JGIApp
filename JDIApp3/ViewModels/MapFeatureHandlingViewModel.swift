@@ -167,10 +167,7 @@ extension MapFeatureHandlingViewModel : MapActionHandler{
     
     func removeLast() {
         
-        if let mapVersion = mapVersion, var items = mapVersion.items {
-            
-            items.removeLast()
-        }
+        mapVersion?.items?.removeLast()
     }
     
 }
