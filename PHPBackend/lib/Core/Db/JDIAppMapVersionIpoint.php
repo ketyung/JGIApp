@@ -53,7 +53,7 @@ class JDIAppMapVersionIpoint extends JDIAppDbObject {
             $a[] = new SQLWhereCol("item_id", "=", "", $item_id);
     
 
-            $id = $this->findCountByWhere($a, true) + 1;
+            $id = $this->findCountByWhere($a, false) + 1;
              
             
             $input['id'] = $id ;

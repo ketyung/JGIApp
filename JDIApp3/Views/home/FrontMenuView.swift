@@ -53,6 +53,11 @@ extension FrontMenuView {
                 FrontMapView(viewType : $viewType)
                 .transition(.move(edge: .bottom))
              
+            case .mapList :
+                MapListView(viewType: $viewType)
+                .transition(.move(edge: .bottom))
+               
+            
             case .profile :
             
                 UserProfileView(viewType: $viewType)
@@ -66,6 +71,8 @@ extension FrontMenuView {
             case .settings :
                 SettingsView(viewType: $viewType)
                 .transition(.move(edge: .bottom))
+                
+            
     
             default :
                 menuView()
@@ -98,7 +105,14 @@ extension FrontMenuView {
                 })
                 
             
-                mapButtonView(title: "Your Maps", imageSystemName: "list.star", backgroundColor: Color(UIColor(hex:"#668822ff")!))
+                mapButtonView(title: "Your Maps", imageSystemName: "list.star",
+                              backgroundColor: Color(UIColor(hex:"#668822ff")!), action: {
+                    
+                    withAnimation{
+                        
+                        viewType = .mapList
+                    }
+                  })
                 
             }
             

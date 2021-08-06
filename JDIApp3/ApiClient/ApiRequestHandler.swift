@@ -188,6 +188,8 @@ extension ApiRequestHandler {
                         
                         if let decodeTo = to {
                             
+                            
+                           // print("data::\(String(decoding: data, as: UTF8.self))")
                             self?.decodeJson(decodeTo, data: data, completion:  completion)
                         }
                     }
@@ -589,10 +591,14 @@ extension ApiRequestHandler {
     }
     
     
-    
-    func fetchMap (id : String, completion:  ((Result<UserMap, Error>)->Void)? = nil ){
+    func fetchMapVersions (id : String, completion:  ((Result<[MapVersion], Error>)->Void)? = nil ){
         
-        fetch(module: "map", param: "id/\(id)" , decode: UserMap.self, completion: completion)
+        fetch(module: "map", param: "id/\(id)" , decode: [MapVersion].self, completion: completion)
+    }
+    
+    func fetchMaps (uid : String, completion:  ((Result<[UserMap], Error>)->Void)? = nil ){
+        
+        fetch(module: "map", param: "user/\(uid)" , decode: [UserMap].self, completion: completion)
     }
     
 }

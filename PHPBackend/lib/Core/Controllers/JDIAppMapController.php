@@ -90,6 +90,8 @@ class JDIAppMapController extends Controller {
         
         $result = $this->dbObject->findByUserId($userId) ;
         
+      //  Log::printRToErrorLog($userId);
+
         if (count($result) > 0){
        
             $response['status_code_header'] = 'HTTP/1.1 200 OK';

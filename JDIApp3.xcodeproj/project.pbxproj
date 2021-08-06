@@ -19,7 +19,7 @@
 		1001241A26B6C90B00074BF1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241526B6C90B00074BF1 /* ViewModel.swift */; };
 		1001241B26B6C90B00074BF1 /* MapActionHandlingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241626B6C90B00074BF1 /* MapActionHandlingViewModel.swift */; };
 		1001241C26B6C90B00074BF1 /* TemplatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */; };
-		1001241D26B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */; };
+		1001241D26B6C90B00074BF1 /* MapQueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241826B6C90B00074BF1 /* MapQueryViewModel.swift */; };
 		1001241E26B6C90B00074BF1 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */; };
 		1001242F26B6C91800074BF1 /* PopOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242026B6C91800074BF1 /* PopOverView.swift */; };
 		1001243026B6C91800074BF1 /* CommonDimensionAndColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242126B6C91800074BF1 /* CommonDimensionAndColor.swift */; };
@@ -69,6 +69,7 @@
 		1001249426BBC6F400074BF1 /* UserProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249326BBC6F400074BF1 /* UserProfileFormView.swift */; };
 		1001249626BBC91A00074BF1 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249526BBC91A00074BF1 /* UserProfileView.swift */; };
 		1001249A26BBCCB500074BF1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249926BBCCB500074BF1 /* SettingsView.swift */; };
+		1001249C26BD3B8E00074BF1 /* MapListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249B26BD3B8E00074BF1 /* MapListView.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -91,7 +92,7 @@
 		1001241526B6C90B00074BF1 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1001241626B6C90B00074BF1 /* MapActionHandlingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapActionHandlingViewModel.swift; sourceTree = "<group>"; };
 		1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplatesViewModel.swift; sourceTree = "<group>"; };
-		1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeaturesQueryViewModel.swift; sourceTree = "<group>"; };
+		1001241826B6C90B00074BF1 /* MapQueryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapQueryViewModel.swift; sourceTree = "<group>"; };
 		1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		1001242026B6C91800074BF1 /* PopOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverView.swift; sourceTree = "<group>"; };
 		1001242126B6C91800074BF1 /* CommonDimensionAndColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDimensionAndColor.swift; sourceTree = "<group>"; };
@@ -142,6 +143,7 @@
 		1001249326BBC6F400074BF1 /* UserProfileFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFormView.swift; sourceTree = "<group>"; };
 		1001249526BBC91A00074BF1 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		1001249926BBCCB500074BF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1001249B26BD3B8E00074BF1 /* MapListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListView.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -236,7 +238,7 @@
 				1001241626B6C90B00074BF1 /* MapActionHandlingViewModel.swift */,
 				1001248A26BB77AF00074BF1 /* UserViewModel.swift */,
 				1001249126BB962F00074BF1 /* UserGroupsViewModel.swift */,
-				1001241826B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift */,
+				1001241826B6C90B00074BF1 /* MapQueryViewModel.swift */,
 				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
 				1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */,
 			);
@@ -315,6 +317,7 @@
 				1001244926B6C92300074BF1 /* ArcGISMapView.swift */,
 				1001244A26B6C92300074BF1 /* FrontMapView.swift */,
 				1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */,
+				1001249B26BD3B8E00074BF1 /* MapListView.swift */,
 			);
 			path = mapViews;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1001249426BBC6F400074BF1 /* UserProfileFormView.swift in Sources */,
+				1001249C26BD3B8E00074BF1 /* MapListView.swift in Sources */,
 				1001244D26B6C92300074BF1 /* DocuSignTemplateView.swift in Sources */,
 				1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */,
 				1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */,
@@ -589,7 +593,7 @@
 				1001245126B6C92300074BF1 /* UserLoginViewOld.swift in Sources */,
 				1001246526BA0CEA00074BF1 /* UserGroup.swift in Sources */,
 				1001245826B77F7F00074BF1 /* PopOverViewAtPoint.swift in Sources */,
-				1001241D26B6C90B00074BF1 /* MapFeaturesQueryViewModel.swift in Sources */,
+				1001241D26B6C90B00074BF1 /* MapQueryViewModel.swift in Sources */,
 				1001243726B6C91800074BF1 /* QRImageView.swift in Sources */,
 				1001243426B6C91800074BF1 /* RoundedCorner.swift in Sources */,
 				1001241E26B6C90B00074BF1 /* AuthenticationViewModel.swift in Sources */,

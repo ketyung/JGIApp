@@ -11,6 +11,9 @@ use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
 use Util\Log as Log;
 use Util\StrUtil as StrUtil;
+use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
+use Db\SQLWhereCol as SQLWhereCol;
+
 
 
 class JDIAppMapVersionController extends Controller {
@@ -53,7 +56,16 @@ class JDIAppMapVersionController extends Controller {
         else
         if ($param1 == 'id' && $param2 != '' ){
         
-            return $this->getBy($param2, $param3);
+            if ($param3 != '') {
+
+                return $this->getBy($param2, $param3);
+    
+            }
+            else {
+
+                return $this->getByIdOnly($param2);
+            }
+
         }
 
         else {
@@ -63,6 +75,30 @@ class JDIAppMapVersionController extends Controller {
         
     
     }
+
+
+    private function getByIdOnly($id) {
+
+
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("id", "=", "", $id);
+
+        $res = $this->dbObject->findByWhere($a, true, " ORDER BY last_updated DESC", 0, 50);
+    
+        if (count($res) > 0 ){
+
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = json_encode($res, JSON_NUMERIC_CHECK);
+            return $response;
+    
+        }
+        else {
+
+            return $this->notFoundResponse();
+      
+        }
+    }
+
     
 
     private function getBy($id, $versionNo){

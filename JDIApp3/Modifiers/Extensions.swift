@@ -173,3 +173,13 @@ extension URL {
         return url.queryItems?.first(where: { $0.name == paramName })?.value
     }
 }
+
+
+extension Date {
+    
+    func timeAgo() -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        return formatter.localizedString(for: self, relativeTo: Date())
+    }
+}
