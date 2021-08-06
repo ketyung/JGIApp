@@ -10,7 +10,7 @@ import SwiftUI
 struct FrontMapView: View {
     
     
-    @EnvironmentObject private var viewModel : MFHVM
+    @EnvironmentObject private var viewModel : MAHVM
     
     private static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
                 "#ffff00ff", "#00ff00ff", "#0000ffff", "#0088ffff",  "#ff00ffff"]
@@ -409,7 +409,7 @@ extension FrontMapView {
 extension FrontMapView {
     
     @ViewBuilder
-    private func colorsScrollView(actionType : MFHVM.ActionType = .addPoint) -> some View {
+    private func colorsScrollView(actionType : MAHVM.ActionType = .addPoint) -> some View {
         
         
         

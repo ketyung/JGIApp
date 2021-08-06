@@ -1,5 +1,5 @@
 //
-//  MapFeatureHandlingViewModel.swift
+//  MapActionHandlingViewModel.swift
 //  JDIApp2
 //
 //  Created by Chee Ket Yung on 31/07/2021.
@@ -9,11 +9,10 @@ import Foundation
 import ArcGIS
 import SwiftUI
 
-typealias MFHVM = MapFeatureHandlingViewModel
+typealias MAHVM = MapActionHandlingViewModel
 
 
 protocol MapActionHandler {
-    
     
     var mapActionDelegate : MapActionDelegate? { get set }
     
@@ -33,15 +32,15 @@ protocol MapActionHandler {
     
     func applyAction()
     
-    func set( actionType : MFHVM.ActionType)
+    func set( actionType : MAHVM.ActionType)
     
-    func isAction( type : MFHVM.ActionType) -> Bool
+    func isAction( type : MAHVM.ActionType) -> Bool
     
     func removeLast()
     
 }
 
-class MapFeatureHandlingViewModel : ViewModel  {
+class MapActionHandlingViewModel : ViewModel  {
     
     enum ActionType : Int {
         
@@ -92,15 +91,8 @@ class MapFeatureHandlingViewModel : ViewModel  {
     
 }
 
-extension MapFeatureHandlingViewModel {
-    
-    
-    func save(){
-        
-    }
-}
 
-extension MapFeatureHandlingViewModel : MapActionHandler{
+extension MapActionHandlingViewModel : MapActionHandler{
     
     func set(actionType: ActionType) {
    
@@ -173,7 +165,7 @@ extension MapFeatureHandlingViewModel : MapActionHandler{
 }
 
 
-extension MapFeatureHandlingViewModel {
+extension MapActionHandlingViewModel {
     
     private func addPoint(){
                 
@@ -270,7 +262,7 @@ extension MapFeatureHandlingViewModel {
     
 }
 
-extension MapFeatureHandlingViewModel {
+extension MapActionHandlingViewModel {
     
     func addMapToRemote(uid : String, title : String, description : String){
         

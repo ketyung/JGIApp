@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MapInfoEntryView : View {
     
-    @EnvironmentObject private var viewModel : MFHVM
+    @EnvironmentObject private var viewModel : MAHVM
    
     @State private var textViewFocused : Bool = false
     
