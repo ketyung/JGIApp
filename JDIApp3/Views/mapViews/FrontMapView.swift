@@ -36,6 +36,39 @@ struct FrontMapView: View {
     
     var body: some View {
       
+        switchView()
+    }
+}
+
+extension FrontMapView {
+    
+    @ViewBuilder
+    private func switchView() -> some View {
+        
+        if (viewModel.saveSheetPresented) {
+            
+            MapInfoEntryView()
+            .transition(.move(edge: .leading))
+          
+        }
+        else {
+            
+            mapView()
+            .transition(.move(edge: .trailing))
+            .onAppear{
+            
+                if viewModel.hasMapItems() {
+                    
+                    viewModel.loadFromSavedItems()
+                }
+            }
+            
+        }
+    }
+    
+    
+    private func mapView() -> some View {
+        
         VStack{
             
             ArcGISMapView(mapActionHandler: viewModel)
@@ -57,11 +90,12 @@ struct FrontMapView: View {
             
             optionsSheetView()
         })
+        
+        /**
         .bottomSheet(isPresented: $viewModel.saveSheetPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true, content:{
             
             MapInfoEntryView()
-        })
-        
+        })*/
         .alert(isPresented: $promptHasItems){
             
             Alert(title: Text("Your map has unsaved items, do you want to quit now?".localized), primaryButton: .default(Text("Yes".localized)) {

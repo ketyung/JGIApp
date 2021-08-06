@@ -23,7 +23,9 @@ struct MapInfoEntryView : View {
             Spacer().frame(height:30)
             
             topBar()
-            
+          
+            Spacer().frame(height:50)
+          
             Common.textFieldWithUnderLine("Title".localized, text: $viewModel.mapTitle)
            
             /**

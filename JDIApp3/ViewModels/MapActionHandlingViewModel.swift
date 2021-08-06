@@ -260,6 +260,15 @@ extension MapActionHandlingViewModel {
         mapActionDelegate?.removeAll()
     }
     
+    
+    func loadFromSavedItems() {
+        
+        if let mapVersion = mapVersion {
+  
+            mapActionDelegate?.loadFrom(mapVersion: mapVersion)
+        }
+    }
+    
 }
 
 extension MapActionHandlingViewModel {
