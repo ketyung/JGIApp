@@ -185,8 +185,6 @@ extension MapFeatureHandlingViewModel {
         addItemType(type: .point)
 
         mapPoints.removeAll()
-        
-        
     }
     
     
@@ -268,6 +266,72 @@ extension MapFeatureHandlingViewModel {
         
         mapVersion?.items?.removeAll()
         mapActionDelegate?.removeAll()
+    }
+    
+}
+
+extension MapFeatureHandlingViewModel {
+    
+    func addMapToRemote(uid : String, title : String, description : String){
+        
+        if let mapVersion = mapVersion, hasMapItems() {
+       
+            self.inProgress = true
+            
+            
+            let map = UserMap(uid: uid, title: title, description: description, mapVersion: mapVersion)
+           
+            ARH.shared.addMap(map, returnType: UserMap.self , completion: {
+                
+                res in
+                
+                DispatchQueue.main.async {
+              
+                    switch(res) {
+                        
+                        case .failure(let err) :
+                            
+                            self.inProgress = false
+                            self.errorMessage = (err as? ApiError)?.errorText
+                            self.errorPresented = true
+                    
+                        case .success(let info) :
+                            
+                            if info.status == .ok {
+                                
+                                self.inProgress = false
+                            }
+                            else {
+                                
+                                self.inProgress = false
+                                self.errorMessage = info.text
+                                self.errorPresented = true
+                            }
+                        
+                        
+                    }
+                }
+              
+            })
+            
+            
+        }
+        else {
+            
+            withAnimation{
+                
+                self.errorMessage = "Empty Map!".localized
+                self.errorPresented = true
+            }
+        }
+        
+        
+    }
+    
+    
+    func saveMapVersionToRemote() {
+        
+        
     }
     
 }
