@@ -240,9 +240,11 @@ extension MapFeatureHandlingViewModel {
             mapVersion?.items = []
         }
         
-        let item = MapVersionItem(itemType: type, points: self.convertMapPointsToIPoints(), color : selectedColor.hexString())
+        let ipoints = self.convertMapPointsToIPoints()
+        let item = MapVersionItem(itemType: type, points: ipoints , color : selectedColor.hexString())
         mapVersion?.items?.append(item)
 
+       // print("iPoints::\(ipoints.count)::type::\(type)")
     
     }
     
