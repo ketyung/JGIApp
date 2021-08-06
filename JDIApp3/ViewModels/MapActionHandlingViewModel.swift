@@ -76,7 +76,7 @@ class MapActionHandlingViewModel : ViewModel  {
     
     @Published var mapDescription : String = ""
     
-    @Published var mapTags : String = ""
+   // @Published var mapTags : String = "" // not needed will be deleted in the future
     
     @Published var edited: Bool = false
     
@@ -264,14 +264,14 @@ extension MapActionHandlingViewModel {
 
 extension MapActionHandlingViewModel {
     
-    func addMapToRemote(uid : String, title : String, description : String){
+    func addMapToRemote(uid : String){
         
         if let mapVersion = mapVersion, hasMapItems() {
        
             self.inProgress = true
             
             
-            let map = UserMap(uid: uid, title: title, description: description, mapVersion: mapVersion)
+            let map = UserMap(uid: uid, title: mapTitle, description: mapDescription, mapVersion: mapVersion)
            
             ARH.shared.addMap(map, returnType: UserMap.self , completion: {
                 

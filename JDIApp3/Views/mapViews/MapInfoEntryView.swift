@@ -12,6 +12,8 @@ struct MapInfoEntryView : View {
     
     @EnvironmentObject private var viewModel : MAHVM
    
+    @EnvironmentObject private var userViewModel : UserViewModel
+   
     @State private var textViewFocused : Bool = false
     
     var body: some View {
@@ -23,13 +25,15 @@ struct MapInfoEntryView : View {
             topBar()
             
             Common.textFieldWithUnderLine("Title".localized, text: $viewModel.mapTitle)
-            
+           
+            /**
             VStack(alignment: .leading, spacing:5) {
            
                 Common.textFieldWithUnderLine("Tags".localized, text: $viewModel.mapTags)
                 
                 Text("Separate tags by space".localized).font(.custom(Theme.fontName, size: 15)).foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
             }
+             */
             
             VStack(alignment: .leading, spacing:5) {
            
@@ -38,13 +42,19 @@ struct MapInfoEntryView : View {
                 TextView(text: $viewModel.mapDescription, isFirstResponder: $textViewFocused)
                 .frame(width: UIScreen.main.bounds.width - 10, height: 100)
                
-                
+                dismissKeyboardButton()
             }
             
             
             Spacer()
             
-        }.padding()
+        }
+        .padding()
+        .popOver(isPresented: $viewModel.errorPresented, content: {
+            
+            Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
+        })
+        .progressView(isShowing: $viewModel.inProgress)
         .themeFullView()
     }
 }
@@ -82,7 +92,19 @@ extension MapInfoEntryView {
                 
                 withAnimation{
                     
-                    viewModel.saveSheetPresented = false
+                    if let userId = userViewModel.user.id {
+                        
+                  
+                        viewModel.addMapToRemote(uid: userId)
+                       
+                    }
+                    else {
+                        
+                        viewModel.errorMessage = "You must sign in first"
+                        viewModel.errorPresented = true
+                    }
+                    
+                    
                 }
                 
             }){
@@ -96,4 +118,30 @@ extension MapInfoEntryView {
         }
     }
     
+}
+
+extension MapInfoEntryView {
+    
+    private func dismissKeyboardButton() -> some View {
+        
+        HStack(spacing:5) {
+       
+            Button(action: {
+                withAnimation {
+                    
+                    UIApplication.shared.endEditing()
+                }
+            }){
+                
+                Image(systemName: "arrowtriangle.down.circle.fill")
+                .resizable()
+                .frame(width:20, height: 20, alignment: .topLeading)
+                .foregroundColor(.gray)
+                
+            }
+            
+            Spacer()
+        }
+        .opacity(textViewFocused ? 1 : 0)
+    }
 }
