@@ -55,7 +55,7 @@ struct ArcGISMapView : UIViewRepresentable {
 
         
         let map = AGSMap(basemapType: .topographicVector,   latitude: 6.6111,
-                         longitude: 20.9394, levelOfDetail: 6)
+                         longitude: 20.9394, levelOfDetail: 4)
 
         mapView.map = map
       
@@ -278,6 +278,19 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
    func addPoint(_ point : AGSPoint, color: UIColor? = nil ){
    
         addPoint(point, color:  color, size: 20)
+    
+    /**
+        do {
+       
+            let str = try parent.mapView.map?.toJSON()
+    
+            print("map.json:\(String(describing: str))")
+        }
+        catch {
+            
+            print("err:\(error)")
+        }
+     */
    }
     
     private func addPoint(_ point : AGSPoint, color: UIColor? = nil, size : CGFloat? = nil ){

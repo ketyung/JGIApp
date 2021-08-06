@@ -12,10 +12,10 @@ struct FrontMapView: View {
     
     @EnvironmentObject private var viewModel : MFHVM
     
-    
     private static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
                 "#ffff00ff", "#00ff00ff", "#0000ffff", "#0088ffff",  "#ff00ffff"]
    
+    @State private var promptHasItems : Bool = false
     
     private  var colors : [UIColor] = {
         
@@ -61,6 +61,20 @@ struct FrontMapView: View {
             
             MapInfoEntryView()
         })
+        
+        .alert(isPresented: $promptHasItems){
+            
+            Alert(title: Text("Your map has unsaved items, do you want to quit now?".localized), primaryButton: .default(Text("Yes".localized)) {
+                    
+                    withAnimation{
+                        
+                        viewModel.removeAllMapItems()
+                        self.viewType = .menu
+                    }
+                    
+            },secondaryButton: .cancel())
+            
+        }
     }
 }
 
@@ -78,7 +92,15 @@ extension FrontMapView {
                 
                 withAnimation{
                     
-                    viewType = .menu
+                    if viewModel.hasMapItems() {
+                        
+                        promptHasItems = true
+                    }
+                    else {
+            
+                        viewType = .menu
+                    }
+                    
                 }
                 
             }){

@@ -249,7 +249,15 @@ extension MapFeatureHandlingViewModel {
     }
     
     
+    func hasMapItems() -> Bool {
+        
+        return (mapVersion?.items?.count ?? 0) > 0
+    }
     
+    func removeAllMapItems(){
+        
+        mapVersion?.items?.removeAll()
+    }
     
 }
 
