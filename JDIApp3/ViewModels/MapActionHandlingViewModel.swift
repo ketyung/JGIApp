@@ -70,6 +70,8 @@ class MapActionHandlingViewModel : ViewModel  {
   
     @Published var optionsPresented : Bool = false
     
+    @Published var mapSuccessfullySavedToRemote : Bool = false
+    
     @Published var selectedColor: UIColor = .red
     
     @Published var mapTitle : String = ""
@@ -85,9 +87,16 @@ class MapActionHandlingViewModel : ViewModel  {
     @Published private var actionType : ActionType = .addPoint
     
     
-    private lazy var agh = AGH()
-    
-    
+    func resetAllNeccessary() {
+        
+        mapSuccessfullySavedToRemote = false
+        mapTitle = ""
+        mapDescription = ""
+        saveSheetPresented = false
+        optionsPresented = false
+        mapPoints = []
+        mapActionDelegate = nil 
+    }
     
 }
 
@@ -295,28 +304,32 @@ extension MapActionHandlingViewModel {
                 
                 DispatchQueue.main.async {
               
-                    switch(res) {
+                    withAnimation{
                         
-                        case .failure(let err) :
+                        switch(res) {
                             
-                            self.inProgress = false
-                            self.errorMessage = (err as? ApiError)?.errorText
-                            self.errorPresented = true
-                    
-                        case .success(let info) :
-                            
-                            if info.status == .ok {
+                            case .failure(let err) :
                                 
                                 self.inProgress = false
-                            }
-                            else {
-                                
-                                self.inProgress = false
-                                self.errorMessage = info.text
+                                self.errorMessage = (err as? ApiError)?.errorText
                                 self.errorPresented = true
-                            }
                         
-                        
+                            case .success(let info) :
+                                
+                                if info.status == .ok {
+                                    
+                                    self.inProgress = false
+                                    self.mapSuccessfullySavedToRemote = true 
+                                }
+                                else {
+                                    
+                                    self.inProgress = false
+                                    self.errorMessage = info.text
+                                    self.errorPresented = true
+                                }
+                            
+                            
+                        }
                     }
                 }
               

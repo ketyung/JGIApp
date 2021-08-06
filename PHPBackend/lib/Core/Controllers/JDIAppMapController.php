@@ -11,6 +11,7 @@ use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
 use Core\Controllers\JDIAppMapVersionController as MapVersionController;
 use Util\Log as Log;
+use Util\StrUtil as StrUtil;
 
 class JDIAppMapController extends Controller {
     
@@ -117,6 +118,9 @@ class JDIAppMapController extends Controller {
                                             
         if ($this->dbObject->insert($input) > 0){
             
+
+            Log::printRToErrorLog($input);
+
             $this->createMapVersionIfExists($input);
 
             $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
@@ -136,9 +140,9 @@ class JDIAppMapController extends Controller {
     protected function createMapVersionIfExists($input) {
 
        
-        if ( isset($input['version'])){
+        if ( isset($input['map_version'])){
 
-            $mapVersion = $input['version'];
+            $mapVersion = $input['map_version'];
 
             $versiondb = new MapVersion($this->db);
 

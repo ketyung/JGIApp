@@ -16,7 +16,29 @@ struct MapInfoEntryView : View {
    
     @State private var textViewFocused : Bool = false
     
+    @Binding var viewType : FrontMenuView.ViewType
+   
+    
     var body: some View {
+       
+        if viewModel.mapSuccessfullySavedToRemote
+        {
+            saveSuccessfulView()
+            .transition(.move(edge: .bottom))
+           
+        }
+        else {
+            
+            view()
+        }
+    }
+}
+
+extension MapInfoEntryView {
+    
+    
+    private func view() -> some View {
+        
         
         VStack(spacing:20){
             
@@ -59,12 +81,9 @@ struct MapInfoEntryView : View {
         .progressView(isShowing: $viewModel.inProgress)
         .themeFullView()
     }
-}
-
-extension MapInfoEntryView {
     
     
-    private func topBar() -> some View {
+    private func topBar(noSaveButton : Bool = false) -> some View {
         
         HStack {
             
@@ -74,7 +93,17 @@ extension MapInfoEntryView {
                 
                 withAnimation{
                     
-                    viewModel.saveSheetPresented = false
+                    if viewModel.mapSuccessfullySavedToRemote {
+                        
+                        viewType = .menu
+                        viewModel.resetAllNeccessary()
+                    }
+                    else {
+              
+                        viewModel.saveSheetPresented = false
+                  
+                    }
+                    
                 }
                 
             }){
@@ -89,33 +118,36 @@ extension MapInfoEntryView {
             
             Spacer()
           
+            if !noSaveButton {
             
-            Button(action : {
-                
-                withAnimation{
+                Button(action : {
                     
-                    if let userId = userViewModel.user.id {
+                    withAnimation{
                         
-                  
-                        viewModel.addMapToRemote(uid: userId)
-                       
-                    }
-                    else {
+                        if let userId = userViewModel.user.id {
+                            
+                      
+                            viewModel.addMapToRemote(uid: userId)
+                           
+                        }
+                        else {
+                            
+                            viewModel.errorMessage = "You must sign in first"
+                            viewModel.errorPresented = true
+                        }
                         
-                        viewModel.errorMessage = "You must sign in first"
-                        viewModel.errorPresented = true
+                        
                     }
                     
-                    
-                }
-                
-            }){
-           
-                Common.buttonView(imageSysteName: "checkmark")
+                }){
                
+                    Common.buttonView(imageSysteName: "checkmark")
+                   
+                }
+              
+                Spacer().frame(width:5)
+                
             }
-          
-            Spacer().frame(width:5)
             
         }
     }
@@ -145,5 +177,32 @@ extension MapInfoEntryView {
             Spacer()
         }
         .opacity(textViewFocused ? 1 : 0)
+    }
+}
+
+
+extension MapInfoEntryView {
+    
+    
+    private func saveSuccessfulView() -> some View {
+        
+        VStack {
+            
+            Spacer().frame(height:30)
+            
+            topBar(noSaveButton: true)
+            
+            Spacer().frame(height:50)
+            
+            Image(systemName: "checkmark.circle").resizable().frame(width:100, height: 100).foregroundColor(.green)
+          
+            Text("Your map has been saved successfully. You can view it on your map list")
+            .font(.custom(Theme.fontName, size: 20))
+            .fixedSize(horizontal: false, vertical: true)
+            .lineLimit(3)
+            
+            Spacer()
+        }
+        .padding()
     }
 }

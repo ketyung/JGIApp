@@ -47,7 +47,7 @@ extension FrontMapView {
         
         if (viewModel.saveSheetPresented) {
             
-            MapInfoEntryView()
+            MapInfoEntryView(viewType: $viewType)
             .transition(.move(edge: .leading))
           
         }
@@ -452,8 +452,6 @@ extension FrontMapView {
                     
                     color in
                     
-                   
-                   
                     ZStack {
                     
                         
@@ -461,8 +459,6 @@ extension FrontMapView {
                             
                             Circle().fill(Color(UIColor(hex:"#009900ff")!))
                             .frame(width: 30, height: 30)
-                           
-                            
                         }
                         
                         
