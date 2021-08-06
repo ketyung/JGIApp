@@ -339,7 +339,7 @@ extension FrontMapView {
                 }
                 
                 
-                Text("Add Polygon".localized).font(.custom(Theme.fontName, size: 15))
+                Text("Draw Polygon".localized).font(.custom(Theme.fontName, size: 15))
           
                 
                 Spacer()

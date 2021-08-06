@@ -141,20 +141,20 @@ extension MapFeatureHandlingViewModel : MapActionHandler{
                     self.optionsPresented = true
                     
                 case .addFeature :
-                    
                     self.addFeature()
                     
                 case .addPoint :
-                    
                     self.addPoint()
                     
                 case .addLine :
-                
                     self.addLine()
+                    
                 case .addLineStraight :
-            
                     self.addLine()
             
+                case .addPolygon :
+                    self.addPolygon()
+
             
                 default :
                     return 
@@ -212,6 +212,16 @@ extension MapFeatureHandlingViewModel {
         
     }
     
+    
+    private func addPolygon() {
+        
+        mapActionDelegate?.addPolygon(mapPoints, color: selectedColor)
+        
+        addItemType(type: .polygon)
+        
+        mapPoints.removeAll()
+        
+    }
     
     
     private func convertMapPointsToIPoints() -> [MapVersionIpoint] {

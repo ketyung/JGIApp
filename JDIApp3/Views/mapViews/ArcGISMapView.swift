@@ -71,6 +71,18 @@ struct ArcGISMapView : UIViewRepresentable {
     
     func updateUIView(_ uiView: AGSMapView, context: Context) {
     
+        /**
+            do {
+           
+                let str = try uiView.map?.toJSON()
+        
+                print("map.json:\(String(describing: str))")
+            }
+            catch {
+                
+                print("err:\(error)")
+            }
+         */
     }
    
     
@@ -128,7 +140,9 @@ protocol MapActionDelegate : AnyObject {
     func addPoint(_ point : AGSPoint, color : UIColor?)
     
     func addLineAtPoints ( _ points : [AGSPoint] , color : UIColor?)
-    
+  
+    func addPolygon ( _ points : [AGSPoint] , color : UIColor?)
+  
     func addFeature(at point: AGSPoint)
     
     func removeAll()
@@ -197,7 +211,12 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
       
             parent.mapActionHandler?.mapPoints.append( mapPoint )
         }
-        
+        else
+        if parent.mapActionHandler?.isAction(type: .addPolygon) ?? false {
+      
+            parent.mapActionHandler?.mapPoints.append( mapPoint )
+        }
+      
         self.setEdited()
        // identifyFeature(at: screenPoint)
     }
@@ -210,8 +229,16 @@ extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
         if parent.mapActionHandler?.isAction(type: .addLine) ?? false {
             
             parent.mapActionHandler?.mapPoints.append(mapPoint)
-        
+            return
         }
+        
+        
+        if parent.mapActionHandler?.isAction(type: .addPolygon) ?? false {
+            
+            parent.mapActionHandler?.mapPoints.append(mapPoint)
+            return
+        }
+        
     }
     
     
@@ -279,18 +306,6 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
    
         addPoint(point, color:  color, size: 20)
     
-    /**
-        do {
-       
-            let str = try parent.mapView.map?.toJSON()
-    
-            print("map.json:\(String(describing: str))")
-        }
-        catch {
-            
-            print("err:\(error)")
-        }
-     */
    }
     
     private func addPoint(_ point : AGSPoint, color: UIColor? = nil, size : CGFloat? = nil ){
@@ -314,7 +329,32 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
             overlay.graphics.add(pointGraphic)
         }
         
-      
+    }
+    
+    
+    
+    func addPolygon ( _ points : [AGSPoint] , color : UIColor?){
+        
+        if parent.mapView.graphicsOverlays.count == 0 {
+             
+             let graphicsOverlay = AGSGraphicsOverlay()
+             parent.mapView.graphicsOverlays.add(graphicsOverlay)
+
+        }
+     
+
+        if let overlay = parent.mapView.graphicsOverlays.firstObject as? AGSGraphicsOverlay{
+
+            let polygon = AGSPolygon( points: points)
+
+            let polygonSymbol = AGSSimpleFillSymbol(style: .solid,
+            color: color ?? .orange, outline: AGSSimpleLineSymbol(style: .solid, color: .blue, width: 2.0))
+            
+            
+            let polygonGraphic = AGSGraphic(geometry: polygon, symbol: polygonSymbol)
+            
+            overlay.graphics.add(polygonGraphic)
+        }
        
     }
     
