@@ -364,3 +364,38 @@ extension MapActionHandlingViewModel {
     
 }
 
+
+extension MapActionHandlingViewModel {
+    
+    func loadFromRemote( mapId : String, versionNo : Int){
+        
+        self.inProgress = true
+        
+        ARH.shared.fetchMapVersion(id: mapId, versionNo: versionNo, completion:  {
+            
+            [weak self] res in
+            
+            DispatchQueue.main.async {
+             
+                switch(res) {
+                
+                    case .failure(let err) :
+                        self?.inProgress = false
+                        self?.errorMessage = (err as? ApiError)?.errorText
+                        self?.errorPresented = true
+                    
+                    case .success(let mapVersion) :
+                        self?.mapVersion = mapVersion
+                        self?.inProgress = false
+                        if let mapVersion = self?.mapVersion {
+                  
+                            self?.mapActionDelegate?.loadFrom(mapVersion: mapVersion)
+                        }
+                    
+                
+                }
+            }
+            
+        })
+    }
+}

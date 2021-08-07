@@ -9,6 +9,15 @@ import SwiftUI
 
 struct FrontMapView: View {
     
+    enum Mode : Int {
+        
+        case edit
+        
+        case create
+        
+        case viewOnly
+    }
+    
     
     @EnvironmentObject private var viewModel : MAHVM
     
@@ -28,11 +37,22 @@ struct FrontMapView: View {
     @State private var showTopToolbar : Bool = true
     
     @Binding var viewType : FMM.ViewType
-   
-    init( viewType : Binding <FMM.ViewType>) {
+    
+    @State private var mode : Mode = .create
+    
+    @State private var mapId : String?
+    
+    @State private var versionNo : Int?
+    
+    init( viewType : Binding <FMM.ViewType>, mode : Mode = .create, mapId : String? = nil, versionNo : Int? = nil) {
         
         self._viewType = viewType
+        self.mode = mode
+        self.mapId = mapId
+        self.versionNo = versionNo
     }
+    
+    
     
     var body: some View {
       
@@ -57,8 +77,30 @@ extension FrontMapView {
             .transition(.move(edge: .trailing))
             .onAppear{
             
-                viewModel.loadFromSavedItemsIfAny()
+                loadMap()
             }
+            
+        }
+    }
+    
+    
+    
+    private func loadMap() {
+        
+        switch(mode) {
+        
+            case .edit :
+            
+                viewModel.loadFromRemote(mapId: mapId ?? "", versionNo: versionNo ?? 100)
+         
+            case .viewOnly :
+            
+                viewModel.loadFromRemote(mapId: mapId ?? "", versionNo: versionNo ?? 100)
+         
+            case .create :
+                
+                viewModel.loadFromSavedItemsIfAny()
+            
             
         }
     }
@@ -87,12 +129,6 @@ extension FrontMapView {
             
             optionsSheetView()
         })
-        
-        /**
-        .bottomSheet(isPresented: $viewModel.saveSheetPresented, height: UIScreen.main.bounds.height - 100, showGrayOverlay: true, content:{
-            
-            MapInfoEntryView()
-        })*/
         .alert(isPresented: $promptHasItems){
             
             Alert(title: Text("Your map has unsaved items, do you want to quit now?".localized), primaryButton: .default(Text("Yes".localized)) {
@@ -140,13 +176,20 @@ extension FrontMapView {
                 
             }
            
+            if mode != .viewOnly {
+        
+                Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 300))
+                
+                toolButtons()
+              
+                
+                Spacer().frame(width:5)
             
-            Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 300))
-            
-            toolButtons()
-          
-            
-            Spacer().frame(width:5)
+            }
+            else {
+                
+                Spacer()
+            }
            
         }
         .padding()

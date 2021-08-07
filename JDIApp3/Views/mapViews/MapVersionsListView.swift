@@ -15,7 +15,35 @@ struct MapVersionsListView : View {
     
     @StateObject private var viewModel = MQVM()
     
+    @State private var detailViewPresented : Bool = false
+    
+    @State private var detailViewMode : FrontMapView.Mode = .viewOnly
+    
+    @State private var selectedVersionNo : Int = 0
+    
     var body : some View {
+        
+       switchView()
+    }
+}
+
+extension MapVersionsListView {
+    
+    
+    @ViewBuilder
+    private func switchView() -> some View {
+        
+        if detailViewPresented {
+            
+            FrontMapView(viewType: $viewType, mode : detailViewMode, mapId : mapId, versionNo : selectedVersionNo)
+        }
+        else {
+            
+            view()
+        }
+    }
+    
+    private func view() -> some View {
         
         VStack (alignment: .leading, spacing: 10){
             
@@ -95,7 +123,15 @@ extension MapVersionsListView {
         
         HStack(spacing:20) {
             
-            actionButton("eye")
+            actionButton("eye", action: {
+                
+                withAnimation{
+                    
+                    detailViewMode = .viewOnly
+                    selectedVersionNo = version.versionNo ?? 0
+                    detailViewPresented = true 
+                }
+            })
             
             actionButton("pencil")
             
