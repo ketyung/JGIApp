@@ -97,6 +97,8 @@ extension FrontMenuView {
             
             Spacer().frame(height : 20)
             
+            Image("logo").resizable().frame(width:150, height: 106).aspectRatio(contentMode: .fit)
+            
             HStack(spacing: buttonSpacing) {
                 
                 mapButtonView(title: "Create Map", imageSystemName: "plus.circle", action: {
@@ -161,7 +163,7 @@ extension FrontMenuView {
         }
         .padding()
         .frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 200 : 40),
-            height: UIScreen.main.bounds.height - (Common.isIPad() ? 600 : 300))
+            height: UIScreen.main.bounds.height - (Common.isIPad() ? 500 : 300))
         .background(Color(UIColor(hex:"#ccddffff")!))
         .cornerRadius(40)
         .themeFullView()
