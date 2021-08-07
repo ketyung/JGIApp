@@ -56,7 +56,7 @@ extension SettingsView {
                 
                 VStack (spacing:20){
                 
-                    Toggle("Always Save Map As A New Version", isOn: $alwaysSaveMapAsNewVersion)
+                    Toggle("Always Save Map As A New Version", isOn: $alwaysSaveMapAsNewVersion).foregroundColor(.black)
 
                     Spacer().frame(height: 30)
                     
