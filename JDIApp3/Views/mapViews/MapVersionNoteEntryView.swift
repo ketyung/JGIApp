@@ -1,14 +1,13 @@
 //
-//  MapInfoEntryView.swift
+//  MapVersionNoteEntryView.swift
 //  JDIApp3
 //
-//  Created by Chee Ket Yung on 02/08/2021.
+//  Created by Chee Ket Yung on 07/08/2021.
 //
 
 import SwiftUI
 
-
-struct MapInfoEntryView : View {
+struct MapVersionNoteEntryView : View {
     
     @EnvironmentObject private var viewModel : MAHVM
    
@@ -18,7 +17,6 @@ struct MapInfoEntryView : View {
     
     @Binding var viewType : FMM.ViewType
    
-    
     var body: some View {
        
         if viewModel.mapSuccessfullySavedToRemote
@@ -32,9 +30,12 @@ struct MapInfoEntryView : View {
             view()
         }
     }
+    
 }
 
-extension MapInfoEntryView {
+
+
+extension MapVersionNoteEntryView {
     
     
     private func view() -> some View {
@@ -53,7 +54,7 @@ extension MapInfoEntryView {
             
             VStack(alignment: .leading, spacing:5) {
            
-                Text("\("Description".localized) :").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.gray)
+                Text("\("Note".localized) :").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.gray)
           
                 TextView(text: $viewModel.descriptionText, isFirstResponder: $textViewFocused)
                 .frame(width: UIScreen.main.bounds.width - 10, height: 100)
@@ -106,7 +107,7 @@ extension MapInfoEntryView {
             
             Spacer()
           
-            Text("Map Info").font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.black)
+            Text("Add a note for this version".localized).font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(.black)
             
             Spacer()
           
@@ -118,9 +119,7 @@ extension MapInfoEntryView {
                         
                         if let userId = userViewModel.user.id {
                             
-                      
-                            viewModel.addMapToRemote(uid: userId)
-                           
+                            viewModel.saveMapVersionToRemote(uid: userId)
                         }
                         else {
                             
@@ -146,7 +145,7 @@ extension MapInfoEntryView {
     
 }
 
-extension MapInfoEntryView {
+extension MapVersionNoteEntryView {
     
     private func dismissKeyboardButton() -> some View {
         
@@ -173,7 +172,7 @@ extension MapInfoEntryView {
 }
 
 
-extension MapInfoEntryView {
+extension MapVersionNoteEntryView {
     
     
     private func saveSuccessfulView() -> some View {
@@ -188,7 +187,7 @@ extension MapInfoEntryView {
             
             Image(systemName: "checkmark.circle").resizable().frame(width:100, height: 100).foregroundColor(.green)
           
-            Text("Your map has been saved successfully. You can view it on your map list")
+            Text("A new version has been saved successfully. You can view it on your map list")
             .font(.custom(Theme.fontName, size: 20))
             .fixedSize(horizontal: false, vertical: true)
             .lineLimit(3)

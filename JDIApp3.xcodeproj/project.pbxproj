@@ -71,6 +71,7 @@
 		1001249A26BBCCB500074BF1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249926BBCCB500074BF1 /* SettingsView.swift */; };
 		1001249C26BD3B8E00074BF1 /* MapListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249B26BD3B8E00074BF1 /* MapListView.swift */; };
 		1001249E26BE087400074BF1 /* MapVersionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249D26BE087400074BF1 /* MapVersionsListView.swift */; };
+		100124A026BE231800074BF1 /* MapVersionNoteEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -146,6 +147,7 @@
 		1001249926BBCCB500074BF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1001249B26BD3B8E00074BF1 /* MapListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListView.swift; sourceTree = "<group>"; };
 		1001249D26BE087400074BF1 /* MapVersionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionsListView.swift; sourceTree = "<group>"; };
+		1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionNoteEntryView.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				1001244926B6C92300074BF1 /* ArcGISMapView.swift */,
 				1001244A26B6C92300074BF1 /* FrontMapView.swift */,
 				1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */,
+				1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */,
 				1001249B26BD3B8E00074BF1 /* MapListView.swift */,
 				1001249D26BE087400074BF1 /* MapVersionsListView.swift */,
 			);
@@ -568,6 +571,7 @@
 				1001243626B6C91800074BF1 /* ViewExtension.swift in Sources */,
 				1001246F26BA91CD00074BF1 /* FrontMenuView.swift in Sources */,
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
+				100124A026BE231800074BF1 /* MapVersionNoteEntryView.swift in Sources */,
 				1001243926B6C91800074BF1 /* TextView.swift in Sources */,
 				1001249226BB962F00074BF1 /* UserGroupsViewModel.swift in Sources */,
 				1001248326BB739700074BF1 /* SignInView.swift in Sources */,

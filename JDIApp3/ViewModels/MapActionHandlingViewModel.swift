@@ -74,9 +74,9 @@ class MapActionHandlingViewModel : ViewModel  {
     
     @Published var selectedColor: UIColor = .red
     
-    @Published var mapTitle : String = ""
+    @Published var titleText : String = ""
     
-    @Published var mapDescription : String = ""
+    @Published var descriptionText : String = ""
     
    // @Published var mapTags : String = "" // not needed will be deleted in the future
     
@@ -90,8 +90,8 @@ class MapActionHandlingViewModel : ViewModel  {
     func resetAllNeccessary() {
         
         mapSuccessfullySavedToRemote = false
-        mapTitle = ""
-        mapDescription = ""
+        titleText = ""
+        descriptionText = ""
         saveSheetPresented = false
         optionsPresented = false
         removeAllMapItems()
@@ -290,7 +290,7 @@ extension MapActionHandlingViewModel {
     
     func addMapToRemote(uid : String){
         
-        if mapTitle.count == 0 {
+        if titleText.count == 0 {
             
             self.errorMessage = "Please enter a title for this map".localized
             self.errorPresented = true
@@ -303,7 +303,7 @@ extension MapActionHandlingViewModel {
             
             mapVersion.levelOfDetail = 3
             
-            let map = UserMap(uid: uid, title: mapTitle, description: mapDescription, mapVersion: mapVersion)
+            let map = UserMap(uid: uid, title: titleText, description: descriptionText, mapVersion: mapVersion)
            
             ARH.shared.addMap(map, returnType: UserMap.self , completion: {
                 
@@ -357,7 +357,7 @@ extension MapActionHandlingViewModel {
     }
     
     
-    func saveMapVersionToRemote() {
+    func saveMapVersionToRemote(uid : String) {
         
         
     }

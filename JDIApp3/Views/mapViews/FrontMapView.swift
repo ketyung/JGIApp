@@ -78,7 +78,7 @@ extension FrontMapView {
         
         if (viewModel.saveSheetPresented) {
             
-            MapInfoEntryView(viewType: $viewType)
+            infoView()
             .transition(.move(edge: .leading))
           
         }
@@ -94,6 +94,20 @@ extension FrontMapView {
         }
     }
     
+    
+    
+    @ViewBuilder
+    private func infoView() -> some View {
+        
+        if actionParam.mode == .edit {
+            
+            MapVersionNoteEntryView(viewType: $viewType)
+        }
+        else {
+            
+            MapInfoEntryView(viewType: $viewType)
+        }
+    }
     
     
     private func loadMap() {
