@@ -13,7 +13,7 @@
 		100123FE26B6C7BE00074BF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100123FD26B6C7BE00074BF1 /* Assets.xcassets */; };
 		1001240126B6C7BE00074BF1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001240026B6C7BE00074BF1 /* Preview Assets.xcassets */; };
 		1001240426B6C7BE00074BF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1001240226B6C7BE00074BF1 /* LaunchScreen.storyboard */; };
-		1001240D26B6C88F00074BF1 /* ArcGISToolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 1001240C26B6C88F00074BF1 /* ArcGISToolkit */; };
+		1001240D26B6C88F00074BF1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1001240C26B6C88F00074BF1 /* SwiftPackageProductDependency */; };
 		1001241026B6C8F300074BF1 /* DocuSignHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001240F26B6C8F300074BF1 /* DocuSignHandler.swift */; };
 		1001241326B6C8FC00074BF1 /* ArcGISHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241226B6C8FC00074BF1 /* ArcGISHandler.swift */; };
 		1001241A26B6C90B00074BF1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001241526B6C90B00074BF1 /* ViewModel.swift */; };
@@ -75,7 +75,7 @@
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
 		10FCC70226BA374000A8A46F /* ApiRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FE26BA374000A8A46F /* ApiRequestHandler.swift */; };
 		10FCC70326BA374000A8A46F /* DateFormatterExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FF26BA374000A8A46F /* DateFormatterExt.swift */; };
-		37F9CE8A2CA43185D25B6BB0 /* Pods_JDIApp3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */; };
+		EFFBBCBFFA3D3D4D248AA464 /* Pods_JGIApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B356E336536108BD966DB7 /* Pods_JGIApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,9 +149,9 @@
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
 		10FCC6FE26BA374000A8A46F /* ApiRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequestHandler.swift; sourceTree = "<group>"; };
 		10FCC6FF26BA374000A8A46F /* DateFormatterExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterExt.swift; sourceTree = "<group>"; };
-		1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDIApp3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.release.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.release.xcconfig"; sourceTree = "<group>"; };
-		8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDIApp3.debug.xcconfig"; path = "Target Support Files/Pods-JDIApp3/Pods-JDIApp3.debug.xcconfig"; sourceTree = "<group>"; };
+		17E83C3A3F554AA6673B77B3 /* Pods-JGIApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGIApp.release.xcconfig"; path = "Target Support Files/Pods-JGIApp/Pods-JGIApp.release.xcconfig"; sourceTree = "<group>"; };
+		7FDC95CB5F40E592D7291CA9 /* Pods-JGIApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGIApp.debug.xcconfig"; path = "Target Support Files/Pods-JGIApp/Pods-JGIApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F7B356E336536108BD966DB7 /* Pods_JGIApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JGIApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +159,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1001240D26B6C88F00074BF1 /* ArcGISToolkit in Frameworks */,
-				37F9CE8A2CA43185D25B6BB0 /* Pods_JDIApp3.framework in Frameworks */,
+				1001240D26B6C88F00074BF1 /* BuildFile in Frameworks */,
+				EFFBBCBFFA3D3D4D248AA464 /* Pods_JGIApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +173,7 @@
 				100123F626B6C7BE00074BF1 /* JGIApp3 */,
 				100123F526B6C7BE00074BF1 /* Products */,
 				4CF674A3A15FBC1326862DEA /* Pods */,
-				66054DADA990C2F7BF4CAD9B /* Frameworks */,
+				2A7EF2EFF5A23079B5B7F490 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -397,21 +397,21 @@
 			path = ApiClient;
 			sourceTree = "<group>";
 		};
+		2A7EF2EFF5A23079B5B7F490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7B356E336536108BD966DB7 /* Pods_JGIApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4CF674A3A15FBC1326862DEA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */,
-				638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */,
+				7FDC95CB5F40E592D7291CA9 /* Pods-JGIApp.debug.xcconfig */,
+				17E83C3A3F554AA6673B77B3 /* Pods-JGIApp.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		66054DADA990C2F7BF4CAD9B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1936CF31044D8CFD4B0CA300 /* Pods_JDIApp3.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,12 +421,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1001240826B6C7BE00074BF1 /* Build configuration list for PBXNativeTarget "JGIApp" */;
 			buildPhases = (
-				A9D08D07E37B2DB708A3C290 /* [CP] Check Pods Manifest.lock */,
+				501E0BA3337D17F3965865B5 /* [CP] Check Pods Manifest.lock */,
 				100123F026B6C7BE00074BF1 /* Sources */,
 				100123F126B6C7BE00074BF1 /* Frameworks */,
 				100123F226B6C7BE00074BF1 /* Resources */,
-				3966482CBF208D2178F2C256 /* [CP] Embed Pods Frameworks */,
-				24CB88F6FAEB6499B59C968E /* [CP] Copy Pods Resources */,
+				32B5A4FFD46A67E23631DB11 /* [CP] Embed Pods Frameworks */,
+				1E239EBD4CFDD5F20A90B73C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -434,7 +434,7 @@
 			);
 			name = JGIApp;
 			packageProductDependencies = (
-				1001240C26B6C88F00074BF1 /* ArcGISToolkit */,
+				1001240C26B6C88F00074BF1 /* SwiftPackageProductDependency */,
 			);
 			productName = JDIApp3;
 			productReference = 100123F426B6C7BE00074BF1 /* JGIApp.app */;
@@ -464,7 +464,7 @@
 			);
 			mainGroup = 100123EB26B6C7BE00074BF1;
 			packageReferences = (
-				1001240B26B6C88F00074BF1 /* XCRemoteSwiftPackageReference "arcgis-runtime-toolkit-ios" */,
+				1001240B26B6C88F00074BF1 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 100123F526B6C7BE00074BF1 /* Products */;
 			projectDirPath = "";
@@ -489,41 +489,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		24CB88F6FAEB6499B59C968E /* [CP] Copy Pods Resources */ = {
+		1E239EBD4CFDD5F20A90B73C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-JGIApp/Pods-JGIApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-JGIApp/Pods-JGIApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JGIApp/Pods-JGIApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3966482CBF208D2178F2C256 /* [CP] Embed Pods Frameworks */ = {
+		32B5A4FFD46A67E23631DB11 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-JGIApp/Pods-JGIApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-JGIApp/Pods-JGIApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDIApp3/Pods-JDIApp3-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JGIApp/Pods-JGIApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A9D08D07E37B2DB708A3C290 /* [CP] Check Pods Manifest.lock */ = {
+		501E0BA3337D17F3965865B5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -538,7 +538,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JDIApp3-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-JGIApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -759,7 +759,7 @@
 		};
 		1001240926B6C7BE00074BF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E67AC8045A38575B004683E /* Pods-JDIApp3.debug.xcconfig */;
+			baseConfigurationReference = 7FDC95CB5F40E592D7291CA9 /* Pods-JGIApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -782,7 +782,7 @@
 		};
 		1001240A26B6C7BE00074BF1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 638068EBC1065C673D364DF4 /* Pods-JDIApp3.release.xcconfig */;
+			baseConfigurationReference = 17E83C3A3F554AA6673B77B3 /* Pods-JGIApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -827,7 +827,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1001240B26B6C88F00074BF1 /* XCRemoteSwiftPackageReference "arcgis-runtime-toolkit-ios" */ = {
+		1001240B26B6C88F00074BF1 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Esri/arcgis-runtime-toolkit-ios";
 			requirement = {
@@ -838,9 +838,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1001240C26B6C88F00074BF1 /* ArcGISToolkit */ = {
+		1001240C26B6C88F00074BF1 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1001240B26B6C88F00074BF1 /* XCRemoteSwiftPackageReference "arcgis-runtime-toolkit-ios" */;
+			package = 1001240B26B6C88F00074BF1 /* RemoteSwiftPackageReference */;
 			productName = ArcGISToolkit;
 		};
 /* End XCSwiftPackageProductDependency section */
