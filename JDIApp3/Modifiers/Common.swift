@@ -115,7 +115,7 @@ extension Common {
 extension Common {
     
     
-    static func topBar(title : String, switchToViewType : Binding <FrontMenuView.ViewType>) -> some View {
+    static func topBar(title : String, switchToViewType : Binding <FMM.ViewType>) -> some View {
      
         HStack {
       

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView : View {
     
-    @Binding var viewType : FrontMenuView.ViewType
+    @Binding var viewType : FMM.ViewType
     
     @State private var alwaysSaveMapAsNewVersion : Bool = false
     

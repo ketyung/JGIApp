@@ -10,9 +10,9 @@ import SwiftUI
 
 struct SignInView : View {
     
-    @Binding var viewType : FrontMenuView.ViewType
+    @Binding var viewType : FMM.ViewType
     
-    @State var signInSuccessViewType : FrontMenuView.ViewType = .menu
+    @State var signInSuccessViewType : FMM.ViewType = .menu
     
     @State private var switchToSignUp : Bool = false
     
@@ -26,7 +26,7 @@ struct SignInView : View {
             
             SignUpView(viewType: $viewType)
             .transition(.move(edge: .bottom))
-         
+             
         }
         else {
             

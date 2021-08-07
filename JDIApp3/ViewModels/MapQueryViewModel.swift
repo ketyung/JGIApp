@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias MQVM = MapQueryViewModel
+
 class MapQueryViewModel : ViewModel {
     
     @Published var maps :  [UserMap] = []

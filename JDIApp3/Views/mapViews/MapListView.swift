@@ -9,14 +9,38 @@ import SwiftUI
 
 struct MapListView : View {
     
-    @Binding var viewType : FrontMenuView.ViewType
+    @Binding var viewType : FMM.ViewType
     
-    @StateObject private var viewModel = MapQueryViewModel()
+    @StateObject private var viewModel = MQVM()
     
     @EnvironmentObject private var userViewModel : UserViewModel
    
+    @State private var mapVersionViewPresented : Bool = false
+    
+    @State private var selectedMapId : String = ""
     
     var body : some View {
+        
+   
+        if mapVersionViewPresented {
+            
+            MapVersionsListView(viewType: $viewType, mapId: $selectedMapId)
+            .transition(.move(edge: .bottom))
+            
+        }
+        else {
+            
+            mapListView()
+        }
+        
+       
+    }
+}
+
+extension MapListView {
+    
+    
+    private func mapListView() -> some View {
         
         VStack (alignment: .leading, spacing: 10){
             
@@ -50,9 +74,12 @@ struct MapListView : View {
             
             Common.errorAlertView(message: viewModel.errorMessage ?? "Error!")
         })
-       
     }
+    
+    
+   
 }
+
 
 extension MapListView {
     
@@ -76,6 +103,13 @@ extension MapListView {
                     .frame(width: 120,height:30).background(Color(UIColor(hex:"#660000ff")!)).cornerRadius(6)
                     
                     Button(action: {
+                        
+                        withAnimation{
+                            
+                            self.selectedMapId = map.id ?? ""
+                            
+                            self.mapVersionViewPresented = true 
+                        }
                         
                     }){
                    

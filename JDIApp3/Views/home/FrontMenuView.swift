@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+typealias FMM = FrontMenuView
 
 struct FrontMenuView : View {
 

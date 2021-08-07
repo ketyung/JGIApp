@@ -27,9 +27,9 @@ struct FrontMapView: View {
    
     @State private var showTopToolbar : Bool = true
     
-    @Binding var viewType : FrontMenuView.ViewType
+    @Binding var viewType : FMM.ViewType
    
-    init( viewType : Binding <FrontMenuView.ViewType>) {
+    init( viewType : Binding <FMM.ViewType>) {
         
         self._viewType = viewType
     }

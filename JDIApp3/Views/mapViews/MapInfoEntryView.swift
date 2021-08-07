@@ -16,7 +16,7 @@ struct MapInfoEntryView : View {
    
     @State private var textViewFocused : Bool = false
     
-    @Binding var viewType : FrontMenuView.ViewType
+    @Binding var viewType : FMM.ViewType
    
     
     var body: some View {

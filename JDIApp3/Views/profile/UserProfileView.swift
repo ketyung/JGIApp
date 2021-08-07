@@ -10,7 +10,7 @@ import SwiftUI
 
 struct UserProfileView : View {
     
-    @Binding var viewType : FrontMenuView.ViewType
+    @Binding var viewType : FMM.ViewType
     
     @EnvironmentObject private var viewModel : UserViewModel
     

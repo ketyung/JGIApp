@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileFormView : View {
     
-    @Binding var switchToViewType : FrontMenuView.ViewType
+    @Binding var switchToViewType : FMM.ViewType
    
     @EnvironmentObject private var viewModel : UserViewModel
     
