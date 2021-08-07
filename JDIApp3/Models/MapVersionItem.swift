@@ -24,7 +24,7 @@ struct MapVersionItem : Codable {
  
     var mapId : String?
     
-    var versionNo : String?
+    var versionNo : Int?
     
     var itemType : ItemType?
 

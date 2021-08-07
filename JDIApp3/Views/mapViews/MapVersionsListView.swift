@@ -130,7 +130,14 @@ extension MapVersionsListView {
                 }
             })
             
-            actionButton("pencil")
+            actionButton("pencil", action: {
+                
+                withAnimation{
+                    
+                    frontMapActionParam = FMAP(mode: .edit, mapId: mapId, versionNo: version.versionNo)
+                    detailViewPresented = true
+                }
+            })
             
             actionButton("signature")
             
