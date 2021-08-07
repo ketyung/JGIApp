@@ -11,7 +11,7 @@ struct MapVersion : Codable {
     
     var id : String?
     
-    var versionNo : String?
+    var versionNo : Int?
     
     var status : UserMap.Status?
     

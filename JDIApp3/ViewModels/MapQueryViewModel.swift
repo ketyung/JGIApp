@@ -13,6 +13,8 @@ class MapQueryViewModel : ViewModel {
     
     @Published var maps :  [UserMap] = []
     
+    @Published var mapVersions : [MapVersion] = []
+    
 }
 
 extension MapQueryViewModel  {
@@ -50,4 +52,37 @@ extension MapQueryViewModel  {
     }
     
     
+}
+
+extension MapQueryViewModel {
+    
+    
+    func fetchVersions(mapId : String) {
+        
+        self.inProgress = true
+        
+        ARH.shared.fetchMapVersions(id: mapId, completion:  {
+            
+            [weak self] res in
+            
+            DispatchQueue.main.async {
+            
+                switch(res) {
+                
+                    case .failure(let err) :
+                    
+                        self?.inProgress = false
+                        self?.errorMessage = (err as? ApiError)?.errorText
+                        self?.errorPresented = true
+                        
+                    case .success(let versions) :
+                        self?.mapVersions = versions
+                        self?.inProgress = false
+                    
+                        
+                }
+            }
+            
+        })
+    }
 }

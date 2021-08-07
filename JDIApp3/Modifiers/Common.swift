@@ -115,7 +115,7 @@ extension Common {
 extension Common {
     
     
-    static func topBar(title : String, switchToViewType : Binding <FMM.ViewType>) -> some View {
+    static func topBar(title : String, switchToViewType : Binding <FMM.ViewType>, switchToView : FMM.ViewType = .menu) -> some View {
      
         HStack {
       
@@ -128,7 +128,7 @@ extension Common {
               
                 withAnimation{
           
-                    switchToViewType.wrappedValue = .menu
+                    switchToViewType.wrappedValue = switchToView
               
                 }
             }){

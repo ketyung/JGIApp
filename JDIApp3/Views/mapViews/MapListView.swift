@@ -100,6 +100,7 @@ extension MapListView {
                 HStack(spacing: 20) {
                     
                     Text("\(map.lastUpdated?.timeAgo() ?? "")").padding().foregroundColor(.white)
+                    .font(.custom(Theme.fontName, size:16))
                     .frame(width: 120,height:30).background(Color(UIColor(hex:"#660000ff")!)).cornerRadius(6)
                     
                     Button(action: {
