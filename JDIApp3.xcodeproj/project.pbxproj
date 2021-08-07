@@ -69,6 +69,7 @@
 		1001249C26BD3B8E00074BF1 /* MapListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249B26BD3B8E00074BF1 /* MapListView.swift */; };
 		1001249E26BE087400074BF1 /* MapVersionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249D26BE087400074BF1 /* MapVersionsListView.swift */; };
 		100124A026BE231800074BF1 /* MapVersionNoteEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */; };
+		10D0323F26BE6DC30082B8BB /* MapVersionNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0323E26BE6DC30082B8BB /* MapVersionNotesView.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -142,6 +143,7 @@
 		1001249B26BD3B8E00074BF1 /* MapListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListView.swift; sourceTree = "<group>"; };
 		1001249D26BE087400074BF1 /* MapVersionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionsListView.swift; sourceTree = "<group>"; };
 		1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionNoteEntryView.swift; sourceTree = "<group>"; };
+		10D0323E26BE6DC30082B8BB /* MapVersionNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionNotesView.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				1001244A26B6C92300074BF1 /* FrontMapView.swift */,
 				1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */,
 				1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */,
+				10D0323E26BE6DC30082B8BB /* MapVersionNotesView.swift */,
 				1001249B26BD3B8E00074BF1 /* MapListView.swift */,
 				1001249D26BE087400074BF1 /* MapVersionsListView.swift */,
 			);
@@ -577,6 +580,7 @@
 				1001241B26B6C90B00074BF1 /* MapActionHandlingViewModel.swift in Sources */,
 				1001245226B6C92300074BF1 /* OauthTokenWebView.swift in Sources */,
 				100123FA26B6C7BE00074BF1 /* SceneDelegate.swift in Sources */,
+				10D0323F26BE6DC30082B8BB /* MapVersionNotesView.swift in Sources */,
 				10FCC70226BA374000A8A46F /* ApiRequestHandler.swift in Sources */,
 				1001248126BB707E00074BF1 /* KCDataStore.swift in Sources */,
 				1001246326BA0AE700074BF1 /* User.swift in Sources */,

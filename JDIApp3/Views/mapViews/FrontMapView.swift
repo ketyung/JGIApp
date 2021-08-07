@@ -158,8 +158,9 @@ extension FrontMapView {
         })
         .bottomSheet(isPresented: $showMapVersionNote, height: 600, showGrayOverlay: true, content: {
             
-            mapVersionNoteView()
             
+            MapVersionNotesView(isPresented: $showMapVersionNote, notes: viewModel.mapVersion?.notes)
+           
         })
         
         .alert(isPresented: $promptHasItems){
@@ -309,35 +310,6 @@ extension FrontMapView {
             .opacity(viewModel.edited ? 1 : 0.35)
             .disabled(!viewModel.edited)
         }
-    }
-}
-
-extension FrontMapView {
-    
-    
-    @ViewBuilder
-    private func mapVersionNoteView() -> some View {
-            
-        if let mapVersionNote = viewModel.mapVersion?.notes?.first {
-       
-            VStack(alignment :.leading, spacing:20) {
-            
-                Text(mapVersionNote.title ?? "").font(.custom(Theme.fontNameBold, size: 20))
-                .foregroundColor(.black)
-                .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(3)
-                
-                Text(mapVersionNote.note ?? "").font(.custom(Theme.fontName, size: 18))
-                .foregroundColor(.black)
-                .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(20)
-                
-                Spacer()
-                
-            }.padding()
-        }
-       
-        
     }
 }
 
