@@ -27,6 +27,8 @@ struct FrontMenuView : View {
         case profile
         
         case settings
+        
+        // update
     }
     
     @State private var viewType : ViewType = .menu
