@@ -369,7 +369,10 @@ extension MapActionHandlingViewModel {
         
         self.inProgress = true
         
-        if let mapVersion = mapVersion, let _ = mapVersion.id {
+        if var mapVersion = mapVersion, let _ = mapVersion.id {
+            
+            let versionNote = MapVersionNote( title: titleText, note: descriptionText)
+            mapVersion.note = versionNote
             
             
             ARH.shared.addMapVersion(mapVersion, returnType:MapVersion.self , completion: {

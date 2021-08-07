@@ -56,7 +56,7 @@ extension MapListView {
                         
                         map in
                         
-                        let _ = print("map::\(map.id ?? "")")
+                        //let _ = print("map::\(map.id ?? "")")
                         mapRowView(map)
                     }
                 }

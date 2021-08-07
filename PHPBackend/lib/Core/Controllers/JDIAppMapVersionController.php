@@ -6,6 +6,7 @@ use Core\Db\JDIAppMap as Map;
 use Core\Db\JDIAppMapVersion as MapVersion;
 use Core\Db\JDIAppMapVersionNote as MapNote;
 use Core\Db\JDIAppMapVersionItem as VersionItem;
+use Core\Db\JDIAppMapVersionNote as VersionNote;
 use Core\Db\JDIAppMapVersionIpoint as VersionIpoint;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
@@ -146,6 +147,7 @@ class JDIAppMapVersionController extends Controller {
        
         $response['status_code_header'] = 'HTTP/1.1 201 Create';
       
+        $input['last_updated'] = date('Y-m-d H:i:s');
                          
         if ($this->dbObject->insert($input) > 0){
             
