@@ -152,7 +152,7 @@ class JDIAppMapVersionController extends Controller {
         if ($this->dbObject->insert($input) > 0){
             
             self::createNoteIfAny($input, $this->db);
-            self::createItemsIfAny($input, $this->db);
+            self::createItemsIfAny($input, $this->db, true);
 
             $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
             $response['body'] = json_encode($a);
@@ -188,7 +188,7 @@ class JDIAppMapVersionController extends Controller {
 
 
     // insert items attached to this map version
-    static function createItemsIfAny ( $mapVersion, $db ) {
+    static function createItemsIfAny ( $mapVersion, $db, $clearIdAndLastUpdated = false  ) {
 
         if ( isset($mapVersion['items'])) {
 
@@ -197,11 +197,22 @@ class JDIAppMapVersionController extends Controller {
             $itemdb = new VersionItem ($db);
                
             // insert each item if any 
+
+            
             foreach ($versionItems as $item) {
 
                 $item['map_id'] = $mapVersion['id'];
                 $item['version_no'] = $mapVersion['version_no'];
                 $item['created_by'] = $mapVersion['created_by'];
+
+                if ($clearIdAndLastUpdated) {
+
+                    $item['id'] = null ;
+                    $item['last_updated'] = null ;
+                    
+                }
+
+               // Log::printRToErrorLog($item);
 
                 if ( $itemdb->insert($item) > 0 ){
 

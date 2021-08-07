@@ -371,6 +371,8 @@ extension MapActionHandlingViewModel {
         
         if var mapVersion = mapVersion, let _ = mapVersion.id {
             
+            //print("mapversion.items.cnt::\(mapVersion.items?.count ?? 0)")
+            
             let versionNote = MapVersionNote( title: titleText, note: descriptionText)
             mapVersion.note = versionNote
             

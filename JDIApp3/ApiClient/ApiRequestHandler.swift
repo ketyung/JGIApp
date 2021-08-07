@@ -590,12 +590,7 @@ extension ApiRequestHandler {
         send(module: "map", dataObject: map, returnType: returnType,completion:  completion)
     }
     
-    
-    func fetchMapVersions (id : String, completion:  ((Result<[MapVersion], Error>)->Void)? = nil ){
-        
-        fetch(module: "map", param: "id/\(id)" , decode: [MapVersion].self, completion: completion)
-    }
-    
+   
     func fetchMaps (uid : String, completion:  ((Result<[UserMap], Error>)->Void)? = nil ){
         
         fetch(module: "map", param: "user/\(uid)" , decode: [UserMap].self, completion: completion)
@@ -621,6 +616,12 @@ extension ApiRequestHandler {
     func fetchMapVersion (id : String, versionNo : Int,  completion:  ((Result<MapVersion, Error>)->Void)? = nil ){
         
         fetch(module: "mapVersion", param: "id/\(id)/\(versionNo)" , decode: MapVersion.self, completion: completion)
+    }
+    
+    
+    func fetchMapVersions (id : String, completion:  ((Result<[MapVersion], Error>)->Void)? = nil ){
+        
+        fetch(module: "mapVersion", param: "id/\(id)" , decode: [MapVersion].self, completion: completion)
     }
     
 }
