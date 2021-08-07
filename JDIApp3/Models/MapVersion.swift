@@ -25,8 +25,17 @@ struct MapVersion : Codable {
     
     var items : [MapVersionItem]?
     
-    var note : MapVersionNote?
+    var notes : [MapVersionNote]?
     
     var lastUpdated : Date?
+    
+    mutating func addNote(_ note : MapVersionNote) {
+        
+        if notes == nil {
+            
+            notes = []
+        }
+        notes?.append(note)
+    }
     
 }

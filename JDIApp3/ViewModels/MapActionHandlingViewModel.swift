@@ -374,8 +374,7 @@ extension MapActionHandlingViewModel {
             //print("mapversion.items.cnt::\(mapVersion.items?.count ?? 0)")
             
             let versionNote = MapVersionNote( title: titleText, note: descriptionText)
-            mapVersion.note = versionNote
-            
+            mapVersion.addNote(versionNote)
             
             ARH.shared.addMapVersion(mapVersion, returnType:MapVersion.self , completion: {
                 [weak self] res in

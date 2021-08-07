@@ -4,6 +4,7 @@ namespace Core\Db;
 use Db\DbObject as DbObject;
 use Core\Db\JDIAppDbObject as JDIAppDbObject;
 use Core\Db\JDIAppMapVersionItem as VersionItem;
+use Core\Db\JDIAppMapVersionNote as VersionNote;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\Log as Log;
@@ -28,6 +29,8 @@ class JDIAppMapVersion extends JDIAppDbObject {
     public $levelOfDetail;
      
     public $items;
+
+    public $notes;
 
     public $lastUpdated;
     
@@ -58,6 +61,8 @@ class JDIAppMapVersion extends JDIAppDbObject {
 
             $this->loadItems($id, $versionNo);
 
+            $this->loadNotes($id, $versionNo);
+
             return true ;
         } 
 
@@ -73,7 +78,6 @@ class JDIAppMapVersion extends JDIAppDbObject {
         
         $itemdb = new VersionItem($this->db);
 
-        
         $items = array();
 
         $res = $itemdb->findByWhere($a, true, " ORDER BY last_updated DESC");
@@ -91,6 +95,33 @@ class JDIAppMapVersion extends JDIAppDbObject {
         }
 
         $this->items = $items; 
+
+    }
+
+
+    private function loadNotes($mapId, $versionNo){
+
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("map_id", "=", " AND ", $mapId);
+        $a[] = new SQLWhereCol("version_no", "=", "", $versionNo);
+      
+        $notedb = new VersionNote($this->db);
+
+        $notes = array();
+
+        $res = $notedb->findByWhere($a, true, " ORDER BY last_updated DESC");
+       
+      //  Log::printRToErrorLog($res);
+
+        foreach ($res as $row) {
+
+            $note = new VersionNote($this->db);
+            $note->loadResultToProperties($row);
+
+            array_push($notes, $note);
+        }
+
+        $this->notes = $notes; 
 
     }
 

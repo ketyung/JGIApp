@@ -151,7 +151,7 @@ class JDIAppMapVersionController extends Controller {
                          
         if ($this->dbObject->insert($input) > 0){
             
-            self::createNoteIfAny($input, $this->db);
+            self::createNotesIfAny($input, $this->db);
             self::createItemsIfAny($input, $this->db, true);
 
             $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
@@ -168,19 +168,23 @@ class JDIAppMapVersionController extends Controller {
     }
 
 
-    static function createNoteIfAny($mapVersion, $db) {
+    static function createNotesIfAny($mapVersion, $db) {
 
         // insert note if any 
-        if (isset($mapVersion['note'])) {
+        if (isset($mapVersion['notes'])) {
 
-            $note = $mapVersion['note'] ;
-            $note['map_id'] = $mapVersion['id'];
-            $note['version_no'] = $mapVersion['version_no'];
-            $note['uid'] = $mapVersion['created_by'];
-            
-            $notedb = new VersionNote($db);
-            $notedb->insert($note);
+            $notes = $mapVersion['notes'] ;
+            foreach($notes as $note) {
 
+                $note['map_id'] = $mapVersion['id'];
+                $note['version_no'] = $mapVersion['version_no'];
+                $note['uid'] = $mapVersion['created_by'];
+                
+                $notedb = new VersionNote($db);
+                $notedb->insert($note);
+    
+            }
+         
         }
 
     }

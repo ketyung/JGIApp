@@ -164,7 +164,7 @@ class JDIAppMapController extends Controller {
             if ( $versiondb->insert($mapVersion) > 0 ){
 
 
-                MapVersionController::createNoteIfAny($mapVersion, $this->db);
+                MapVersionController::createNotesIfAny($mapVersion, $this->db);
 
                 MapVersionController::createItemsIfAny($mapVersion, $this->db);
 
