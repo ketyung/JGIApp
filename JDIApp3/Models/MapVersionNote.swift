@@ -17,6 +17,8 @@ struct MapVersionNote : Codable {
     
     var uid : String?
     
+    var userName : String?
+    
     var title : String?
     
     var note : String?

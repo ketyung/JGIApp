@@ -18,6 +18,8 @@ class JDIAppMapVersionNote extends JDIAppDbObject {
     public $versionNo;
     
     public $uid;
+    
+    public $userName;
 
     public $title;
    

@@ -18,8 +18,6 @@ struct MapVersionNotesView : View {
         
         VStack {
             
-            Spacer().frame(height:150)
-            
             topBar()
             
             ScrollView(.vertical, showsIndicators: false) {
@@ -36,7 +34,7 @@ struct MapVersionNotesView : View {
             Spacer()
         }
         .padding()
-        .themeFullView()
+        .background(Theme.commonBgColor)
     }
 }
 
@@ -68,7 +66,7 @@ extension MapVersionNotesView {
                     .font(.custom(Theme.fontName, size:15))
                     .frame(height:30).background(Color(UIColor(hex:"#660000ff")!)).cornerRadius(6)
                     
-                    Text("\("By".localized) \(note.uid ?? "")")
+                    Text("\("By".localized) \(note.userName ?? "")")
                     .foregroundColor(.black)
                     .font(.custom(Theme.fontName, size:15))
                     
@@ -109,6 +107,16 @@ extension MapVersionNotesView {
             Text("Version Notes".localized).font(.custom(Theme.fontNameBold, size: 22)).foregroundColor(.black)
            
             Spacer()
+            
+            Button(action : {
+                
+            }){
+           
+                Common.buttonView(imageSysteName: "plus")
+               
+            }
+            
+            Spacer().frame(width: 5)
         }
     }
 }

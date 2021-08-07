@@ -151,12 +151,13 @@ extension FrontMapView {
             topMenuBar()
         })
         .bottomSheet(isPresented: $viewModel.optionsPresented, height: 450, showGrayOverlay: true,
-                     topBarBackgroundColor: Color(UIColor(hex:"#ddeeffff")!) ,
+                     topBarBackgroundColor: Theme.commonBgColor ,
                      content:{
             
             optionsSheetView()
         })
-        .bottomSheet(isPresented: $showMapVersionNote, height: 600, showGrayOverlay: true, content: {
+        .bottomSheet(isPresented: $showMapVersionNote, height: 600, showGrayOverlay: true,
+                     topBarBackgroundColor: Theme.commonBgColor ,content: {
             
             
             MapVersionNotesView(isPresented: $showMapVersionNote, notes: viewModel.mapVersion?.notes)
@@ -235,7 +236,7 @@ extension FrontMapView {
            
         }
         .padding()
-        .frame(width: UIScreen.main.bounds.width - 20, height: 40)
+        .frame(width: UIScreen.main.bounds.width + 50, height: 40)
         .offset(x : -50)
     }
     

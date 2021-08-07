@@ -5,6 +5,7 @@ use Db\DbObject as DbObject;
 use Core\Db\JDIAppDbObject as JDIAppDbObject;
 use Core\Db\JDIAppMapVersionItem as VersionItem;
 use Core\Db\JDIAppMapVersionNote as VersionNote;
+use Core\Db\JDIAppUser as User;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\Log as Log;
@@ -118,10 +119,27 @@ class JDIAppMapVersion extends JDIAppDbObject {
             $note = new VersionNote($this->db);
             $note->loadResultToProperties($row);
 
+            $note->userName = $this->getUserName($note->uid);
+            
             array_push($notes, $note);
         }
 
         $this->notes = $notes; 
+
+    }
+
+    private function getUserName ($uid) {
+
+        $user = new User($this->db);
+        $pk = array('id'=>$uid);
+
+        $name = "";
+        if ( $user->findBy($pk)){
+
+            $name = $user->firstName . " ". $user->lastName;
+        }
+
+        return $name;
 
     }
 
