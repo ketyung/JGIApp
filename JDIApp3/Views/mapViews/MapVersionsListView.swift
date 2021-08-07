@@ -12,7 +12,9 @@ struct MapVersionsListView : View {
     @Binding var viewType : FMM.ViewType
     
     @Binding var mapId : String
-    
+   
+    @Binding var mapTitle : String
+   
     @StateObject private var viewModel = MQVM()
     
     @State private var detailViewPresented : Bool = false
@@ -47,8 +49,16 @@ extension MapVersionsListView {
             
             Spacer().frame(height: 30)
             
-            Common.topBar(title: "Versions Of Map", switchToViewType: $viewType)
+            Common.topBar(title: "Versions Of Map For", switchToViewType: $viewType)
        
+            Text(mapTitle).font(.custom(Theme.fontNameBold, size: 18))
+            .padding(.leading, 20).padding(.bottom, 5).padding(.top, 5)
+            .foregroundColor(.black)
+            .fixedSize(horizontal: false, vertical: true)
+            .lineLimit(2)
+            
+          
+            
             ScrollView (/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 
                 VStack {

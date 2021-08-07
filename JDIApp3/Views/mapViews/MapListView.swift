@@ -19,12 +19,14 @@ struct MapListView : View {
     
     @State private var selectedMapId : String = ""
     
+    @State private var selectedMapTitle : String = ""
+    
     var body : some View {
         
    
         if mapVersionViewPresented {
             
-            MapVersionsListView(viewType: $viewType, mapId: $selectedMapId)
+            MapVersionsListView(viewType: $viewType, mapId: $selectedMapId, mapTitle: $selectedMapTitle)
             .transition(.move(edge: .bottom))
             
         }
@@ -108,6 +110,7 @@ extension MapListView {
                         withAnimation{
                             
                             self.selectedMapId = map.id ?? ""
+                            self.selectedMapTitle = map.title ?? ""
                             
                             self.mapVersionViewPresented = true 
                         }
