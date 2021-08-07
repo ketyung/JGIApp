@@ -31,6 +31,8 @@ struct FrontMenuView : View {
     
     @State private var viewType : ViewType = .menu
     
+    @State private var frontMapActionParam : FMAP = .defaultValue
+    
     var body : some View {
         
         switchView()
@@ -51,7 +53,7 @@ extension FrontMenuView {
                 
             case .createMap :
             
-                FrontMapView(viewType : $viewType)
+                FrontMapView(viewType : $viewType, actionParam: $frontMapActionParam)
                 .transition(.move(edge: .bottom))
              
             case .mapList :

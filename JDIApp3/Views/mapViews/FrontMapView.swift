@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct FrontMapView: View {
+
+typealias FMAP = FrontMapActionParam
+
+struct FrontMapActionParam {
     
     enum Mode : Int {
         
@@ -17,6 +20,20 @@ struct FrontMapView: View {
         
         case viewOnly
     }
+    
+    var mode : Mode = .create
+    
+    var mapId : String?
+    
+    var versionNo : Int?
+   
+    static let defaultValue = FMAP(mode: .create, mapId: nil, versionNo: nil)
+  
+    
+}
+
+struct FrontMapView: View {
+    
     
     
     @EnvironmentObject private var viewModel : MAHVM
@@ -36,20 +53,14 @@ struct FrontMapView: View {
    
     @State private var showTopToolbar : Bool = true
     
-    @Binding var viewType : FMM.ViewType
+    @Binding private var viewType : FMM.ViewType
     
-    @State private var mode : Mode = .create
+    @Binding private var actionParam : FMAP
     
-    @State private var mapId : String?
-    
-    @State private var versionNo : Int?
-    
-    init( viewType : Binding <FMM.ViewType>, mode : Mode = .create, mapId : String? = nil, versionNo : Int? = nil) {
+    init( viewType : Binding <FMM.ViewType>, actionParam : Binding <FMAP>) {
         
         self._viewType = viewType
-        self.mode = mode
-        self.mapId = mapId
-        self.versionNo = versionNo
+        self._actionParam = actionParam
     }
     
     
@@ -87,15 +98,15 @@ extension FrontMapView {
     
     private func loadMap() {
         
-        switch(mode) {
+        switch(actionParam.mode) {
         
             case .edit :
             
-                viewModel.loadFromRemote(mapId: mapId ?? "", versionNo: versionNo ?? 100)
+                viewModel.loadFromRemote(mapId: actionParam.mapId ?? "", versionNo: actionParam.versionNo ?? 100)
          
             case .viewOnly :
             
-                viewModel.loadFromRemote(mapId: mapId ?? "", versionNo: versionNo ?? 100)
+                viewModel.loadFromRemote(mapId: actionParam.mapId ?? "", versionNo: actionParam.versionNo ?? 100)
          
             case .create :
                 
@@ -176,7 +187,7 @@ extension FrontMapView {
                 
             }
            
-            if mode != .viewOnly {
+            if actionParam.mode != .viewOnly {
         
                 Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 300))
                 

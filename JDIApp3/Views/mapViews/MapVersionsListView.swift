@@ -17,9 +17,7 @@ struct MapVersionsListView : View {
     
     @State private var detailViewPresented : Bool = false
     
-    @State private var detailViewMode : FrontMapView.Mode = .viewOnly
-    
-    @State private var selectedVersionNo : Int = 0
+    @State private var frontMapActionParam : FMAP = .defaultValue
     
     var body : some View {
         
@@ -35,7 +33,7 @@ extension MapVersionsListView {
         
         if detailViewPresented {
             
-            FrontMapView(viewType: $viewType, mode : detailViewMode, mapId : mapId, versionNo : selectedVersionNo)
+            FrontMapView(viewType: $viewType, actionParam: $frontMapActionParam)
         }
         else {
             
@@ -127,8 +125,7 @@ extension MapVersionsListView {
                 
                 withAnimation{
                     
-                    detailViewMode = .viewOnly
-                    selectedVersionNo = version.versionNo ?? 0
+                    frontMapActionParam = FMAP(mode: .viewOnly, mapId: mapId, versionNo: version.versionNo)
                     detailViewPresented = true 
                 }
             })

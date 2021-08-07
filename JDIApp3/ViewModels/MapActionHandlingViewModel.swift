@@ -384,6 +384,7 @@ extension MapActionHandlingViewModel {
                         self?.errorMessage = (err as? ApiError)?.errorText
                         self?.errorPresented = true
                     
+                        print("err.loading...::\(err)")
                     case .success(let mapVersion) :
                         self?.mapVersion = mapVersion
                         self?.inProgress = false
