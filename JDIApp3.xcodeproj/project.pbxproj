@@ -48,9 +48,6 @@
 		1001245626B766A800074BF1 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245526B766A800074BF1 /* MenuView.swift */; };
 		1001245826B77F7F00074BF1 /* PopOverViewAtPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245726B77F7F00074BF1 /* PopOverViewAtPoint.swift */; };
 		1001245A26B7DEFD00074BF1 /* MapInfoEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */; };
-		1001246026BA0AE700074BF1 /* OtpText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245C26BA0AE700074BF1 /* OtpText.swift */; };
-		1001246126BA0AE700074BF1 /* PhoneInputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245D26BA0AE700074BF1 /* PhoneInputData.swift */; };
-		1001246226BA0AE700074BF1 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245E26BA0AE700074BF1 /* Country.swift */; };
 		1001246326BA0AE700074BF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001245F26BA0AE700074BF1 /* User.swift */; };
 		1001246526BA0CEA00074BF1 /* UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001246426BA0CEA00074BF1 /* UserGroup.swift */; };
 		1001246726BA0D2500074BF1 /* UserMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001246626BA0D2500074BF1 /* UserMap.swift */; };
@@ -123,9 +120,6 @@
 		1001245526B766A800074BF1 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1001245726B77F7F00074BF1 /* PopOverViewAtPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewAtPoint.swift; sourceTree = "<group>"; };
 		1001245926B7DEFD00074BF1 /* MapInfoEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoEntryView.swift; sourceTree = "<group>"; };
-		1001245C26BA0AE700074BF1 /* OtpText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtpText.swift; sourceTree = "<group>"; };
-		1001245D26BA0AE700074BF1 /* PhoneInputData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneInputData.swift; sourceTree = "<group>"; };
-		1001245E26BA0AE700074BF1 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		1001245F26BA0AE700074BF1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1001246426BA0CEA00074BF1 /* UserGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroup.swift; sourceTree = "<group>"; };
 		1001246626BA0D2500074BF1 /* UserMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMap.swift; sourceTree = "<group>"; };
@@ -331,9 +325,6 @@
 		1001245B26BA0ABD00074BF1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1001245E26BA0AE700074BF1 /* Country.swift */,
-				1001245C26BA0AE700074BF1 /* OtpText.swift */,
-				1001245D26BA0AE700074BF1 /* PhoneInputData.swift */,
 				1001245F26BA0AE700074BF1 /* User.swift */,
 				1001246426BA0CEA00074BF1 /* UserGroup.swift */,
 				1001246626BA0D2500074BF1 /* UserMap.swift */,
@@ -567,7 +558,6 @@
 				1001243B26B6C91800074BF1 /* BorderWithRoundCorner.swift in Sources */,
 				10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */,
 				1001249E26BE087400074BF1 /* MapVersionsListView.swift in Sources */,
-				1001246026BA0AE700074BF1 /* OtpText.swift in Sources */,
 				1001243626B6C91800074BF1 /* ViewExtension.swift in Sources */,
 				1001246F26BA91CD00074BF1 /* FrontMenuView.swift in Sources */,
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
@@ -610,14 +600,12 @@
 				100123FC26B6C7BE00074BF1 /* ContentView.swift in Sources */,
 				1001248526BB754000074BF1 /* SignUpView.swift in Sources */,
 				1001246D26BA896E00074BF1 /* MapVersionNote.swift in Sources */,
-				1001246226BA0AE700074BF1 /* Country.swift in Sources */,
 				1001243326B6C91800074BF1 /* Extensions.swift in Sources */,
 				1001241C26B6C90B00074BF1 /* TemplatesViewModel.swift in Sources */,
 				1001245A26B7DEFD00074BF1 /* MapInfoEntryView.swift in Sources */,
 				1001245426B6C92300074BF1 /* FrontMapView.swift in Sources */,
 				1001249626BBC91A00074BF1 /* UserProfileView.swift in Sources */,
 				1001241326B6C8FC00074BF1 /* ArcGISHandler.swift in Sources */,
-				1001246126BA0AE700074BF1 /* PhoneInputData.swift in Sources */,
 				1001244C26B6C92300074BF1 /* TemplatesView.swift in Sources */,
 				1001243C26B6C91800074BF1 /* PlaceHolderStyle.swift in Sources */,
 				1001249026BB917B00074BF1 /* UserGroupsListView.swift in Sources */,

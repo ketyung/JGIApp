@@ -39,7 +39,6 @@ struct User : Codable {
     var phoneNumber : String?
     var signInStat : Stat?
     var status : Status?
-    var countryCode : String?
     var lastStatTime : Date?
     var lastUpdated : Date?
 

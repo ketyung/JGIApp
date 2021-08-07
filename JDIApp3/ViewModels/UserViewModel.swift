@@ -173,20 +173,7 @@ class UserViewModel : ViewModel {
         }
     }
     
-    
-    
-    var countryCode : String {
-        
-        get {
-            
-            userHolder.user.countryCode ?? Country.defaultCountry
-        }
-        
-        set(newVal){
-            
-            userHolder.user.countryCode = newVal
-        }
-    }
+
   
     var hasSignedIn : Bool {
         
