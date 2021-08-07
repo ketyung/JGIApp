@@ -78,6 +78,8 @@ extension MapQueryViewModel {
                     case .success(let versions) :
                         self?.mapVersions = versions
                         self?.inProgress = false
+                        
+                        //print("versions.count::\(versions.count)")
                     
                         
                 }

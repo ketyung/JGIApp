@@ -94,5 +94,35 @@ class JDIAppMapVersion extends JDIAppDbObject {
 
     }
 
+
+    private function genVersionNo(&$input){
+        
+        if ( isset($input['id'])){
+            
+            $map_id = $input['id'];
+            
+
+            $a = new ArrayOfSQLWhereCol();
+            $a[] = new SQLWhereCol("id", "=", "", $map_id);
+    
+
+            $versionNo = $this->findCountByWhere($a, false) + 100;
+             
+            
+            $input['version_no'] = $versionNo ;
+        
+           // Log::printRToErrorLog($input);
+            
+        }
+    }
+
+    public function insert(Array &$input){
+      
+        $this->genVersionNo($input);
+        return parent::insert($input);
+    }
+
+
+
 }
 ?>

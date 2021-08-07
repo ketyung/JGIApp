@@ -305,9 +305,9 @@ extension MapActionHandlingViewModel {
             
             let map = UserMap(uid: uid, title: titleText, description: descriptionText, mapVersion: mapVersion)
            
-            ARH.shared.addMap(map, returnType: UserMap.self , completion: {
+            ARH.shared.addMap(map, returnType: UserMap.self , completion: { [weak self] res in
                 
-                res in
+                guard let self = self else { return }
                 
                 DispatchQueue.main.async {
               
@@ -360,6 +360,58 @@ extension MapActionHandlingViewModel {
     func saveMapVersionToRemote(uid : String) {
         
         
+        if titleText.count == 0 {
+            
+            self.errorMessage = "Please enter a title for this version note".localized
+            self.errorPresented = true
+            return
+        }
+        
+        self.inProgress = true
+        
+        if let mapVersion = mapVersion, let _ = mapVersion.id {
+            
+            
+            ARH.shared.addMapVersion(mapVersion, returnType:MapVersion.self , completion: {
+                [weak self] res in
+                
+                DispatchQueue.main.async {
+               
+                    switch (res) {
+                    
+                        case .failure(let err) :
+                        
+                            self?.errorMessage = (err as? ApiError)?.errorText
+                            self?.errorPresented = true
+                            self?.inProgress = false
+                            
+                        case .success(let info) :
+                            if info.status == .ok {
+                                
+                                self?.inProgress = false
+                                self?.mapSuccessfullySavedToRemote = true
+                            }
+                            else {
+                                
+                                self?.inProgress = false
+                                self?.errorMessage = info.text
+                                self?.errorPresented = true
+                            }
+                        
+                    }
+                }
+               
+            })
+            
+        }
+        else {
+            
+            withAnimation{
+                
+                self.errorMessage = "Invalid Map Version!".localized
+                self.errorPresented = true
+            }
+        }
     }
     
 }
