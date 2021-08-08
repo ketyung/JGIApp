@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PdfPreviewView  : View {
     
+    @Binding var viewType : FMM.ViewType
+    
     @EnvironmentObject private var contentViewModel : PCVM
     
     @State  var itmes : [Any] = []
@@ -20,8 +22,8 @@ struct PdfPreviewView  : View {
             
             Spacer()
             
-            Text(contentViewModel.title)
-       
+            Common.topBar(title: "Map PDF Preview", switchToViewType: $viewType)
+            
             PdfViewUI(data: contentViewModel.pdfData())
             
             shareButton()

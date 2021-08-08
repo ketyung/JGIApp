@@ -362,6 +362,11 @@ extension FrontMapView {
         }
         
         
+        if let version = viewModel.mapVersion?.versionNo {
+            
+            pdfViewModel.version = "\("Version".localized) : \(version)"
+        }
+        
         viewModel.mapActionDelegate?.exportImage(completion: {
             
             image in

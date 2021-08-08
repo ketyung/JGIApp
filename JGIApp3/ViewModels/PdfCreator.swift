@@ -63,11 +63,20 @@ extension PdfCreator {
             NSAttributedString.Key.foregroundColor : UIColor.gray
         ]
         
-        let bodyRect = CGRect(x: 20, y: 70,
+        let bodyRect = CGRect(x: 20, y: 120,
                               width: pageRect.width - 40 ,height: pageRect.height - 80)
         body.draw(in: bodyRect, withAttributes: attributes)
     }
     
+    
+    private func addVersion ( version  : String ){
+        
+        let textRect = CGRect(x: 20, y: 70, // top margin
+                              width: pageRect.width - 40 ,height: 40)
+
+        version.draw(in: textRect, withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)])
+      
+    }
     
     private func addMapImage(_ image : UIImage?) {
         
@@ -79,23 +88,17 @@ extension PdfCreator {
             image.draw(in: rect)//,  attributes)
         }
     }
+    
+   
 }
 
 extension PdfCreator {
     
-    func pdfData( title : String, body: String, mapImage : UIImage? ) -> Data? {
+    func pdfData( title : String, body: String, version : String,  mapImage : UIImage? ) -> Data? {
         
         if let renderer = self.renderer {
        
             let data = renderer.pdfData  { ctx in
-                
-                ctx.beginPage()
-                
-                addTitle(title: title)
-                
-                addBody(body: body)
-                
-                addWaterMarkAtBottom()
                 
                 
                 if let image = mapImage {
@@ -106,7 +109,19 @@ extension PdfCreator {
                 
                     addWaterMarkAtBottom()
                 }
+               
                 
+                ctx.beginPage()
+                
+                addTitle(title: title)
+                
+                addVersion(version: version)
+                
+                addBody(body: body)
+                
+                addWaterMarkAtBottom()
+                
+               
             }
             
             return data

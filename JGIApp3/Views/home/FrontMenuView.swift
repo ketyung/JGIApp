@@ -82,8 +82,8 @@ extension FrontMenuView {
             
             case .pdfPreview :
             
-                PdfPreviewView()
-    
+                PdfPreviewView(viewType: $viewType)
+                   
             default :
                 menuView()
             
