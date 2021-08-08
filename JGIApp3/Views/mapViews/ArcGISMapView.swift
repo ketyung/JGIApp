@@ -151,6 +151,8 @@ protocol MapActionDelegate : AnyObject {
     
     func loadFrom(mapVersion : MapVersion)
     
+    func exportImage(completion : ((UIImage?)->Void)? )
+    
 }
 
 extension ArcGISMapView.Coordinator : AGSGeoViewTouchDelegate {
@@ -452,6 +454,24 @@ extension ArcGISMapView.Coordinator : MapActionDelegate {
             }
         }
        
+    }
+    
+    
+    func exportImage(completion : ((UIImage?)->Void)? = nil) {
+        
+        parent.mapView.exportImage(completion: {
+            
+            image, err in
+            
+            guard let _ = err else {
+                
+                completion?(image)
+                
+                return
+            }
+            
+            completion?(nil)
+        })
     }
 }
 

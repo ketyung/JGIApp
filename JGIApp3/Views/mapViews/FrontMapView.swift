@@ -348,6 +348,8 @@ extension FrontMapView {
     private func preparePdfForSigning(){
         
         
+        viewModel.inProgress = true
+        
         pdfViewModel.clear()
         if let title = viewModel.mapVersion?.notes?.first?.title {
             
@@ -360,9 +362,23 @@ extension FrontMapView {
         }
         
         
-        pdfViewModel.image = mapView().snapshot()
+        viewModel.mapActionDelegate?.exportImage(completion: {
+            
+            image in
+            
+            pdfViewModel.image = image
+       
+            
+            viewModel.inProgress = false
         
-        viewType = .pdfPreview
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+        
+                viewType = .pdfPreview
+            
+            })
+        
+        })
+        
         
         
     }
