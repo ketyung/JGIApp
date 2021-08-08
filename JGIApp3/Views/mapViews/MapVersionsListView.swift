@@ -149,7 +149,14 @@ extension MapVersionsListView {
                 }
             })
             
-            actionButton("signature")
+            actionButton("signature", action: {
+                
+                withAnimation{
+                
+                    frontMapActionParam = FMAP(mode: .sign, mapId: mapId, versionNo: version.versionNo)
+                    detailViewPresented = true
+                }
+            })
             
         }
     }

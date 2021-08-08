@@ -19,6 +19,8 @@ struct FrontMapActionParam {
         case create
         
         case viewOnly
+        
+        case sign
     }
     
     var mode : Mode = .create
@@ -34,7 +36,8 @@ struct FrontMapActionParam {
 
 struct FrontMapView: View {
     
-
+    @EnvironmentObject private var pdfViewModel : PCVM
+    
     @EnvironmentObject private var viewModel : MAHVM
     
     private static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
@@ -128,6 +131,10 @@ extension FrontMapView {
                 
                 viewModel.loadFromSavedItemsIfAny()
             
+            case .sign :
+            
+                viewModel.loadFromRemote(mapId: actionParam.mapId ?? "", versionNo: actionParam.versionNo ?? 100)
+     
             
         }
     }
@@ -223,8 +230,16 @@ extension FrontMapView {
         
                 Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 300))
                 
-                toolButtons()
-              
+                if actionParam.mode != .sign {
+                
+                    toolButtons()
+                  
+                }
+                else {
+                    
+                    signButton()
+                }
+                
                 
                 Spacer().frame(width:5)
             
@@ -267,7 +282,6 @@ extension FrontMapView {
         
         HStack(spacing: 20) {
             
-        
             
             Button(action : {
                 
@@ -312,6 +326,47 @@ extension FrontMapView {
             .disabled(!viewModel.edited)
         }
     }
+    
+    
+    private func signButton() -> some View {
+        
+        Button(action : {
+            
+            withAnimation{
+                
+                preparePdfForSigning()
+            }
+            
+        }){
+       
+            Common.buttonView(imageSysteName: "signature")
+        }
+        
+    }
+    
+    
+    private func preparePdfForSigning(){
+        
+        
+        pdfViewModel.clear()
+        if let title = viewModel.mapVersion?.notes?.first?.title {
+            
+            pdfViewModel.title = title
+        }
+        
+        if let note = viewModel.mapVersion?.notes?.first?.note {
+            
+            pdfViewModel.body = note
+        }
+        
+        
+        pdfViewModel.image = mapView().snapshot()
+        
+        viewType = .pdfPreview
+        
+        
+    }
+    
 }
 
 

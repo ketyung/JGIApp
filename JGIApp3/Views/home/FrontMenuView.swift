@@ -26,6 +26,8 @@ struct FrontMenuView : View {
         
         case profile
         
+        case pdfPreview
+        
         case settings
         
         // update 221
@@ -78,6 +80,9 @@ extension FrontMenuView {
                 .transition(.move(edge: .bottom))
                 
             
+            case .pdfPreview :
+            
+                PdfPreviewView()
     
             default :
                 menuView()
