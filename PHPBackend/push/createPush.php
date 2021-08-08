@@ -1,5 +1,5 @@
 <?php
-define('BUNDLE_ID','com.techchee.swiftui.tut.JDIAppApp2');
+define('BUNDLE_ID','com.techchee.swiftui.tut.JGIAppApp2');
 
 pushToSim();
 

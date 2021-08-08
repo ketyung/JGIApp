@@ -1,8 +1,8 @@
 {
-    "Simulator Target Bundle": "com.techchee.swiftui.tut.JDIAppApp2",
+    "Simulator Target Bundle": "com.techchee.swiftui.tut.JGIAppApp2",
     "aps": {
         "alert": {
-            "body": "JDIApp added something new ",
+            "body": "JGIApp added something new ",
             "title": "Photos"
         }
     }

@@ -3,11 +3,11 @@ require_once "../bootstrap.php";
 
 use Util\Log as Log;
 use Util\StrUtil as StrUtil;
-use Core\Controllers\JDIAppUserController;
-use Core\Controllers\JDIAppUserGroupController;
-use Core\Controllers\JDIAppMessageController;
-use Core\Controllers\JDIAppMapController;
-use Core\Controllers\JDIAppMapVersionController;
+use Core\Controllers\JGIAppUserController;
+use Core\Controllers\JGIAppUserGroupController;
+use Core\Controllers\JGIAppMessageController;
+use Core\Controllers\JGIAppMapController;
+use Core\Controllers\JGIAppMapVersionController;
 use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
@@ -45,31 +45,31 @@ function processUri(){
 
     if ($uri[1] == 'user'){
 
-        $u = new JDIAppUserController( DbConn::conn() , $requestMethod, $params );
+        $u = new JGIAppUserController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else
     if ($uri[1] == 'userGroup'){
 
-        $u = new JDIAppUserGroupController( DbConn::conn() , $requestMethod, $params );
+        $u = new JGIAppUserGroupController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else
     if ($uri[1] == 'message'){
 
-        $u = new JDIAppMessageController( DbConn::conn() , $requestMethod, $params );
+        $u = new JGIAppMessageController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else
     if ($uri[1] == 'map'){
 
-        $u = new JDIAppMapController( DbConn::conn() , $requestMethod, $params );
+        $u = new JGIAppMapController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else
     if ($uri[1] == 'mapVersion'){
 
-        $u = new JDIAppMapVersionController( DbConn::conn() , $requestMethod, $params );
+        $u = new JGIAppMapVersionController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else {
@@ -83,7 +83,7 @@ function processUri(){
 
 
 
-function removeStartingSubPathOfURI(&$uri, $subFolder = "/JDIAppApiTestPointV1"){
+function removeStartingSubPathOfURI(&$uri, $subFolder = "/JGIAppApiTestPointV1"){
     
     if (str_starts_with($uri, $subFolder )){
         
@@ -118,7 +118,7 @@ function checkIfAuthorized(){
 
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        exit('Unauthorized - JDIApp backend v 1.0 '. $actual_link);
+        exit('Unauthorized - JGIApp backend v 1.0 '. $actual_link);
     }
 }
 
