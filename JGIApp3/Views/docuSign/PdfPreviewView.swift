@@ -13,10 +13,22 @@ struct PdfPreviewView  : View {
     
     @EnvironmentObject private var contentViewModel : PCVM
     
-    @State  var itmes : [Any] = []
-    @State  var showShareSheet : Bool = false
+    @State  private var itmes : [Any] = []
+    @State  private var shareSheetPresented : Bool = false
+    @State  private var optionsSheetPresented : Bool = false
     
     var body: some View {
+        
+        view()
+        
+    }
+    
+}
+
+
+extension PdfPreviewView {
+    
+    private func view() -> some View {
         
         VStack {
             
@@ -26,33 +38,104 @@ struct PdfPreviewView  : View {
             
             PdfViewUI(data: contentViewModel.pdfData())
             
-            shareButton()
+            proceedButton()
             
             Spacer()
             
         }
-        .sheet(isPresented: $showShareSheet, content: {
         
+        .bottomSheet(isPresented:$optionsSheetPresented , height: 300, showGrayOverlay: true, content: {
+            
+            optionsView()
+        })
+        .sheet(isPresented: $shareSheetPresented, content: {
             if let data = contentViewModel.pdfData() {
                 ShareView(activityItems: [data])
             }
             
         })
-        
     }
-    
 }
 
+
+extension PdfPreviewView {
+    
+    
+    
+    private func optionsView() -> some View {
+        
+        VStack(spacing :10) {
+            
+            Button(action : {
+                
+                
+                
+            }){
+            
+                HStack(spacing:20) {
+                    
+                    Spacer().frame(width: 5)
+                    
+                    Image("docusign").resizable().frame(width: 80, height : 17.2).aspectRatio(contentMode: .fit)
+                    
+                    Text("Send for signing".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
+            
+                    Spacer()
+                }
+                .padding()
+                .frame(height: 50)
+            }
+            
+            
+            Button(action: {
+                
+                withAnimation{
+                    
+                    optionsSheetPresented = false
+                    withAnimation(Animation.easeIn(duration: 0.5).delay(0.5)){
+                        shareSheetPresented = true
+                    }
+                }
+                
+            }){
+            
+                
+                HStack(spacing:20) {
+                    
+                    Spacer().frame(width: 5)
+              
+                    Image("share").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
+                    
+                    Text("Share".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
+                    
+            
+                    Spacer()
+                    
+                }.padding()
+                .frame(height: 50)
+      
+            }
+            
+            Spacer()
+            
+        }
+    }
+}
 
 
 
 extension PdfPreviewView {
 
-    private func shareButton() -> some View {
+    private func proceedButton() -> some View {
         
         Button(action: {
-            self.showShareSheet.toggle()
-        }, label: {
+         
+            withAnimation{
+                
+                optionsSheetPresented = true
+            }
+      
+        }){
             Text("Proceed")
             .padding(10)
             .frame(width: 100)
@@ -60,6 +143,6 @@ extension PdfPreviewView {
             .foregroundColor(.white)
             .cornerRadius(20)
             
-        })
+        }
     }
 }

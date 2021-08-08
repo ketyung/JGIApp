@@ -14,6 +14,8 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
 
     private var templatesManager: DSMTemplatesManager?
       
+    @EnvironmentObject private var pdfViewModel : PdfContentViewModel
+    
     
     init(){
         
@@ -27,9 +29,7 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
         
        let controller = UIViewController()
         
-        self.displayTemplateForSignature(templateId: "xxxxx", controller: controller, tabData: ["text" : "test"], recipientData: [], customFields: nil, onlineSign: true, attachmentUrl: nil, completionHandler: {
-            
-            c, err in
+        self.displayTemplateForSignature(templateId: "xxxxx", controller: controller, tabData: ["text" : "test"], recipientData: [], customFields: nil, onlineSign: true, pdfData: pdfViewModel.pdfData(), completion: { c, err in
             
             if let err = err {
                 
@@ -49,23 +49,38 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
     
 }
 
+
+
+struct DocuSignError : LocalizedError, CustomStringConvertible {
+    
+    var errorText : String?
+    
+    public var description: String {
+        
+        "\(errorText ?? "Unknown error".localized)"
+    }
+
+    public var errorDescription : String {
+        
+        errorText ?? "Unknown error".localized
+    }
+}
+
+
 extension DocuSignTemplateView {
     
-    private func displayTemplateForSignature(templateId: String, controller: UIViewController, tabData: Dictionary<String, String>, recipientData: Array<DSMRecipientDefault>, customFields:DSMCustomFields?, onlineSign: Bool,
-        attachmentUrl: URL?,
-        completionHandler: ((UIViewController?, Error?) -> Void)? = nil)
+    private func displayTemplateForSignature(templateId: String, controller: UIViewController, tabData: Dictionary<String, String>, recipientData: Array<DSMRecipientDefault>, customFields:DSMCustomFields?,
+        onlineSign: Bool, pdfData : Data? ,
+        completion: ((UIViewController?, Error?) -> Void)? = nil)
     {
-        // load PDF data
-        var pdfData: Data?
-        if (attachmentUrl != nil)
-        {
-            do {
-                pdfData = try Data(contentsOf: attachmentUrl!)
-            }
-            catch {
-                NSLog("Error loading PDF data")
-            }
+        
+        guard let pdfData = pdfData else {
+        
+            completion?(nil, DocuSignError(errorText: "No PDF data!"))
+            
+            return
         }
+        
         
         let envelopeDefaults = DSMEnvelopeDefaults()
         envelopeDefaults.recipientDefaults = recipientData.count > 0 ? recipientData : nil
@@ -79,18 +94,25 @@ extension DocuSignTemplateView {
             insertAtPosition: .end,
             signingMode: onlineSign ? .online : .offline,
             presenting: controller,
-            animated: true) { (view, error) in
+            animated: true) { view, error in
                 if let error = error {
-                    NSLog("Error encountered during signing: \(error.localizedDescription)")
+               
+                    completion?(nil, error)
+                    return
                 }
+            
                 if view == nil {
                     // `view` is `nil` if all of the signers pending for signature are remote
                     // A) Envelope is sent to next remote signer, should receive `DSMSigningCompletedNotification` during online signing.
                     // B) Or in case of offline signing, envelope is successfully cached and now awaiting sync.
-                    NSLog("Warning: Encountered `nil view` during signing.")
+                    //NSLog("Warning: Encountered `nil view` during signing.")
+                    
+                    completion?(nil, DocuSignError(errorText: "Nil viewcontroller"))
                 } else {
                     // DocuSign SDK UI components are active if >=1 local signers are pending signature
-                    NSLog("DocuSign Native iOS SDK - UI components active")
+                    //NSLog("DocuSign Native iOS SDK - UI components active")
+                    
+                    completion?(view, nil)
                 }
         }
     }
