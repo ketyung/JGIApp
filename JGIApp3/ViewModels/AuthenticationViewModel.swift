@@ -36,27 +36,38 @@ extension AuthenticationViewModel {
             
             guard let err = err else {
                 
+                /**
                 if let accountInfo = accInfo {
                
                     print("signedIn.account.info::\(accountInfo.accountId)::\(accountInfo.email)")
                 }
-                
+                 */
+                DispatchQueue.main.async {
+              
+                    withAnimation{
+                        
+                        self?.inProgress = false
+                        self?.afterSignIn = true
+                    }
+                   
+                }
+               
+                return
+            }
+            
+            DispatchQueue.main.async {
+          
                 withAnimation{
-                    
+             
+                    self?.errorMessage = err.localizedDescription
+                    self?.errorPresented = true
                     self?.afterSignIn = true
                     self?.inProgress = false
                 }
                 
-                return
             }
             
-            withAnimation{
-         
-                self?.errorMessage = err.localizedDescription
-                self?.errorPresented = true
-                self?.afterSignIn = true
-                self?.inProgress = false 
-            }
+            
             
             
         })

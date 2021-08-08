@@ -101,6 +101,8 @@ extension DocuSignTemplateView {
             animated: true) { view, error in
                 if let error = error {
                
+                    print("DocuSign.error::\(error)")
+                    
                     completion?(nil, error)
                     return
                 }
@@ -129,14 +131,14 @@ extension DocuSignTemplateView {
         
         let recipientDatum = DSMRecipientDefault()
         // Use recipient roleName (other option to use recipient-id) to find unique recipient in the template
-        recipientDatum.recipientRoleName = "claimant-roleName"
+        recipientDatum.recipientRoleName = "GIS User"
         recipientDatum.recipientSelectorType = .recipientRoleName
         recipientDatum.recipientType = .inPersonSigner
         // In-person-signer name
-        recipientDatum.inPersonSignerName = "James Sung"
+        recipientDatum.inPersonSignerName = "Christopher Chee"
         // Host name (must match the name on the account) and email
-        recipientDatum.recipientName = "James Sung"
-        recipientDatum.recipientEmail = "ketyung@techchee.com"
+        recipientDatum.recipientName = "Christopher Chee"
+        recipientDatum.recipientEmail = "ketyung@gmail.com"
         return [recipientDatum]
     }
 }
