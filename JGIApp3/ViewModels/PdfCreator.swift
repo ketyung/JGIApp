@@ -82,9 +82,12 @@ extension PdfCreator {
         
         if let image = image {
             
-            let width = pageRect.width * 0.9 // we just use 0.9 of the width of the page width as the chart width
+            let width = pageRect.width * 0.95 // we just use 0.9 of the width of the page width as the chart width
             let height = width * (image.size.height / image.size.width) // calculate the height
-            let rect = CGRect(x: 20, y: 20, width: width, height:  height)
+            
+            let x = (pageRect.width - width) / 2
+            let y = (pageRect.height - height) / 2
+            let rect = CGRect(x: x, y: y, width: width, height:  height)
             image.draw(in: rect)//,  attributes)
         }
     }
