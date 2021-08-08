@@ -80,6 +80,8 @@ extension SettingsView {
                        
                     }
                     
+                    aboutView()
+                    
                     Spacer()
                 }
                 .padding()
@@ -125,5 +127,31 @@ extension SettingsView {
                 
             })
         }
+    }
+}
+
+
+extension SettingsView {
+    
+    
+    private func aboutView() -> some View {
+        
+        VStack(alignment:.leading, spacing:20) {
+            
+            
+            Text("Built for the JGI for DocuSign Hackathon By Ket Yung Chee (Christopher)").font(.custom(Theme.fontName, size: 16))
+            .fixedSize(horizontal: false, vertical: true)
+            .lineLimit(20)
+            
+            Text("Emails : ketyung@gmail.com, ketyung@techchee.com").font(.custom(Theme.fontName, size: 14))
+                .fixedSize(horizontal: false, vertical: true).lineLimit(2)
+            
+            
+            Text("Version \(Bundle.main.releaseVersionNumberPretty)").font(.custom(Theme.fontName, size: 18)).foregroundColor(Color(UIColor(hex:"#666666ff")!))
+            
+            
+        }
+        .padding()
+        .border(.orange, width: 1, cornerRadius: 20)
     }
 }

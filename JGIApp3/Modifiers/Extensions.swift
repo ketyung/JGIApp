@@ -183,3 +183,21 @@ extension Date {
         return formatter.localizedString(for: self, relativeTo: Date())
     }
 }
+
+
+
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
+    }
+    var releaseVersionNumberPretty: String {
+        return "v\(releaseVersionNumber ?? "1.0.0")"
+    }
+    
+    var appName: String {
+        return infoDictionary?["CFBundleName"] as? String ?? "KyPay"
+    }
+}
