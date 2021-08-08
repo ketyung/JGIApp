@@ -53,7 +53,7 @@ extension PdfPreviewView {
         Button(action: {
             self.showShareSheet.toggle()
         }, label: {
-            Text("Share")
+            Text("Proceed")
             .padding(10)
             .frame(width: 100)
             .background(Color.blue)
