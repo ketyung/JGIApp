@@ -31,7 +31,7 @@ extension OAuthTokenView {
         
         if viewModel.afterSignIn{
             
-            AfterSignInView(viewModel: viewModel)
+         //   AfterSignInView(viewModel: viewModel)
         }
         else {
             

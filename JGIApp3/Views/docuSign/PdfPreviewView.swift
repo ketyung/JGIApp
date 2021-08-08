@@ -24,7 +24,7 @@ struct PdfPreviewView  : View {
         
         if proceed {
             
-           UserLoginViewOld()
+           UserLoginViewOld(viewType: $viewType)
         }
         else {
        
@@ -95,7 +95,7 @@ extension PdfPreviewView {
                     
                     Image("docusign").resizable().frame(width: 80, height : 17.2).aspectRatio(contentMode: .fit)
                     
-                    Text("Send for signing".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
+                    Text("Sign It".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
             
                     Spacer()
                 }

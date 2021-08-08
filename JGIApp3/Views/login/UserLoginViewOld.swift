@@ -10,6 +10,7 @@ struct UserLoginViewOld : View {
     
     @EnvironmentObject private var viewModel : AuthenticationViewModel
     
+    @Binding var viewType : FMM.ViewType
     
     @State private var pushToNext : Bool = false
     
@@ -17,7 +18,7 @@ struct UserLoginViewOld : View {
 
         if viewModel.afterSignIn {
             
-            AfterSignInView(viewModel: viewModel)
+            AfterSignInView(viewModel: viewModel, viewType: $viewType)
         }
         else {
         

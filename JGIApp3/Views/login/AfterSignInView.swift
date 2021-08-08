@@ -11,25 +11,24 @@ struct AfterSignInView : View {
     
     @State var viewModel : AuthenticationViewModel
    
-    @State private var switchToMenu : Bool = false
+    @State private var switchToSigning : Bool = false
+    
+    @Binding var viewType : FMM.ViewType
+   
     
     var body : some View {
         
         VStack {
             
             if !viewModel.errorPresented {
+                view()
+            }
+            else {
                 
-                
-                DocuSignTemplateView()
-                
-                //view()
+                errorView()
             }
             
         }
-        .popOver(isPresented: $viewModel.errorPresented, content: {
-            
-            Common.errorAlertView(message: viewModel.errorMessage ?? "")
-        })
         .themeFullView()
     }
 }
@@ -40,9 +39,9 @@ extension AfterSignInView {
     @ViewBuilder
     private func view() -> some View {
         
-        if switchToMenu {
+        if switchToSigning {
             
-            MenuView()
+            DocuSignTemplateView()
             .transition(.move(edge: .bottom))
             
         }
@@ -51,15 +50,30 @@ extension AfterSignInView {
             signInSuccessView()
             .onAppear{
             
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                    
-                    withAnimation(Animation.easeIn(duration: 0.5).delay(1) ){
-                   
-                        self.switchToMenu = true
-                    }
-                })
+                withAnimation(Animation.easeIn(duration: 0.5).delay(0.5) ){
+               
+                    self.switchToSigning = true
+                }
+            
             }
         }
+    }
+    
+    private func errorView() -> some View {
+        
+        VStack {
+  
+            Spacer().frame(height:50)
+            Common.topBar(title: "Error", switchToViewType: $viewType )
+            
+            Spacer()
+      
+        }
+        .popOver(isPresented: $viewModel.errorPresented, content: {
+            
+            Common.errorAlertView(message: viewModel.errorMessage ?? "")
+        })
+       
     }
     
     
