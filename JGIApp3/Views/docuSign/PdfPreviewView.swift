@@ -16,10 +16,21 @@ struct PdfPreviewView  : View {
     @State  private var itmes : [Any] = []
     @State  private var shareSheetPresented : Bool = false
     @State  private var optionsSheetPresented : Bool = false
+    @State private var proceed : Bool = false
+    
+    
     
     var body: some View {
         
-        view()
+        if proceed {
+            
+           UserLoginViewOld()
+        }
+        else {
+       
+            view()
+           
+        }
         
     }
     
@@ -69,6 +80,12 @@ extension PdfPreviewView {
             Button(action : {
                 
                 
+                withAnimation{
+                    
+                    optionsSheetPresented = false
+                    
+                    proceed = true 
+                }
                 
             }){
             

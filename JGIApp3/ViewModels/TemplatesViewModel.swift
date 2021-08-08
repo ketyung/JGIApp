@@ -26,27 +26,32 @@ extension TemplatesViewModel {
         
        templatesManager.listTemplates() { [weak self] templates, error in
            
-            guard let err = error else {
-                
-                if let temps = templates {
+        
+            DispatchQueue.main.async {
+            
+                guard let err = error else {
                     
-                    self?.templates = temps
+                    if let temps = templates {
+                        
+                        self?.templates = temps
+                        self?.inProgress = false
+                        return
+                    }
+                    
+                    self?.errorMessage = "Nil templates"
+                    self?.errorPresented = true
                     self?.inProgress = false
+                    
                     return
                 }
-                
-                self?.errorMessage = "Nil templates"
+            
+            
+                self?.errorMessage = err.localizedDescription
                 self?.errorPresented = true
                 self?.inProgress = false
-                
-                return
+            
             }
-        
-        
-            self?.errorMessage = err.localizedDescription
-            self?.errorPresented = true
-            self?.inProgress = false
-        
+            
        }
     }
 }

@@ -19,7 +19,10 @@ struct AfterSignInView : View {
             
             if !viewModel.errorPresented {
                 
-                view()
+                
+                DocuSignTemplateView()
+                
+                //view()
             }
             
         }

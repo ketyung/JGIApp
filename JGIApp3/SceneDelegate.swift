@@ -20,9 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let contentView =
-            FrontMenuView().environmentObject(MAHVM()).environmentObject(UserViewModel()).environmentObject(PdfContentViewModel())
+        FrontMenuView().environmentObject(MAHVM()).environmentObject(UserViewModel()).environmentObject(PdfContentViewModel())
+            .environmentObject(AuthenticationViewModel())
+        
         //FrontMapView().environmentObject(MAHVM())
-        //UserLoginViewOld().environmentObject(AuthenticationViewModel())
+      //  UserLoginViewOld().environmentObject(AuthenticationViewModel())
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

@@ -16,6 +16,8 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
       
     @EnvironmentObject private var pdfViewModel : PdfContentViewModel
     
+    //private let recipientData = ""
+    
     
     init(){
         
@@ -29,7 +31,9 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
         
        let controller = UIViewController()
         
-        self.displayTemplateForSignature(templateId: "xxxxx", controller: controller, tabData: ["text" : "test"], recipientData: [], customFields: nil, onlineSign: true, pdfData: pdfViewModel.pdfData(), completion: { c, err in
+        self.displayTemplateForSignature(templateId: "e3394e8c-b989-4d36-bf50-6420f5fd69c8",
+        controller: controller, tabData: ["text" : "test"], recipientData: defaultReceipients(),
+        customFields: nil, onlineSign: true, pdfData: pdfViewModel.pdfData(), completion: { c, err in
             
             if let err = err {
                 
@@ -115,5 +119,24 @@ extension DocuSignTemplateView {
                     completion?(view, nil)
                 }
         }
+    }
+}
+
+
+extension DocuSignTemplateView {
+    
+    private func defaultReceipients() -> [DSMRecipientDefault] {
+        
+        let recipientDatum = DSMRecipientDefault()
+        // Use recipient roleName (other option to use recipient-id) to find unique recipient in the template
+        recipientDatum.recipientRoleName = "claimant-roleName"
+        recipientDatum.recipientSelectorType = .recipientRoleName
+        recipientDatum.recipientType = .inPersonSigner
+        // In-person-signer name
+        recipientDatum.inPersonSignerName = "James Sung"
+        // Host name (must match the name on the account) and email
+        recipientDatum.recipientName = "James Sung"
+        recipientDatum.recipientEmail = "ketyung@techchee.com"
+        return [recipientDatum]
     }
 }

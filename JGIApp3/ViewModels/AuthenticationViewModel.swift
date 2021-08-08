@@ -38,7 +38,7 @@ extension AuthenticationViewModel {
                 
                 if let accountInfo = accInfo {
                
-                    print("signedIn.account.info::\(accountInfo)")
+                    print("signedIn.account.info::\(accountInfo.accountId)::\(accountInfo.email)")
                 }
                 
                 withAnimation{
