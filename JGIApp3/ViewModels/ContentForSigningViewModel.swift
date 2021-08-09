@@ -124,7 +124,13 @@ class ContentForSigningViewModel : ViewModel {
 extension ContentForSigningViewModel {
     
     
-    func addRecipient(_ recipient : ContentForSigning.Recipient, removeIfExists : Bool = true ) {
+    func inRecipients(id : String) -> Bool {
+        
+        let recipient = Recipient(id : id)
+        return recipients.contains(recipient)
+    }
+    
+    func addRecipient(_ recipient : Recipient, removeIfExists : Bool = true ) {
         
         if removeIfExists {
             

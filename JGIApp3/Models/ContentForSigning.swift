@@ -7,6 +7,7 @@
 
 import Foundation
 
+typealias Recipient = ContentForSigning.Recipient
 
 
 struct ContentForSigning {

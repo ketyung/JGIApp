@@ -77,6 +77,7 @@
 		10D0324926BF7CAA0082B8BB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324826BF7CAA0082B8BB /* ShareView.swift */; };
 		10D0324D26C0A6A10082B8BB /* ContentForSigning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324C26C0A6A10082B8BB /* ContentForSigning.swift */; };
 		10D0324F26C0B2700082B8BB /* BeforeSigningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324E26C0B2700082B8BB /* BeforeSigningView.swift */; };
+		10D0325126C0C2340082B8BB /* RecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325026C0C2340082B8BB /* RecipientsView.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -158,6 +159,7 @@
 		10D0324826BF7CAA0082B8BB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		10D0324C26C0A6A10082B8BB /* ContentForSigning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentForSigning.swift; sourceTree = "<group>"; };
 		10D0324E26C0B2700082B8BB /* BeforeSigningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSigningView.swift; sourceTree = "<group>"; };
+		10D0325026C0C2340082B8BB /* RecipientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipientsView.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			children = (
 				1001243F26B6C92300074BF1 /* SigningView.swift */,
 				1001244026B6C92300074BF1 /* TemplatesView.swift */,
+				10D0325026C0C2340082B8BB /* RecipientsView.swift */,
 				1001244126B6C92300074BF1 /* DocuSignSigningView.swift */,
 				10D0324E26C0B2700082B8BB /* BeforeSigningView.swift */,
 				10D0324026BF742E0082B8BB /* PdfViewUI.swift */,
@@ -629,6 +632,7 @@
 				10D0324726BF7C690082B8BB /* PdfPreviewView.swift in Sources */,
 				1001247C26BB703000074BF1 /* KeychainWrapper.swift in Sources */,
 				100123FC26B6C7BE00074BF1 /* ContentView.swift in Sources */,
+				10D0325126C0C2340082B8BB /* RecipientsView.swift in Sources */,
 				1001248526BB754000074BF1 /* SignUpView.swift in Sources */,
 				1001246D26BA896E00074BF1 /* MapVersionNote.swift in Sources */,
 				1001243326B6C91800074BF1 /* Extensions.swift in Sources */,

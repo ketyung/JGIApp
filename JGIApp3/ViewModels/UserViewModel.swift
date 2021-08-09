@@ -51,6 +51,8 @@ class UserViewModel : ViewModel {
     
     @Published var signOutSuccess : Bool = false
     
+    @Published var users : [User] = []
+    
     
     var id : String {
         
@@ -436,3 +438,37 @@ extension UserViewModel {
     }
 }
 
+
+extension UserViewModel {
+    
+    
+    func fetchUsersWithGroupInfo(){
+        
+        self.inProgress = true
+        
+        ARH.shared.fetchUsersWithGroup(completion: {
+            
+            [weak self] res in
+            
+            
+            DispatchQueue.main.async {
+             
+                switch(res){
+             
+                    case .failure(let err) :
+                        self?.inProgress = false
+                        self?.errorMessage = (err as? ApiError)?.errorText
+                        self?.errorPresented = true
+                        
+                    case .success(let users) :
+                    
+                        self?.inProgress = false
+                        self?.users = users 
+                    
+                
+                }
+            }
+            
+        })
+    }
+}

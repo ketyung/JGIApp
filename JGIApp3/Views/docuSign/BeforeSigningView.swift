@@ -19,9 +19,30 @@ struct BeforeSigningView : View {
             Spacer().frame(height:50)
             
             Common.topBar(title: "Choose your options", switchToViewType: $viewType)
+        
+            ScrollView([], showsIndicators: false){
+           
+                TemplatesView().frame(maxHeight:150)
+                
+                RecipientsView()
+                
+                Spacer()
+                
+                Button(action : {
+                    
+                }){
+                    
+                    Text("Proceed").font(.custom(Theme.fontNameBold, size: 20))
+                    .padding()
+                    .foregroundColor(.white).background(Color.blue)
+                    .cornerRadius(20)
+                }
+               
+            }
             
-            TemplatesView()
+            Spacer()
             
         }
+        .padding()
     }
 }

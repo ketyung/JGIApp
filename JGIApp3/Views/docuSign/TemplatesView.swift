@@ -23,10 +23,10 @@ struct TemplatesView : View {
             Text("Choose a template").font(.custom(Theme.fontName, size: 18))
             
             templatesList()
-            .frame(height:200)
-
+          
             
         }
+        .padding()
         .onAppear{
             
             viewModel.fetchTemplates()
@@ -60,7 +60,8 @@ extension TemplatesView {
                         HStack {
                        
                             Text("\(templ.name)").font(.custom(Theme.fontName, size: 18))
-                           
+                            .foregroundColor(.black)
+                                
                             Spacer()
                         
                             if templ.templateId == signingViewModel.templateId {
