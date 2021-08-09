@@ -13,6 +13,8 @@ struct SigningView : View {
     
     @Binding var viewType : FMM.ViewType
     
+    @EnvironmentObject private var signingViewModel : CFSVM
+   
     var body: some View {
         
         VStack{
@@ -23,10 +25,31 @@ struct SigningView : View {
             
             DocuSignSigningView ()
             
+            if signingViewModel.siginingCompleted {
+                
+                completedView()
+            }
+            
             Spacer()
             
         }
         .padding()
         .themeFullView()
+    }
+}
+
+extension SigningView {
+    
+    
+    private func completedView() -> some View {
+        
+        HStack {
+            
+            Image(systemName: "Info.circle.fill").resizable().foregroundColor(.green).frame(width:30, height: 30)
+            
+            Text("Completed".localized).font(.custom(Theme.fontName, size: 30))
+            
+            Spacer()
+        }
     }
 }

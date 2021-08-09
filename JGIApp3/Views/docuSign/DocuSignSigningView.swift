@@ -36,7 +36,17 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
         controller: controller, tabData: tabData(), recipientData: receipients(),
         customFields: nil, onlineSign: true, pdfData: signingViewModel.attachment, completion: { c, err in
             
-        
+            
+            guard let _ = c else {
+                
+                withAnimation{
+               
+                    signingViewModel.siginingCompleted = true
+                   
+                }
+                
+                return
+            }
             /**
             if let err = err {
                 
@@ -59,7 +69,6 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
 
 class DocuSignViewController : UIViewController {
     
-    /**
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
@@ -71,7 +80,7 @@ class DocuSignViewController : UIViewController {
     override var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
         return .portrait
     }
-     */
+     
 }
 
 
@@ -106,12 +115,6 @@ extension DocuSignSigningView  {
             return
         }
         
-        recipientData.forEach{
-            
-            r in
-            
-            print("xxx.email::\(r.recipientEmail)::\(r.recipientRoleName)::\(r.recipientName)")
-        }
         
         let envelopeDefaults = DSMEnvelopeDefaults()
         envelopeDefaults.recipientDefaults = recipientData.count > 0 ? recipientData : nil

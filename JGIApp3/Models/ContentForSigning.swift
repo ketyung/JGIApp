@@ -44,4 +44,6 @@ struct ContentForSigning {
     
     var recipients : [Recipient]?
     
+    var signingCompleted : Bool = false 
+    
 }

@@ -117,6 +117,19 @@ class ContentForSigningViewModel : ViewModel {
         }
     }
     
+    var siginingCompleted : Bool {
+        
+        get {
+            
+            content.signingCompleted
+        }
+        
+        set(newVal) {
+            
+            content.signingCompleted = true 
+        }
+    }
+    
     
 }
 
