@@ -33,8 +33,10 @@ struct BeforeSigningView : View {
                 }){
                     
                     Text("Proceed").font(.custom(Theme.fontNameBold, size: 20))
-                    .padding()
-                    .foregroundColor(.white).background(Color.blue)
+                    .padding(10)
+                    .frame(width: 100)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
                     .cornerRadius(20)
                 }
                
