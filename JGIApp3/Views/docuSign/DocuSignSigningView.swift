@@ -28,9 +28,9 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
     
     
     public func makeUIViewController(context:
-    UIViewControllerRepresentableContext<DocuSignSigningView >) -> UIViewController {
+    UIViewControllerRepresentableContext<DocuSignSigningView >) -> DocuSignViewController {
         
-       let controller = UIViewController()
+       let controller = DocuSignViewController()
         
         self.displayTemplateForSignature(templateId: signingViewModel.templateId ,
         controller: controller, tabData: tabData(), recipientData: receipients(),
@@ -47,13 +47,31 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
         return controller
     }
     
-    public func updateUIViewController(_ uiViewController: UIViewController,
+    public func updateUIViewController(_ uiViewController: DocuSignViewController,
                                 context: UIViewControllerRepresentableContext<DocuSignSigningView >) {
 
         
     }
     
     
+}
+
+
+class DocuSignViewController : UIViewController {
+    
+    /**
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
+    }
+        
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
+        return .portrait
+    }
+     */
 }
 
 
