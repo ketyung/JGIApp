@@ -34,8 +34,6 @@ struct SigningView : View {
             else {
                 
                 DocuSignSigningView ()
-                
-              
             }
             
             Spacer()

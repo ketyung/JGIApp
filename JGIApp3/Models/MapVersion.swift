@@ -17,6 +17,8 @@ struct MapVersion : Codable {
     
     var createdBy : String?
     
+    var createdByName : String?
+    
     var latitute : Double?
     
     var longitute : Double?

@@ -9,17 +9,33 @@ import SwiftUI
 
 struct MapVersionsListView : View {
   
+    enum Mode : Int {
+        
+        case byMapId
+        
+        case unsignedByCurrentUser
+        
+        case signedByCurrentUser
+    }
+    
     @Binding var viewType : FMM.ViewType
     
     @Binding var mapId : String
    
     @Binding var mapTitle : String
    
+    @State var mode : Mode = .byMapId
+    
+    @State var needFullView : Bool = true
+  
     @StateObject private var viewModel = MQVM()
     
     @State private var detailViewPresented : Bool = false
     
     @State private var frontMapActionParam : FMAP = .defaultValue
+    
+    @EnvironmentObject private var userViewModel : UserViewModel
+    
     
     var body : some View {
         
@@ -39,7 +55,17 @@ extension MapVersionsListView {
         }
         else {
             
-            view()
+            if needFullView {
+            
+                view()
+                .themeFullView()
+                
+            }
+            else {
+                
+                view()
+            }
+                
         }
     }
     
@@ -47,17 +73,22 @@ extension MapVersionsListView {
         
         VStack (alignment: .leading, spacing: 10){
             
-            Spacer().frame(height: 30)
-            
-            Common.topBar(title: "Versions Of Map For", switchToViewType: $viewType)
-       
-            Text(mapTitle).font(.custom(Theme.fontNameBold, size: 18))
-            .padding(.leading, 20).padding(.bottom, 5).padding(.top, 5)
-            .foregroundColor(.black)
-            .fixedSize(horizontal: false, vertical: true)
-            .lineLimit(2)
-            
-          
+            if needFullView {
+           
+                Spacer().frame(height: 30)
+                
+                
+                Common.topBar(title: "Versions Of Map", switchToViewType: $viewType)
+           
+                Text(mapTitle).font(.custom(Theme.fontNameBold, size: 18))
+                .padding(.leading, 20).padding(.bottom, 5).padding(.top, 5)
+                .foregroundColor(.black)
+                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(2)
+                
+              
+            }
+           
             
             ScrollView (/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: false) {
                 
@@ -78,10 +109,36 @@ extension MapVersionsListView {
         }
         
         .onAppear{
+        
+            fetchMapVersions()
+         }
+        
+    }
+}
+
+
+extension MapVersionsListView {
+    
+    private func fetchMapVersions(){
+        
+        
+        switch(mode) {
+        
+            case .byMapId :
+                viewModel.fetchVersions(mapId: mapId)
+          
+            case .signedByCurrentUser :
+                
             
-            viewModel.fetchVersions(mapId: mapId)
+                return
+                
+            case .unsignedByCurrentUser :
+            
+                viewModel.fetchVersionsUnsignedBy(userId: userViewModel.id)
+                return
+            
+            
         }
-        .themeFullView()
     }
 }
 
@@ -135,7 +192,7 @@ extension MapVersionsListView {
                 
                 withAnimation{
                     
-                    frontMapActionParam = FMAP(mode: .viewOnly, mapId: mapId, versionNo: version.versionNo)
+                    frontMapActionParam = FMAP(mode: .viewOnly, mapId: version.id, versionNo: version.versionNo)
                     detailViewPresented = true 
                 }
             })
@@ -144,7 +201,7 @@ extension MapVersionsListView {
                 
                 withAnimation{
                     
-                    frontMapActionParam = FMAP(mode: .edit, mapId: mapId, versionNo: version.versionNo)
+                    frontMapActionParam = FMAP(mode: .edit, mapId: version.id, versionNo: version.versionNo)
                     detailViewPresented = true
                 }
             })
@@ -153,7 +210,7 @@ extension MapVersionsListView {
                 
                 withAnimation{
                 
-                    frontMapActionParam = FMAP(mode: .sign, mapId: mapId, versionNo: version.versionNo)
+                    frontMapActionParam = FMAP(mode: .sign, mapId: version.id, versionNo: version.versionNo)
                     detailViewPresented = true
                 }
             })

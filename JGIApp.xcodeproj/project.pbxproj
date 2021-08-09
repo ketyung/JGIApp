@@ -79,6 +79,7 @@
 		10D0324F26C0B2700082B8BB /* BeforeSigningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324E26C0B2700082B8BB /* BeforeSigningView.swift */; };
 		10D0325126C0C2340082B8BB /* RecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325026C0C2340082B8BB /* RecipientsView.swift */; };
 		10D0325326C0FE090082B8BB /* SignerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325226C0FE090082B8BB /* SignerGroup.swift */; };
+		10D0325526C11EF00082B8BB /* MapVersionsReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325426C11EF00082B8BB /* MapVersionsReviewView.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -162,6 +163,7 @@
 		10D0324E26C0B2700082B8BB /* BeforeSigningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSigningView.swift; sourceTree = "<group>"; };
 		10D0325026C0C2340082B8BB /* RecipientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipientsView.swift; sourceTree = "<group>"; };
 		10D0325226C0FE090082B8BB /* SignerGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerGroup.swift; sourceTree = "<group>"; };
+		10D0325426C11EF00082B8BB /* MapVersionsReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionsReviewView.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				10D0323E26BE6DC30082B8BB /* MapVersionNotesView.swift */,
 				1001249B26BD3B8E00074BF1 /* MapListView.swift */,
 				1001249D26BE087400074BF1 /* MapVersionsListView.swift */,
+				10D0325426C11EF00082B8BB /* MapVersionsReviewView.swift */,
 			);
 			path = mapViews;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				1001243026B6C91800074BF1 /* CommonDimensionAndColor.swift in Sources */,
 				1001241A26B6C90B00074BF1 /* ViewModel.swift in Sources */,
 				1001249A26BBCCB500074BF1 /* SettingsView.swift in Sources */,
+				10D0325526C11EF00082B8BB /* MapVersionsReviewView.swift in Sources */,
 				1001244B26B6C92300074BF1 /* SigningView.swift in Sources */,
 				1001241B26B6C90B00074BF1 /* MapActionHandlingViewModel.swift in Sources */,
 				1001245226B6C92300074BF1 /* OauthTokenWebView.swift in Sources */,

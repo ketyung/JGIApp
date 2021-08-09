@@ -116,11 +116,12 @@ extension Common {
     
     
     static func topBar(title : String, switchToViewType :
-                        Binding <FMM.ViewType>, switchToView : FMM.ViewType = .menu, action : (()->Void)? = nil ) -> some View {
+                        Binding <FMM.ViewType>, switchToView : FMM.ViewType = .menu,
+                       action : (()->Void)? = nil, fontSize : CGFloat = 30 ) -> some View {
      
         HStack {
       
-            Text(title.localized).font(.custom(Theme.fontNameBold, size: 30)).padding()
+            Text(title.localized).font(.custom(Theme.fontNameBold, size:fontSize)).padding()
             .foregroundColor(.black)
          
             Spacer()

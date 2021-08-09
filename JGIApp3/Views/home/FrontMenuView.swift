@@ -64,7 +64,11 @@ extension FrontMenuView {
                 MapListView(viewType: $viewType)
                 .transition(.move(edge: .bottom))
                
-            
+            case .reviewMap :
+                MapVersionsReviewView(viewType: $viewType)
+                .transition(.move(edge: .bottom))
+                
+                
             case .profile :
             
                 UserProfileView(viewType: $viewType)
@@ -84,8 +88,6 @@ extension FrontMenuView {
             
                 PdfPreviewView(viewType: $viewType)
                    
-            default :
-                menuView()
             
         }
     }
@@ -132,7 +134,13 @@ extension FrontMenuView {
             
             HStack(spacing:buttonSpacing) {
                 
-                mapButtonView(title: "Review & Sign", imageSystemName: "signature", backgroundColor:  Color(UIColor(hex:"#226699ff")!))
+                mapButtonView(title: "Review & Sign", imageSystemName: "signature", backgroundColor:  Color(UIColor(hex:"#226699ff")!), action: {
+                    
+                    withAnimation{
+                        
+                        viewType = .reviewMap
+                    }
+                })
                
             
                 mapButtonView(title: "Messages", imageSystemName: "message",

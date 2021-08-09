@@ -16,7 +16,7 @@ struct PdfPreviewView  : View {
     @State  private var itmes : [Any] = []
     @State  private var shareSheetPresented : Bool = false
     @State  private var optionsSheetPresented : Bool = false
-    @State private var proceed : Bool = false
+    @State  private var proceed : Bool = false
     
     
     

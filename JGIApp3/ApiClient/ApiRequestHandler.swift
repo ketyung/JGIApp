@@ -624,6 +624,12 @@ extension ApiRequestHandler {
         fetch(module: "mapVersion", param: "id/\(id)" , decode: [MapVersion].self, completion: completion)
     }
     
+    
+    func fetchMapVersionsUnsignedBy (uid : String, completion:  ((Result<[MapVersion], Error>)->Void)? = nil ){
+        
+        fetch(module: "signer", param: "mapVersions/\(uid)/unsigned" ,decode: [MapVersion].self, completion: completion)
+    }
+    
 }
 
 

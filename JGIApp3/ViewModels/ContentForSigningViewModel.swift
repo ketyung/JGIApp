@@ -133,6 +133,7 @@ class ContentForSigningViewModel : ViewModel {
     
     func reset()
     {
+        
         siginingCompleted = false
         templateId = ""
         recipients = []

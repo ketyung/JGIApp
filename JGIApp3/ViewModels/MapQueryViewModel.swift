@@ -87,4 +87,36 @@ extension MapQueryViewModel {
             
         })
     }
+    
+    
+    func fetchVersionsUnsignedBy(userId : String) {
+        
+        self.inProgress = true
+        
+        ARH.shared.fetchMapVersionsUnsignedBy(uid: userId, completion:  {
+            
+            [weak self] res in
+            
+            DispatchQueue.main.async {
+            
+                switch(res) {
+                
+                    case .failure(let err) :
+                    
+                        self?.inProgress = false
+                        self?.errorMessage = (err as? ApiError)?.errorText
+                        self?.errorPresented = true
+                        
+                    case .success(let versions) :
+                        self?.mapVersions = versions
+                        self?.inProgress = false
+                        
+                       // print("versions.count::\(versions.count)")
+                    
+                        
+                }
+            }
+            
+        })
+    }
 }

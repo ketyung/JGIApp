@@ -186,3 +186,5 @@ create table if not exists jgiapp_map_version_signer (
     FOREIGN KEY (map_id, version_no) REFERENCES jgiapp_map_version(id, version_no),
     FOREIGN KEY (id) REFERENCES jgiapp_user(id)
 );
+
+alter table jgiapp_map_version_signer modify signed enum('Y','N') default 'N' NOT null;

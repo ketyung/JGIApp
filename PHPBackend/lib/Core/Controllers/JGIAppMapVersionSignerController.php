@@ -20,6 +20,7 @@ class JGIAppMapVersionSignerController extends Controller {
         
         $param1 = "";
         $param2 = "";
+        $param3 = "";
         
         
        // Log::printRToErrorLog($this->params);
@@ -34,11 +35,15 @@ class JGIAppMapVersionSignerController extends Controller {
                 $param2 = $this->params[1] ;
             }
           
+            if (isset($this->params[2])){
+                $param3 = $this->params[2] ;
+            }
+          
         }
         
         if ($param1 == 'mapVersions' && $param2 != '' ){
         
-            return $this->getMapVersionsById($param2);
+            return $this->getMapVersionsById($param2, $param3);
             
         }
         else {
@@ -50,21 +55,42 @@ class JGIAppMapVersionSignerController extends Controller {
     }
     
     
-    private function getMapVersionsById($userId){
+    private function getMapVersionsById($userId, $signed){
         
+
+        $sql =  "SELECT a.id, a.version_no as versionNo, 
+        a.created_by as createdBy, a.last_updated as lastUpdated FROM jgiapp_map_version a, 
+        jgiapp_map_version_signer b WHERE (a.id = b.map_id AND a.version_no = b.version_no)  
+        AND b.id = :id ";
+
+        $params = array('id'=>$userId);
+
+        if ($signed=='signed'){
+
+            $sql .= " AND b.signed = :signed";
+            $params['signed'] = 'Y';
+        }
+        else
+        if ($signed=='unsigned'){
+
+            $sql .= " AND b.signed != :signed";
+            $params['signed'] = 'Y';
+        
+        }
+
+       // Log::printRToErrorLog($sql);
+        
+
+        $sql.=" ORDER BY a.last_updated DESC ";
+
         $result =  
-        $this->dbObject->findBySQL(
-            "SELECT a.id, a.version_no as versionNo, 
-            a.created_by as createdBy, a.last_updated as lastUpdated FROM jgiapp_map_version a, 
-            jgiapp_map_version_signer b WHERE (a.id = b.map_id AND a.version_no = b.version_no)  
-            AND b.id = :id ORDER BY a.last_updated DESC ", 
-            array('id'=>$userId));
+        $this->dbObject->findBySQL( $sql , $params, true );
          
        
         if (count($result) > 0){
        
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = json_encode($result);
+            $response['body'] = json_encode($result, JSON_NUMERIC_CHECK);
             return $response;
            
         }
@@ -95,12 +121,15 @@ class JGIAppMapVersionSignerController extends Controller {
 
         if ($param1 == 'multiple') {
 
+         //   Log::printRToErrorLog($input);
+
             if ( isset($input['signers'])) {
 
                 $signers = $input['signers'];
                 $mapId = $input['map_id'];
                 $versionNo = $input['version_no'];
 
+            
 
                 foreach ( $signers as $signer) {
 
@@ -108,7 +137,9 @@ class JGIAppMapVersionSignerController extends Controller {
                     
                     $signer['map_id'] = $mapId;
                     $signer['version_no'] = $versionNo;
-                    
+                  //  Log::printRToErrorLog($signer);
+
+                   
                     $signer_db->insert($signer);
 
                 }

@@ -360,6 +360,11 @@ extension FrontMapView {
             signingViewModel.note = note
         }
         
+        if let mapId = viewModel.mapVersion?.id {
+            
+            signingViewModel.mapId = mapId
+        }
+        
         
         if let version = viewModel.mapVersion?.versionNo {
             
