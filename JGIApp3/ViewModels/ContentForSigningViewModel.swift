@@ -103,6 +103,21 @@ class ContentForSigningViewModel : ViewModel {
         }
     }
     
+    
+    var templateId : String {
+        
+        get {
+            
+            content.templateId ?? ""
+        }
+    
+        set(newVal) {
+            
+            content.templateId = newVal
+        }
+    }
+    
+    
 }
 
 extension ContentForSigningViewModel {

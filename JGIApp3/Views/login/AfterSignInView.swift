@@ -41,7 +41,7 @@ extension AfterSignInView {
         
         if switchToSigning {
             
-            DocuSignSigningView ()
+            BeforeSigningView(viewType: $viewType)
             .transition(.move(edge: .bottom))
             
         }

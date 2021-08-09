@@ -10,34 +10,28 @@ import SwiftUI
 
 struct TemplatesView : View {
     
-    @Binding var viewType : MenuView.ViewType
     
     @StateObject private var viewModel = TemplatesViewModel()
     
+    @EnvironmentObject private var signingViewModel : CFSVM
+    
+    
     var body: some View {
         
-        VStack {
+        VStack(alignment: .leading, spacing:20) {
             
-            Spacer().frame(height:50)
-            
-            Common.topBar(title: "Templates", switchToViewType: $viewType)
+            Text("Choose a template").font(.custom(Theme.fontName, size: 18))
             
             templatesList()
+            .frame(height:200)
+
             
-            Spacer()
-                
         }
-        .progressView(isShowing: $viewModel.inProgress)
-        .popOver(isPresented: $viewModel.errorPresented, content: {
-            
-            Common.errorAlertView(message: viewModel.errorMessage ?? "")
-        })
         .onAppear{
             
             viewModel.fetchTemplates()
         }
-        .themeFullView()
-       
+        
     }
 }
 
@@ -50,11 +44,41 @@ extension TemplatesView {
         
         if viewModel.templates.count > 0 {
         
-            List(viewModel.templates, id:\.templateId) {
-                templ in
+            
+            ScrollView(.vertical, showsIndicators: false ) {
+          
+                ForEach(viewModel.templates, id:\.templateId) {
+                    templ in
+                    
+                    
+                    Button (action : {
+                        
+                        signingViewModel.templateId = templ.templateId
+                        
+                    }) {
+                        
+                        HStack {
+                       
+                            Text("\(templ.name)").font(.custom(Theme.fontName, size: 18))
+                           
+                            Spacer()
+                        
+                            if templ.templateId == signingViewModel.templateId {
+                                
+                                Image(systemName: "checkmark.circle.fill").resizable().frame(width:24,height:24).foregroundColor(.green)
+                                
+                                Spacer().frame(width:5)
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                }
                 
-                Text("\(templ.name)").font(.custom(Theme.fontName, size: 18))
-            }.padding()
+            }
+            .padding()
+          
             
         }
         else {

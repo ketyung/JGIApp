@@ -36,7 +36,7 @@ extension MenuView {
         
             case .templates :
                     
-                TemplatesView(viewType: $viewType)
+                TemplatesView()
                 .transition(.move(edge: .bottom))
                
             case .none :

@@ -23,6 +23,8 @@ struct ContentForSigning {
     }
     
     
+    var templateId : String?
+    
     var mapId : String?
     
     var version : String?
