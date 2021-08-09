@@ -363,7 +363,7 @@ extension FrontMapView {
         
         if let version = viewModel.mapVersion?.versionNo {
             
-            signingViewModel.version = "\("Version".localized) : \(version)"
+            signingViewModel.versionNo = version
         }
         
         viewModel.mapActionDelegate?.exportImage(completion: { image in

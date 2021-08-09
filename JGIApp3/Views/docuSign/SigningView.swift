@@ -21,7 +21,10 @@ struct SigningView : View {
             
             Spacer().frame(height:50)
             
-            Common.topBar(title: "Signing", switchToViewType: $viewType)
+            Common.topBar(title: "Signing", switchToViewType: $viewType, action: {
+                
+                signingViewModel.reset()
+            })
             
             if signingViewModel.siginingCompleted {
                 

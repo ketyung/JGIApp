@@ -15,6 +15,8 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
     private var templatesManager: DSMTemplatesManager?
       
     @EnvironmentObject private var signingViewModel : CFSVM
+  
+    @EnvironmentObject private var userViewModel : UserViewModel
     
     //private let recipientData = ""
     
@@ -45,12 +47,11 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
             withAnimation{
            
                 signingViewModel.siginingCompleted = true
+                
+                signingViewModel.addSignersToRemote(currentUser: userViewModel.user)
                
             }
             
-            
-            print("completed???.xxx")
-        
           
         })
         
@@ -160,7 +161,7 @@ extension DocuSignSigningView  {
     
     private func tabData() -> [String : String] {
         
-        return ["versionNo" : signingViewModel.version, "mapId" : signingViewModel.mapId]
+        return ["versionNo" : "\(signingViewModel.versionNo)", "mapId" : signingViewModel.mapId]
     }
     
     private func receipients() -> [DSMRecipientDefault] {

@@ -6,6 +6,8 @@ use Core\Db\JGIAppMapVersionSigner as Signer;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
 use Util\Log as Log;
+use Util\StrUtil as StrUtil;
+
 
 class JGIAppMapVersionSignerController extends Controller {
     
@@ -55,8 +57,8 @@ class JGIAppMapVersionSignerController extends Controller {
             "SELECT a.id, a.version_no as versionNo, 
             a.created_by as createdBy, a.last_updated as lastUpdated FROM jgiapp_map_version a, 
             jgiapp_map_version_signer b WHERE (a.id = b.map_id AND a.version_no = b.version_no)  
-            AND b.id = :uid ORDER BY a.last_updated DESC ", 
-            array('uid'=>$userId));
+            AND b.id = :id ORDER BY a.last_updated DESC ", 
+            array('id'=>$userId));
          
        
         if (count($result) > 0){
@@ -102,7 +104,7 @@ class JGIAppMapVersionSignerController extends Controller {
 
                 foreach ( $signers as $signer) {
 
-                    $signer_db = new Signer();
+                    $signer_db = new Signer($this->db);
                     
                     $signer['map_id'] = $mapId;
                     $signer['version_no'] = $versionNo;

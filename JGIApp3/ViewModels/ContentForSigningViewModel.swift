@@ -31,17 +31,16 @@ class ContentForSigningViewModel : ViewModel {
     }
     
     
-    var version : String {
+    var versionNo : Int {
         
         get {
             
-            content.version ?? ""
-            
+            content.versionNo ?? 0
         }
         
         set(newVal) {
             
-            content.version = newVal
+            content.versionNo = newVal
         }
     }
     
@@ -131,6 +130,18 @@ class ContentForSigningViewModel : ViewModel {
     }
     
     
+    
+    func reset()
+    {
+        siginingCompleted = false
+        templateId = ""
+        recipients = []
+        attachment = nil
+        title = ""
+        note = ""
+        versionNo = 0
+        mapId = ""
+    }
 }
 
 
@@ -172,6 +183,45 @@ extension ContentForSigningViewModel {
         
     func generateAttachment( mapImage : UIImage?) {
         
-        self.attachment = PdfCreator().pdfData(title: title, body: note, version: version, mapImage: mapImage)
+        self.attachment = PdfCreator().pdfData(title: title, body: note, version: "Version : \(versionNo)", mapImage: mapImage)
+    }
+    
+    
+    
+    func addSignersToRemote(currentUser : User){
+        
+        var signers = [Signer]()
+        
+        recipients.forEach { r in
+            
+            var signer = Signer(id : r.id)
+            
+            if currentUser.id == signer.id {
+                
+                signer.signed = .signed
+                signer.dateSigned = Date()
+            }
+            signers.append(signer)
+        }
+        
+        let sg = SignerGroup(mapId: mapId, versionNo: versionNo, signers:  signers )
+        
+        ARH.shared.addSignerGroup(sg,returnType:SignerGroup.self, completion: {
+            
+            res in
+            
+            switch(res) {
+            
+                case .failure(let err) :
+                    print("Error.adding.signers.to.remote::\(err)")
+                
+                case .success(_) :
+                    return 
+                
+            
+            }
+            
+        })
+        
     }
 }

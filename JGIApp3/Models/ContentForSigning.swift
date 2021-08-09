@@ -34,7 +34,7 @@ struct ContentForSigning {
     
     var mapId : String?
     
-    var version : String?
+    var versionNo : Int?
     
     var title : String?
     
