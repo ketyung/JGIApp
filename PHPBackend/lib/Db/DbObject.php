@@ -25,7 +25,9 @@ class DbObject extends SQLBuilder {
 	protected $findByStatementt = null ;
 
     protected $findCountByStatementt = null ;
-    
+
+    protected $findBySQLStatement = null; 
+
     protected $lastErrorMessage = null ;
     
     const ERROR_ON_TX = -111;
@@ -202,6 +204,57 @@ class DbObject extends SQLBuilder {
             
             
             $result = $this->findAllStatement->fetchAll(\PDO::FETCH_ASSOC);
+            
+            return $result;
+        }
+        catch (\PDOException $e) 
+        {
+            
+            $this->lastErrorMessage = $e->getMessage();
+            
+            return null;
+                
+        }
+		
+	}
+
+
+    public function findBySQL($sql, Array $params = null,  $recreateStatement = false ){
+		
+		
+		try {
+				
+            if ($recreateStatement) {
+
+                $this->findBySQLStatement = $this->db->prepare( $sql);
+  
+            }
+            else {
+
+                if (!isset($this->findBySQLStatement)){
+				
+                    $this->findBySQLStatement = $this->db->prepare( $sql);
+                }
+            
+
+            }
+
+
+            if ( isset($params)) {
+
+	
+                $this->findBySQLStatement->execute($params);
+        
+            }
+            else {
+
+                $this->findBySQLStatement->execute();
+        
+            }
+		
+		    
+            
+            $result = $this->findBySQLStatement->fetchAll(\PDO::FETCH_ASSOC);
             
             return $result;
         }

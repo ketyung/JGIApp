@@ -266,6 +266,27 @@ class JGIAppUser extends JGIAppDbObject {
         $pk['id'] = $id;
         return $u->findBy($pk);
     }
+
+
+
+
+    static function decryptEmails(&$res) {
+
+        for($r=0; $r< count($res); $r++) {
+
+            $row = $res [$r];
+
+            $key = KM::key($row['seed'], true);
+            $nonce = KM::nonce($row['seed'], true);
+
+            $row['email'] = EncUtil::decrypt($row['email'], $key, $nonce);
+
+            unset($row['seed']);
+
+            $res[$r] = $row; 
+            
+        }
+    }
 }
 
 ?>

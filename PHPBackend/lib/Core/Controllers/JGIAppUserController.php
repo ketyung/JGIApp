@@ -40,9 +40,20 @@ class JGIAppUserController extends Controller {
             return $this->getByPhone( $param2 );
         }
         
-        else {
+        else if ( $param1 == 'all' ){
          
             return $this->getAll();
+        }
+
+        else if ( $param1 == 'withGroupInfo' ){
+         
+            return $this->getWithGroupInfo();
+        }
+        
+        else {
+
+            return $this->notFoundResponse();
+   
         }
     }
     
@@ -86,13 +97,49 @@ class JGIAppUserController extends Controller {
         
     }
     
-    
-    private function getAll(){
-        
-        $result = $this->dbObject->findAll(0,20);
+
+
+    private function getWithGroupInfo() {
+
+        $result =  
+        $this->dbObject->findBySQL(
+            "SELECT a.id, concat(a.first_name, ' ', a.last_name) as name , a.email, 
+            a.seed, b.name as groupName FROM jgiapp_user a, 
+            jgiapp_user_group b WHERE a.group_id = b.id ORDER BY a.id ");
+         
         
 
         if (count($result) > 0 ){
+
+            User::decryptEmails($result);
+       
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = json_encode($result);
+            
+           // Log::printRToErrorLog($response);
+     
+            return $response;
+           
+        }
+        else {
+            
+            return $this->notFoundResponse();
+        }
+   
+            
+    }
+    
+
+
+    private function getAll(){
+        
+        $result =  $this->dbObject->findAll(0,20);
+        
+        
+
+        if (count($result) > 0 ){
+
+            User::decryptEmails($result);
        
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = json_encode($result);
