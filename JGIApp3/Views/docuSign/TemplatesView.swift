@@ -23,7 +23,8 @@ struct TemplatesView : View {
             Text("Choose a template").font(.custom(Theme.fontName, size: 18))
             
             templatesList()
-          
+            .frame(height:200)
+            
             
         }
         .padding()
@@ -71,6 +72,9 @@ extension TemplatesView {
                                 Spacer().frame(width:5)
                             }
                         }
+                        .padding()
+                        .background(Color(UIColor(hex:"#ccddeeff")!))
+                        .cornerRadius(10)
                     }
                     
                     

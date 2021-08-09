@@ -27,12 +27,13 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
     
     
     
-    public func makeUIViewController(context: UIViewControllerRepresentableContext<DocuSignSigningView >) -> UIViewController {
+    public func makeUIViewController(context:
+    UIViewControllerRepresentableContext<DocuSignSigningView >) -> UIViewController {
         
        let controller = UIViewController()
         
-        self.displayTemplateForSignature(templateId: "e3394e8c-b989-4d36-bf50-6420f5fd69c8",
-        controller: controller, tabData: ["text" : "test"], recipientData: defaultReceipients(),
+        self.displayTemplateForSignature(templateId: signingViewModel.templateId ,
+        controller: controller, tabData: tabData(), recipientData: receipients(),
         customFields: nil, onlineSign: true, pdfData: signingViewModel.attachment, completion: { c, err in
             
             if let err = err {
@@ -127,18 +128,34 @@ extension DocuSignSigningView  {
 
 extension DocuSignSigningView  {
     
-    private func defaultReceipients() -> [DSMRecipientDefault] {
+    private func tabData() -> [String : String] {
         
-        let recipientDatum = DSMRecipientDefault()
-        // Use recipient roleName (other option to use recipient-id) to find unique recipient in the template
-        recipientDatum.recipientRoleName = "GIS User"
-        recipientDatum.recipientSelectorType = .recipientRoleName
-        recipientDatum.recipientType = .inPersonSigner
-        // In-person-signer name
-        recipientDatum.inPersonSignerName = "Christopher Chee"
-        // Host name (must match the name on the account) and email
-        recipientDatum.recipientName = "Christopher Chee"
-        recipientDatum.recipientEmail = "ketyung@gmail.com"
-        return [recipientDatum]
+        return ["versionNo" : signingViewModel.version, "mapId" : signingViewModel.mapId]
+    }
+    
+    private func receipients() -> [DSMRecipientDefault] {
+        
+        
+        var recipientsData =  [DSMRecipientDefault]()
+        
+        signingViewModel.recipients.forEach{
+            
+            recipient in
+    
+            let recipientDatum = DSMRecipientDefault()
+            recipientDatum.recipientRoleName = recipient.groupName ?? ""
+            recipientDatum.recipientSelectorType = .recipientRoleName
+            recipientDatum.recipientType = .inPersonSigner
+            // In-person-signer name
+            recipientDatum.inPersonSignerName = recipient.name ?? ""
+            // Host name (must match the name on the account) and email
+            recipientDatum.recipientName = recipient.name ?? ""
+            recipientDatum.recipientEmail =  recipient.email ?? ""
+            
+            recipientsData.append(recipientDatum)
+            
+        }
+        
+        return recipientsData
     }
 }
