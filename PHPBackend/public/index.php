@@ -8,6 +8,7 @@ use Core\Controllers\JGIAppUserGroupController;
 use Core\Controllers\JGIAppMessageController;
 use Core\Controllers\JGIAppMapController;
 use Core\Controllers\JGIAppMapVersionController;
+use Core\Controllers\JGIAppMapVersionSignerController;
 use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
@@ -70,6 +71,12 @@ function processUri(){
     if ($uri[1] == 'mapVersion'){
 
         $u = new JGIAppMapVersionController( DbConn::conn() , $requestMethod, $params );
+        $u->processRequest();
+    }
+    else
+    if ($uri[1] == 'signer'){
+
+        $u = new JGIAppMapVersionSignerController( DbConn::conn() , $requestMethod, $params );
         $u->processRequest();
     }
     else {

@@ -635,3 +635,14 @@ extension ApiRequestHandler {
     }
   
 }
+
+
+extension ApiRequestHandler {
+    
+    
+    func addSignerGroup <R:Decodable> (_ group : SignerGroup ,returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+        
+        send(module: "signer",   param: "multiple", dataObject: group, returnType: returnType,completion:  completion)
+    }
+    
+}

@@ -169,3 +169,20 @@ create table if not exists jgiapp_map_version_note (
     FOREIGN KEY (uid) REFERENCES jgiapp_user(id)
 
 );
+
+
+drop table if exists jgiapp_map_version_signer;
+
+create table if not exists jgiapp_map_version_signer (
+
+
+    id varchar(32) default 'x' not null,
+    map_id varchar(32) default 'x' NOT null,
+    version_no int(6) default 100 NOT null,
+    signed enum('Y', 'N'),
+    date_signed datetime,
+    last_updated datetime,
+    primary key(id,map_id, version_no),
+    FOREIGN KEY (map_id, version_no) REFERENCES jgiapp_map_version(id, version_no),
+    FOREIGN KEY (id) REFERENCES jgiapp_user(id)
+);
