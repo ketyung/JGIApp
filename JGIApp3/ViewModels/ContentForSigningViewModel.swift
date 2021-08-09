@@ -6,7 +6,7 @@
 //
 
 import PDFKit
-
+import DocuSignSDK
 
 typealias CFSVM = ContentForSigningViewModel
 
@@ -181,6 +181,22 @@ extension ContentForSigningViewModel {
 }
 
 extension ContentForSigningViewModel {
+    
+    func registerForSigningCompletion(){
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(docuSignCompleted),
+                                               name: NSNotification.Name.DSMSigningCompleted
+                                               , object: nil)
+      
+    }
+    
+    
+    @objc
+    private func docuSignCompleted(){
+        
+        print("docu.sign.completed")
+        
+    }
         
     func generateAttachment( mapImage : UIImage?) {
         

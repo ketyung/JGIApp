@@ -24,6 +24,8 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
     init(){
         
         templatesManager = DSMTemplatesManager()
+        
+       // signingViewModel.registerForSigningCompletion()
     }
     
     
@@ -120,6 +122,7 @@ extension DocuSignSigningView  {
         }*/
 
         
+        signingViewModel.registerForSigningCompletion()
         
         let envelopeDefaults = DSMEnvelopeDefaults()
         envelopeDefaults.recipientDefaults = recipientData.count > 0 ? recipientData : nil
