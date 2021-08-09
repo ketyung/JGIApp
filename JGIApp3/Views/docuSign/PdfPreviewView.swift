@@ -11,7 +11,7 @@ struct PdfPreviewView  : View {
     
     @Binding var viewType : FMM.ViewType
     
-    @EnvironmentObject private var contentViewModel : PCVM
+    @EnvironmentObject private var signingViewModel : CFSVM
     
     @State  private var itmes : [Any] = []
     @State  private var shareSheetPresented : Bool = false
@@ -47,7 +47,7 @@ extension PdfPreviewView {
             
             Common.topBar(title: "Map PDF Preview", switchToViewType: $viewType)
             
-            PdfViewUI(data: contentViewModel.pdfData())
+            PdfViewUI(data: signingViewModel.attachment)
             
             proceedButton()
             
@@ -60,7 +60,7 @@ extension PdfPreviewView {
             optionsView()
         })
         .sheet(isPresented: $shareSheetPresented, content: {
-            if let data = contentViewModel.pdfData() {
+            if let data = signingViewModel.attachment {
                 ShareView(activityItems: [data])
             }
             

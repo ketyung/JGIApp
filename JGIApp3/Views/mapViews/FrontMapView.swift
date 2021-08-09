@@ -36,7 +36,7 @@ struct FrontMapActionParam {
 
 struct FrontMapView: View {
     
-    @EnvironmentObject private var pdfViewModel : PCVM
+    @EnvironmentObject private var signingViewModel : CFSVM
     
     @EnvironmentObject private var viewModel : MAHVM
     
@@ -350,34 +350,31 @@ extension FrontMapView {
         
         viewModel.inProgress = true
         
-        pdfViewModel.clear()
         if let title = viewModel.mapVersion?.notes?.first?.title {
             
-            pdfViewModel.title = title
+            signingViewModel.title = title
         }
         
         if let note = viewModel.mapVersion?.notes?.first?.note {
             
-            pdfViewModel.body = note
+            signingViewModel.note = note
         }
         
         
         if let version = viewModel.mapVersion?.versionNo {
             
-            pdfViewModel.version = "\("Version".localized) : \(version)"
+            signingViewModel.version = "\("Version".localized) : \(version)"
         }
         
-        viewModel.mapActionDelegate?.exportImage(completion: {
+        viewModel.mapActionDelegate?.exportImage(completion: { image in
             
-            image in
             
-            pdfViewModel.image = image
-       
-            
-            viewModel.inProgress = false
-        
+            signingViewModel.generateAttachment(mapImage: image)
+           
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
         
+                viewModel.inProgress = false
+            
                 viewType = .pdfPreview
             
             })

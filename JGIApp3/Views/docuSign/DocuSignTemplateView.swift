@@ -14,7 +14,7 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
 
     private var templatesManager: DSMTemplatesManager?
       
-    @EnvironmentObject private var pdfViewModel : PdfContentViewModel
+    @EnvironmentObject private var signingViewModel : CFSVM
     
     //private let recipientData = ""
     
@@ -33,7 +33,7 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
         
         self.displayTemplateForSignature(templateId: "e3394e8c-b989-4d36-bf50-6420f5fd69c8",
         controller: controller, tabData: ["text" : "test"], recipientData: defaultReceipients(),
-        customFields: nil, onlineSign: true, pdfData: pdfViewModel.pdfData(), completion: { c, err in
+        customFields: nil, onlineSign: true, pdfData: signingViewModel.attachment, completion: { c, err in
             
             if let err = err {
                 
