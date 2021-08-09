@@ -42,13 +42,12 @@ extension BeforeSigningView {
                 TemplatesView()
                 
                 RecipientsView()
-                Spacer()
                 
                 Button(action : {
                     
                     withAnimation{
                         
-                        proceed = true 
+                        proceed = true
                     }
                 }){
                     
@@ -60,6 +59,8 @@ extension BeforeSigningView {
                     .cornerRadius(20)
                 }
                
+                Spacer()
+              
             }
             
             Spacer()
