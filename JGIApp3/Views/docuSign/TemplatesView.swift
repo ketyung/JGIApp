@@ -23,7 +23,7 @@ struct TemplatesView : View {
             Text("Choose a template").font(.custom(Theme.fontName, size: 18))
             
             templatesList()
-            .frame(height:200)
+            .frame(height:120)
             
             
         }
@@ -88,7 +88,7 @@ extension TemplatesView {
         }
         else {
             
-            Text("No template").font(.custom(Theme.fontName, size: 18))
+            Text("Loading templates ...").font(.custom(Theme.fontName, size: 18))
             .padding()
         }
         

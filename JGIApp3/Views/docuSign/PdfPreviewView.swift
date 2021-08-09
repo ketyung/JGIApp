@@ -93,10 +93,10 @@ extension PdfPreviewView {
                     
                     Spacer().frame(width: 5)
                     
+                    Text("Sign It With".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
+                    
                     Image("docusign").resizable().frame(width: 80, height : 17.2).aspectRatio(contentMode: .fit)
                     
-                    Text("Sign It".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
-            
                     Spacer()
                 }
                 .padding()

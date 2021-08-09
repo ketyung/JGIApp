@@ -23,7 +23,7 @@ struct RecipientsView : View {
             Text("Choose recipients").font(.custom(Theme.fontName, size: 18))
             
             recipientsListView()
-            .frame(height:200)
+            .frame(height:300)
                 
         }
         .padding()
@@ -37,28 +37,38 @@ struct RecipientsView : View {
 
 extension RecipientsView {
     
-    
+    @ViewBuilder
     private func recipientsListView() -> some View {
         
-        ScrollView(.vertical, showsIndicators: false ) {
+        if userViewModel.users.count > 0 {
+       
             
-            ForEach (userViewModel.users, id:\.id) {
+            ScrollView(.vertical, showsIndicators: false ) {
                 
-                user in
-                
-                Button(action : {
+                ForEach (userViewModel.users, id:\.id) {
                     
-                    let recipient = Recipient(id: user.id, name:
-                    "\(user.firstName ?? "") \(user.lastName ?? "")", email: user.email , groupName: user.groupName)
-                   
-                    signingViewModel.addRecipient(recipient)
-                }){
+                    user in
                     
-                   
-                    userRowView(user)
+                    Button(action : {
+                        
+                        let recipient = Recipient(id: user.id, name:
+                        "\(user.firstName ?? "") \(user.lastName ?? "")", email: user.email , groupName: user.groupName)
+                       
+                        signingViewModel.addRecipient(recipient)
+                    }){
+                        
+                       
+                        userRowView(user)
+                    }
                 }
             }
         }
+        else {
+            
+            Text("Loading users ...").font(.custom(Theme.fontName, size: 18))
+            .padding()
+        }
+      
     }
     
     
