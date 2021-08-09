@@ -34,9 +34,11 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
         
        let controller = DocuSignViewController()
         
+        /** signingViewModel.attachment */
+        
         self.displayTemplateForSignature(templateId: signingViewModel.templateId ,
         controller: controller, tabData: tabData(), recipientData: receipients(),
-        customFields: nil, onlineSign: true, pdfData: signingViewModel.attachment, completion: { c, err in
+        customFields: nil, onlineSign: true, pdfData:  nil , completion: { c, err in
             
             
             guard let _ = c else {
@@ -86,6 +88,7 @@ class DocuSignViewController : UIViewController {
 
 
 
+/***/
 struct DocuSignError : LocalizedError, CustomStringConvertible {
     
     var errorText : String?
@@ -108,13 +111,14 @@ extension DocuSignSigningView  {
         onlineSign: Bool, pdfData : Data? ,
         completion: ((UIViewController?, Error?) -> Void)? = nil)
     {
-        
-        guard let pdfData = pdfData else {
+       
+        /**        guard let pdfData = pdfData else {
         
             completion?(nil, DocuSignError(errorText: "No PDF data!"))
             
             return
-        }
+        }*/
+
         
         
         let envelopeDefaults = DSMEnvelopeDefaults()
