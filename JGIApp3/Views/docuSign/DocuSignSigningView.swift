@@ -39,19 +39,19 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
             
             guard let _ = c else {
                 
-                withAnimation{
-               
-                    signingViewModel.siginingCompleted = true
-                   
-                }
-                
                 return
             }
-            /**
-            if let err = err {
-                
-                print("error::\(err)")
-            }*/
+           
+            withAnimation{
+           
+                signingViewModel.siginingCompleted = true
+               
+            }
+            
+            
+            print("completed???.xxx")
+        
+          
         })
         
         return controller
@@ -144,7 +144,8 @@ extension DocuSignSigningView  {
                     //NSLog("Warning: Encountered `nil view` during signing.")
                     
                     completion?(nil, DocuSignError(errorText: "Nil viewcontroller"))
-                } else {
+                }
+                else {
                     // DocuSign SDK UI components are active if >=1 local signers are pending signature
                     //NSLog("DocuSign Native iOS SDK - UI components active")
                     

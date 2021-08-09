@@ -25,14 +25,13 @@ struct SigningView : View {
             
             DocuSignSigningView ()
             
-            if signingViewModel.siginingCompleted {
-                
-                completedView()
-            }
-            
             Spacer()
             
         }
+        .popOver(isPresented: $signingViewModel.siginingCompleted, content: {
+        
+            completedView()
+        })
         .padding()
         .themeFullView()
     }
@@ -45,7 +44,7 @@ extension SigningView {
         
         HStack {
             
-            Image(systemName: "Info.circle.fill").resizable().foregroundColor(.green).frame(width:30, height: 30)
+            Image(systemName: "info.circle.fill").resizable().foregroundColor(.green).frame(width:30, height: 30)
             
             Text("Completed".localized).font(.custom(Theme.fontName, size: 30))
             
