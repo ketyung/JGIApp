@@ -543,9 +543,9 @@ extension ApiRequestHandler {
     
     
     
-    func fetchUsers ( completion:  ((Result<[User], Error>)->Void)? = nil ){
+    func fetchUsersWithGroup ( completion:  ((Result<[User], Error>)->Void)? = nil ){
         
-        fetch(module: "user", decode: [User].self, completion: completion)
+        fetch(module: "user", param: "withGroupInfo",  decode: [User].self, completion: completion)
     }
     
     

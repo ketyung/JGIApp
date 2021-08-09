@@ -103,7 +103,7 @@ class JGIAppUserController extends Controller {
 
         $result =  
         $this->dbObject->findBySQL(
-            "SELECT a.id, concat(a.first_name, ' ', a.last_name) as name , a.email, 
+            "SELECT a.id, a.first_name as firstName, a.last_name as lastName , a.email, 
             a.seed, b.name as groupName FROM jgiapp_user a, 
             jgiapp_user_group b WHERE a.group_id = b.id ORDER BY a.id ");
          

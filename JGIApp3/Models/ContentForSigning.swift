@@ -12,13 +12,19 @@ import Foundation
 struct ContentForSigning {
     
     
-    struct Recipient {
+    struct Recipient : Equatable {
+        
+        var id : String?
         
         var name : String?
         
         var email : String?
         
         var groupName : String?
+        
+        static func == (lhs: Recipient, rhs: Recipient) -> Bool {
+            return lhs.id  == rhs.id
+        }
         
     }
     

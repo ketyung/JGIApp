@@ -120,6 +120,35 @@ class ContentForSigningViewModel : ViewModel {
     
 }
 
+
+extension ContentForSigningViewModel {
+    
+    
+    func addRecipient(_ recipient : ContentForSigning.Recipient, removeIfExists : Bool = true ) {
+        
+        if removeIfExists {
+            
+            if recipients.contains(recipient) {
+                
+                recipients.remove(object: recipient)
+            }
+            else {
+                
+                recipients.append(recipient)
+            }
+        }
+        else {
+            
+            if !recipients.contains(recipient) {
+                
+                recipients.append(recipient)
+          
+            }
+        }
+        
+    }
+}
+
 extension ContentForSigningViewModel {
         
     func generateAttachment( mapImage : UIImage?) {

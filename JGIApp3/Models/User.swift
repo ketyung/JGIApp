@@ -34,6 +34,7 @@ struct User : Codable {
     var dob : Date?
     var email : String?
     var groupId : String?
+    var groupName : String?
     var password : String?
     var passwordAgain : String?
     var phoneNumber : String?

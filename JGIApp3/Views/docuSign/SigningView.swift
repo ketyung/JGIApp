@@ -9,19 +9,24 @@ import Foundation
 import SwiftUI
 
 
-struct TemplateView : View {
+struct SigningView : View {
+    
+    @Binding var viewType : FMM.ViewType
     
     var body: some View {
         
         VStack{
             
+            Spacer().frame(height:50)
+            
+            Common.topBar(title: "Signing", switchToViewType: $viewType)
+            
             DocuSignSigningView ()
+            
+            Spacer()
             
         }
         .padding()
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        .background(Theme.commonBgColor)
-        .edgesIgnoringSafeArea(.all)
-  
+        .themeFullView()
     }
 }
