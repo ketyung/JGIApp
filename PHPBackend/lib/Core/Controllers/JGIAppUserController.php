@@ -82,6 +82,8 @@ class JGIAppUserController extends Controller {
         
         if ($this->dbObject->findBy($pk)){
        
+            $this->dbObject->loadGroupName();
+
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = $this->dbObject->toJson(array("seed"));
             
@@ -307,6 +309,7 @@ class JGIAppUserController extends Controller {
             // 3rd param false = no encrypt
             if ($this->dbObject->update($userInfo, true, false) > 0){
                 
+                $this->dbObject->loadGroupName();
 
                 $dobj = $this->dbObject->copy();
                 // remove unnecessary fields 

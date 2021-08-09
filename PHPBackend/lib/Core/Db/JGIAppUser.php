@@ -24,6 +24,8 @@ class JGIAppUser extends JGIAppDbObject {
     public $lastName;
     
     public $groupId;
+
+    public $groupName;
     
     public $dob;
     
@@ -90,6 +92,26 @@ class JGIAppUser extends JGIAppDbObject {
         $input['seed'] = $seed;
         
  	}
+
+
+
+    public function loadGroupName(){
+
+
+
+        $result =  
+        $this->findBySQL(
+            "SELECT name FROM jgiapp_user_group WHERE id = :id ", array('id'=>$this->groupId));
+         
+        if (count($result) > 0 ){
+
+            $this->groupName = $result[0]['name'];
+
+        }    
+
+        unset($result);
+        
+    } 
     
     public function findBy($pk){
         
