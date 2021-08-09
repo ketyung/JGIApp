@@ -23,15 +23,21 @@ struct SigningView : View {
             
             Common.topBar(title: "Signing", switchToViewType: $viewType)
             
-            DocuSignSigningView ()
+            if signingViewModel.siginingCompleted {
+                
+                completedView()
+          
+            }
+            else {
+                
+                DocuSignSigningView ()
+                
+              
+            }
             
             Spacer()
             
         }
-        .popOver(isPresented: $signingViewModel.siginingCompleted, content: {
-        
-            completedView()
-        })
         .padding()
         .themeFullView()
     }
