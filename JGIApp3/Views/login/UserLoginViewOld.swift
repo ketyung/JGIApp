@@ -9,7 +9,9 @@ import SwiftUI
 struct UserLoginViewOld : View {
     
     @EnvironmentObject private var viewModel : AuthenticationViewModel
-    
+   
+    @EnvironmentObject private var userViewModel : UserViewModel
+   
     @Binding var viewType : FMM.ViewType
     
     @State private var pushToNext : Bool = false
@@ -36,13 +38,19 @@ extension UserLoginViewOld {
         
         VStack {
             
-            Spacer().frame(height:200)
+            Spacer().frame(height:50)
             
+            
+            Common.topBar(title: "DocuSign Sign In", switchToViewType: $viewType)
             
             signInPanel()
             
             
             Spacer()
+        }
+        .onAppear{
+            
+            viewModel.email = userViewModel.email
         }
         .themeFullView()
         
