@@ -37,6 +37,8 @@ struct FrontMenuView : View {
     
     @State private var frontMapActionParam : FMAP = .defaultValue
     
+    @EnvironmentObject private var userViewModel : UserViewModel
+    
     var body : some View {
         
         switchView()
@@ -107,6 +109,13 @@ extension FrontMenuView {
             Spacer().frame(height : 20)
             
             Image("logo").resizable().frame(width:150, height: 69).aspectRatio(contentMode: .fit)
+            
+            if userViewModel.hasSignedIn {
+           
+                Text("You're signed in as \(userViewModel.user.firstName ?? "") \(userViewModel.user.lastName ?? "")").font(.custom(Theme.fontNameBold, size: 18)).padding()
+               
+            }
+            
             
             HStack(spacing: buttonSpacing) {
                 

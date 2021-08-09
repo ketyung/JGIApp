@@ -23,13 +23,14 @@ struct MapVersionsReviewView : View {
             
             Spacer().frame(height: 30)
         
-            Common.topBar(title: "Map Versions You Need To Review & Sign", switchToViewType: $viewType, fontSize: 16)
+            Common.topBar(title: "Map Versions You Need To Review & Sign", switchToViewType: $viewType, fontSize: Common.isIPad() ? 24 : 16)
        
             HStack {
                 
-                Text("Your role is :").font(.custom(Theme.fontName, size: 16))
+                let fsz : CGFloat =  Common.isIPad() ? 26 : 16
+                Text("Your role is :").font(.custom(Theme.fontName, size: fsz))
                
-                Text("\(userViewModel.user.groupName ?? "")").font(.custom(Theme.fontNameBold, size: 16))
+                Text("\(userViewModel.user.groupName ?? "")").font(.custom(Theme.fontNameBold, size: fsz))
                
             }
             .padding()
