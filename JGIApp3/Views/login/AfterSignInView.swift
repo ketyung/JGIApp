@@ -41,7 +41,7 @@ extension AfterSignInView {
         
         if switchToSigning {
             
-            DocuSignTemplateView()
+            DocuSignSigningView ()
             .transition(.move(edge: .bottom))
             
         }
@@ -66,13 +66,11 @@ extension AfterSignInView {
             Spacer().frame(height:50)
             Common.topBar(title: "Error", switchToViewType: $viewType )
             
+            Common.errorAlertView(message: viewModel.errorMessage ?? "")
+            
             Spacer()
       
         }
-        .popOver(isPresented: $viewModel.errorPresented, content: {
-            
-            Common.errorAlertView(message: viewModel.errorMessage ?? "")
-        })
        
     }
     

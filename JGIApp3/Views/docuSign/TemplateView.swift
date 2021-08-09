@@ -15,7 +15,7 @@ struct TemplateView : View {
         
         VStack{
             
-            DocuSignTemplateView()
+            DocuSignSigningView ()
             
         }
         .padding()

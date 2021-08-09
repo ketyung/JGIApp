@@ -228,7 +228,7 @@ extension FrontMapView {
            
             if actionParam.mode != .viewOnly {
         
-                Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 300))
+                Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 330))
                 
                 if actionParam.mode != .sign {
                 

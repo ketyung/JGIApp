@@ -37,7 +37,7 @@
 		1001243C26B6C91800074BF1 /* PlaceHolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001242E26B6C91800074BF1 /* PlaceHolderStyle.swift */; };
 		1001244B26B6C92300074BF1 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001243F26B6C92300074BF1 /* TemplateView.swift */; };
 		1001244C26B6C92300074BF1 /* TemplatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244026B6C92300074BF1 /* TemplatesView.swift */; };
-		1001244D26B6C92300074BF1 /* DocuSignTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244126B6C92300074BF1 /* DocuSignTemplateView.swift */; };
+		1001244D26B6C92300074BF1 /* DocuSignSigningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244126B6C92300074BF1 /* DocuSignSigningView.swift */; };
 		1001244E26B6C92300074BF1 /* AfterSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244326B6C92300074BF1 /* AfterSignInView.swift */; };
 		1001244F26B6C92300074BF1 /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244426B6C92300074BF1 /* UserLoginView.swift */; };
 		1001245026B6C92300074BF1 /* OAuthTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001244526B6C92300074BF1 /* OAuthTokenView.swift */; };
@@ -116,7 +116,7 @@
 		1001242E26B6C91800074BF1 /* PlaceHolderStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceHolderStyle.swift; sourceTree = "<group>"; };
 		1001243F26B6C92300074BF1 /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 		1001244026B6C92300074BF1 /* TemplatesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplatesView.swift; sourceTree = "<group>"; };
-		1001244126B6C92300074BF1 /* DocuSignTemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocuSignTemplateView.swift; sourceTree = "<group>"; };
+		1001244126B6C92300074BF1 /* DocuSignSigningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocuSignSigningView.swift; sourceTree = "<group>"; };
 		1001244326B6C92300074BF1 /* AfterSignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterSignInView.swift; sourceTree = "<group>"; };
 		1001244426B6C92300074BF1 /* UserLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
 		1001244526B6C92300074BF1 /* OAuthTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthTokenView.swift; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 			children = (
 				1001243F26B6C92300074BF1 /* TemplateView.swift */,
 				1001244026B6C92300074BF1 /* TemplatesView.swift */,
-				1001244126B6C92300074BF1 /* DocuSignTemplateView.swift */,
+				1001244126B6C92300074BF1 /* DocuSignSigningView.swift */,
 				10D0324026BF742E0082B8BB /* PdfViewUI.swift */,
 				10D0324626BF7C690082B8BB /* PdfPreviewView.swift */,
 				10D0324826BF7CAA0082B8BB /* ShareView.swift */,
@@ -572,7 +572,7 @@
 			files = (
 				1001249426BBC6F400074BF1 /* UserProfileFormView.swift in Sources */,
 				1001249C26BD3B8E00074BF1 /* MapListView.swift in Sources */,
-				1001244D26B6C92300074BF1 /* DocuSignTemplateView.swift in Sources */,
+				1001244D26B6C92300074BF1 /* DocuSignSigningView.swift in Sources */,
 				1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */,
 				1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */,
 				1001245026B6C92300074BF1 /* OAuthTokenView.swift in Sources */,

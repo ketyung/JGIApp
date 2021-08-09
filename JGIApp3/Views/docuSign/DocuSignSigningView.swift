@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 import DocuSignSDK
 
-struct DocuSignTemplateView : UIViewControllerRepresentable {
+struct DocuSignSigningView  : UIViewControllerRepresentable {
 
     private var templatesManager: DSMTemplatesManager?
       
@@ -27,7 +27,7 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
     
     
     
-    public func makeUIViewController(context: UIViewControllerRepresentableContext<DocuSignTemplateView>) -> UIViewController {
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<DocuSignSigningView >) -> UIViewController {
         
        let controller = UIViewController()
         
@@ -45,7 +45,7 @@ struct DocuSignTemplateView : UIViewControllerRepresentable {
     }
     
     public func updateUIViewController(_ uiViewController: UIViewController,
-                                context: UIViewControllerRepresentableContext<DocuSignTemplateView>) {
+                                context: UIViewControllerRepresentableContext<DocuSignSigningView >) {
 
         
     }
@@ -71,7 +71,7 @@ struct DocuSignError : LocalizedError, CustomStringConvertible {
 }
 
 
-extension DocuSignTemplateView {
+extension DocuSignSigningView  {
     
     private func displayTemplateForSignature(templateId: String, controller: UIViewController, tabData: Dictionary<String, String>, recipientData: Array<DSMRecipientDefault>, customFields:DSMCustomFields?,
         onlineSign: Bool, pdfData : Data? ,
@@ -125,7 +125,7 @@ extension DocuSignTemplateView {
 }
 
 
-extension DocuSignTemplateView {
+extension DocuSignSigningView  {
     
     private func defaultReceipients() -> [DSMRecipientDefault] {
         
