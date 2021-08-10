@@ -55,7 +55,7 @@ extension PdfPreviewView {
             
         }
         
-        .bottomSheet(isPresented:$optionsSheetPresented , height: 300, showGrayOverlay: true, content: {
+        .bottomSheet(isPresented:$optionsSheetPresented , height: 240, showGrayOverlay: true, content: {
             
             optionsView()
         })
