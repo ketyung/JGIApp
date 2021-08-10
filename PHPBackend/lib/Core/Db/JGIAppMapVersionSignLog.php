@@ -3,6 +3,7 @@ namespace Core\Db;
 
 use Db\DbObject as DbObject;
 use Core\Db\JGIAppDbObject as JGIAppDbObject;
+use Core\Db\JGIAppMapVersionSigner as Signer;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\Log as Log;
@@ -62,7 +63,7 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
 
         $params = array('map_id'=>$mapId, 'version_no'=>$versionNo, 'template_id' =>$templateId);
 
-        $result =  $this->dbObject->findBySQL( $sql , $params, true );
+        $result =  $this->findBySQL( $sql , $params, true );
 
         if (count($result) > 0) {
 
@@ -77,6 +78,8 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
 
     public function loadBy($mapId, $versionNo){
 
+
+       // Log::printRToErrorLog("$mapId::$versionNo");
 
         $a = new ArrayOfSQLWhereCol();
         $a[] = new SQLWhereCol("map_id", "=", " AND ", $mapId);
@@ -93,6 +96,20 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
 
         return null;
        
+    }
+
+
+
+    private function getSigners($logId){
+
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("log_id", "=", "", $logId);
+       
+        $signer_db = new Signer($this->db);
+        $result = $signer_db->findByWhere($a, true, " ORDER BY last_updated DESC", 0, 50);
+    
+        return $result;
+
     }
 }
 ?>
