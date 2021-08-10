@@ -34,7 +34,7 @@ class JGIAppMapVersionSigner extends JGIAppDbObject {
     public function findById($uid, $limit = 0, $offset = 50){
     
         $a = new ArrayOfSQLWhereCol();
-        $a[] = new SQLWhereCol("id", "=", "", $uid);
+        $a[] = new SQLWhereCol("uid", "=", "", $uid);
 
         $res = $this->findByWhere($a, true, " ORDER BY last_updated DESC", $limit, $offset);
         

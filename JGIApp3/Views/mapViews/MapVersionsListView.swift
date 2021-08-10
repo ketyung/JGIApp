@@ -27,10 +27,11 @@ struct MapVersionsListView : View {
     @State var mode : Mode = .byMapId
     
     @State var needFullView : Bool = true
-  
+    
+    @Binding var detailViewPresented : Bool
+    
     @StateObject private var viewModel = MQVM()
     
-    @State private var detailViewPresented : Bool = false
     
     @State private var frontMapActionParam : FMAP = .defaultValue
     

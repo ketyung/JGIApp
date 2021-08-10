@@ -61,9 +61,9 @@ class JGIAppMapVersionSignerController extends Controller {
         $sql =  "SELECT a.id, a.version_no as versionNo, 
         a.created_by as createdBy, a.last_updated as lastUpdated FROM jgiapp_map_version a, 
         jgiapp_map_version_signer b WHERE (a.id = b.map_id AND a.version_no = b.version_no)  
-        AND b.id = :id ";
+        AND b.uid = :uid ";
 
-        $params = array('id'=>$userId);
+        $params = array('uid'=>$userId);
 
         if ($signed=='signed'){
 

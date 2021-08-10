@@ -14,21 +14,29 @@ struct MapListView : View {
     @StateObject private var viewModel = MQVM()
     
     @EnvironmentObject private var userViewModel : UserViewModel
-   
+ 
+    @EnvironmentObject private var signingViewModel : SVM
+ 
     @State private var mapVersionViewPresented : Bool = false
     
     @State private var selectedMapId : String = ""
     
     @State private var selectedMapTitle : String = ""
     
+    @State private var listDetailViewPresented : Bool = false
+ 
+    
     var body : some View {
         
    
         if mapVersionViewPresented {
             
-            MapVersionsListView(viewType: $viewType, mapId: $selectedMapId, mapTitle: $selectedMapTitle)
+            MapVersionsListView(viewType: $viewType, mapId: $selectedMapId,
+            mapTitle: $selectedMapTitle, detailViewPresented: $listDetailViewPresented)
             .transition(.move(edge: .bottom))
-            
+            .onAppear{
+                signingViewModel.firstSigner = true
+            }
         }
         else {
             
