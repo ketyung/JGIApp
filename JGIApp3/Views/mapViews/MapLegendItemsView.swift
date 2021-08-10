@@ -9,13 +9,17 @@ import SwiftUI
 
 struct MapLegendItemsView : View {
     
+    @Binding var isPresented : Bool
+    
     @EnvironmentObject private var viewModel : MapLegendItemsViewModel
     
-   
+    @EnvironmentObject private var mapActionViewModel : MAHVM
+    
     var body : some View {
         
         VStack {
             
+            topBar()
                 
             ForEach(viewModel.items, id:\.id) {
                 
@@ -35,10 +39,56 @@ struct MapLegendItemsView : View {
                 .padding()
             }
             
+            Spacer()
+            
         }
         .padding()
         .background(Color.white)
         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
     }
     
+}
+
+
+extension MapLegendItemsView {
+    
+    private func topBar() -> some View {
+        
+        HStack(spacing:20) {
+            
+            Spacer().frame(width: 5)
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    isPresented = false
+                }
+                
+            }){
+           
+                Common.buttonView("close", imageColorInvert: true)
+               
+            }
+                
+            
+            Button(action: {
+              
+                withAnimation{
+                    
+                    mapActionViewModel.legendEditingViewPresented = true
+                    
+                }
+                
+            }){
+          
+                Text("Define Map Legend".localized).font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(.black)
+              
+            }
+           
+            
+            
+            
+        }
+    }
 }

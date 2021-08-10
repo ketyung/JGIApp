@@ -71,7 +71,9 @@ class MapActionHandlingViewModel : ViewModel  {
     @Published var optionsPresented : Bool = false
     
     @Published var legendViewPresented : Bool = true
-    
+  
+    @Published var legendEditingViewPresented : Bool = false
+  
     @Published var mapSuccessfullySavedToRemote : Bool = false
     
     @Published var selectedColor: UIColor = .red

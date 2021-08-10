@@ -63,7 +63,6 @@ struct FrontMapView: View {
     
     @State private var showMapVersionNote : Bool = false
     
-    @State private var legendEditingPresented : Bool = false
     
     init( viewType : Binding <FMM.ViewType>, actionParam : Binding <FMAP>) {
         
@@ -162,7 +161,7 @@ extension FrontMapView {
         })
         .popOverAt( .mapLegendPosition , isPresented: $viewModel.legendViewPresented, content: {
             
-            MapLegendItemsView().frame(width: 300)
+            MapLegendItemsView(isPresented: $viewModel.legendViewPresented).frame(width: 300)
         })
         
         .bottomSheet(isPresented: $viewModel.optionsPresented, height: 450, showGrayOverlay: true,
@@ -179,9 +178,9 @@ extension FrontMapView {
            
         })
         
-        .bottomSheet(isPresented: $legendEditingPresented, height: 800, showGrayOverlay: true, content: {
+        .bottomSheet(isPresented: $viewModel.legendEditingViewPresented, height: 800, showGrayOverlay: true, content: {
             
-            MapLegendEditView(isPresented: $legendEditingPresented)
+            MapLegendEditView(isPresented: $viewModel.legendEditingViewPresented)
         })
         .alert(isPresented: $promptHasItems){
             
@@ -316,7 +315,7 @@ extension FrontMapView {
                 
                 withAnimation{
                     
-                    legendEditingPresented = true
+                    viewModel.legendViewPresented = true
                 }
                 
             }){
