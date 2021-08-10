@@ -57,19 +57,7 @@ extension MapLegendItemsView {
         HStack(spacing:20) {
             
             Spacer().frame(width: 5)
-            
-            Button(action : {
-                
-                withAnimation{
-                    
-                    isPresented = false
-                }
-                
-            }){
-           
-                Common.buttonView("close", imageColorInvert: true)
-               
-            }
+          
                 
             
             Button(action: {
@@ -86,6 +74,20 @@ extension MapLegendItemsView {
               
             }
            
+            
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    isPresented = false
+                }
+                
+            }){
+           
+                Common.buttonView("close", imageColorInvert: true)
+               
+            }
             
             
             
