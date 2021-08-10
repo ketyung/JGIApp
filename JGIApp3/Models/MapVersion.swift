@@ -31,6 +31,8 @@ struct MapVersion : Codable {
     
     var legendItems : [MapLegendItem]?
     
+    var legendTitle : String?
+    
     var lastUpdated : Date?
     
     mutating func addNote(_ note : MapVersionNote) {

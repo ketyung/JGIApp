@@ -315,7 +315,7 @@ extension FrontMapView {
                 
                 withAnimation{
                     
-                    viewModel.legendViewPresented = true
+                    viewModel.legendViewPresented.toggle()
                 }
                 
             }){

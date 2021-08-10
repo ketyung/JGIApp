@@ -86,10 +86,15 @@ class MapActionHandlingViewModel : ViewModel  {
     
     @Published var edited: Bool = false
     
-    private(set) var mapVersion: MapVersion?
+    @Published private(set) var mapVersion: MapVersion?
     
     @Published private var actionType : ActionType = .addPoint
     
+   
+    var legendTitle : String?{
+        
+        mapVersion?.legendTitle
+    }
     
     func resetAllNeccessary() {
         
@@ -464,13 +469,15 @@ extension MapActionHandlingViewModel {
 
 extension MapActionHandlingViewModel {
     
-    func setLegendItems( _ items : [MapLegendItem]) {
+    func setLegendItems( _ items : [MapLegendItem], title : String) {
         
         mapVersion?.legendItems = items
+        mapVersion?.legendTitle = title
         if (mapVersion?.legendItems?.count ?? 0) > 0 {
             
             withAnimation{
        
+                edited = true 
                 legendViewPresented = true
             }
         }

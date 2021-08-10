@@ -29,6 +29,8 @@ struct MapLegendEditView : View {
             
             colorsScrollView()
             
+            Common.textFieldWithUnderLine("Title", text: $viewModel.title)
+            
             itemScrollView()
             
             Spacer()
@@ -81,7 +83,7 @@ extension MapLegendEditView {
                     
                     withAnimation{
                      
-                        mapActionViewModel.setLegendItems( viewModel.items)
+                        mapActionViewModel.setLegendItems( viewModel.items, title: viewModel.title)
                         
                         isPresented = false 
                     }

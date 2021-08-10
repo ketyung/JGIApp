@@ -133,7 +133,7 @@ extension CGPoint {
         }
         else {
   
-            return CGPoint(x: UIScreen.main.bounds.width - 340, y: -((UIScreen.main.bounds.height / 2) - 50))
+            return CGPoint(x: UIScreen.main.bounds.width - 380, y: -((UIScreen.main.bounds.height / 2) - 50))
       
         }
     }

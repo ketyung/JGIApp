@@ -11,6 +11,8 @@ class MapLegendItemsViewModel : ViewModel {
     
     @Published var items = [MapLegendItem]()
     
+    @Published var title : String = ""
+    
     func addItem (_ item : MapLegendItem){
         
         items.append(item)
