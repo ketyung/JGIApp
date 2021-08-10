@@ -17,6 +17,7 @@ class SigningViewModel : ViewModel {
     // this type of data not needed for my work
     @Published private var content  = ContentForSigning()
     
+    @Published var firstSigner : Bool = true
     
     var siginingUserId : String {
         
@@ -149,6 +150,7 @@ class SigningViewModel : ViewModel {
     func reset()
     {
         
+        firstSigner = true 
         siginingCompleted = false
         templateId = ""
         recipients = []
@@ -191,6 +193,12 @@ extension SigningViewModel {
           
             }
         }
+        
+    }
+    
+    
+    func prepareSigingRequirements(){
+        
         
     }
 }

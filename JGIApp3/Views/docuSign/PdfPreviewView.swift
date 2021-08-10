@@ -24,7 +24,7 @@ struct PdfPreviewView  : View {
         
         if proceed {
             
-           UserLoginViewOld(viewType: $viewType)
+            UserLoginViewOld(viewType: $viewType)
         }
         else {
        

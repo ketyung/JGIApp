@@ -336,7 +336,7 @@ extension FrontMapView {
             
             withAnimation{
                 
-                preparePdfPreview()
+                signButtonAction()
             }
             
         }){
@@ -345,6 +345,20 @@ extension FrontMapView {
         }
         
     }
+    
+    
+    private func signButtonAction(){
+        
+        if signingViewModel.firstSigner {
+            
+            preparePdfPreview()
+        }
+        else {
+            
+            
+        }
+    }
+    
     
     
     private func preparePdfPreview(){

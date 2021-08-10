@@ -651,4 +651,10 @@ extension ApiRequestHandler {
         send(module: "signLog",  dataObject: group, returnType: returnType,completion:  completion)
     }
     
+    
+    func fetchSignLog (mapId : String, versionNo : Int,  completion:  ((Result<SignLog, Error>)->Void)? = nil ){
+        
+        fetch(module: "signLog", param: "mapVersion/\(mapId)/\(versionNo)" ,decode: SignLog.self, completion: completion)
+    }
+   
 }

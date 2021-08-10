@@ -58,7 +58,7 @@ class JGIAppMapVersionSignLogController extends Controller {
     
     private function getSignLog($mapId, $versionNo){
         
-
+       
         $result = $this->dbObject->loadBy($mapId, $versionNo);
        
         if (isset($result)){
@@ -98,6 +98,9 @@ class JGIAppMapVersionSignLogController extends Controller {
             $input['map_id'], $input['version_no'], $input['template_id']
         );
            
+
+        //Log::printRToErrorLog($input);
+
         if ( $this->dbObject->save($input) > 0 ) {
 
             if ( isset($input['signers'])) {
@@ -105,7 +108,6 @@ class JGIAppMapVersionSignLogController extends Controller {
                 $signers = $input['signers'];
                 $mapId = $input['map_id'];
                 $versionNo = $input['version_no'];
-
 
                 foreach ( $signers as $signer) {
 
@@ -116,11 +118,12 @@ class JGIAppMapVersionSignLogController extends Controller {
                     $signer['version_no'] = $versionNo;
                     
                     if ( isset($signer['date_signed'])){
-
                         // use server's date instead
                         $signer['date_signed'] = date('Y-m-d H:i:s');
                     }
 
+                 //   Log::printRToErrorLog($signer);
+        
                     
                     $signer_db->save($signer);
 

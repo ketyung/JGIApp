@@ -102,11 +102,18 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
 
     private function getSigners($logId){
 
-        $a = new ArrayOfSQLWhereCol();
-        $a[] = new SQLWhereCol("log_id", "=", "", $logId);
        
+        $sql =  "SELECT a.uid, a.signed, a.date_signed, 
+        concat(b.first_name, ' ', b.last_name) as name, 
+        c.name as group_name  FROM jgiapp_map_version_signer a,
+        jgiapp_user b, jgiapp_user_group c 
+        WHERE a.log_id = :log_id
+        AND (a.uid = b.id AND c.id = b.group_id) ";
+
+        $params = array('log_id' => $logId);
+
         $signer_db = new Signer($this->db);
-        $result = $signer_db->findByWhere($a, true, " ORDER BY last_updated DESC", 0, 50);
+        $result = $signer_db->findBySQL($sql, $params, true);
     
         return $result;
 
