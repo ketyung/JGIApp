@@ -10,11 +10,15 @@ import SwiftUI
 struct MapLegendEditView : View {
     
     @Binding var isPresented : Bool
-    
-    @State private var selectedColor : String = ""
+
+    @State private var colorPickerPresented : Bool = false
+
+    @State private var selectedIndex : Int = 0
     
     @StateObject private var viewModel = MapLegendItemsViewModel()
     
+    @EnvironmentObject private var mapActionViewModel : MAHVM
+   
     var body: some View {
         
         VStack {
@@ -22,6 +26,8 @@ struct MapLegendEditView : View {
             Spacer().frame(height: 30)
 
             topBar()
+            
+            colorsScrollView()
             
             itemScrollView()
             
@@ -34,7 +40,7 @@ extension MapLegendEditView {
     
     private func topBar() -> some View {
         
-        HStack {
+        HStack(spacing:20) {
             
             Spacer().frame(width: 5)
             
@@ -51,9 +57,11 @@ extension MapLegendEditView {
                
             }
                 
-            Text("Define Map Legend".localized).font(.custom(Theme.fontNameBold, size: 22)).foregroundColor(.black)
+            Text("Define Map Legend".localized).font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(.black)
            
             Spacer()
+            
+            
             
             Button(action : {
                 
@@ -67,6 +75,25 @@ extension MapLegendEditView {
                
             }
             
+            if viewModel.items.count > 0 {
+           
+                Button(action : {
+                    
+                    withAnimation{
+                     
+                        mapActionViewModel.setLegendItems( viewModel.items)
+                        
+                        isPresented = false 
+                    }
+                }){
+               
+                    Common.buttonView(imageSysteName: "checkmark")
+                }
+               
+            }
+            
+            
+            
             Spacer().frame(width: 5)
         }
     }
@@ -78,45 +105,43 @@ extension MapLegendEditView {
     @ViewBuilder
     private func colorsScrollView() -> some View {
         
-        
-        ScrollView(.horizontal, showsIndicators: false ) {
-            
-            HStack {
+        if colorPickerPresented {
+       
+            ScrollView(.horizontal, showsIndicators: false ) {
                 
-                ForEach( FrontMapView.colorHexes, id:\.self) {
+                HStack {
                     
-                    color in
-                    
-                    ZStack {
-                    
+                    ForEach( FrontMapView.colorHexes, id:\.self) {
                         
-                        if selectedColor == color {
-                            
-                            Circle().fill(Color(UIColor(hex:"#009900ff")!))
-                            .frame(width: 30, height: 30)
+                        color in
+                        
+                        
+                        Circle().fill(Color(UIColor(hex:color)!)).frame(width:30, height: 30)
+                        .onTapGesture {
+                        
+                            withAnimation{
+                                
+                                viewModel.setColor(for: selectedIndex, color: color)
+                                
+                                colorPickerPresented = false
+                            }
                         }
-                        
-                        
-                        Circle().fill(Color(UIColor(hex:color)!)).frame(width: 24, height: 24)
-                        
-                        
+                       
+                       
                     }
-                    .onTapGesture {
                     
-                    }
-                   
-                   
                 }
-                
+                .padding()
+                .frame(width: UIScreen.main.bounds.width - 100 ,height: 40)
             }
             .padding()
-            .frame(width: UIScreen.main.bounds.width - 100 ,height: 40)
+            .background(Color(UIColor(hex:"#ddddddff")!))
+            .frame(width: UIScreen.main.bounds.width - 40 ,height: 40)
+            .cornerRadius(10)
+            .border(Color.black, width: 1, cornerRadius: 10)
+           
         }
-        .padding()
-        .background(Color(UIColor(hex:"#ddddddff")!))
-        .frame(width: UIScreen.main.bounds.width - 40 ,height: 40)
-        .cornerRadius(10)
-        .border(Color.black, width: 1, cornerRadius: 10)
+        
        
     }
 }
@@ -142,7 +167,17 @@ extension MapLegendEditView {
                    
                     HStack {
                         
-                        Rectangle().fill(Color(UIColor(hex:item.color ?? "#ff9933ff")!)).frame(width: 30, height: 30)
+                        
+                        Rectangle()
+                        .fill(Color(UIColor(hex:item.color ?? "#ff0000ff")!)).frame(width: 30, height: 30)
+                        .onTapGesture {
+                        
+                            withAnimation{
+                                
+                                selectedIndex = index
+                                colorPickerPresented = true
+                            }
+                        }
                         
                         Common.textFieldWithUnderLine("Label ...", text: b)
                         .frame(minWidth: 200)

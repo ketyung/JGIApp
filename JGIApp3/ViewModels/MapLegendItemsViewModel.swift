@@ -15,5 +15,15 @@ class MapLegendItemsViewModel : ViewModel {
         
         items.append(item)
     }
+    
+    
+    func setColor(for itemAtIndex : Int, color : String) {
+        
+        if var item = items[safe: itemAtIndex] {
+            item.color = color
+            items[itemAtIndex] = item
+        }
+    }
+    
 }
 

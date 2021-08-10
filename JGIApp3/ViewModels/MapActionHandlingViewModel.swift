@@ -460,15 +460,8 @@ extension MapActionHandlingViewModel {
 
 extension MapActionHandlingViewModel {
     
-    func addMapLegendItem ( _ item : MapLegendItem) {
+    func setLegendItems( _ items : [MapLegendItem]) {
         
-        guard let _ = mapVersion?.legendItems else {
-            
-            mapVersion?.legendItems = []
-            mapVersion?.legendItems?.append(item)
-            return
-        }
-        
-        mapVersion?.legendItems?.append(item)
+        mapVersion?.legendItems = items
     }
 }
