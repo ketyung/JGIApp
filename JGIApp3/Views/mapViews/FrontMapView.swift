@@ -40,6 +40,8 @@ struct FrontMapView: View {
     
     @EnvironmentObject private var viewModel : MAHVM
     
+    @EnvironmentObject private var userViewModel : UserViewModel
+    
     private static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
                 "#ffff00ff", "#00ff00ff", "#0000ffff", "#0088ffff",  "#ff00ffff"]
    
@@ -347,18 +349,30 @@ extension FrontMapView {
     
     private func preparePdfPreview(){
         
-        
         viewModel.inProgress = true
+        
+        signingViewModel.siginingUserId = userViewModel.id
+        
         
         if let title = viewModel.mapVersion?.notes?.first?.title {
             
             signingViewModel.title = title
+        }
+        else {
+            
+            signingViewModel.title = viewModel.titleText
         }
         
         if let note = viewModel.mapVersion?.notes?.first?.note {
             
             signingViewModel.note = note
         }
+        else {
+            
+            signingViewModel.note = viewModel.descriptionText
+        }
+        
+        
         
         if let mapId = viewModel.mapVersion?.id {
             

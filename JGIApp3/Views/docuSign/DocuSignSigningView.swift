@@ -16,16 +16,11 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
       
     @EnvironmentObject private var signingViewModel : SVM
   
-    @EnvironmentObject private var userViewModel : UserViewModel
-    
-    //private let recipientData = ""
-    
     
     init(){
         
         templatesManager = DSMTemplatesManager()
         
-       // signingViewModel.registerForSigningCompletion()
     }
     
     
@@ -107,13 +102,6 @@ extension DocuSignSigningView  {
         completion: ((UIViewController?, Error?) -> Void)? = nil)
     {
        
-        /**        guard let pdfData = pdfData else {
-        
-            completion?(nil, DocuSignError(errorText: "No PDF data!"))
-            
-            return
-        }*/
-
         
         signingViewModel.registerForSigningCompletion()
         

@@ -212,7 +212,7 @@ extension SigningViewModel {
         withAnimation{
             
             self.siginingCompleted = true
-            self.addSignersToRemote()
+            self.addSignLogToRemote()
             
             
             NotificationCenter.default.removeObserver(self,
@@ -229,15 +229,15 @@ extension SigningViewModel {
     
     
     
-    private func addSignersToRemote(){
+    private func addSignLogToRemote(){
         
         var signers = [Signer]()
         
         recipients.forEach { r in
             
-            var signer = Signer(id : r.id)
+            var signer = Signer(uid : r.id)
             
-            if self.siginingUserId == signer.id {
+            if self.siginingUserId == signer.uid {
                 
                 signer.signed = .signed
                 signer.dateSigned = Date()
@@ -246,16 +246,16 @@ extension SigningViewModel {
             signers.append(signer)
         }
         
-        let sg = SignerGroup(mapId: mapId, versionNo: versionNo, signers:  signers )
+        let sl = SignLog(mapId: mapId, versionNo: versionNo, signers:  signers, templateId: templateId )
         
-        ARH.shared.addSignerGroup(sg,returnType:SignerGroup.self, completion: {
+        ARH.shared.addSignLog(sl,returnType:SignLog.self, completion: {
             
             res in
             
             switch(res) {
             
                 case .failure(let err) :
-                    print("Error.adding.signers.to.remote::\(err)")
+                    print("Error.adding.sign.log.to.remote::\(err)")
                 
                 case .success(_) :
                     return 

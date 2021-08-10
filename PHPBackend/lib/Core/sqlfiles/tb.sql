@@ -170,21 +170,36 @@ create table if not exists jgiapp_map_version_note (
 
 );
 
+drop table if exists jgiapp_map_version_sign_log;
+
+create table if not exists jgiapp_map_version_sign_log (
+
+    id varchar(32) default 'x' NOT null,
+    map_id varchar(32) default 'x' NOT null,
+    version_no int(6) default 100 NOT null,
+    template_id varchar(64),
+    last_updated datetime,
+    primary key(id),
+    FOREIGN KEY (map_id, version_no) REFERENCES jgiapp_map_version(id, version_no)
+   
+);
+
+create index sign_log_idx on jgiapp_map_version_sign_log (map_id, version_no, template_id);
+
 
 drop table if exists jgiapp_map_version_signer;
 
 create table if not exists jgiapp_map_version_signer (
 
-
-    id varchar(32) default 'x' not null,
+    log_id varchar(32) default 'x' NOT null,
+    uid varchar(32) default 'x' not null,
     map_id varchar(32) default 'x' NOT null,
     version_no int(6) default 100 NOT null,
-    signed enum('Y', 'N'),
+    signed enum('Y', 'N') default 'N' NOT null,
     date_signed datetime,
     last_updated datetime,
-    primary key(id,map_id, version_no),
+    primary key(log_id,uid,map_id, version_no),
+    FOREIGN KEY (log_id) REFERENCES jgiapp_map_version_sign_log(id),
     FOREIGN KEY (map_id, version_no) REFERENCES jgiapp_map_version(id, version_no),
-    FOREIGN KEY (id) REFERENCES jgiapp_user(id)
+    FOREIGN KEY (uid) REFERENCES jgiapp_user(id)
 );
-
-alter table jgiapp_map_version_signer modify signed enum('Y','N') default 'N' NOT null;

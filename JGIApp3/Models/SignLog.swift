@@ -16,7 +16,7 @@ struct Signer : Codable {
         case not = "N"
     }
     
-    var id : String?
+    var uid : String?
     
     var signed : SignStatus?
     
@@ -25,12 +25,15 @@ struct Signer : Codable {
     var lastUpdated : Date?
 }
 
-struct SignerGroup : Codable {
+struct SignLog : Codable {
+    
     
     var mapId : String?
     
     var versionNo : Int?
     
     var signers : [Signer]?
-    
+ 
+    var templateId : String?
+ 
 }

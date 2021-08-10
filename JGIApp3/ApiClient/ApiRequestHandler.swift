@@ -646,9 +646,9 @@ extension ApiRequestHandler {
 extension ApiRequestHandler {
     
     
-    func addSignerGroup <R:Decodable> (_ group : SignerGroup ,returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
+    func addSignLog <R:Decodable> (_ group : SignLog ,returnType : R.Type? = nil, completion:  ((Result<ReturnedResult<R>, Error>)->Void)? = nil){
         
-        send(module: "signer",   param: "multiple", dataObject: group, returnType: returnType,completion:  completion)
+        send(module: "signLog",  dataObject: group, returnType: returnType,completion:  completion)
     }
     
 }
