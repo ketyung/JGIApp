@@ -58,8 +58,11 @@ extension SettingsView {
                 
                     Toggle("Always Save Map As A New Version", isOn: $alwaysSaveMapAsNewVersion).foregroundColor(.black)
 
+                   
+                    Toggle("Skip PDF Preview", isOn: $alwaysSaveMapAsNewVersion).foregroundColor(.black)
+
                     Spacer().frame(height: 30)
-                    
+                   
                     
                     if viewModel.hasSignedIn {
                    
@@ -80,12 +83,14 @@ extension SettingsView {
                        
                     }
                     
+                    Spacer().frame(height: 20)
+                  
                     aboutView()
                     
                     Spacer()
                 }
                 .padding()
-                .frame(width : UIScreen.main.bounds.width - 40, height: 400)
+                .frame(width : UIScreen.main.bounds.width - 40, height: 500)
                 .background(Color(UIColor(hex:"#ccddffff")!))
                 .cornerRadius(10)
             }
