@@ -213,6 +213,11 @@ extension SigningViewModel {
             
             self.siginingCompleted = true
             self.addSignersToRemote()
+            
+            
+            NotificationCenter.default.removeObserver(self,
+                                                      name: NSNotification.Name.DSMSigningCompleted,
+                                                      object: nil)
         }
         
     }
