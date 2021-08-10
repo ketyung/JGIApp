@@ -323,6 +323,8 @@ extension FrontMapView {
                 Common.buttonView(imageSysteName: "list.triangle")
            
             }
+            .opacity(!viewModel.legendViewPresented ? 1 : 0.35)
+            .disabled(viewModel.legendViewPresented)
             
             Button(action : {
                 
