@@ -234,6 +234,8 @@ extension SigningViewModel {
                         }
                         
                         self?.inProgress = false
+                        
+                        //print("recp.cnt::\(self?.recipients.count ?? 0)")
                         completion?(true)
                 }
             }
