@@ -91,11 +91,18 @@ extension PdfPreviewView {
             
                 HStack(spacing:20) {
                     
-                    Spacer().frame(width: 5)
+    
+                    ZStack {
+                        
+                        Circle().fill(Color(UIColor(hex:"#336699ff")!)).frame(width:40, height:40)
+                        
+                        Image(systemName: "signature").resizable().frame(width: 24, height: 24).foregroundColor(.white)
+                    }
                     
                     Text("Sign It With".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
                     
-                    Image("docusign").resizable().frame(width: 80, height : 17.2).aspectRatio(contentMode: .fit)
+                    Image("docusign").resizable().frame(width: 120, height : 26).aspectRatio(contentMode: .fit)
+                        
                     
                     Spacer()
                 }
@@ -119,13 +126,15 @@ extension PdfPreviewView {
                 
                 HStack(spacing:20) {
                     
-                    Spacer().frame(width: 5)
-              
-                    Image("share").resizable().frame(width: 30, height: 30).aspectRatio(contentMode: .fit)
+                    ZStack {
+                        
+                        Circle().fill(Color(UIColor(hex:"#336699ff")!)).frame(width:40, height:40)
+                        
+                        Image("share").resizable().frame(width: 24, height: 24).colorInvert()
+                    }
+                  
+                    Text("Share It".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
                     
-                    Text("Share".localized).font(.custom(Theme.fontNameBold, size: 24)).foregroundColor(.black)
-                    
-            
                     Spacer()
                     
                 }.padding()

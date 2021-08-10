@@ -356,6 +356,21 @@ extension FrontMapView {
         else {
             
             
+            signingViewModel.prepareForNonFirstSigner(title:
+                (viewModel.mapVersion?.notes?.first?.title ?? viewModel.titleText)
+                , note:(viewModel.mapVersion?.notes?.first?.note ?? viewModel.descriptionText)
+                , mapId: viewModel.mapVersion?.id ?? "", versionNo: viewModel.mapVersion?.versionNo ?? 100,
+              completion: { success in
+              
+                if success {
+                    
+                    withAnimation{
+                        
+                        viewType = .docuSignSignIn
+                    }
+                }
+            })
+
         }
     }
     

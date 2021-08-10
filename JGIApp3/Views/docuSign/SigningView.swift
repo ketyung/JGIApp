@@ -49,13 +49,28 @@ extension SigningView {
     
     private func completedView() -> some View {
         
-        HStack {
-            
-            Image(systemName: "info.circle.fill").resizable().foregroundColor(.green).frame(width:30, height: 30)
-            
-            Text("Completed".localized).font(.custom(Theme.fontName, size: 30))
-            
-            Spacer()
+        VStack(alignment: .leading, spacing:20) {
+        
+           
+            HStack {
+                
+                Image(systemName: "info.circle.fill").resizable().foregroundColor(.green).frame(width:30, height: 30)
+                
+                Text("Completed".localized).font(.custom(Theme.fontName, size: 30))
+                
+                Spacer()
+            }
+    
+            HStack {
+                
+                Text("By").font(.custom(Theme.fontName, size: 20))
+                
+                Image("docusign").resizable().frame(width:80, height: 17.2).aspectRatio(contentMode: .fit)
+             
+            }
         }
+        .padding()
+        
+        
     }
 }

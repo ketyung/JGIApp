@@ -30,6 +30,8 @@ struct FrontMenuView : View {
         
         case settings
         
+        case docuSignSignIn
+        
         // update 221
     }
     
@@ -85,6 +87,11 @@ extension FrontMenuView {
                 SettingsView(viewType: $viewType)
                 .transition(.move(edge: .bottom))
                 
+            
+            case .docuSignSignIn :
+                UserLoginViewOld(viewType: $viewType)
+                .transition(.move(edge: .bottom))
+                 
             
             case .pdfPreview :
             

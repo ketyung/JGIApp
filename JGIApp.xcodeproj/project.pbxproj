@@ -317,10 +317,12 @@
 				1001244026B6C92300074BF1 /* TemplatesView.swift */,
 				10D0325026C0C2340082B8BB /* RecipientsView.swift */,
 				1001244126B6C92300074BF1 /* DocuSignSigningView.swift */,
-				10D0324E26C0B2700082B8BB /* BeforeSigningView.swift */,
 				10D0324026BF742E0082B8BB /* PdfViewUI.swift */,
 				10D0324626BF7C690082B8BB /* PdfPreviewView.swift */,
 				10D0324826BF7CAA0082B8BB /* ShareView.swift */,
+				10D0324E26C0B2700082B8BB /* BeforeSigningView.swift */,
+				1001244326B6C92300074BF1 /* AfterSignInView.swift */,
+				1001244626B6C92300074BF1 /* UserLoginViewOld.swift */,
 			);
 			path = docuSign;
 			sourceTree = "<group>";
@@ -328,10 +330,8 @@
 		1001244226B6C92300074BF1 /* login */ = {
 			isa = PBXGroup;
 			children = (
-				1001244326B6C92300074BF1 /* AfterSignInView.swift */,
 				1001244426B6C92300074BF1 /* UserLoginView.swift */,
 				1001244526B6C92300074BF1 /* OAuthTokenView.swift */,
-				1001244626B6C92300074BF1 /* UserLoginViewOld.swift */,
 				1001244726B6C92300074BF1 /* OauthTokenWebView.swift */,
 				1001245526B766A800074BF1 /* MenuView.swift */,
 			);

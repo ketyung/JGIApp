@@ -178,7 +178,7 @@ extension Common {
         ZStack {
             
             Circle().fill(Color(UIColor(hex:"#228855ff")!)).frame(width: 30, height: 30)
-            .opacity(0.7)
+            //.opacity(0.7)
                 
             Image(systemName: imageSysteName).resizable().frame(width: 16, height: 16).foregroundColor(.white)
 
@@ -195,7 +195,7 @@ extension Common {
         ZStack {
             
             Circle().fill(Color(UIColor(hex:"#228855ff")!)).frame(width: 30, height: 30)
-            .opacity(0.7)
+           // .opacity(0.7)
                 
             if imageColorInvert {
             

@@ -23,7 +23,7 @@ struct RecipientsView : View {
             Text("Choose recipients").font(.custom(Theme.fontName, size: 18))
             
             recipientsListView()
-            .frame(height:300)
+            .frame(height:360)
                 
         }
         .padding()

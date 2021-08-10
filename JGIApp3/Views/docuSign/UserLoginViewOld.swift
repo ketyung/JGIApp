@@ -12,6 +12,8 @@ struct UserLoginViewOld : View {
    
     @EnvironmentObject private var userViewModel : UserViewModel
    
+    @EnvironmentObject private var signingViewModel : SVM
+
     @Binding var viewType : FMM.ViewType
     
     @State private var pushToNext : Bool = false
@@ -20,7 +22,14 @@ struct UserLoginViewOld : View {
 
         if viewModel.afterSignIn {
             
-            AfterSignInView(viewModel: viewModel, viewType: $viewType)
+            if signingViewModel.firstSigner {
+     
+                AfterSignInView(viewModel: viewModel, viewType: $viewType)
+            }
+            else {
+                
+                SigningView(viewType: $viewType)
+            }
         }
         else {
         
