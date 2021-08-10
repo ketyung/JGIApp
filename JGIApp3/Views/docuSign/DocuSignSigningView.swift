@@ -42,6 +42,16 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
                 
                 return
             }
+            
+            if let err = err {
+                
+                withAnimation{
+          
+                    signingViewModel.errorMessage = err.localizedDescription
+                    signingViewModel.errorPresented = true
+              
+                }
+            }
            
             
           
@@ -120,7 +130,7 @@ extension DocuSignSigningView  {
             animated: true) { view, error in
                 if let error = error {
                
-                    print("DocuSign.error::\(error)")
+                    print("DocuSign.error::\(error)::tmpId::\(templateId)")
                     
                     completion?(nil, error)
                     return

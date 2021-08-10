@@ -222,13 +222,13 @@ extension SigningViewModel {
                 
                     case .success(let sl) :
                         self?.templateId = sl.templateId ?? ""
-                        
                         sl.signers?.forEach{ sn in
                             
                             
                             let recipient = Recipient(id: sn.uid, name:sn.name,
                                                       email: sn.email , groupName: sn.groupName)
-                         
+                        
+                            
                             self?.addRecipient(recipient)
                             
                         }

@@ -90,9 +90,11 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
     
         if (count($result) > 0){
    
-            $result['signers'] = $this->getSigners($result[0]['id']);
+            $row = $result[0];
 
-            return $result;
+            $row['signers'] = $this->getSigners($result[0]['id']);
+
+            return $row;
         }
 
         return null;
