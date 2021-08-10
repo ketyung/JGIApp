@@ -70,6 +70,8 @@ class MapActionHandlingViewModel : ViewModel  {
   
     @Published var optionsPresented : Bool = false
     
+    @Published var legendViewPresented : Bool = true
+    
     @Published var mapSuccessfullySavedToRemote : Bool = false
     
     @Published var selectedColor: UIColor = .red
@@ -463,5 +465,12 @@ extension MapActionHandlingViewModel {
     func setLegendItems( _ items : [MapLegendItem]) {
         
         mapVersion?.legendItems = items
+        if (mapVersion?.legendItems?.count ?? 0) > 0 {
+            
+            withAnimation{
+       
+                legendViewPresented = true
+            }
+        }
     }
 }

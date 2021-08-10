@@ -160,6 +160,11 @@ extension FrontMapView {
             
             topMenuBar()
         })
+        .popOverAt( .mapLegendPosition , isPresented: $viewModel.legendViewPresented, content: {
+            
+            MapLegendItemsView().frame(width: 300)
+        })
+        
         .bottomSheet(isPresented: $viewModel.optionsPresented, height: 450, showGrayOverlay: true,
                      topBarBackgroundColor: Theme.commonBgColor ,
                      content:{
