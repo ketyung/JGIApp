@@ -19,4 +19,5 @@ struct MapLegendItem : Codable {
     
     var color : String?
     
+    var lastUpdated : Date?
 }

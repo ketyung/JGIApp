@@ -7,6 +7,7 @@ use Core\Db\JGIAppMapVersion as MapVersion;
 use Core\Db\JGIAppMapVersionNote as MapNote;
 use Core\Db\JGIAppMapVersionItem as VersionItem;
 use Core\Db\JGIAppMapVersionNote as VersionNote;
+use Core\Db\JGIAppMapLegendItem as LegendItem;
 use Core\Db\JGIAppMapVersionIpoint as VersionIpoint;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
@@ -174,13 +175,15 @@ class JGIAppMapVersionController extends Controller {
         if (isset($mapVersion['notes'])) {
 
             $notes = $mapVersion['notes'] ;
+
+            $notedb = new VersionNote($db);
+            
             foreach($notes as $note) {
 
                 $note['map_id'] = $mapVersion['id'];
                 $note['version_no'] = $mapVersion['version_no'];
                 $note['uid'] = $mapVersion['created_by'];
                 
-                $notedb = new VersionNote($db);
                 $notedb->insert($note);
     
             }
@@ -189,6 +192,28 @@ class JGIAppMapVersionController extends Controller {
 
     }
 
+
+    static function createLegendItemsIfAny($mapVersion, $db) {
+
+        // insert legend item if any 
+        if (isset($mapVersion['legend_items'])) {
+
+            $items = $mapVersion['legend_items'] ;
+
+            $itemdb = new LegendItem($db);
+               
+            foreach($items as $item) {
+
+                $item['map_id'] = $mapVersion['id'];
+                $item['version_no'] = $mapVersion['version_no'];
+                
+                $itemdb->insert($item);
+    
+            }
+         
+        }
+
+    }
 
 
     // insert items attached to this map version

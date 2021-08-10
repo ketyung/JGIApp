@@ -119,6 +119,8 @@ alter table jgiapp_map_version add latitude real after status;
 alter table jgiapp_map_version add longitude real after latitude;
 alter table jgiapp_map_version add level_of_detail smallint(2) after longitude;
 
+alter table jgiapp_map_version add legend_title varchar(128) after longitude;
+
 drop table if exists jgiapp_map_version_item;
 create table if not exists jgiapp_map_version_item (
 
@@ -205,3 +207,17 @@ create table if not exists jgiapp_map_version_signer (
 );
 
 
+drop table if exists jgiapp_map_legend_item;
+
+create table if not exists jgiapp_map_legend_item (
+
+    id smallint(2) default 1 NOT null,
+    map_id varchar(32) default 'x' NOT null,
+    version_no int(6) default 100 NOT null,
+    text varchar(128),
+    color varchar(10),
+    last_updated datetime,
+    primary key(id, map_id, version_no),
+    FOREIGN KEY (map_id, version_no) REFERENCES jgiapp_map_version(id, version_no)
+
+);
