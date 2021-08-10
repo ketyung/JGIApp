@@ -72,5 +72,27 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
         return null;
 
     }
+
+
+
+    public function loadBy($mapId, $versionNo){
+
+
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("map_id", "=", " AND ", $mapId);
+        $a[] = new SQLWhereCol("version_no", "=", "", $versionNo);
+        
+        $result = $this->findByWhere($a, true, " ORDER BY last_updated DESC", 0, 50);
+    
+        if (count($result) > 0){
+   
+            $result['signers'] = $this->getSigners($result[0]['id']);
+
+            return $result;
+        }
+
+        return null;
+       
+    }
 }
 ?>

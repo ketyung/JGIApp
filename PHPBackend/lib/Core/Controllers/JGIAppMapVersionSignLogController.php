@@ -6,8 +6,6 @@ use Core\Db\JGIAppMapVersionSigner as Signer;
 use Core\Db\JGIAppMapVersionSignLog as SignLog;
 use Core\Controllers\RequestMethod as RM;
 use Core\Controllers\Controller as Controller;
-use Db\SQLWhereCol as SQLWhereCol;
-use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\Log as Log;
 use Util\StrUtil as StrUtil;
 
@@ -61,17 +59,9 @@ class JGIAppMapVersionSignLogController extends Controller {
     private function getSignLog($mapId, $versionNo){
         
 
-        $a = new ArrayOfSQLWhereCol();
-        $a[] = new SQLWhereCol("map_id", "=", " AND ", $mapId);
-        $a[] = new SQLWhereCol("version_no", "=", "", $versionNo);
-        
-        $result = $this->dbObject->findByWhere($a, true, " ORDER BY last_updated DESC", 0, 50);
-    
+        $result = $this->dbObject->loadBy($mapId, $versionNo);
        
-        if (count($result) > 0){
-   
-            $result['signers'] = $this->getSigners($result[0]['id']);
-
+        if (isset($result)){
 
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = json_encode($result, JSON_NUMERIC_CHECK);
@@ -84,18 +74,6 @@ class JGIAppMapVersionSignLogController extends Controller {
         }
         
     }
-
-    private function getSigners($logId) {
-
-        $a = new ArrayOfSQLWhereCol();
-        $a[] = new SQLWhereCol("log_id", "=", " AND ", $logId);
-        
-        $signer_db = new Signer($this->db);
-        $result = $signer_db->findByWhere($a, true, " ORDER BY last_updated DESC", 0, 50);
-    
-        return $result;
-
-    } 
 
     
 
