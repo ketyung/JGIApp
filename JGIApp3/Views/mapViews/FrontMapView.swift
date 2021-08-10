@@ -178,7 +178,7 @@ extension FrontMapView {
            
         })
         
-        .bottomSheet(isPresented: $viewModel.legendEditingViewPresented, height: 800, showGrayOverlay: true, content: {
+        .bottomSheet(isPresented: $viewModel.legendEditingViewPresented, height: UIScreen.main.bounds.height - 200, showGrayOverlay: true, content: {
             
             MapLegendEditView(isPresented: $viewModel.legendEditingViewPresented)
         })

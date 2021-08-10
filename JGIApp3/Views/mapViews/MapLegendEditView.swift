@@ -59,7 +59,7 @@ extension MapLegendEditView {
                
             }
                 
-            Text("Define Map Legend".localized).font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(.black)
+            Text("Define Map Legend".localized).font(.custom(Theme.fontNameBold, size: 14)).foregroundColor(.black)
            
             Spacer()
             
