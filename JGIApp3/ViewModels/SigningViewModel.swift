@@ -7,14 +7,29 @@
 
 import PDFKit
 import DocuSignSDK
+import SwiftUI
 
-typealias CFSVM = ContentForSigningViewModel
+typealias SVM = SigningViewModel
 
 
-class ContentForSigningViewModel : ViewModel {
+class SigningViewModel : ViewModel {
     
     // this type of data not needed for my work
     @Published private var content  = ContentForSigning()
+    
+    
+    var siginingUserId : String {
+        
+        get {
+            
+            content.siginingUserId ?? ""
+        }
+        
+        set(newVal) {
+            
+            content.siginingUserId = newVal
+        }
+    }
     
     
     var mapId : String {
@@ -73,17 +88,17 @@ class ContentForSigningViewModel : ViewModel {
     }
     
     
-    var attachment : Data? {
+    var pdfPreview : Data? {
         
         
         get {
             
-            content.attachment
+            content.pdfPreview
         }
         
         set(newVal) {
             
-            content.attachment = newVal
+            content.pdfPreview = newVal
         }
         
     }
@@ -137,7 +152,7 @@ class ContentForSigningViewModel : ViewModel {
         siginingCompleted = false
         templateId = ""
         recipients = []
-        attachment = nil
+        pdfPreview = nil
         title = ""
         note = ""
         versionNo = 0
@@ -146,7 +161,7 @@ class ContentForSigningViewModel : ViewModel {
 }
 
 
-extension ContentForSigningViewModel {
+extension SigningViewModel {
     
     
     func inRecipients(id : String) -> Bool {
@@ -180,7 +195,7 @@ extension ContentForSigningViewModel {
     }
 }
 
-extension ContentForSigningViewModel {
+extension SigningViewModel {
     
     func registerForSigningCompletion(){
         
@@ -194,18 +209,22 @@ extension ContentForSigningViewModel {
     @objc
     private func docuSignCompleted(){
         
-        print("docu.sign.completed")
+        withAnimation{
+            
+            self.siginingCompleted = true
+            self.addSignersToRemote()
+        }
         
     }
         
-    func generateAttachment( mapImage : UIImage?) {
+    func preparePdfPreview( mapImage : UIImage?) {
         
-        self.attachment = PdfCreator().pdfData(title: title, body: note, version: "Version : \(versionNo)", mapImage: mapImage)
+        self.pdfPreview = PdfCreator().pdfData(title: title, body: note, version: "Version : \(versionNo)", mapImage: mapImage)
     }
     
     
     
-    func addSignersToRemote(currentUser : User){
+    private func addSignersToRemote(){
         
         var signers = [Signer]()
         
@@ -213,10 +232,11 @@ extension ContentForSigningViewModel {
             
             var signer = Signer(id : r.id)
             
-            if currentUser.id == signer.id {
+            if self.siginingUserId == signer.id {
                 
                 signer.signed = .signed
                 signer.dateSigned = Date()
+                
             }
             signers.append(signer)
         }

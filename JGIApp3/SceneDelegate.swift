@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FrontMenuView()
         .environmentObject(MAHVM())
         .environmentObject(UserViewModel())
-        .environmentObject(CFSVM())
+        .environmentObject(SVM())
         .environmentObject(AuthenticationViewModel())
         
         //FrontMapView().environmentObject(MAHVM())

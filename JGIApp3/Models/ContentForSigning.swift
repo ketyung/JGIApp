@@ -30,6 +30,8 @@ struct ContentForSigning {
     }
     
     
+    var siginingUserId : String?
+    
     var templateId : String?
     
     var mapId : String?
@@ -40,7 +42,7 @@ struct ContentForSigning {
     
     var note : String?
     
-    var attachment : Data?
+    var pdfPreview : Data?
     
     var recipients : [Recipient]?
     

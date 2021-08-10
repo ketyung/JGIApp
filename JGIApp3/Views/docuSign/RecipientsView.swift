@@ -13,7 +13,7 @@ struct RecipientsView : View {
     
     @StateObject private var userViewModel = UserViewModel()
     
-    @EnvironmentObject private var signingViewModel : CFSVM
+    @EnvironmentObject private var signingViewModel : SVM
     
     
     var body: some View {

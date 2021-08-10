@@ -36,7 +36,7 @@ struct FrontMapActionParam {
 
 struct FrontMapView: View {
     
-    @EnvironmentObject private var signingViewModel : CFSVM
+    @EnvironmentObject private var signingViewModel : SVM
     
     @EnvironmentObject private var viewModel : MAHVM
     
@@ -334,7 +334,7 @@ extension FrontMapView {
             
             withAnimation{
                 
-                preparePdfForSigning()
+                preparePdfPreview()
             }
             
         }){
@@ -345,7 +345,7 @@ extension FrontMapView {
     }
     
     
-    private func preparePdfForSigning(){
+    private func preparePdfPreview(){
         
         
         viewModel.inProgress = true
@@ -374,7 +374,7 @@ extension FrontMapView {
         viewModel.mapActionDelegate?.exportImage(completion: { image in
             
             
-            signingViewModel.generateAttachment(mapImage: image)
+            signingViewModel.preparePdfPreview(mapImage:  image)
            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
         

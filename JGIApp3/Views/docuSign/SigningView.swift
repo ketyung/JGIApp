@@ -13,7 +13,7 @@ struct SigningView : View {
     
     @Binding var viewType : FMM.ViewType
     
-    @EnvironmentObject private var signingViewModel : CFSVM
+    @EnvironmentObject private var signingViewModel : SVM
    
     var body: some View {
         

@@ -13,7 +13,7 @@ struct TemplatesView : View {
     
     @StateObject private var viewModel = TemplatesViewModel()
     
-    @EnvironmentObject private var signingViewModel : CFSVM
+    @EnvironmentObject private var signingViewModel : SVM
     
     
     var body: some View {

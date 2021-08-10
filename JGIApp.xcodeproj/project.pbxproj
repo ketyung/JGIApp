@@ -71,7 +71,7 @@
 		100124A026BE231800074BF1 /* MapVersionNoteEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */; };
 		10D0323F26BE6DC30082B8BB /* MapVersionNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0323E26BE6DC30082B8BB /* MapVersionNotesView.swift */; };
 		10D0324126BF742E0082B8BB /* PdfViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324026BF742E0082B8BB /* PdfViewUI.swift */; };
-		10D0324326BF74940082B8BB /* ContentForSigningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324226BF74940082B8BB /* ContentForSigningViewModel.swift */; };
+		10D0324326BF74940082B8BB /* SigningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324226BF74940082B8BB /* SigningViewModel.swift */; };
 		10D0324526BF75630082B8BB /* PdfCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324426BF75630082B8BB /* PdfCreator.swift */; };
 		10D0324726BF7C690082B8BB /* PdfPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324626BF7C690082B8BB /* PdfPreviewView.swift */; };
 		10D0324926BF7CAA0082B8BB /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0324826BF7CAA0082B8BB /* ShareView.swift */; };
@@ -155,7 +155,7 @@
 		1001249F26BE231800074BF1 /* MapVersionNoteEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionNoteEntryView.swift; sourceTree = "<group>"; };
 		10D0323E26BE6DC30082B8BB /* MapVersionNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionNotesView.swift; sourceTree = "<group>"; };
 		10D0324026BF742E0082B8BB /* PdfViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewUI.swift; sourceTree = "<group>"; };
-		10D0324226BF74940082B8BB /* ContentForSigningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentForSigningViewModel.swift; sourceTree = "<group>"; };
+		10D0324226BF74940082B8BB /* SigningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningViewModel.swift; sourceTree = "<group>"; };
 		10D0324426BF75630082B8BB /* PdfCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfCreator.swift; sourceTree = "<group>"; };
 		10D0324626BF7C690082B8BB /* PdfPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfPreviewView.swift; sourceTree = "<group>"; };
 		10D0324826BF7CAA0082B8BB /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -261,7 +261,7 @@
 				1001241826B6C90B00074BF1 /* MapQueryViewModel.swift */,
 				1001241726B6C90B00074BF1 /* TemplatesViewModel.swift */,
 				1001241926B6C90B00074BF1 /* AuthenticationViewModel.swift */,
-				10D0324226BF74940082B8BB /* ContentForSigningViewModel.swift */,
+				10D0324226BF74940082B8BB /* SigningViewModel.swift */,
 				10D0324426BF75630082B8BB /* PdfCreator.swift */,
 			);
 			path = ViewModels;
@@ -596,7 +596,7 @@
 				1001246F26BA91CD00074BF1 /* FrontMenuView.swift in Sources */,
 				100123F826B6C7BE00074BF1 /* AppDelegate.swift in Sources */,
 				100124A026BE231800074BF1 /* MapVersionNoteEntryView.swift in Sources */,
-				10D0324326BF74940082B8BB /* ContentForSigningViewModel.swift in Sources */,
+				10D0324326BF74940082B8BB /* SigningViewModel.swift in Sources */,
 				1001243926B6C91800074BF1 /* TextView.swift in Sources */,
 				1001249226BB962F00074BF1 /* UserGroupsViewModel.swift in Sources */,
 				1001248326BB739700074BF1 /* SignInView.swift in Sources */,

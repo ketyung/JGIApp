@@ -14,7 +14,7 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
 
     private var templatesManager: DSMTemplatesManager?
       
-    @EnvironmentObject private var signingViewModel : CFSVM
+    @EnvironmentObject private var signingViewModel : SVM
   
     @EnvironmentObject private var userViewModel : UserViewModel
     
@@ -48,13 +48,6 @@ struct DocuSignSigningView  : UIViewControllerRepresentable {
                 return
             }
            
-            withAnimation{
-           
-                signingViewModel.siginingCompleted = true
-                
-                signingViewModel.addSignersToRemote(currentUser: userViewModel.user)
-               
-            }
             
           
         })
