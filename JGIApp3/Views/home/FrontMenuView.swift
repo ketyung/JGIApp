@@ -115,7 +115,7 @@ extension FrontMenuView {
             
             Spacer().frame(height : 20)
             
-            Image("logo").resizable().frame(width:150, height: 69).aspectRatio(contentMode: .fit)
+            Image("logo").resizable().frame(width:150, height: 66).aspectRatio(contentMode: .fit)
             
             if userViewModel.hasSignedIn {
            
