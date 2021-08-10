@@ -18,6 +18,12 @@ struct Signer : Codable {
     
     var uid : String?
     
+    var name : String?
+    
+    var email : String?
+    
+    var groupName : String?
+    
     var signed : SignStatus?
     
     var dateSigned : Date?

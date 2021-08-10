@@ -196,9 +196,50 @@ extension SigningViewModel {
         
     }
     
-    
-    func prepareSigingRequirements(){
+    // for non first signer
+    func prepareForNonFirstSigner( title : String, note : String, mapId : String, versionNo : Int,
+                                   completion : ((Bool)->Void)? = nil ){
         
+        self.inProgress = true
+        self.title = title
+        self.note = note
+        self.mapId = mapId
+        self.versionNo = versionNo
+        
+        ARH.shared.fetchSignLog(mapId: mapId, versionNo: versionNo, completion: {
+            
+            [weak self] res in
+            
+            DispatchQueue.main.async {
+            
+                switch(res) {
+                    
+                    case .failure(let err) :
+                        self?.errorMessage = (err as? ApiError)?.errorText
+                        self?.errorPresented = true
+                        self?.inProgress = false
+                        completion?(false)
+                
+                    case .success(let sl) :
+                        self?.templateId = sl.templateId ?? ""
+                        
+                        sl.signers?.forEach{ sn in
+                            
+                            
+                            let recipient = Recipient(id: sn.uid, name:sn.name,
+                                                      email: sn.email , groupName: sn.groupName)
+                         
+                            self?.addRecipient(recipient)
+                            
+                        }
+                        
+                        self?.inProgress = false
+                        completion?(true)
+                }
+            }
+            
+            
+        })
         
     }
 }

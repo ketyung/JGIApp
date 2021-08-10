@@ -4,6 +4,7 @@ namespace Core\Db;
 use Db\DbObject as DbObject;
 use Core\Db\JGIAppDbObject as JGIAppDbObject;
 use Core\Db\JGIAppMapVersionSigner as Signer;
+use Core\Db\JGIAppUser as User;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
 use Util\Log as Log;
@@ -102,9 +103,8 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
 
     private function getSigners($logId){
 
-       
         $sql =  "SELECT a.uid, a.signed, a.date_signed, 
-        concat(b.first_name, ' ', b.last_name) as name, 
+        concat(b.first_name, ' ', b.last_name) as name, b.email, b.seed, 
         c.name as group_name  FROM jgiapp_map_version_signer a,
         jgiapp_user b, jgiapp_user_group c 
         WHERE a.log_id = :log_id
@@ -115,6 +115,8 @@ class JGIAppMapVersionSignLog extends JGIAppDbObject {
         $signer_db = new Signer($this->db);
         $result = $signer_db->findBySQL($sql, $params, true);
     
+        User::decryptEmails($result);
+        
         return $result;
 
     }
