@@ -42,12 +42,12 @@ struct FrontMapView: View {
     
     @EnvironmentObject private var userViewModel : UserViewModel
     
-    private static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
+    static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
                 "#ffff00ff", "#00ff00ff", "#0000ffff", "#0088ffff",  "#ff00ffff"]
    
     @State private var promptHasItems : Bool = false
     
-    private  var colors : [UIColor] = {
+    static var colors : [UIColor] = {
         
         FrontMapView.colorHexes.map {
             UIColor(hex:$0)!
@@ -63,6 +63,7 @@ struct FrontMapView: View {
     
     @State private var showMapVersionNote : Bool = false
     
+    @State private var legendEditingPresented : Bool = false
     
     init( viewType : Binding <FMM.ViewType>, actionParam : Binding <FMAP>) {
         
@@ -173,6 +174,10 @@ extension FrontMapView {
            
         })
         
+        .bottomSheet(isPresented: $legendEditingPresented, height: 800, showGrayOverlay: true, content: {
+            
+            MapLegendEditView(isPresented: $legendEditingPresented)
+        })
         .alert(isPresented: $promptHasItems){
             
             Alert(title: Text("Your map has unsaved items, do you want to quit now?".localized), primaryButton: .default(Text("Yes".localized)) {
@@ -299,6 +304,21 @@ extension FrontMapView {
             }
             .opacity(viewModel.edited ? 1 : 0)
             .disabled(!viewModel.edited)
+            
+            
+            
+            Button(action : {
+                
+                withAnimation{
+                    
+                    legendEditingPresented = true
+                }
+                
+            }){
+                
+                Common.buttonView(imageSysteName: "list.triangle")
+           
+            }
             
             Button(action : {
                 
@@ -678,7 +698,7 @@ extension FrontMapView {
             
             HStack {
                 
-                ForEach(colors, id:\.self) {
+                ForEach( FrontMapView.colors, id:\.self) {
                     
                     color in
                     
@@ -713,7 +733,7 @@ extension FrontMapView {
                 
             }
             .padding()
-            .frame(width: UIScreen.main.bounds.width - 80 ,height: 40)
+            .frame(width: UIScreen.main.bounds.width - 100 ,height: 40)
         }
         .padding()
         .background(Color(UIColor(hex:"#ddddddff")!))

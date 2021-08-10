@@ -80,6 +80,9 @@
 		10D0325126C0C2340082B8BB /* RecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325026C0C2340082B8BB /* RecipientsView.swift */; };
 		10D0325326C0FE090082B8BB /* SignLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325226C0FE090082B8BB /* SignLog.swift */; };
 		10D0325526C11EF00082B8BB /* MapVersionsReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325426C11EF00082B8BB /* MapVersionsReviewView.swift */; };
+		10D0325926C24CA50082B8BB /* MapLegendEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325826C24CA50082B8BB /* MapLegendEditView.swift */; };
+		10D0325B26C24D5E0082B8BB /* MapLegendItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325A26C24D5E0082B8BB /* MapLegendItem.swift */; };
+		10D0325D26C24F860082B8BB /* MapLegendItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D0325C26C24F860082B8BB /* MapLegendItemsViewModel.swift */; };
 		10FCC6F926BA357E00A8A46F /* MapVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */; };
 		10FCC6FB26BA360D00A8A46F /* MapVersionIpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */; };
 		10FCC70126BA374000A8A46F /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */; };
@@ -164,6 +167,9 @@
 		10D0325026C0C2340082B8BB /* RecipientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipientsView.swift; sourceTree = "<group>"; };
 		10D0325226C0FE090082B8BB /* SignLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignLog.swift; sourceTree = "<group>"; };
 		10D0325426C11EF00082B8BB /* MapVersionsReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionsReviewView.swift; sourceTree = "<group>"; };
+		10D0325826C24CA50082B8BB /* MapLegendEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLegendEditView.swift; sourceTree = "<group>"; };
+		10D0325A26C24D5E0082B8BB /* MapLegendItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLegendItem.swift; sourceTree = "<group>"; };
+		10D0325C26C24F860082B8BB /* MapLegendItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLegendItemsViewModel.swift; sourceTree = "<group>"; };
 		10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionItem.swift; sourceTree = "<group>"; };
 		10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVersionIpoint.swift; sourceTree = "<group>"; };
 		10FCC6FD26BA374000A8A46F /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
@@ -256,6 +262,7 @@
 			children = (
 				1001241526B6C90B00074BF1 /* ViewModel.swift */,
 				1001241626B6C90B00074BF1 /* MapActionHandlingViewModel.swift */,
+				10D0325C26C24F860082B8BB /* MapLegendItemsViewModel.swift */,
 				1001248A26BB77AF00074BF1 /* UserViewModel.swift */,
 				1001249126BB962F00074BF1 /* UserGroupsViewModel.swift */,
 				1001241826B6C90B00074BF1 /* MapQueryViewModel.swift */,
@@ -349,6 +356,7 @@
 				1001249B26BD3B8E00074BF1 /* MapListView.swift */,
 				1001249D26BE087400074BF1 /* MapVersionsListView.swift */,
 				10D0325426C11EF00082B8BB /* MapVersionsReviewView.swift */,
+				10D0325826C24CA50082B8BB /* MapLegendEditView.swift */,
 			);
 			path = mapViews;
 			sourceTree = "<group>";
@@ -360,6 +368,7 @@
 				1001246426BA0CEA00074BF1 /* UserGroup.swift */,
 				1001246626BA0D2500074BF1 /* UserMap.swift */,
 				1001246826BA0DA300074BF1 /* MapVersion.swift */,
+				10D0325A26C24D5E0082B8BB /* MapLegendItem.swift */,
 				1001246C26BA896E00074BF1 /* MapVersionNote.swift */,
 				10FCC6F826BA357E00A8A46F /* MapVersionItem.swift */,
 				10FCC6FA26BA360D00A8A46F /* MapVersionIpoint.swift */,
@@ -587,6 +596,7 @@
 				1001244D26B6C92300074BF1 /* DocuSignSigningView.swift in Sources */,
 				1001248B26BB77AF00074BF1 /* UserViewModel.swift in Sources */,
 				1001243826B6C91800074BF1 /* ProgressViewModifier.swift in Sources */,
+				10D0325B26C24D5E0082B8BB /* MapLegendItem.swift in Sources */,
 				1001245026B6C92300074BF1 /* OAuthTokenView.swift in Sources */,
 				1001243B26B6C91800074BF1 /* BorderWithRoundCorner.swift in Sources */,
 				10D0324F26C0B2700082B8BB /* BeforeSigningView.swift in Sources */,
@@ -612,6 +622,7 @@
 				1001244B26B6C92300074BF1 /* SigningView.swift in Sources */,
 				1001241B26B6C90B00074BF1 /* MapActionHandlingViewModel.swift in Sources */,
 				1001245226B6C92300074BF1 /* OauthTokenWebView.swift in Sources */,
+				10D0325D26C24F860082B8BB /* MapLegendItemsViewModel.swift in Sources */,
 				100123FA26B6C7BE00074BF1 /* SceneDelegate.swift in Sources */,
 				10D0323F26BE6DC30082B8BB /* MapVersionNotesView.swift in Sources */,
 				10FCC70226BA374000A8A46F /* ApiRequestHandler.swift in Sources */,
@@ -640,6 +651,7 @@
 				10D0324726BF7C690082B8BB /* PdfPreviewView.swift in Sources */,
 				1001247C26BB703000074BF1 /* KeychainWrapper.swift in Sources */,
 				100123FC26B6C7BE00074BF1 /* ContentView.swift in Sources */,
+				10D0325926C24CA50082B8BB /* MapLegendEditView.swift in Sources */,
 				10D0325126C0C2340082B8BB /* RecipientsView.swift in Sources */,
 				1001248526BB754000074BF1 /* SignUpView.swift in Sources */,
 				1001246D26BA896E00074BF1 /* MapVersionNote.swift in Sources */,
