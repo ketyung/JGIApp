@@ -65,6 +65,8 @@ struct FrontMapView: View {
     
     @State private var showMapVersionNote : Bool = false
     
+    @State private var showMapVersionNoteEntry : Bool = false
+    
     
     init( viewType : Binding <FMM.ViewType>, actionParam : Binding <FMAP>) {
         
@@ -204,17 +206,25 @@ extension FrontMapView {
             
             optionsSheetView()
         })
-        .bottomSheet(isPresented: $showMapVersionNote, height: 600, showGrayOverlay: true,
+        .bottomSheet(isPresented: $showMapVersionNote, height: UIScreen.main.bounds.height - 200, showGrayOverlay: true,
                      topBarBackgroundColor: Theme.commonBgColor ,content: {
             
             
-            MapVersionNotesView(isPresented: $showMapVersionNote, notes: viewModel.mapVersion?.notes)
+            MapVersionNotesView(isPresented: $showMapVersionNote,
+                                isNoteEntryPresented: $showMapVersionNoteEntry,
+                                notes: viewModel.mapVersion?.notes)
            
         })
         
         .bottomSheet(isPresented: $viewModel.legendEditingViewPresented, height: UIScreen.main.bounds.height - 200, showGrayOverlay: true, content: {
             
             MapLegendEditView(isPresented: $viewModel.legendEditingViewPresented)
+        })
+        
+        .sheet(isPresented: $showMapVersionNoteEntry, content: {
+       
+            MapVersionNoteEntryView(viewType: $viewType)
+            
         })
         .alert(isPresented: $promptHasItems){
             

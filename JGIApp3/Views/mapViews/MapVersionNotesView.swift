@@ -11,6 +11,8 @@ struct MapVersionNotesView : View {
     
     @Binding var isPresented : Bool
     
+    @Binding var isNoteEntryPresented : Bool
+    
     @State var notes : [MapVersionNote]?
     
     
@@ -110,6 +112,15 @@ extension MapVersionNotesView {
             
             Button(action : {
                 
+                withAnimation{
+                    
+                    isPresented = false
+                    
+                    withAnimation(Animation.easeIn(duration: 0.5).delay(0.5) ){
+                   
+                        isNoteEntryPresented = true 
+                    }
+                }
             }){
            
                 Common.buttonView(imageSysteName: "plus")
