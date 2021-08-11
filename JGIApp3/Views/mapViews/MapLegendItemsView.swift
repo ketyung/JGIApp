@@ -11,7 +11,7 @@ struct MapLegendItemsView : View {
     
     @Binding var isPresented : Bool
     
-    @EnvironmentObject private var viewModel : MapLegendItemsViewModel
+    @EnvironmentObject private var viewModel : MLIVM
     
     @EnvironmentObject private var mapActionViewModel : MAHVM
     
@@ -47,6 +47,17 @@ struct MapLegendItemsView : View {
         .padding()
         .background(Color.white)
         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+        .onAppear{
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                
+                if let items = mapActionViewModel.mapVersion?.legendItems, items.count > 0 {
+                    
+                    viewModel.items = items
+                }
+            })
+            
+        }
     }
     
 }

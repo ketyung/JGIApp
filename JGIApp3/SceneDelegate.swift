@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         .environmentObject(UserViewModel())
         .environmentObject(SVM())
         .environmentObject(AuthenticationViewModel())
-        .environmentObject(MapLegendItemsViewModel())
+        .environmentObject(MLIVM())
         
         //FrontMapView().environmentObject(MAHVM())
       //  UserLoginViewOld().environmentObject(AuthenticationViewModel())

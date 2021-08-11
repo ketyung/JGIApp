@@ -432,7 +432,7 @@ extension MapActionHandlingViewModel {
 
 extension MapActionHandlingViewModel {
     
-    func loadFromRemote( mapId : String, versionNo : Int){
+    func loadFromRemote( mapId : String, versionNo : Int, completion: ((Bool)->Void)? = nil ){
         
         self.inProgress = true
         
@@ -448,6 +448,7 @@ extension MapActionHandlingViewModel {
                         self?.inProgress = false
                         self?.errorMessage = (err as? ApiError)?.errorText
                         self?.errorPresented = true
+                        completion?(false)
                     
                      //   print("err.loading...::\(err)")
                     case .success(let mapVersion) :
@@ -457,6 +458,7 @@ extension MapActionHandlingViewModel {
                   
                             self?.mapActionDelegate?.loadFrom(mapVersion: mapVersion)
                         }
+                        completion?(true)
                     
                 
                 }

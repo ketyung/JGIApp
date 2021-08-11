@@ -27,10 +27,17 @@ class JGIAppMapLegendItem extends JGIAppDbObject {
     
     
 	public function __construct($db)
-    {
-		parent::__construct($db, "jgiapp_map_legend_item");
-    }
+  {
+		  parent::__construct($db, "jgiapp_map_legend_item");
+  }
 
+
+  public function deleteAllBy($mapId, $versionNo) {
+
+      $sql = "DELETE from $this->tableName WHERE map_id = :map_id AND version_no=:version_no ";
+
+      return $this->dbObject->execBySQL($sql, array('map_id'=>$mapId, 'version_no'=>$versionNo), true);
+  }
 
 }
 ?>

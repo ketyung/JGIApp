@@ -39,7 +39,9 @@ struct FrontMapView: View {
     @EnvironmentObject private var signingViewModel : SVM
     
     @EnvironmentObject private var viewModel : MAHVM
-    
+   
+    @EnvironmentObject private var legendViewModel : MLIVM
+   
     @EnvironmentObject private var userViewModel : UserViewModel
     
     static let colorHexes : [String] = ["#ffffffff", "#888888ff", "#000000ff", "#ff0000ff", "#ffaa22ff",
@@ -123,11 +125,43 @@ extension FrontMapView {
         
             case .edit :
             
-                viewModel.loadFromRemote(mapId: actionParam.mapId ?? "", versionNo: actionParam.versionNo ?? 100)
+                viewModel.loadFromRemote(mapId: actionParam.mapId ?? "",
+                versionNo: actionParam.versionNo ?? 100,
+                 completion: {
+                    
+                    succ in
+                    
+                    legendViewModel.items = []
+                    
+                    if succ {
+                
+                        if let items = viewModel.mapVersion?.legendItems, items.count > 0 {
+                            
+                            legendViewModel.items = items
+                        }
+                        
+                    }
+                 })
          
             case .viewOnly :
             
-                viewModel.loadFromRemote(mapId: actionParam.mapId ?? "", versionNo: actionParam.versionNo ?? 100)
+                viewModel.loadFromRemote(mapId: actionParam.mapId ?? "", versionNo: actionParam.versionNo ?? 100,
+                 completion: {
+                    
+                    succ in
+                    
+                    
+                    legendViewModel.items = []
+                    
+                    if succ {
+                
+                        if let items = viewModel.mapVersion?.legendItems, items.count > 0 {
+                            
+                            legendViewModel.items = items
+                        }
+                        
+                    }
+                 })
          
             case .create :
                 

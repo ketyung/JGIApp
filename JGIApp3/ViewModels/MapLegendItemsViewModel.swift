@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias MLIVM = MapLegendItemsViewModel
+
 class MapLegendItemsViewModel : ViewModel {
     
     @Published var items = [MapLegendItem]()

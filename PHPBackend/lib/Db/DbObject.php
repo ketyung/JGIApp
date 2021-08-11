@@ -28,6 +28,8 @@ class DbObject extends SQLBuilder {
 
     protected $findBySQLStatement = null; 
 
+    protected $execBySQLStatement = null; 
+
     protected $lastErrorMessage = null ;
     
     const ERROR_ON_TX = -111;
@@ -218,6 +220,43 @@ class DbObject extends SQLBuilder {
 		
 	}
 
+
+
+    public function execBySQL($sql, Array $params = null,  $recreateStatement = false ){
+		
+		
+		try {
+				
+            if ($recreateStatement) {
+
+                $this->execBySQLStatement = $this->db->prepare( $sql);
+  
+            }
+            else {
+
+                if (!isset($this->execBySQLStatement)){
+				
+                    $this->execBySQLStatement = $this->db->prepare( $sql);
+                }
+            }
+
+
+            $this->execByStatement->execute($params);
+            
+            return $this->execByStatement->rowCount();
+    
+
+        }
+        catch (\PDOException $e) 
+        {
+            
+            $this->lastErrorMessage = $e->getMessage();
+            
+            return 0;
+                
+        }
+	
+    }
 
     public function findBySQL($sql, Array $params = null,  $recreateStatement = false ){
 		

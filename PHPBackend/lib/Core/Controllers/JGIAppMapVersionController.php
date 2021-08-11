@@ -153,6 +153,9 @@ class JGIAppMapVersionController extends Controller {
         if ($this->dbObject->insert($input) > 0){
             
             self::createNotesIfAny($input, $this->db);
+           
+            self::createLegendItemsIfAny($input, $this->db);
+           
             self::createItemsIfAny($input, $this->db, true);
 
             $a = array('status'=>1, 'id'=>$input['id'], 'text'=>'Created!');//, 'returnedObject'=> $input);
@@ -193,7 +196,7 @@ class JGIAppMapVersionController extends Controller {
     }
 
 
-    static function createLegendItemsIfAny($mapVersion, $db) {
+    static function createLegendItemsIfAny($mapVersion, $db, $deleteAllFirst = true ) {
 
         // insert legend item if any 
         if (isset($mapVersion['legend_items'])) {
@@ -201,6 +204,11 @@ class JGIAppMapVersionController extends Controller {
             $items = $mapVersion['legend_items'] ;
 
             $itemdb = new LegendItem($db);
+
+            if ($delateAllFirst) {
+
+                $itemdb->deleteAllBy($mapVersion['id'], $mapVersion['version_no']);
+            }
                
             foreach($items as $item) {
 

@@ -15,7 +15,7 @@ struct MapLegendEditView : View {
 
     @State private var selectedIndex : Int = 0
     
-    @EnvironmentObject private var viewModel : MapLegendItemsViewModel
+    @EnvironmentObject private var viewModel : MLIVM
     
     @EnvironmentObject private var mapActionViewModel : MAHVM
    

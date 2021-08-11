@@ -5,6 +5,7 @@ use Db\DbObject as DbObject;
 use Core\Db\JGIAppDbObject as JGIAppDbObject;
 use Core\Db\JGIAppMapVersionItem as VersionItem;
 use Core\Db\JGIAppMapVersionNote as VersionNote;
+use Core\Db\JGIAppMapLegendItem as LegendItem;
 use Core\Db\JGIAppUser as User;
 use Db\SQLWhereCol as SQLWhereCol;
 use Db\ArrayOfSQLWhereCol as ArrayOfSQLWhereCol;
@@ -28,12 +29,17 @@ class JGIAppMapVersion extends JGIAppDbObject {
     public $longitude;
 
     public $levelOfDetail;
-     
+
+    public $legendTitle;
+
+    public $lastUpdated;
+
     public $items;
 
     public $notes;
+  
+    public $legendItems;
 
-    public $lastUpdated;
     
     
 	public function __construct($db)
@@ -63,6 +69,8 @@ class JGIAppMapVersion extends JGIAppDbObject {
             $this->loadItems($id, $versionNo);
 
             $this->loadNotes($id, $versionNo);
+
+            $this->loadLegendItems($id, $versionNo);
 
             return true ;
         } 
@@ -125,6 +133,33 @@ class JGIAppMapVersion extends JGIAppDbObject {
         }
 
         $this->notes = $notes; 
+
+    }
+
+
+    private function loadLegendItems($mapId, $versionNo){
+
+        $a = new ArrayOfSQLWhereCol();
+        $a[] = new SQLWhereCol("map_id", "=", " AND ", $mapId);
+        $a[] = new SQLWhereCol("version_no", "=", "", $versionNo);
+      
+        $itemdb = new LegendItem($this->db);
+
+        $items = array();
+
+        $res = $itemdb->findByWhere($a, true, " ORDER BY last_updated DESC");
+       
+      //  Log::printRToErrorLog($res);
+
+        foreach ($res as $row) {
+
+            $item = new LegendItem($this->db);
+            $item->loadResultToProperties($row);
+ 
+            array_push($items, $item);
+        }
+
+        $this->legendItems = $items; 
 
     }
 
