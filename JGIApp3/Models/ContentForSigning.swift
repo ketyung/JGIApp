@@ -30,7 +30,7 @@ struct ContentForSigning {
     }
     
     
-    var siginingUserId : String?
+    var signingUserId : String?
     
     var templateId : String?
     

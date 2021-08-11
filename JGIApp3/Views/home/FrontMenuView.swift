@@ -119,7 +119,7 @@ extension FrontMenuView {
             
             if userViewModel.hasSignedIn {
            
-                Text("You're signed in as \(userViewModel.user.firstName ?? "") \(userViewModel.user.lastName ?? "")").font(.custom(Theme.fontNameBold, size: 18)).padding()
+                Text("You're signed in as \(userViewModel.user.firstName ?? "") \(userViewModel.user.lastName ?? "")").font(.custom(Theme.fontNameBold, size: 18)).padding().foregroundColor(.black)
                
             }
             
@@ -194,7 +194,7 @@ extension FrontMenuView {
         }
         .padding()
         .frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 200 : 40),
-            height: UIScreen.main.bounds.height - (Common.isIPad() ? 500 : 200))
+            height: UIScreen.main.bounds.height - (Common.isIPad() ? 400 : 200))
         .background(Color(UIColor(hex:"#ccddffff")!))
         .cornerRadius(40)
         .themeFullView()

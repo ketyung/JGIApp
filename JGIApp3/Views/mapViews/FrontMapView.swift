@@ -450,7 +450,7 @@ extension FrontMapView {
         
         viewModel.inProgress = true
         
-        signingViewModel.siginingUserId = userViewModel.id
+        signingViewModel.signingUserId = userViewModel.id
         
         
         if let title = viewModel.mapVersion?.notes?.first?.title {

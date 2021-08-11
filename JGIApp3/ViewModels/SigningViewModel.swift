@@ -19,16 +19,16 @@ class SigningViewModel : ViewModel {
     
     @Published var firstSigner : Bool = true
     
-    var siginingUserId : String {
+    var signingUserId : String {
         
         get {
             
-            content.siginingUserId ?? ""
+            content.signingUserId ?? ""
         }
         
         set(newVal) {
             
-            content.siginingUserId = newVal
+            content.signingUserId = newVal
         }
     }
     
@@ -288,7 +288,7 @@ extension SigningViewModel {
             
             var signer = Signer(uid : r.id)
             
-            if self.siginingUserId == signer.uid {
+            if self.signingUserId == signer.uid {
                 
                 signer.signed = .signed
                 signer.dateSigned = Date()

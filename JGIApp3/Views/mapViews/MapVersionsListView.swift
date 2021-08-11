@@ -162,7 +162,7 @@ extension MapVersionsListView {
               
                   
                     Text("\("Version".localized) : \(version.versionNo ?? 100)")
-                    .font(.custom(Theme.fontNameBold, size: 20))
+                        .font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.black)
                   
                     
                     Text("\(version.lastUpdated?.timeAgo() ?? "")").padding().foregroundColor(.white)
@@ -187,7 +187,7 @@ extension MapVersionsListView {
     
     private func actionButtons(_ version : MapVersion ) -> some View {
         
-        HStack(spacing:20) {
+        HStack(spacing: Common.isIPad() ? 40 : 20) {
             
             actionButton("eye", action: {
                 
@@ -214,6 +214,10 @@ extension MapVersionsListView {
                     frontMapActionParam = FMAP(mode: .sign, mapId: version.id, versionNo: version.versionNo)
                     detailViewPresented = true
                 }
+            })
+            
+            actionButton("trash", action: {
+                
             })
             
         }
