@@ -153,6 +153,8 @@ extension MapVersionsListView {
        
         HStack(spacing:20) {
                 
+            Spacer().frame(width: 5)
+            
             Image("map").resizable().frame(width:60, height:51).aspectRatio(contentMode: .fit)
    
             VStack(alignment: .leading, spacing:10) {
@@ -162,12 +164,12 @@ extension MapVersionsListView {
               
                   
                     Text("\("Version".localized) : \(version.versionNo ?? 100)")
-                        .font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(.black)
-                  
+                    .font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(.black)
+                    .frame(minWidth: 160, alignment: .leading)
                     
                     Text("\(version.lastUpdated?.timeAgo() ?? "")").padding().foregroundColor(.white)
                     .font(.custom(Theme.fontName, size:14))
-                    .frame(height:30).background(Color(UIColor(hex:"#660000ff")!)).cornerRadius(6)
+                    .frame(width: 100,height:30).background(Color(UIColor(hex:"#660000ff")!)).cornerRadius(6)
                     
                 }
           
