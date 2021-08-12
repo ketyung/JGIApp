@@ -247,10 +247,10 @@ extension FrontMapView {
     
     private func topMenuBar() -> some View {
         
-        HStack(spacing: 20) {
+        HStack(spacing: 10) {
             
            
-            Spacer().frame(width: 20)
+            Spacer().frame(width: 30)
             
             Button(action : {
                 
@@ -283,7 +283,7 @@ extension FrontMapView {
            
             if actionParam.mode != .viewOnly {
         
-                Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 330))
+                Spacer().frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 600 : 350))
                 
                 if actionParam.mode != .sign {
                 

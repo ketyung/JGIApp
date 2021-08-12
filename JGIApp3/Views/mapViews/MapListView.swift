@@ -69,7 +69,7 @@ extension MapListView {
                         //let _ = print("map::\(map.id ?? "")")
                         mapRowView(map)
                     }
-                }
+                }.padding()
             }
             
             .padding()
@@ -137,7 +137,7 @@ extension MapListView {
             Spacer()
         }
         .padding()
-        .frame(width: UIScreen.main.bounds.width - 20, height: 120)
+        .frame(width: UIScreen.main.bounds.width - 40, height: 120)
         .background(Color(UIColor(hex:"#ccddeeff")!))
         .cornerRadius(10)
     }
