@@ -60,7 +60,9 @@ extension TemplatesView {
                         
                         HStack {
                        
-                            Text("\(templ.name)").font(.custom(Theme.fontName, size: 18))
+                            Text("\(templ.name)").font(.custom(Theme.fontName, size: 16))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(1)
                             .foregroundColor(.black)
                                 
                             Spacer()

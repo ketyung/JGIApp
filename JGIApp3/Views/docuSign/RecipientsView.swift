@@ -82,10 +82,12 @@ extension RecipientsView {
             
                 HStack(spacing:10) {
                     
-                    Text("\(user.firstName ?? "") \(user.lastName ?? "")").font(.custom(Theme.fontName, size: 18))
+                    Text("\(user.firstName ?? "") \(user.lastName ?? "")").font(.custom(Theme.fontName, size: 16))
+                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(1)
                     .foregroundColor(.black)
                     
-                    Text(user.email ?? "").font(.custom(Theme.fontName, size: 18))
+                    Text(user.email ?? "").font(.custom(Theme.fontName, size: 16))
                     .fixedSize(horizontal: false, vertical: true)
                     .lineLimit(1)
                     .foregroundColor(.black)
@@ -96,7 +98,7 @@ extension RecipientsView {
                 
                 HStack(spacing: 10) {
                     
-                    Text("Role : \(user.groupName ?? "")").font(.custom(Theme.fontName, size: 18))
+                    Text("Role : \(user.groupName ?? "")").font(.custom(Theme.fontName, size: 16))
                     .foregroundColor(.black)
                     
                     Spacer()

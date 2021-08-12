@@ -37,7 +37,7 @@ extension BeforeSigningView {
             
             Common.topBar(title: "Choose your options", switchToViewType: $viewType)
         
-            ScrollView([], showsIndicators: false){
+            ScrollView(.vertical, showsIndicators: false){
            
                 TemplatesView()
                 
@@ -53,7 +53,7 @@ extension BeforeSigningView {
                     
                     Text("Proceed").font(.custom(Theme.fontNameBold, size: 20))
                     .padding(10)
-                    .frame(width: 100)
+                    .frame(width: 160)
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(20)
