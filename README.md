@@ -26,8 +26,11 @@ the MVVM (Model View ViewModel) approach for cleaner code and reusability.
 5. Other frameworks : SwiftKeychainWrapper for saving data like UsersDefault on the KeyChain
 
 The backend is meant for storing the user's profile, their edited versions of maps with points, lines and polygons etc. The backend was built
-with PHP and MySQL backend. The backend code resides in the folder PHPbackend.
+with PHP and MySQL backend. The backend is now hosted on my public server https://techchee.com/JGIAppApiTestPointV1/. But you can find the backend code 
+in the folder "PHPbackend".
 
+If you want to test it, you can download this project and run on a Xcode simulator or iOS device by compiling it with Xcode 12.5.1 or above. 
+I built it with Xcode 12.5.1, never had chance to test it with lower versions of Xcode. 
 
 
 License MIT license https://github.com/ketyung/JGIApp/blob/main/license.txt
