@@ -103,14 +103,14 @@ extension MapListView {
    
             VStack(alignment: .leading, spacing:10) {
            
-                Text(map.title ?? "Untitled".localized).font(.custom(Theme.fontNameBold, size: 20))
+                Text(map.title ?? "Untitled".localized).font(.custom(Theme.fontNameBold, size: 16))
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(2)
             
                 HStack(spacing: 20) {
                     
                     Text("\(map.lastUpdated?.timeAgo() ?? "")").padding().foregroundColor(.white)
-                    .font(.custom(Theme.fontName, size:16))
+                    .font(.custom(Theme.fontName, size:14))
                     .frame(width: 120,height:30).background(Color(UIColor(hex:"#660000ff")!)).cornerRadius(6)
                     
                     Button(action: {

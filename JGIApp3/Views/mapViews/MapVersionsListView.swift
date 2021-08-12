@@ -162,11 +162,11 @@ extension MapVersionsListView {
               
                   
                     Text("\("Version".localized) : \(version.versionNo ?? 100)")
-                        .font(.custom(Theme.fontNameBold, size: 20)).foregroundColor(.black)
+                        .font(.custom(Theme.fontNameBold, size: 16)).foregroundColor(.black)
                   
                     
                     Text("\(version.lastUpdated?.timeAgo() ?? "")").padding().foregroundColor(.white)
-                    .font(.custom(Theme.fontName, size:16))
+                    .font(.custom(Theme.fontName, size:14))
                     .frame(height:30).background(Color(UIColor(hex:"#660000ff")!)).cornerRadius(6)
                     
                 }
