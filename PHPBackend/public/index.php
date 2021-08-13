@@ -14,7 +14,7 @@ use Db\DbConnector as DbConn;
 
 date_default_timezone_set('Asia/Brunei');
 
-//checkIfAuthorized();
+checkIfAuthorized();
 
 headers();
 
