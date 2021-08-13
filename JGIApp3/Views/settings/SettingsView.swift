@@ -144,11 +144,12 @@ extension SettingsView {
         VStack(alignment:.leading, spacing:20) {
             
             
-            Text("Built for the JGI for DocuSign Hackathon By Ket Yung Chee (Christopher)").font(.custom(Theme.fontName, size: 16))
+            Text("Built for the JGI for DocuSign Hackathon By Ket Yung Chee (Christopher)").font(.custom(Theme.fontName, size: 16)).foregroundColor(.black)
             .fixedSize(horizontal: false, vertical: true)
             .lineLimit(20)
             
             Text("Emails : ketyung@gmail.com, ketyung@techchee.com").font(.custom(Theme.fontName, size: 14))
+                .foregroundColor(.black)
                 .fixedSize(horizontal: false, vertical: true).lineLimit(2)
             
             

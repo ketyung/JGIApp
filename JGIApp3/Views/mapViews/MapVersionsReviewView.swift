@@ -62,8 +62,11 @@ extension MapVersionsReviewView {
                     
                     let fsz : CGFloat =  Common.isIPad() ? 26 : 16
                     Text("Your role is :").font(.custom(Theme.fontName, size: fsz))
+                    .foregroundColor(.black)
                    
                     Text("\(userViewModel.user.groupName ?? "")").font(.custom(Theme.fontNameBold, size: fsz))
+                    .foregroundColor(.black)
+                        
                    
                 }
                 .padding()

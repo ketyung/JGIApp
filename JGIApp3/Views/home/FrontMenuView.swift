@@ -194,7 +194,7 @@ extension FrontMenuView {
         }
         .padding()
         .frame(width : UIScreen.main.bounds.width - (Common.isIPad() ? 200 : 40),
-            height: UIScreen.main.bounds.height - (Common.isIPad() ? 400 : 200))
+            height: UIScreen.main.bounds.height - (Common.isIPad() ? 400 : 160))
         .background(Color(UIColor(hex:"#ccddffff")!))
         .cornerRadius(40)
         .themeFullView()

@@ -104,6 +104,7 @@ extension MapListView {
             VStack(alignment: .leading, spacing:10) {
            
                 Text(map.title ?? "Untitled".localized).font(.custom(Theme.fontNameBold, size: 16))
+                .foregroundColor(.black)
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(2)
             
