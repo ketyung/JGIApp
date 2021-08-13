@@ -29,7 +29,7 @@ Map view is based on AGSMapView wrapped by UIViewRepresentable for presenting in
 
 4. All SwiftUI views and the Swift part written by myself, some were already written previously by me during the previous hackathon (https://github.com/ketyung/KyPayApp2) so I modified to suit and use in this project e.g. the ApiClient that communicates with the PHP backend. 
 
-Those SwiftUI modifiers were already written by me (e.g. PopOver, ProgressView etc etc) when I wrote my SwiftUI tutorials on my blog https://blog.techchee.com, so I just modified them to suit and use in this project.
+Some SwiftUI modifiers were written from scratch and some were already written by me (e.g. PopOver, ProgressView etc etc) when I wrote my SwiftUI tutorials on my blog https://blog.techchee.com, so I just modified them to suit and use in this project.
 
 5. Other 3rd-party frameworks : 
 
