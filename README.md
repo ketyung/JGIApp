@@ -21,14 +21,14 @@ The iOS native app version built by the use of the following frameworks :
 3. SwiftUI framework for the front-end UI of and Swift - the coding approach is based on MVVM (Model–view–viewmodel) for cleaner code
 and better reusability. The SwiftUI views are organized in the folder Views, and view models are in folder ViewModels and also the models.
 
-In the Views foler, you'll find views in subfolders for their own dedicated purposes, e.g. views for displaying/handling map or map list are in the sub-folder "mapViews". Views for handling the DocuSign signing, templates etc are in the subfolder docuSign.
+In the Views foler, you'll find views in subfolders for their own dedicated purposes, e.g. views for displaying/handling map or map list are in the sub-folder    "mapViews". Views for handling the DocuSign signing, templates etc are in the subfolder docuSign.
 
 Map view is based on AGSMapView wrapped by UIViewRepresentable for presenting in SwiftUI and its Coordinator for handling touch. For DocuSign sigining by using template that requires the launch of UIViewController by the DSMTemplatesManager, is wrapped using UIViewControllerRepresentable for presenting it in SwiftUI.
 
 4. All SwiftUI views and the Swift part written by myself, including the ApiClient that communicates with the PHP backend. Coding is taken with 
 the MVVM (Model View ViewModel) approach for cleaner code and reusability. 
 
-5. Other frameworks : SwiftKeychainWrapper for saving data like UsersDefault on the KeyChain
+5. Other frameworks : SwiftKeychainWrapper for saving data like UsersDefault on the KeyChain. https://github.com/jrendel/SwiftKeychainWrapper (fixed the iOS 12 deprecation)
 
 The backend is meant for storing the user's profile, their edited versions of maps with points, lines and polygons etc. The backend was built
 with PHP and MySQL backend which communicates with the mobile app using REST. The backend is now hosted on my public server https://techchee.com/JGIAppApiTestPointV1/. But you can find the backend code 
