@@ -38,7 +38,8 @@ SwiftKeychainWrapper for saving data like UsersDefault on the KeyChain. https://
 bottomSheet - in the modifiers https://github.com/weitieda/bottom-sheet modified and used in this project
 
 The backend is meant for storing the user's profile, role, their edited versions of maps with points, lines and polygons etc. The backend was built
-with PHP and MySQL backend which communicates with the mobile app using REST. The backend is now hosted on my public server https://techchee.com/JGIAppApiTestPointV1/. But you can find the backend code in the folder "PHPbackend".
+with PHP and MySQL backend which communicates with the mobile app using REST. The backend is now hosted on my public server https://techchee.com/JGIAppApiTestPointV1/. But you can find the backend code in the folder "PHPbackend". The PHP part for the REST Api and database 
+handling was written from scratch by myself during the previous the hackathon. So, I just modified, improved and used them in this project.
 
 If you want to test it, you can download this project and run on a Xcode simulator or iOS device by compiling it with Xcode 12.5.1 or above. 
 I built it with Xcode 12.5.1, never had chance to test it with lower versions of Xcode. 
