@@ -6,8 +6,7 @@ A mobile applicaton (iOS) built for the DevPost DocuSign Hackathon For Jane Good
 
 The application consist of the mobile app front end and backend which is meant for users to create, edit, store conservation maps 
 and collaborate with other users for finalizing the conservation maps of the Eastern Chimpanzee for Jane Goodall Institution. A demo
-video of its features are available on 
-
+video of its features are available on YouTube
 
 [![Demo Video Of JGI Map App](https://yt-embed.herokuapp.com/embed?v=usvb-vnXS-E)](https://youtu.be/usvb-vnXS-E "Demo Video Of JGI Map App")
 
