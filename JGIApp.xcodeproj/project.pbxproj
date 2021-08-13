@@ -313,7 +313,6 @@
 				1001249726BBCC6A00074BF1 /* profile */,
 				1001247026BB6BFB00074BF1 /* home */,
 				1001243E26B6C92300074BF1 /* docuSign */,
-				1001244226B6C92300074BF1 /* login */,
 				1001244826B6C92300074BF1 /* mapViews */,
 			);
 			path = Views;
@@ -322,6 +321,7 @@
 		1001243E26B6C92300074BF1 /* docuSign */ = {
 			isa = PBXGroup;
 			children = (
+				1001244226B6C92300074BF1 /* login */,
 				1001243F26B6C92300074BF1 /* SigningView.swift */,
 				1001244026B6C92300074BF1 /* TemplatesView.swift */,
 				10D0325026C0C2340082B8BB /* RecipientsView.swift */,
