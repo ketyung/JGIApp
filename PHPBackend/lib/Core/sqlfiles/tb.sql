@@ -4,7 +4,6 @@ drop database if exists jgiapp_db;
 create database if not exists jgiapp_db;
 use jgiapp_db;
 
-grant all on jgiapp_db.* to 'jdi_dbusr'@'localhost' identified by '21hat53G377A#43!';
 
 drop table if exists jgiapp_user_group;
 create table if not exists jgiapp_user_group (
