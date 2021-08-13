@@ -11,7 +11,7 @@ video of its features are available on YouTube
 [![Demo Video Of JGI Map App](https://yt-embed.herokuapp.com/embed?v=usvb-vnXS-E)](https://youtu.be/usvb-vnXS-E "Demo Video Of JGI Map App")
 
 The app allows users to have their accounts and store their editing of versions of the conservation maps to the backend.
-Users can add or draw points, lines, polygons on the map provided by ArcGIS base map and save different versions of the maps and edit them
+Users can add or draw points, lines, polygons, define map legend on the map provided by ArcGIS base map and save different versions of the maps and edit them
 before coming to the desired version.
 
 Users can collaborate with other roles of users, sign the map with DocuSign and send the map for other roles for reviewing and signing.
