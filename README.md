@@ -2,7 +2,7 @@
 
 JGI Map mobile app - the iOS version and the backend
 
-A mobile applicaton (iOS) built for the DevPost DocuSign Good Code Hackathon For Jane Goodall Institution. https://devpost.com/software/jgi-map
+A mobile applicaton (iOS) built for the DevPost DocuSign Good Code Hackathon For Jane Goodall Institute. https://devpost.com/software/jgi-map
 
 The application consist of the mobile app front end and backend which is meant for users to create, edit, store conservation maps 
 and collaborate with other users for finalizing the conservation maps of the Eastern Chimpanzee for Jane Goodall Institution. A demo
