@@ -27,9 +27,8 @@ In the Views foler, you'll find views in subfolders for their own dedicated purp
 
 Map view is based on AGSMapView wrapped by UIViewRepresentable for presenting in SwiftUI and its Coordinator for handling touch. For DocuSign sigining by using template that requires the launch of UIViewController by the DSMTemplatesManager, is wrapped using UIViewControllerRepresentable for presenting it in SwiftUI.
 
-4. All SwiftUI views and the Swift part written by myself, including the ApiClient that communicates with the PHP backend. Coding is taken with 
-the MVVM (Model View ViewModel) approach for cleaner code and reusability. 
-
+4. All SwiftUI views and the Swift part written by myself, some were written previously during the previous hackathon (https://github.com/ketyung/KyPayApp2) and modified and use in this project e.g. the ApiClient that communicates with the PHP backend. Those SwiftUI modifiers were also previously written (e.g. PopOver, ProgressView etc etc) when I wrote my SwiftUI tutorials on my blog https://blog.techchee.com, they're taken, modified and used in this project.
+  
 5. Other frameworks : SwiftKeychainWrapper for saving data like UsersDefault on the KeyChain. https://github.com/jrendel/SwiftKeychainWrapper (fixed the iOS 12 deprecation)
 
 The backend is meant for storing the user's profile, role, their edited versions of maps with points, lines and polygons etc. The backend was built
