@@ -21,7 +21,7 @@ The iOS native app version built by the use of the following frameworks :
 1. Esri ArcGIS iOS runtime API for the base map, drawing of points, lines & polygons etc. https://developers.arcgis.com/ios/
 2. DocuSign iOS SDK for signing of the maps for finalization etc https://developers.docusign.com/docs/ios-sdk/index.html
 3. SwiftUI framework for the front-end UI of and Swift - the coding approach is based on MVVM (Model–view–viewmodel) for cleaner code
-and better reusability. The SwiftUI views are organized in the folder Views, and view models are in folder ViewModels and also the models. All views, view models and models, design and flows were coded from scratch for the purpose of this hackathon project.
+and better reusability. The SwiftUI views are organized in the folder Views, and view models are in folder ViewModels and also the models respectively. All views, view models and models, design and flows were coded from scratch for the purpose of this hackathon project.
 
 In the Views foler, you'll find views in subfolders for their own dedicated purposes, e.g. views for displaying/handling map or map list are in the sub-folder    "mapViews". Views for handling the DocuSign signing, templates etc are in the subfolder docuSign.
 
