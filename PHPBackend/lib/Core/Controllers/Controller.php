@@ -1,4 +1,7 @@
 <?php
+/**
+ * CopyRight (c) 2021 Ket Yung Chee. MIT License
+ */
 namespace Core\Controllers;
 
 use Core\Controllers\RequestMethod as RM;
