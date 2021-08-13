@@ -204,7 +204,23 @@ open class KeychainWrapper {
             return nil
         }
         
-        return NSKeyedUnarchiver.unarchiveObject(with: keychainData) as? NSCoding
+        //return NSKeyedUnarchiver.unarchiveObject(with: keychainData) as? NSCoding
+        
+        // resolve ios 12 deprecation
+        do {
+           
+            if let object = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSObject.self], from: keychainData){
+     
+                return object as? NSCoding
+            }
+            
+            return nil
+        }
+        catch let error {
+            print("unarchiveObject(with:) \(error.localizedDescription)")
+            return nil
+        }
+        
     }
 
     
@@ -294,9 +310,21 @@ open class KeychainWrapper {
     /// - parameter isSynchronizable: A bool that describes if the item should be synchronizable, to be synched with the iCloud. If none is provided, will default to false
     /// - returns: True if the save was successful, false otherwise.
     @discardableResult open func set(_ value: NSCoding, forKey key: String, withAccessibility accessibility: KeychainItemAccessibility? = nil, isSynchronizable: Bool = false) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: value)
+        //let data = NSKeyedArchiver.archivedData(withRootObject: value)
         
-        return set(data, forKey: key, withAccessibility: accessibility, isSynchronizable: isSynchronizable)
+        //return set(data, forKey: key, withAccessibility: accessibility, isSynchronizable: isSynchronizable)
+    
+        // resolve ios 12 deprecation
+        do {
+            
+            let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: true)
+        
+            return set(data, forKey: key, withAccessibility: accessibility, isSynchronizable: isSynchronizable)
+        }
+        catch let error {
+           print("archivedData(withRootObject:) \(error.localizedDescription)")
+           return false
+       }
     }
 
     /// Save a Data object to the keychain associated with a specified key. If data already exists for the given key, the data will be overwritten with the new value.
