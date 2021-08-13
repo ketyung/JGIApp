@@ -54,10 +54,10 @@ extension PdfPreviewView {
             Spacer()
             
         }
-        
+        .background(Color.white)
         .bottomSheet(isPresented:$optionsSheetPresented , height: 240, showGrayOverlay: true, content: {
             
-            optionsView()
+            optionsView().background(Color.white)
         })
         .sheet(isPresented: $shareSheetPresented, content: {
             if let data = signingViewModel.pdfPreview {

@@ -20,8 +20,8 @@ struct RecipientsView : View {
         
         VStack(alignment: .leading, spacing:20) {
             
-            Text("Choose recipients").font(.custom(Theme.fontName, size: 18))
-            
+            Text("Choose recipients").font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
+                
             recipientsListView()
             .frame(height:360)
                 

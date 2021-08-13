@@ -20,7 +20,8 @@ struct TemplatesView : View {
         
         VStack(alignment: .leading, spacing:20) {
             
-            Text("Choose a template").font(.custom(Theme.fontName, size: 18))
+            Text("Choose a template").font(.custom(Theme.fontName, size: 18)).foregroundColor(.black)
+            
             
             templatesList()
             .frame(height:120)

@@ -56,14 +56,16 @@ extension SigningView {
                 
                 Image(systemName: "info.circle.fill").resizable().foregroundColor(.green).frame(width:30, height: 30)
                 
-                Text("Completed".localized).font(.custom(Theme.fontName, size: 30))
+                Text("Completed".localized).font(.custom(Theme.fontName, size: 30)).foregroundColor(.black)
+                
                 
                 Spacer()
             }
     
             HStack {
                 
-                Text("By").font(.custom(Theme.fontName, size: 20))
+                Text("By").font(.custom(Theme.fontName, size: 20)).foregroundColor(.black)
+                
                 
                 Image("docusign").resizable().frame(width:80, height: 17.2).aspectRatio(contentMode: .fit)
              
