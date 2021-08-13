@@ -1,4 +1,8 @@
 <?php
+/**
+ * CopyRight (c) 2021 Ket Yung Chee (Christopher). MIT License
+ */
+
 namespace Util;
 
 class StrUtil {

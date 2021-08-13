@@ -1,4 +1,7 @@
 <?php
+/**
+ * CopyRight (c) 2021 Ket Yung Chee (Christopher). MIT License
+ */
 require_once "../bootstrap.php";
 
 use Util\Log as Log;
