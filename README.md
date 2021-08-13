@@ -25,7 +25,7 @@ and better reusability. The SwiftUI views are organized in the folder Views, and
 
 In the Views foler, you'll find views in subfolders for their own dedicated purposes, e.g. views for displaying/handling map or map list are in the sub-folder    "mapViews". Views for handling the DocuSign signing, templates etc are in the subfolder docuSign.
 
-Map view is based on AGSMapView wrapped by UIViewRepresentable for presenting in SwiftUI and its Coordinator for handling touch. For DocuSign sigining by using template that requires the launch of UIViewController by the DSMTemplatesManager, is wrapped using UIViewControllerRepresentable for presenting it in SwiftUI etc.
+Map view is based on AGSMapView wrapped by UIViewRepresentable for presenting in SwiftUI and its Coordinator for handling touches. For DocuSign sigining by using template that requires the launch of UIViewController by the DSMTemplatesManager, is wrapped using UIViewControllerRepresentable for presenting it in SwiftUI etc.
 
 4. All SwiftUI views and the Swift part written by myself, some were already written previously by me during the previous hackathon (https://github.com/ketyung/KyPayApp2) so I modified to suit and use in this project e.g. the ApiClient that communicates with the PHP backend. 
 
